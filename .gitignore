@@ -13,3 +13,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .vercel
+
+# Next.js cache/build variants
+.next*
+.next-production-cache-*
+.turbo
