@@ -290,6 +290,14 @@
   }
 }
 
+.moreFeature {
+  align-items: center;
+  border-radius: 1rem;
+  background: rgba(47, 138, 104, 0.08);
+  padding: 0.65rem 0.75rem;
+  font-weight: 900;
+}
+
 .planCardFeatured .featureList {
   li {
     color: rgba(255, 255, 255, 0.82);
@@ -298,6 +306,11 @@
   span {
     background: #ffffff;
     color: #103f31;
+  }
+
+  .moreFeature {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.92);
   }
 }
 
@@ -361,15 +374,50 @@
 
   .mobileDeck {
     display: flex;
+    gap: 0;
+    margin-top: 2.25rem;
+    padding: 0 0 1.35rem;
+    scroll-padding-inline: 0;
   }
 
   .mobileDots {
     display: flex;
   }
 
+  .mobileCard {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+    place-items: center;
+    padding-inline: 0;
+  }
+
+  .mobileCard .planCard {
+    width: min(100%, 32rem);
+  }
+
   .planCard {
     min-height: 0;
     height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .backgroundWord {
+    display: none;
+  }
+
+  .microPills {
+    display: none;
+  }
+
+  .mobileDeck {
+    margin-top: 1.45rem;
+  }
+
+  .mobileCard .planCard {
+    width: 100%;
   }
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -422,88 +422,103 @@ function useLandingGsap(rootRef: React.RefObject<HTMLElement | null>) {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    const root = rootRef.current;
+    const mm = gsap.matchMedia();
 
     const ctx = gsap.context(() => {
-      const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]");
+      const reveal = (distance: number) => {
+        const revealItems = gsap.utils.toArray<HTMLElement>(root.querySelectorAll("[data-reveal]"));
 
-      revealItems.forEach((item) => {
-        gsap.fromTo(
-          item,
-          { autoAlpha: 0, y: 34 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.78,
-            ease: "power3.out",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 86%",
-              once: true,
+        revealItems.forEach((item) => {
+          gsap.fromTo(
+            item,
+            { autoAlpha: 0, y: distance },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.62,
+              ease: "power3.out",
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: item,
+                start: "top 88%",
+                once: true,
+              },
             },
+          );
+        });
+      };
+
+      mm.add("(max-width: 767px)", () => {
+        reveal(18);
+      });
+
+      mm.add("(min-width: 768px)", () => {
+        reveal(34);
+
+        gsap.to("[data-float='hero-main']", {
+          y: -13,
+          rotate: 0.45,
+          duration: 3.7,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        gsap.to("[data-float='hero-back-left']", {
+          y: 12,
+          rotate: -8,
+          duration: 4.4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        gsap.to("[data-float='hero-back-right']", {
+          y: -10,
+          rotate: 8,
+          duration: 4.9,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        gsap.to("[data-float='ambient']", {
+          xPercent: 8,
+          yPercent: -6,
+          duration: 7,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.2,
+        });
+
+        gsap.to("[data-float-card]", {
+          y: -10,
+          duration: 3.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.18,
+        });
+
+        gsap.to("[data-parallax='preview']", {
+          yPercent: -5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "[data-preview-section]",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.7,
           },
-        );
-      });
-
-      gsap.to("[data-float='hero-main']", {
-        y: -13,
-        rotate: 0.45,
-        duration: 3.7,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.to("[data-float='hero-back-left']", {
-        y: 12,
-        rotate: -8,
-        duration: 4.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.to("[data-float='hero-back-right']", {
-        y: -10,
-        rotate: 8,
-        duration: 4.9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.to("[data-float='ambient']", {
-        xPercent: 8,
-        yPercent: -6,
-        duration: 7,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.2,
-      });
-
-      gsap.to("[data-float-card]", {
-        y: -10,
-        duration: 3.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.18,
-      });
-
-      gsap.to("[data-parallax='preview']", {
-        yPercent: -5,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "[data-preview-section]",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.7,
-        },
+        });
       });
     }, rootRef);
 
-    return () => ctx.revert();
+    return () => {
+      mm.revert();
+      ctx.revert();
+    };
   }, [rootRef]);
 }
 
@@ -661,87 +676,79 @@ function HeroCardDeck() {
     setActiveSlide((current) => (current + direction + heroSlides.length) % heroSlides.length);
   };
 
-  return (
-    <div data-reveal className={heroStyles.deckWrap}>
-      <div className={heroStyles.flowText}>FLOW</div>
-      <div className={heroStyles.glow} data-float="ambient" />
-      <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left">
-        <span>{previousSlide.eyebrow}</span>
-        <strong>{previousSlide.title}</strong>
-      </div>
-      <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right">
-        <span>{nextSlide.eyebrow}</span>
-        <strong>{nextSlide.title}</strong>
-      </div>
-      <div className={heroStyles.mainFloatLayer} data-float="hero-main">
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    setIsDragging(false);
+
+    if (info.offset.x < -64 || info.velocity.x < -420) {
+      moveSlide(1);
+    }
+
+    if (info.offset.x > 64 || info.velocity.x > 420) {
+      moveSlide(-1);
+    }
+  };
+
+  const card = (mobile = false) => (
+    <motion.div
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.16}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={handleDragEnd}
+      whileTap={{ scale: 0.992 }}
+      className={cn(heroStyles.mainCard, mobile && heroStyles.mobileMainCard, isDragging && heroStyles.dragging)}
+      aria-roledescription="carousel"
+    >
+      <AnimatePresence mode="wait">
         <motion.div
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.16}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={(_, info) => {
-            setIsDragging(false);
-
-            if (info.offset.x < -64 || info.velocity.x < -420) {
-              moveSlide(1);
-            }
-
-            if (info.offset.x > 64 || info.velocity.x > 420) {
-              moveSlide(-1);
-            }
-          }}
-          whileTap={{ scale: 0.992 }}
-          className={cn(heroStyles.mainCard, isDragging && heroStyles.dragging)}
-          aria-roledescription="carousel"
+          key={slide.title}
+          initial={{ opacity: 0, x: mobile ? 24 : 42 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: mobile ? -22 : -38 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slide.title}
-              initial={{ opacity: 0, x: 42 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -38 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <div className={heroStyles.innerPanel}>
-                <div className="flex items-start justify-between gap-5">
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
-                    <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
-                      {slide.title}
-                    </h3>
-                    <span className={heroStyles.slideCopy}>{slide.copy}</span>
-                  </div>
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#103F31]">
-                    <Sparkles className="h-5 w-5" aria-hidden="true" />
+          <div className={heroStyles.innerPanel}>
+            <div className="flex items-start justify-between gap-5">
+              <div className="min-w-0">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
+                <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
+                  {slide.title}
+                </h3>
+                <span className={heroStyles.slideCopy}>{slide.copy}</span>
+              </div>
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#103F31]">
+                <Sparkles className="h-5 w-5" aria-hidden="true" />
+              </span>
+            </div>
+            <div className={heroStyles.featureStack}>
+              {slide.items.map((feature) => (
+                <div key={feature} className={heroStyles.featureRow}>
+                  <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
+                      <Check className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="truncate">{feature}</span>
                   </span>
+                  <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
                 </div>
-                <div className={heroStyles.featureStack}>
-                  {slide.items.map((feature) => (
-                    <div key={feature} className={heroStyles.featureRow}>
-                      <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
-                        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
-                          <Check className="h-4 w-4" aria-hidden="true" />
-                        </span>
-                        <span className="truncate">{feature}</span>
-                      </span>
-                      <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
-                    </div>
-                  ))}
-                </div>
+              ))}
+            </div>
+          </div>
+          <div className={heroStyles.stats}>
+            {slide.stats.map((stat) => (
+              <div key={stat.label}>
+                <p>{stat.label}</p>
+                <strong>{stat.value}</strong>
               </div>
-              <div className={heroStyles.stats}>
-                {slide.stats.map((stat) => (
-                  <div key={stat.label}>
-                    <p>{stat.label}</p>
-                    <strong>{stat.value}</strong>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+            ))}
+          </div>
         </motion.div>
-      </div>
-      <div className={heroStyles.controls} aria-label="Navigasi preview Kasirflow">
+      </AnimatePresence>
+    </motion.div>
+  );
+
+  const controls = (mobile = false) => (
+    <div className={cn(heroStyles.controls, mobile && heroStyles.mobileControls)} aria-label="Navigasi preview Kasirflow">
         <button type="button" aria-label="Slide sebelumnya" onClick={() => moveSlide(-1)}>
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -758,6 +765,30 @@ function HeroCardDeck() {
         <button type="button" aria-label="Slide berikutnya" onClick={() => moveSlide(1)}>
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </button>
+      </div>
+  );
+
+  return (
+    <div data-reveal className={heroStyles.deckWrap}>
+      <div className={heroStyles.desktopDeckVisual}>
+        <div className={heroStyles.flowText}>FLOW</div>
+        <div className={heroStyles.glow} data-float="ambient" />
+        <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left">
+          <span>{previousSlide.eyebrow}</span>
+          <strong>{previousSlide.title}</strong>
+        </div>
+        <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right">
+          <span>{nextSlide.eyebrow}</span>
+          <strong>{nextSlide.title}</strong>
+        </div>
+        <div className={heroStyles.mainFloatLayer} data-float="hero-main">
+          {card()}
+        </div>
+        {controls()}
+      </div>
+      <div className={heroStyles.mobileDeckVisual}>
+        {card(true)}
+        {controls(true)}
       </div>
     </div>
   );
@@ -1218,6 +1249,7 @@ function PricingPlanCard({
 }) {
   const isDark = active && plan.featured;
   const shownFeatures = compact ? plan.features.slice(0, 6) : plan.features;
+  const hiddenFeatureCount = compact ? plan.features.length - shownFeatures.length : 0;
 
   return (
     <article className={cn(pricingStyles.planCard, isDark && pricingStyles.planCardFeatured)}>
@@ -1243,6 +1275,12 @@ function PricingPlanCard({
             {feature}
           </li>
         ))}
+        {hiddenFeatureCount > 0 && (
+          <li className={pricingStyles.moreFeature}>
+            <span>+</span>
+            {hiddenFeatureCount} fitur lain tersedia di paket ini
+          </li>
+        )}
       </ul>
       <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
         {plan.cta}
@@ -1470,7 +1508,7 @@ function PricingDeckSection() {
             }}
             className={pricingStyles.mobileCard}
           >
-            <PricingPlanCard plan={plan} active={plan.featured} />
+            <PricingPlanCard plan={plan} active={plan.featured} compact />
           </div>
         ))}
       </div>
