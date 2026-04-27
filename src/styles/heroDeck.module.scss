@@ -234,34 +234,198 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .deckWrap {
-    width: min(100%, 23rem);
-    min-height: 39rem;
+    width: min(100%, 30rem);
+    min-height: auto;
+    padding-bottom: 3.4rem;
   }
 
   .backCard {
-    top: 5.8rem;
-    height: 28rem;
+    top: 5.4rem;
+    height: 23rem;
   }
 
-  .mainCard {
-    padding: 1rem;
+  .mainFloatLayer {
+    width: min(100%, 30rem);
   }
 
   .innerPanel {
-    padding: 1.25rem;
+    padding: 1.2rem;
+
+    h3 {
+      font-size: clamp(1.85rem, 7vw, 2.45rem) !important;
+    }
+  }
+
+  .featureStack {
+    gap: 0.62rem;
+    margin-top: 1.15rem;
+
+    &::after {
+      content: "+ fitur lain siap diaktifkan";
+      display: block;
+      border-radius: 0.95rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.68rem 0.8rem;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-align: center;
+    }
   }
 
   .featureRow {
-    min-height: 3.45rem;
+    min-height: 3rem;
+    border-radius: 1rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .featureRow:nth-child(n + 5) {
+    display: none;
+  }
+
+  .slideCopy {
+    display: none;
   }
 
   .stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.85rem;
+
+    div {
+      padding: 0.95rem;
+      border-radius: 1.15rem;
+    }
+
+    strong {
+      font-size: clamp(1.25rem, 4.6vw, 1.6rem);
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .deckWrap {
+    width: min(100%, 24.5rem);
+    min-height: auto;
+    padding-bottom: 3.4rem;
+  }
+
+  .flowText {
+    top: -0.55rem;
+    font-size: clamp(4.2rem, 22vw, 5.6rem);
+  }
+
+  .glow {
+    width: min(82vw, 18rem);
+    filter: blur(34px);
+  }
+
+  .backCard {
+    top: 4.6rem;
+    height: 19rem;
+    opacity: 0.72;
+    padding: 1rem;
+  }
+
+  .backLeft {
+    left: 0.2rem;
+    transform: rotate(-6deg);
+  }
+
+  .backRight {
+    right: 0.2rem;
+    transform: rotate(6deg);
+  }
+
+  .mainCard {
+    border-radius: 1.7rem;
+    padding: 0.72rem;
+  }
+
+  .innerPanel {
+    border-radius: 1.35rem;
+    padding: 1rem;
+
+    h3 {
+      font-size: clamp(1.55rem, 8vw, 1.9rem) !important;
+    }
+  }
+
+  .slideCopy {
+    display: none;
+  }
+
+  .featureStack {
+    gap: 0.55rem;
+    margin-top: 1rem;
+  }
+
+  .featureRow {
+    min-height: 2.75rem;
+    gap: 0.55rem;
+    border-radius: 0.95rem;
+    padding: 0.48rem 0.58rem;
+
+    :global(.h-8) {
+      width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 0.6rem;
+    }
+
+    span {
+      font-size: 0.82rem;
+    }
+
+    > span:last-child {
+      display: none;
+    }
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 0.75rem;
+
+    div {
+      border-radius: 1rem;
+      padding: 0.85rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+
+    strong {
+      font-size: 1.18rem;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
   }
 
   .controls {
-    bottom: -0.55rem;
+    bottom: 0;
+    gap: 0.45rem;
+
+    button {
+      width: 2.3rem;
+      height: 2.3rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .deckWrap {
+    width: 100%;
+  }
+
+  .backCard {
+    display: none;
+  }
+
+  .mainFloatLayer {
+    width: 100%;
   }
 }

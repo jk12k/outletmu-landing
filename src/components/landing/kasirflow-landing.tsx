@@ -770,8 +770,8 @@ function HeroSection() {
       <div className={landingStyles.ambientTwo} data-float="ambient" />
       <div className={cn(landingStyles.container, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
         <div data-reveal className="mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left">
-          <Badge>POS, QR Order & Website Menu</Badge>
-          <h1 className="mt-6 text-[clamp(2.45rem,5.9vw,4.95rem)] font-semibold leading-[1.04] text-[#14213D]">
+      <Badge>POS, QR Order & Website Menu</Badge>
+          <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-semibold leading-[1.04] text-[#14213D]">
             Kasir & QR Order, dibuat mudah untuk bisnis harian.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#14213D]/68 md:text-xl xl:mx-0">
@@ -1118,18 +1118,6 @@ function WhatsAppBotSection() {
             Kasirflow membantu owner memantau bisnis lewat percakapan yang sederhana.
             Pilih command cepat di bawah untuk melihat simulasi balasan bot.
           </p>
-          <div className={landingStyles.quickCommands}>
-            {whatsappCommands.map((command, index) => (
-              <button
-                key={command.label}
-                type="button"
-                onClick={() => runCommand(index)}
-                className={cn(activeCommand === index && landingStyles.quickCommandActive)}
-              >
-                {command.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className={landingStyles.chatFrame}>
@@ -1197,6 +1185,21 @@ function WhatsAppBotSection() {
             <button type="button" onClick={() => runCommand(activeCommand)} aria-label="Kirim command simulasi">
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
+          </div>
+        </div>
+
+        <div className={landingStyles.quickCommandsPanel}>
+          <div className={landingStyles.quickCommands}>
+            {whatsappCommands.map((command, index) => (
+              <button
+                key={command.label}
+                type="button"
+                onClick={() => runCommand(index)}
+                className={cn(activeCommand === index && landingStyles.quickCommandActive)}
+              >
+                {command.label}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -1270,9 +1273,8 @@ function PricingDeckSection() {
   const mobileDeckRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const pricingDragRef = useRef({ active: false, startX: 0, hasDragged: false });
+  const pricingDragRef = useRef({ startX: 0, hasMoved: false });
   const suppressPricingClickRef = useRef(false);
-  const lastPointerAtRef = useRef(0);
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3]];
 
   useEffect(() => {
@@ -1317,90 +1319,42 @@ function PricingDeckSection() {
     setActiveIndex((current) => (current + direction + pricingPlans.length) % pricingPlans.length);
   };
 
-  const startPricingDrag = (clientX: number, target: HTMLElement) => {
-    if (target.closest("a, button")) {
-      return;
-    }
-
-    pricingDragRef.current = { active: true, startX: clientX, hasDragged: false };
-    setIsPricingDragging(true);
-  };
-
-  const movePricingDrag = (clientX: number) => {
-    if (!pricingDragRef.current.active) {
-      return;
-    }
-
-    if (Math.abs(clientX - pricingDragRef.current.startX) > 8) {
-      pricingDragRef.current.hasDragged = true;
-      suppressPricingClickRef.current = true;
-    }
-  };
-
-  const endPricingDrag = (clientX: number) => {
-    if (!pricingDragRef.current.active) {
-      return;
-    }
-
-    const delta = clientX - pricingDragRef.current.startX;
-
-    if (Math.abs(delta) > 54) {
-      pricingDragRef.current.hasDragged = true;
-      suppressPricingClickRef.current = true;
-      go(delta < 0 ? 1 : -1);
-    }
-
-    pricingDragRef.current.active = false;
-    setIsPricingDragging(false);
-    window.setTimeout(() => {
-      pricingDragRef.current.hasDragged = false;
-      suppressPricingClickRef.current = false;
-    }, 220);
-  };
-
-  const handlePricingPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    lastPointerAtRef.current = Date.now();
-    startPricingDrag(event.clientX, event.target as HTMLElement);
-
-    if (!pricingDragRef.current.active) {
-      return;
-    }
-
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
-
-  const handlePricingPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    lastPointerAtRef.current = Date.now();
-    movePricingDrag(event.clientX);
-  };
-
-  const handlePricingPointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
-    lastPointerAtRef.current = Date.now();
-    endPricingDrag(event.clientX);
-  };
-
   const handlePricingMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (Date.now() - lastPointerAtRef.current < 450) {
+    if ((event.target as HTMLElement).closest("a, button")) {
       return;
     }
 
-    startPricingDrag(event.clientX, event.target as HTMLElement);
-  };
+    pricingDragRef.current = { startX: event.clientX, hasMoved: false };
+    setIsPricingDragging(true);
 
-  const handlePricingMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (Date.now() - lastPointerAtRef.current < 450) {
-      return;
-    }
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const delta = moveEvent.clientX - pricingDragRef.current.startX;
 
-    movePricingDrag(event.clientX);
-  };
+      if (Math.abs(delta) > 8) {
+        pricingDragRef.current.hasMoved = true;
+        suppressPricingClickRef.current = true;
+      }
+    };
 
-  const handlePricingMouseEnd = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (Date.now() - lastPointerAtRef.current < 450) {
-      return;
-    }
+    const handleMouseUp = (upEvent: MouseEvent) => {
+      const delta = upEvent.clientX - pricingDragRef.current.startX;
 
-    endPricingDrag(event.clientX);
+      if (Math.abs(delta) > 54) {
+        suppressPricingClickRef.current = true;
+        go(delta < 0 ? 1 : -1);
+      }
+
+      setIsPricingDragging(false);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.setTimeout(() => {
+        pricingDragRef.current.hasMoved = false;
+        suppressPricingClickRef.current = false;
+      }, 220);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
   };
 
   const syncMobileDot = () => {
@@ -1458,16 +1412,9 @@ function PricingDeckSection() {
           <ArrowRight className="h-5 w-5" aria-hidden="true" />
         </button>
 
-        <div
+        <motion.div
           className={cn(pricingStyles.cardStage, isPricingDragging && pricingStyles.isDragging)}
-          onPointerDown={handlePricingPointerDown}
-          onPointerMove={handlePricingPointerMove}
-          onPointerUp={handlePricingPointerEnd}
-          onPointerCancel={handlePricingPointerEnd}
           onMouseDown={handlePricingMouseDown}
-          onMouseMove={handlePricingMouseMove}
-          onMouseUp={handlePricingMouseEnd}
-          onMouseLeave={handlePricingMouseEnd}
         >
           {pricingPlans.map((plan, index) => {
             const isActive = index === activeIndex;
@@ -1481,7 +1428,7 @@ function PricingDeckSection() {
                 role="button"
                 tabIndex={0}
                 onClick={() => {
-                  if (!pricingDragRef.current.hasDragged && !suppressPricingClickRef.current) {
+                  if (!suppressPricingClickRef.current) {
                     setActiveIndex(index);
                   }
                 }}
@@ -1499,7 +1446,7 @@ function PricingDeckSection() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
 
         <div className={pricingStyles.desktopDots}>
           {pricingPlans.map((plan, index) => (

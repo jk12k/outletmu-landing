@@ -40,6 +40,13 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
 ::selection {
   background: rgba(47, 138, 104, 0.2);
   color: #103f31;

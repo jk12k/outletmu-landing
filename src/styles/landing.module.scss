@@ -779,7 +779,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
 
   button {
     min-height: 2.9rem;
@@ -804,12 +803,21 @@
   }
 }
 
+.quickCommandsPanel {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+  margin-top: -2.8rem;
+}
+
 .quickCommandActive {
   background: #103f31 !important;
   color: #ffffff !important;
 }
 
 .chatFrame {
+  grid-column: 2;
+  grid-row: 1 / span 2;
   width: min(100%, 34rem);
   margin-inline: auto;
   overflow: hidden;
@@ -1079,6 +1087,17 @@
     justify-content: center;
   }
 
+  .quickCommandsPanel {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
+  .chatFrame {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
   .productFlowShowcase {
     width: min(100%, 43rem);
     margin-inline: auto;
@@ -1101,15 +1120,103 @@
 @media (max-width: 640px) {
   .section {
     padding-inline: 1.25rem;
+    padding-block: 3.75rem;
+  }
+
+  .heroSection {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .builderShell,
+  .previewShell {
+    margin-top: 2rem;
+    border-radius: 1.45rem;
+    padding: 0.9rem;
+  }
+
+  .ambientOne,
+  .ambientTwo {
+    width: 18rem;
+    filter: blur(34px);
+  }
+
+  .ambientOne {
+    left: -11rem;
+  }
+
+  .ambientTwo {
+    right: -11rem;
   }
 
   .productFlowShowcase {
+    border-radius: 1.55rem;
     min-height: auto;
-    padding-bottom: 1.15rem;
+    padding: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .flowNarrative h2,
+  .whatsappCopy h2 {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .flowNarrative > p,
+  .whatsappCopy > p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .flowBenefits {
+    gap: 0.7rem;
+    margin-top: 1.45rem;
+  }
+
+  .flowBenefits div {
+    align-items: flex-start;
+    min-height: 0;
+    border-radius: 1.25rem;
+    padding: 0.85rem;
+    text-align: left;
+  }
+
+  .flowNarrativeFooter {
+    align-items: flex-start;
+    border-radius: 1.25rem;
+    text-align: left;
+  }
+
+  .showcaseWord {
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: clamp(3.6rem, 18vw, 5rem);
   }
 
   .flowDevice {
-    margin-top: 2.5rem;
+    margin-top: 2.25rem;
+    border-radius: 1.35rem;
+  }
+
+  .flowDeviceHeader {
+    align-items: flex-start;
+    padding: 1rem;
+
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .flowDeviceBody {
+    padding: 0.75rem;
+  }
+
+  .orderSummary {
+    border-radius: 1.1rem;
+    padding: 1rem;
+
+    strong {
+      font-size: 2rem;
+    }
   }
 
   .floatingCards {
@@ -1124,6 +1231,12 @@
   .floatingCard {
     position: static;
     width: 100%;
+    min-height: 0;
+    border-radius: 1.1rem;
+  }
+
+  .floatingCard:nth-child(n + 4) {
+    display: none;
   }
 
   .orderRows div {
@@ -1135,11 +1248,77 @@
   }
 
   .chatBody {
-    min-height: 27rem;
+    min-height: 20.5rem;
+    gap: 0.7rem;
   }
 
   .chatBubble {
-    max-width: 86%;
+    max-width: 90%;
+    border-radius: 1.1rem;
+    padding: 0.78rem 0.88rem 0.58rem;
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  .chatFrame {
+    width: 100%;
+    border-radius: 1.45rem;
+    box-shadow:
+      0 24px 65px rgba(20, 33, 61, 0.1),
+      inset 0 0 0 0.35rem rgba(255, 255, 255, 0.62);
+  }
+
+  .chatHeader {
+    padding: 1rem;
+  }
+
+  .botAvatar,
+  .chatAvatar {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .chatInput {
+    padding: 0.75rem;
+
+    span {
+      padding: 0.78rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    button {
+      width: 2.55rem;
+      height: 2.55rem;
+    }
+  }
+
+  .quickCommandsPanel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .quickCommands {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    button {
+      flex: 0 0 auto;
+      min-height: 2.75rem;
+      padding: 0.68rem 0.95rem;
+      font-size: 0.86rem;
+    }
   }
 
   .featureGrid,
@@ -1149,6 +1328,59 @@
 
   .flowCard {
     min-height: auto;
+    border-radius: 1.25rem;
+    padding: 1rem;
+  }
+
+  .featureCard,
+  .featureCardLarge {
+    min-height: auto;
+    border-radius: 1.35rem;
+    padding: 1.25rem;
+
+    h3 {
+      margin-top: 1.25rem;
+      font-size: 1.35rem;
+    }
+
+    p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+  }
+
+  .previewFocus {
+    min-height: auto;
+    border-radius: 1.35rem;
+    padding: 1.25rem;
+
+    h3 {
+      font-size: 1.7rem;
+    }
+
+    div {
+      margin-top: 1.5rem;
+      padding: 1rem;
+    }
+
+    strong {
+      font-size: 1.7rem;
+    }
+  }
+
+  .previewMockup {
+    border-radius: 1.35rem;
+    padding: 0.85rem;
+  }
+
+  .previewTabs {
+    gap: 0.55rem;
+
+    button {
+      min-height: 2.7rem;
+      padding: 0.65rem 0.95rem;
+      font-size: 0.84rem;
+    }
   }
 
   .mockupHeader,
@@ -1163,9 +1395,16 @@
 
   .mockupRows div {
     grid-template-columns: auto minmax(0, 1fr);
+    min-height: 3.7rem;
+    padding: 0.75rem;
   }
 
   .mockupRows em {
     display: none;
+  }
+
+  .finalCta {
+    border-radius: 1.55rem;
+    padding: 1.35rem;
   }
 }
