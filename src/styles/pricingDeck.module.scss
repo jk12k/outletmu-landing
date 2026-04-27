@@ -1,0 +1,377 @@
+.backgroundWord {
+  position: absolute;
+  top: clamp(3.5rem, 7vw, 5.8rem);
+  left: 50%;
+  z-index: 0;
+  transform: translateX(-50%);
+  color: #f8f3ea;
+  font-size: clamp(5rem, 16vw, 15rem);
+  font-weight: 900;
+  line-height: 0.8;
+  pointer-events: none;
+  user-select: none;
+}
+
+.microPills {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 2rem auto 0;
+
+  span {
+    border-radius: 999px;
+    background: #f8f3ea;
+    padding: 0.65rem 1.05rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+}
+
+.desktopDeck {
+  position: relative;
+  z-index: 2;
+  display: block;
+  min-height: 56rem;
+  margin-top: clamp(3rem, 5vw, 4.25rem);
+}
+
+.cardStage {
+  position: relative;
+  width: min(100%, 76rem);
+  height: 51.5rem;
+  margin-inline: auto;
+}
+
+.deckCard {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(24rem, 35vw, 30rem);
+  height: 50.5rem;
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible {
+    border-radius: 2.2rem;
+    box-shadow: 0 0 0 4px rgba(47, 138, 104, 0.22);
+  }
+}
+
+.arrowPrev,
+.arrowNext {
+  position: absolute;
+  top: 44%;
+  z-index: 40;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 18px 45px rgba(20, 33, 61, 0.14);
+  cursor: pointer;
+}
+
+.arrowPrev {
+  left: max(0rem, calc((100% - 76rem) / 2));
+  background: #ffffff;
+  color: #14213d;
+}
+
+.arrowNext {
+  right: max(0rem, calc((100% - 76rem) / 2));
+  background: #103f31;
+  color: #ffffff;
+}
+
+.desktopDots,
+.mobileDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.desktopDots {
+  margin-top: 0.35rem;
+}
+
+.desktopDots button,
+.mobileDots span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(20, 33, 61, 0.16);
+}
+
+.desktopDots button {
+  cursor: pointer;
+}
+
+.desktopDots .dotActive,
+.mobileDots .dotActive {
+  width: 2.25rem;
+  background: #2f8a68;
+}
+
+.planCard {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  min-height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: clamp(1.8rem, 3vw, 2.25rem);
+  background:
+    radial-gradient(circle at 82% 5%, rgba(47, 138, 104, 0.12), transparent 32%),
+    #ffffff;
+  padding: clamp(1.55rem, 2.5vw, 1.9rem);
+  color: #14213d;
+  box-shadow: 0 35px 90px rgba(20, 33, 61, 0.12);
+}
+
+.planCardFeatured {
+  border-color: rgba(47, 138, 104, 0.5);
+  background:
+    radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.32), transparent 34%),
+    #103f31;
+  color: #ffffff;
+}
+
+.cardGlow {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  width: 11rem;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: rgba(47, 138, 104, 0.13);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.planHeader,
+.priceBox,
+.featureList {
+  position: relative;
+  z-index: 2;
+}
+
+.planHeader {
+  span {
+    display: inline-flex;
+    border-radius: 999px;
+    background: #f8f3ea;
+    padding: 0.6rem 1rem;
+    color: #2f8a68;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  h3 {
+    margin-top: 1.4rem;
+    font-size: clamp(1.9rem, 4vw, 2.35rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  p {
+    margin-top: 0.9rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+}
+
+.planCardFeatured .planHeader {
+  span {
+    background: #ffffff;
+    color: #103f31;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.68);
+  }
+}
+
+.priceBox {
+  margin-top: 1.5rem;
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  border-radius: 1.65rem;
+  background: rgba(248, 243, 234, 0.6);
+  padding: 1.25rem;
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.45rem;
+  }
+
+  strong {
+    font-size: clamp(2.4rem, 5vw, 3.15rem);
+    line-height: 1;
+  }
+
+  small {
+    color: rgba(20, 33, 61, 0.46);
+    font-size: 0.9rem;
+    font-weight: 900;
+  }
+
+  p {
+    margin-top: 1rem;
+    border-radius: 1.15rem;
+    background: #ffffff;
+    padding: 0.9rem 1rem;
+    color: rgba(20, 33, 61, 0.64);
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+}
+
+.planCardFeatured .priceBox {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+
+  small,
+  p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  p {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.featureList {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 0.8rem;
+    color: rgba(20, 33, 61, 0.66);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  span {
+    display: grid;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    place-items: center;
+    margin-top: 0.08rem;
+    border-radius: 999px;
+    background: #e8f3ef;
+    color: #2f8a68;
+  }
+}
+
+.planCardFeatured .featureList {
+  li {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  span {
+    background: #ffffff;
+    color: #103f31;
+  }
+}
+
+.planCta {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-top: auto;
+}
+
+.mobileDeck {
+  position: relative;
+  z-index: 2;
+  display: none;
+  gap: 1rem;
+  max-width: 100%;
+  margin-top: 2.75rem;
+  overflow-x: auto;
+  padding: 0 0.15rem 1.4rem;
+  scroll-padding-inline: 1.25rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mobileCard {
+  width: min(100%, 25rem);
+  max-width: calc(100vw - 2.5rem);
+  flex: 0 0 min(100%, 25rem);
+  min-width: 0;
+  scroll-snap-align: center;
+}
+
+.mobileDots {
+  display: none;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 1180px) {
+  .cardStage {
+    width: min(100%, 64rem);
+  }
+
+  .arrowPrev {
+    left: 0;
+  }
+
+  .arrowNext {
+    right: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .desktopDeck {
+    display: none;
+  }
+
+  .mobileDeck {
+    display: flex;
+  }
+
+  .mobileDots {
+    display: flex;
+  }
+
+  .planCard {
+    min-height: 0;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .microPills {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .planHeader h3 {
+    font-size: 1.85rem;
+  }
+
+  .priceBox strong {
+    font-size: 2.25rem;
+  }
+}

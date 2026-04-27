@@ -1,35 +1,35 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowLeft,
   ArrowRight,
   BarChart3,
-  Building2,
   Check,
   ChevronDown,
-  ChefHat,
   ClipboardList,
-  Coffee,
   CreditCard,
   LayoutDashboard,
   LineChart,
   MessageCircle,
   Package,
   QrCode,
-  ReceiptText,
   ScanLine,
   Search,
   ShoppingCart,
   Sparkles,
   Store,
   Table2,
-  Utensils,
   WalletCards,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import landingStyles from "@/styles/landing.module.scss";
+import heroStyles from "@/styles/heroDeck.module.scss";
+import pricingStyles from "@/styles/pricingDeck.module.scss";
 
 const whatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Kasirflow%2C%20saya%20mau%20konsultasi%20paket%20POS%20dan%20QR%20Order.";
@@ -102,57 +102,50 @@ const features: Array<{
   title: string;
   copy: string;
   icon: LucideIcon;
-  highlight?: boolean;
+  tone: "primary" | "light" | "dark";
 }> = [
   {
     title: "Website Menu Digital",
     copy: "Menu online dengan kategori, foto, harga, deskripsi, dan status produk yang mudah diperbarui.",
     icon: Store,
-    highlight: true,
+    tone: "dark",
   },
   {
     title: "QR Order",
     copy: "Pelanggan scan QR, pilih menu dari HP, lalu pesanan diteruskan ke alur kasir.",
     icon: QrCode,
-    highlight: true,
+    tone: "primary",
   },
   {
     title: "QR Table",
     copy: "Nomor meja otomatis terbaca agar pesanan dine-in tidak tertukar.",
     icon: Table2,
-    highlight: true,
+    tone: "light",
   },
   {
     title: "POS Basic",
     copy: "Transaksi, order, dan riwayat penjualan dalam tampilan yang mudah dipakai kasir.",
     icon: WalletCards,
+    tone: "light",
   },
   {
     title: "Stok & Restock",
     copy: "Pantau stok, restock manual, dan siapkan stok otomatis saat bisnis naik level.",
     icon: Package,
+    tone: "light",
   },
   {
     title: "Laporan Penjualan",
     copy: "Omzet, jumlah transaksi, dan produk terlaris bisa dibaca cepat oleh owner.",
     icon: BarChart3,
+    tone: "light",
   },
   {
     title: "WhatsApp Automation",
     copy: "Owner dapat cek omzet, cek stok, dan menerima notifikasi lewat WhatsApp.",
     icon: MessageCircle,
+    tone: "primary",
   },
-];
-
-const useCases: Array<{ title: string; icon: LucideIcon }> = [
-  { title: "Cafe", icon: Coffee },
-  { title: "Coffee shop", icon: Store },
-  { title: "Restoran kecil", icon: Utensils },
-  { title: "Kedai makanan/minuman", icon: ChefHat },
-  { title: "Bakery", icon: Store },
-  { title: "Minimarket kecil", icon: Building2 },
-  { title: "UMKM retail", icon: ReceiptText },
-  { title: "Bisnis dine-in", icon: Table2 },
 ];
 
 const previews = [
@@ -323,36 +316,99 @@ const faqs = [
   },
 ];
 
-function FadeBlock({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={false}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut", delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+type PricingPlan = (typeof pricingPlans)[number];
+
+function useLandingGsap(rootRef: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    if (!rootRef.current) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]");
+
+      revealItems.forEach((item) => {
+        gsap.fromTo(
+          item,
+          { autoAlpha: 0, y: 34 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.78,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 86%",
+              once: true,
+            },
+          },
+        );
+      });
+
+      gsap.to("[data-float='hero-main']", {
+        y: -13,
+        rotate: 0.45,
+        duration: 3.7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("[data-float='hero-back-left']", {
+        y: 12,
+        rotate: -8,
+        duration: 4.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("[data-float='hero-back-right']", {
+        y: -10,
+        rotate: 8,
+        duration: 4.9,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("[data-float='ambient']", {
+        xPercent: 8,
+        yPercent: -6,
+        duration: 7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.2,
+      });
+
+      gsap.to("[data-parallax='preview']", {
+        yPercent: -5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "[data-preview-section]",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.7,
+        },
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [rootRef]);
 }
 
 function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?: "light" | "dark" }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
+        "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
         tone === "light"
-          ? "border border-[#2F8A68]/15 bg-white/85 text-[#2F8A68]"
-          : "border border-white/15 bg-white/10 text-white",
+          ? "border border-[#2F8A68]/14 bg-white/86 text-[#2F8A68]"
+          : "border border-white/14 bg-white/10 text-white",
       )}
     >
       <Sparkles className="h-4 w-4" aria-hidden="true" />
@@ -375,11 +431,17 @@ function SectionTitle({
   tone?: "light" | "dark";
 }) {
   return (
-    <FadeBlock className={cn("relative z-10 mx-auto max-w-4xl", align === "center" ? "text-center" : "text-left")}>
+    <div
+      data-reveal
+      className={cn(
+        "relative z-10 mx-auto max-w-4xl",
+        align === "center" ? "text-center" : "text-center lg:text-left",
+      )}
+    >
       <Badge tone={tone}>{badge}</Badge>
       <h2
         className={cn(
-          "mt-5 text-3xl font-semibold leading-[1.08] md:text-5xl lg:text-6xl",
+          "mt-5 text-[clamp(2.2rem,6vw,4.9rem)] font-semibold leading-[1.04]",
           tone === "dark" ? "text-white" : "text-[#14213D]",
         )}
       >
@@ -389,14 +451,14 @@ function SectionTitle({
         <p
           className={cn(
             "mx-auto mt-5 max-w-2xl text-base leading-8 md:text-lg",
-            align === "left" && "mx-0",
+            align === "left" && "lg:mx-0",
             tone === "dark" ? "text-white/68" : "text-[#14213D]/65",
           )}
         >
           {subtitle}
         </p>
       ) : null}
-    </FadeBlock>
+    </div>
   );
 }
 
@@ -410,8 +472,8 @@ function PageSection({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("relative overflow-hidden px-5 py-20 md:px-8 md:py-28", className)}>
-      <div className="mx-auto max-w-7xl">{children}</div>
+    <section id={id} className={cn(landingStyles.section, className)}>
+      <div className={landingStyles.container}>{children}</div>
     </section>
   );
 }
@@ -435,9 +497,8 @@ function ButtonLink({
         variant === "primary" &&
           "bg-[#2F8A68] text-white shadow-[0_22px_55px_rgba(47,138,104,0.28)] hover:-translate-y-0.5 hover:bg-[#28795b]",
         variant === "secondary" &&
-          "border border-[#14213D]/10 bg-white/90 text-[#14213D] shadow-sm hover:-translate-y-0.5 hover:border-[#2F8A68]/30",
-        variant === "light" &&
-          "bg-white text-[#103F31] shadow-[0_22px_55px_rgba(16,63,49,0.2)] hover:-translate-y-0.5",
+          "border border-[#14213D]/10 bg-white text-[#14213D] shadow-sm hover:-translate-y-0.5 hover:border-[#2F8A68]/30",
+        variant === "light" && "bg-white text-[#103F31] shadow-[0_22px_55px_rgba(16,63,49,0.2)] hover:-translate-y-0.5",
         className,
       )}
     >
@@ -448,29 +509,29 @@ function ButtonLink({
 
 function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#14213D]/5 bg-[#F8F3EA]/82 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <a href="#" className="flex items-center gap-3" aria-label="Kasirflow">
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#103F31] text-white shadow-[0_18px_40px_rgba(16,63,49,0.24)]">
+    <header className={landingStyles.navbar}>
+      <div className={cn(landingStyles.container, "flex items-center justify-between gap-4 py-4")}>
+        <a href="#" className="flex min-w-0 items-center gap-3" aria-label="Kasirflow">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#103F31] text-white shadow-[0_18px_40px_rgba(16,63,49,0.24)]">
             <QrCode className="h-5 w-5" aria-hidden="true" />
           </span>
-          <span className="text-xl font-bold text-[#14213D]">Kasirflow</span>
+          <span className="truncate text-xl font-bold text-[#14213D]">Kasirflow</span>
         </a>
-        <nav className="hidden items-center gap-8 rounded-full border border-[#14213D]/5 bg-white/55 px-6 py-3 shadow-sm md:flex">
+        <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm lg:flex">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14213D]/68 transition hover:text-[#2F8A68]">
               {item.label}
             </a>
           ))}
         </nav>
-        <ButtonLink href={whatsappLink} className="hidden md:inline-flex">
+        <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
           Konsultasi Gratis
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </ButtonLink>
         <a
           href={whatsappLink}
           aria-label="Konsultasi Gratis via WhatsApp"
-          className="grid h-11 w-11 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg md:hidden"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden"
         >
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
         </a>
@@ -481,35 +542,17 @@ function Navbar() {
 
 function HeroCardDeck() {
   return (
-    <FadeBlock className="relative mx-auto mt-12 min-h-[580px] w-full max-w-[350px] min-w-0 sm:max-w-[560px] lg:mt-0 lg:max-w-[640px]">
-      <div className="absolute inset-x-0 top-8 text-center text-[6.5rem] font-black leading-none text-white/70 md:text-[9rem]">
-        FLOW
-      </div>
-      <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2F8A68]/14 blur-3xl" />
-
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[3%] top-20 h-[430px] w-[78%] rotate-[-9deg] rounded-[2.1rem] border border-white/70 bg-white/55 shadow-[0_35px_90px_rgba(20,33,61,0.12)] backdrop-blur"
-      />
-      <motion.div
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[2%] top-24 h-[430px] w-[78%] rotate-[8deg] rounded-[2.1rem] bg-[#103F31]/88 shadow-[0_35px_90px_rgba(16,63,49,0.22)]"
-      />
-
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-10 mx-auto w-full rounded-[2.25rem] border border-white/80 bg-white/88 p-4 shadow-[0_42px_100px_rgba(20,33,61,0.16)] backdrop-blur-xl sm:w-[92%] md:p-7"
-      >
-        <div className="rounded-[1.8rem] bg-[#103F31] p-5 text-white shadow-[0_28px_65px_rgba(16,63,49,0.26)] md:p-6">
+    <div data-reveal className={heroStyles.deckWrap}>
+      <div className={heroStyles.flowText}>FLOW</div>
+      <div className={heroStyles.glow} data-float="ambient" />
+      <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left" />
+      <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right" />
+      <div className={heroStyles.mainCard} data-float="hero-main">
+        <div className={heroStyles.innerPanel}>
           <div className="flex items-start justify-between gap-5">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">
-                KASIRFLOW
-              </p>
-              <h3 className="mt-3 text-3xl font-semibold leading-tight">
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">KASIRFLOW</p>
+              <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
                 Complete Business Flow
               </h3>
             </div>
@@ -517,72 +560,62 @@ function HeroCardDeck() {
               <Sparkles className="h-5 w-5" aria-hidden="true" />
             </span>
           </div>
-
-          <div className="mt-7 grid gap-3">
-            {heroFeatures.map((feature, index) => (
-              <div
-                key={feature}
-                className={cn(
-                  "flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-3",
-                  index === 1 && "sm:ml-5",
-                  index === 3 && "sm:mr-6",
-                )}
-              >
-                <span className="flex items-center gap-3 text-sm font-semibold">
-                  <span className="grid h-8 w-8 place-items-center rounded-xl bg-white text-[#103F31]">
+          <div className={heroStyles.featureStack}>
+            {heroFeatures.map((feature) => (
+              <div key={feature} className={heroStyles.featureRow}>
+                <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
                     <Check className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  {feature}
+                  <span className="truncate">{feature}</span>
                 </span>
-                <span className="text-xs font-semibold text-white/48">Ready</span>
+                <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
               </div>
             ))}
           </div>
         </div>
-
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[1.4rem] bg-[#F8F3EA] p-5">
-            <p className="text-sm font-semibold text-[#14213D]/55">Order aktif</p>
-            <p className="mt-2 text-3xl font-semibold text-[#14213D]">7</p>
+        <div className={heroStyles.stats}>
+          <div>
+            <p>Order aktif</p>
+            <strong>7</strong>
           </div>
-          <div className="rounded-[1.4rem] bg-[#F8F3EA] p-5">
-            <p className="text-sm font-semibold text-[#14213D]/55">Omzet hari ini</p>
-            <p className="mt-2 text-3xl font-semibold text-[#14213D]">Rp1,25 jt</p>
+          <div>
+            <p>Omzet hari ini</p>
+            <strong>Rp1,25 jt</strong>
           </div>
         </div>
-      </motion.div>
-
-      <div className="absolute -bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 rounded-full bg-white/65 px-2 py-1 shadow-sm backdrop-blur">
-        <span className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-[#14213D] shadow-md">
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+      </div>
+      <div className={heroStyles.controls} aria-hidden="true">
+        <span>
+          <ArrowLeft className="h-4 w-4" />
         </span>
-        <span className="h-2 w-8 rounded-full bg-[#2F8A68]" />
-        <span className="h-2 w-2 rounded-full bg-[#14213D]/20" />
-        <span className="h-2 w-2 rounded-full bg-[#14213D]/20" />
-        <span className="grid h-10 w-10 place-items-center rounded-full bg-[#103F31] text-white shadow-md">
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <i />
+        <b />
+        <b />
+        <span>
+          <ArrowRight className="h-4 w-4" />
         </span>
       </div>
-    </FadeBlock>
+    </div>
   );
 }
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-5 pb-24 pt-16 md:px-8 md:pb-32 md:pt-24">
-      <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-white/80 blur-3xl" />
-      <div className="absolute right-0 top-36 h-96 w-96 rounded-full bg-[#2F8A68]/10 blur-3xl" />
-      <div className="mx-auto grid w-full max-w-7xl min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
-        <FadeBlock className="min-w-0">
+    <section className={cn(landingStyles.section, landingStyles.heroSection)}>
+      <div className={landingStyles.ambientOne} data-float="ambient" />
+      <div className={landingStyles.ambientTwo} data-float="ambient" />
+      <div className={cn(landingStyles.container, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
+        <div data-reveal className="mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left">
           <Badge>POS, QR Order & Website Menu</Badge>
-          <h1 className="mt-6 max-w-4xl text-[2.55rem] font-semibold leading-[1.08] text-[#14213D] md:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-[clamp(2.45rem,5.9vw,4.95rem)] font-semibold leading-[1.04] text-[#14213D]">
             Kasir & QR Order, dibuat mudah untuk bisnis harian.
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#14213D]/68 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#14213D]/68 md:text-xl xl:mx-0">
             Satu sistem untuk website menu digital, QR order, transaksi kasir,
             stok, laporan, dan WhatsApp automation.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start">
             <ButtonLink href={whatsappLink}>
               Konsultasi Gratis
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -591,10 +624,10 @@ function HeroSection() {
               Lihat Paket
             </ButtonLink>
           </div>
-          <p className="mt-7 max-w-xl text-sm leading-7 text-[#14213D]/58">
+          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-[#14213D]/58 xl:mx-0">
             Cocok untuk cafe, restoran kecil, kedai, bakery, minimarket, dan UMKM.
           </p>
-        </FadeBlock>
+        </div>
         <HeroCardDeck />
       </div>
     </section>
@@ -609,22 +642,21 @@ function ProblemSection() {
         title="Operasional bisnis sering berantakan karena semuanya masih terpisah."
         subtitle="Menu, order, stok, dan laporan sering berjalan sendiri-sendiri. Kasirflow menyatukannya ke dalam satu alur yang lebih rapi."
       />
-      <div className="mt-14 rounded-[2.3rem] bg-[#F8F3EA] p-4 shadow-[inset_0_0_0_1px_rgba(20,33,61,0.04)] md:p-6">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div data-reveal className={landingStyles.builderShell}>
+        <div className="grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {problems.map((problem, index) => (
-            <FadeBlock key={problem} delay={index * 0.04}>
-              <motion.article
-                whileHover={{ y: -6, scale: 1.01 }}
-                className="h-full rounded-[1.7rem] border border-white/80 bg-white/76 p-6 shadow-[0_22px_50px_rgba(20,33,61,0.07)]"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#103F31] text-white">
-                  <ClipboardList className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <h3 className="mt-7 text-xl font-semibold leading-7 text-[#14213D]">
-                  {problem}
-                </h3>
-              </motion.article>
-            </FadeBlock>
+            <motion.article
+              key={problem}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="h-full rounded-[1.65rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_50px_rgba(20,33,61,0.07)]"
+            >
+              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#103F31] text-white">
+                <ClipboardList className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <p className="mt-7 text-lg font-semibold leading-7 text-[#14213D] md:text-xl">
+                {index + 1}. {problem}
+              </p>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -634,132 +666,71 @@ function ProblemSection() {
 
 function FlowSection() {
   return (
-    <PageSection id="flow">
+    <PageSection id="flow" className="bg-[#F8F3EA]">
       <SectionTitle
         badge="Solution flow"
         title="Dari scan QR sampai laporan, semuanya mengalir dalam satu sistem."
         subtitle="Alur dibuat sederhana untuk pelanggan, kasir, dan owner. Bukan sistem rumit yang memaksa bisnis berubah total."
       />
-      <FadeBlock className="relative mt-14 rounded-[2.5rem] border border-white/80 bg-white/70 p-5 shadow-[0_35px_90px_rgba(20,33,61,0.1)] backdrop-blur md:p-7">
-        <div className="absolute left-8 top-8 text-[5rem] font-black leading-none text-[#F8F3EA] md:text-[9rem]">
-          FLOW
-        </div>
-        <div className="relative grid gap-4 md:grid-cols-7">
+      <div data-reveal className={cn(landingStyles.builderShell, "relative")}>
+        <div className={landingStyles.backgroundWord}>FLOW</div>
+        <div className={landingStyles.flowScroller}>
           {flowSteps.map((step, index) => {
             const Icon = step.icon;
             return (
               <motion.article
                 key={step.title}
                 whileHover={{ y: -8 }}
-                className={cn(
-                  "rounded-[1.6rem] bg-white p-5 shadow-sm",
-                  index === 0 || index === 6 ? "md:translate-y-8" : "",
-                  index === 3 ? "bg-[#103F31] text-white" : "text-[#14213D]",
-                )}
+                className={cn(landingStyles.flowCard, index === 3 && landingStyles.flowCardActive)}
               >
-                <span
-                  className={cn(
-                    "grid h-12 w-12 place-items-center rounded-2xl",
-                    index === 3 ? "bg-white text-[#103F31]" : "bg-[#F8F3EA] text-[#2F8A68]",
-                  )}
-                >
+                <span>
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
-                <p className="mt-6 text-xs font-bold uppercase text-current/40">0{index + 1}</p>
-                <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-current/62">{step.copy}</p>
+                <p>0{index + 1}</p>
+                <h3>{step.title}</h3>
+                <small>{step.copy}</small>
               </motion.article>
             );
           })}
         </div>
-      </FadeBlock>
+      </div>
     </PageSection>
   );
 }
 
 function FeatureShowcase() {
   return (
-    <PageSection id="features" className="bg-[#103F31] text-white">
-      <div className="absolute inset-x-0 top-0 h-56 bg-white/[0.03]" />
+    <PageSection id="features" className={landingStyles.darkSection}>
       <SectionTitle
         badge="Feature showcase"
         title="Fitur utama untuk operasional harian."
         subtitle="Tampilan dibuat benefit-first: owner paham manfaatnya, kasir paham alurnya, pelanggan paham cara order."
         tone="dark"
       />
-      <div className="mt-14 grid gap-5 lg:grid-cols-6">
+      <div data-reveal className={landingStyles.featureGrid}>
         {features.map((feature, index) => {
           const Icon = feature.icon;
-          const large = index < 3;
           return (
-            <FadeBlock
+            <motion.article
               key={feature.title}
-              delay={index * 0.04}
-              className={cn(large ? "lg:col-span-2" : "lg:col-span-3")}
+              whileHover={{ y: -8, scale: 1.01 }}
+              className={cn(
+                landingStyles.featureCard,
+                index < 3 && landingStyles.featureCardLarge,
+                feature.tone === "dark" && landingStyles.featureCardDark,
+                feature.tone === "primary" && landingStyles.featureCardPrimary,
+              )}
             >
-              <motion.article
-                whileHover={{ y: -8, scale: 1.01 }}
-                className={cn(
-                  "relative h-full overflow-hidden rounded-[2rem] border p-6 shadow-[0_28px_70px_rgba(0,0,0,0.16)]",
-                  feature.highlight
-                    ? "border-white/18 bg-white text-[#14213D]"
-                    : "border-white/10 bg-white/[0.08] text-white",
-                )}
-              >
-                <div className="absolute right-5 top-4 text-7xl font-black text-current opacity-[0.04]">
-                  0{index + 1}
-                </div>
-                <span
-                  className={cn(
-                    "grid h-13 w-13 place-items-center rounded-2xl",
-                    feature.highlight ? "bg-[#103F31] text-white" : "bg-white text-[#103F31]",
-                  )}
-                >
-                  <Icon className="h-6 w-6" aria-hidden="true" />
-                </span>
-                <h3 className="mt-8 text-2xl font-semibold">{feature.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-current/68">{feature.copy}</p>
-                {feature.highlight ? (
-                  <div className="mt-8 rounded-2xl bg-[#F8F3EA] p-4 text-sm font-semibold text-[#2F8A68]">
-                    Bagian utama dari flow Kasirflow
-                  </div>
-                ) : null}
-              </motion.article>
-            </FadeBlock>
+              <div className={landingStyles.featureNumber}>0{index + 1}</div>
+              <span className={landingStyles.featureIcon}>
+                <Icon className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <h3>{feature.title}</h3>
+              <p>{feature.copy}</p>
+            </motion.article>
           );
         })}
       </div>
-    </PageSection>
-  );
-}
-
-function UseCaseSection() {
-  return (
-    <PageSection className="bg-white">
-      <SectionTitle
-        badge="Jenis bisnis"
-        title="Cocok untuk berbagai jenis bisnis."
-        subtitle="Dari kedai kecil sampai minimarket, Kasirflow dibuat untuk owner yang ingin mulai digital tanpa sistem yang berat."
-      />
-      <FadeBlock className="mt-14 rounded-[2.4rem] bg-[#F8F3EA] p-5 md:p-7">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {useCases.map((item) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                whileHover={{ y: -6 }}
-                className="flex min-h-28 items-center gap-4 rounded-[1.6rem] border border-white/80 bg-white/78 p-5 shadow-sm"
-              >
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#103F31] text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <p className="font-semibold text-[#14213D]">{item.title}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </FadeBlock>
     </PageSection>
   );
 }
@@ -769,105 +740,84 @@ function ProductPreviewSection() {
   const preview = previews[activePreview];
 
   return (
-    <PageSection id="preview">
-      <SectionTitle
-        badge="Product preview"
-        title="Preview produk yang terasa simpel, bukan admin dashboard kaku."
-        subtitle="Semua ini dummy mockup untuk landing page. Belum ada backend, database, auth, atau POS asli."
-      />
-      <FadeBlock className="mt-14 rounded-[2.6rem] border border-white/80 bg-white/72 p-5 shadow-[0_40px_100px_rgba(20,33,61,0.12)] backdrop-blur md:p-7">
-        <div className="flex gap-3 overflow-x-auto pb-4 [scrollbar-width:none]">
-          {previews.map((item, index) => (
-            <button
-              key={item.title}
-              type="button"
-              onClick={() => setActivePreview(index)}
-              className={cn(
-                "min-h-12 shrink-0 rounded-full px-5 text-sm font-semibold transition focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20",
-                activePreview === index
-                  ? "bg-[#103F31] text-white shadow-lg"
-                  : "bg-[#F8F3EA] text-[#14213D]/62 hover:text-[#14213D]",
-              )}
-            >
-              {item.title}
-            </button>
-          ))}
-        </div>
-        <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={preview.title}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.24 }}
-              className="rounded-[2rem] bg-[#103F31] p-7 text-white shadow-[0_24px_70px_rgba(16,63,49,0.22)]"
-            >
-              <p className="text-sm font-semibold text-white/55">{preview.eyebrow}</p>
-              <h3 className="mt-3 text-4xl font-semibold">{preview.title}</h3>
-              <p className="mt-5 text-base leading-8 text-white/68">{preview.copy}</p>
-              <div className="mt-9 rounded-[1.5rem] bg-white/10 p-5">
-                <p className="text-sm text-white/56">Highlight</p>
-                <p className="mt-2 text-4xl font-semibold">{preview.metric}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${preview.title}-mockup`}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.24 }}
-              className="relative overflow-hidden rounded-[2rem] bg-[#F8F3EA] p-4 md:p-7"
-            >
-              <div className="absolute right-7 top-6 text-8xl font-black text-white/70">APP</div>
-              <div className="relative rounded-[1.7rem] bg-white p-5 shadow-[0_25px_70px_rgba(20,33,61,0.08)]">
-                <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+    <PageSection id="preview" className="bg-[#F8F3EA]">
+      <div data-preview-section>
+        <SectionTitle
+          badge="Product preview"
+          title="Dibuat simpel untuk kasir, owner, dan pelanggan."
+          subtitle="Semua ini dummy mockup untuk landing page. Belum ada backend, database, auth, atau POS asli."
+        />
+        <div data-reveal data-parallax="preview" className={landingStyles.previewShell}>
+          <div className={landingStyles.previewTabs}>
+            {previews.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => setActivePreview(index)}
+                className={cn(activePreview === index && landingStyles.previewTabActive)}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+          <div className={landingStyles.previewGrid}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={preview.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.24 }}
+                className={landingStyles.previewFocus}
+              >
+                <p>{preview.eyebrow}</p>
+                <h3>{preview.title}</h3>
+                <span>{preview.copy}</span>
+                <div>
+                  <small>Highlight</small>
+                  <strong>{preview.metric}</strong>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${preview.title}-mockup`}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.24 }}
+                className={landingStyles.previewMockup}
+              >
+                <div className={landingStyles.mockupHeader}>
                   <div>
-                    <p className="text-sm font-semibold text-[#2F8A68]">Kasirflow</p>
-                    <h4 className="mt-1 text-2xl font-semibold text-[#14213D]">
-                      {preview.title}
-                    </h4>
+                    <p>Kasirflow</p>
+                    <h4>{preview.title}</h4>
                   </div>
-                  <div className="relative">
-                    <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#14213D]/38" />
-                    <div className="rounded-full border border-[#14213D]/8 bg-[#F8F3EA] py-3 pl-11 pr-5 text-sm font-semibold text-[#14213D]/45">
-                      Cari data
-                    </div>
+                  <div>
+                    <Search className="h-4 w-4" aria-hidden="true" />
+                    <span>Cari data</span>
                   </div>
                 </div>
-                <div className="mt-7 grid gap-3">
+                <div className={landingStyles.mockupRows}>
                   {preview.rows.map((row, index) => (
-                    <div
-                      key={row}
-                      className="flex items-center justify-between gap-4 rounded-[1.3rem] border border-[#14213D]/6 bg-[#F8F3EA]/80 p-4"
-                    >
-                      <span className="flex items-center gap-3 text-sm font-semibold text-[#14213D]">
-                        <span className="grid h-10 w-10 place-items-center rounded-2xl bg-white text-[#2F8A68]">
-                          {index + 1}
-                        </span>
-                        {row}
-                      </span>
-                      <span className="hidden rounded-full bg-white px-3 py-1 text-xs font-bold text-[#2F8A68] sm:block">
-                        Aktif
-                      </span>
+                    <div key={row}>
+                      <span>{index + 1}</span>
+                      <strong>{row}</strong>
+                      <em>Aktif</em>
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 flex flex-col gap-3 rounded-[1.4rem] bg-[#103F31] p-5 text-white sm:flex-row sm:items-center sm:justify-between">
-                  <span className="font-semibold">Flow siap diproses</span>
-                  <span className="inline-flex items-center gap-2 text-sm text-white/68">
-                    Lihat detail
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <div className={landingStyles.mockupCta}>
+                  <strong>Flow siap diproses</strong>
+                  <span>
+                    Lihat detail <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </span>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
-      </FadeBlock>
+      </div>
     </PageSection>
   );
 }
@@ -877,7 +827,7 @@ function PricingPlanCard({
   active = false,
   compact = false,
 }: {
-  plan: (typeof pricingPlans)[number];
+  plan: PricingPlan;
   active?: boolean;
   compact?: boolean;
 }) {
@@ -885,94 +835,99 @@ function PricingPlanCard({
   const shownFeatures = compact ? plan.features.slice(0, 6) : plan.features;
 
   return (
-    <article
-      className={cn(
-        "relative flex h-full flex-col overflow-hidden rounded-[2rem] border p-6 shadow-[0_35px_90px_rgba(20,33,61,0.12)] md:rounded-[2.2rem] md:p-7",
-        isDark
-          ? "border-[#2F8A68]/50 bg-[#103F31] text-white"
-          : "border-white/80 bg-white text-[#14213D]",
-      )}
-    >
-      <div
-        className={cn(
-          "absolute -right-6 -top-8 h-44 w-44 rounded-full blur-2xl",
-          isDark ? "bg-[#2F8A68]/25" : "bg-[#2F8A68]/10",
-        )}
-      />
-      <div className="relative z-10">
-        <span
-          className={cn(
-            "inline-flex rounded-full px-4 py-2 text-xs font-bold",
-            isDark ? "bg-white text-[#103F31]" : "bg-[#F8F3EA] text-[#2F8A68]",
-          )}
-        >
-          {plan.label}
-        </span>
-        <h3 className="mt-5 text-3xl font-semibold leading-tight">{plan.name}</h3>
-        <p className={cn("mt-3 text-sm leading-7", isDark ? "text-white/68" : "text-[#14213D]/62")}>
-          {plan.audience}
-        </p>
+    <article className={cn(pricingStyles.planCard, isDark && pricingStyles.planCardFeatured)}>
+      <div className={pricingStyles.cardGlow} />
+      <div className={pricingStyles.planHeader}>
+        <span>{plan.label}</span>
+        <h3>{plan.name}</h3>
+        <p>{plan.audience}</p>
       </div>
-      <div
-        className={cn(
-          "relative z-10 mt-6 rounded-[1.7rem] border p-5",
-          isDark ? "border-white/12 bg-white/8" : "border-[#14213D]/8 bg-[#F8F3EA]/58",
-        )}
-      >
-        <div className="flex flex-wrap items-end gap-2">
-          <span className="text-4xl font-semibold leading-none md:text-[2.9rem]">{plan.price}</span>
-          <span className={cn("text-sm font-bold", isDark ? "text-white/55" : "text-[#14213D]/45")}>
-            {plan.suffix}
-          </span>
+      <div className={pricingStyles.priceBox}>
+        <div>
+          <strong>{plan.price}</strong>
+          <small>{plan.suffix}</small>
         </div>
-        <div
-          className={cn(
-            "mt-4 rounded-2xl px-4 py-3 text-sm font-bold leading-6",
-            isDark ? "bg-white/10 text-white/82" : "bg-white text-[#14213D]/62",
-          )}
-        >
-          {plan.setup}
-        </div>
+        <p>{plan.setup}</p>
       </div>
-      <ul className="relative z-10 mt-6 grid gap-2.5">
+      <ul className={pricingStyles.featureList}>
         {shownFeatures.map((feature) => (
-          <li key={feature} className="flex gap-3 text-sm leading-6">
-            <span
-              className={cn(
-                "mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full",
-                isDark ? "bg-white text-[#103F31]" : "bg-[#E8F3EF] text-[#2F8A68]",
-              )}
-            >
+          <li key={feature}>
+            <span>
               <Check className="h-3.5 w-3.5" aria-hidden="true" />
             </span>
-            <span className={isDark ? "text-white/82" : "text-[#14213D]/66"}>{feature}</span>
+            {feature}
           </li>
         ))}
       </ul>
-      <div className="relative z-10 mt-auto pt-6">
-        <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className="w-full">
-          {plan.cta}
-        </ButtonLink>
-      </div>
+      <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
+        {plan.cta}
+      </ButtonLink>
     </article>
   );
+}
+
+function getCircularOffset(index: number, activeIndex: number) {
+  let diff = index - activeIndex;
+
+  if (diff > pricingPlans.length / 2) {
+    diff -= pricingPlans.length;
+  }
+
+  if (diff < -pricingPlans.length / 2) {
+    diff += pricingPlans.length;
+  }
+
+  return diff;
 }
 
 function PricingDeckSection() {
   const [activeIndex, setActiveIndex] = useState(1);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+  const deckRef = useRef<HTMLDivElement>(null);
   const mobileDeckRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3]];
+
+  useEffect(() => {
+    const layoutCards = () => {
+      if (!deckRef.current || window.innerWidth < 1024) {
+        return;
+      }
+
+      const spread = Math.min(Math.max(window.innerWidth * 0.22, 240), 340);
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) {
+          return;
+        }
+
+        const offset = getCircularOffset(index, activeIndex);
+        const distance = Math.abs(offset);
+        const side = offset === 0 ? 0 : offset > 0 ? 1 : -1;
+        const isBack = distance > 1;
+
+        gsap.to(card, {
+          xPercent: -50,
+          x: isBack ? 0 : side * spread,
+          y: offset === 0 ? 0 : isBack ? 76 : 42,
+          rotate: offset === 0 || isBack ? 0 : side * -6,
+          scale: offset === 0 ? 1 : isBack ? 0.76 : 0.86,
+          autoAlpha: offset === 0 ? 1 : isBack ? 0.2 : 0.54,
+          zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
+          duration: 0.68,
+          ease: "power3.out",
+        });
+      });
+    };
+
+    layoutCards();
+    window.addEventListener("resize", layoutCards);
+
+    return () => window.removeEventListener("resize", layoutCards);
+  }, [activeIndex]);
 
   const go = (direction: 1 | -1) => {
     setActiveIndex((current) => (current + direction + pricingPlans.length) % pricingPlans.length);
-  };
-
-  const relativeOffset = (index: number) => {
-    let diff = index - activeIndex;
-    if (diff > pricingPlans.length / 2) diff -= pricingPlans.length;
-    if (diff < -pricingPlans.length / 2) diff += pricingPlans.length;
-    return diff;
   };
 
   const syncMobileDot = () => {
@@ -1001,107 +956,78 @@ function PricingDeckSection() {
 
   return (
     <PageSection id="pricing" className="bg-white">
-      <div className="absolute left-1/2 top-24 -translate-x-1/2 text-[7rem] font-black leading-none text-[#F8F3EA] md:text-[14rem]">
-        PRICE
-      </div>
+      <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
         subtitle="Mulai dari menu digital dan POS basic, sampai QR Table, stok otomatis, laporan, dan WhatsApp automation."
       />
-      <FadeBlock className="relative z-10 mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-3">
+      <div data-reveal className={pricingStyles.microPills}>
         {["Hosting termasuk", "Maintenance termasuk", "Dibantu setup awal"].map((item) => (
-          <span key={item} className="rounded-full bg-[#F8F3EA] px-4 py-2 text-sm font-semibold text-[#14213D]/62">
-            {item}
-          </span>
+          <span key={item}>{item}</span>
         ))}
-      </FadeBlock>
+      </div>
 
-      <div className="relative z-10 mt-14 hidden min-h-[860px] items-start justify-center md:flex">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          aria-label="Paket sebelumnya"
-          className="absolute left-0 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white text-[#14213D] shadow-[0_18px_45px_rgba(20,33,61,0.14)] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
-        >
+      <div data-reveal className={pricingStyles.desktopDeck} ref={deckRef}>
+        <button type="button" onClick={() => go(-1)} aria-label="Paket sebelumnya" className={pricingStyles.arrowPrev}>
           <ArrowLeft className="h-5 w-5" aria-hidden="true" />
         </button>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          aria-label="Paket berikutnya"
-          className="absolute right-0 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[#103F31] text-white shadow-[0_18px_45px_rgba(16,63,49,0.22)] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
-        >
+        <button type="button" onClick={() => go(1)} aria-label="Paket berikutnya" className={pricingStyles.arrowNext}>
           <ArrowRight className="h-5 w-5" aria-hidden="true" />
         </button>
 
-        <div className="relative h-[830px] w-full max-w-6xl">
+        <div className={pricingStyles.cardStage}>
           {pricingPlans.map((plan, index) => {
-            const offset = relativeOffset(index);
-            const isActive = offset === 0;
-            const absOffset = Math.abs(offset);
+            const isActive = index === activeIndex;
 
             return (
-              <motion.button
+              <div
                 key={plan.name}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                className="absolute left-1/2 top-0 block h-[805px] w-[470px] cursor-pointer text-left focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
-                style={{ transformOrigin: "center top" }}
-                animate={{
-                  x: -235 + offset * 330,
-                  y: isActive ? 0 : 42 + absOffset * 10,
-                  scale: isActive ? 1 : 0.86 - Math.min(absOffset, 2) * 0.04,
-                  rotate: isActive ? 0 : offset * -5,
-                  opacity: absOffset > 1 ? 0.34 : isActive ? 1 : 0.62,
-                  zIndex: isActive ? 20 : 10 - absOffset,
+                ref={(element) => {
+                  cardRefs.current[index] = element;
                 }}
-                transition={{ type: "spring", stiffness: 210, damping: 28 }}
+                role="button"
+                tabIndex={0}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    setActiveIndex(index);
+                  }
+                }}
+                className={pricingStyles.deckCard}
+                aria-label={`Pilih paket ${plan.name}`}
               >
-                <PricingPlanCard plan={plan} active={isActive} compact={!isActive} />
-              </motion.button>
+                <motion.div whileHover={{ y: isActive ? -4 : -2 }} className="h-full">
+                  <PricingPlanCard plan={plan} active={isActive} compact={!isActive} />
+                </motion.div>
+              </div>
             );
           })}
         </div>
+
+        <div className={pricingStyles.desktopDots}>
+          {pricingPlans.map((plan, index) => (
+            <button
+              key={plan.name}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Pilih ${plan.name}`}
+              className={cn(activeIndex === index && pricingStyles.dotActive)}
+            />
+          ))}
+        </div>
       </div>
 
-      <div
-        ref={mobileDeckRef}
-        onScroll={syncMobileDot}
-        className="relative z-10 mt-12 flex snap-x gap-5 overflow-x-auto pb-7 [scrollbar-width:none] md:hidden"
-      >
+      <div data-reveal className={pricingStyles.mobileDeck} ref={mobileDeckRef} onScroll={syncMobileDot}>
         {mobilePlans.map((plan) => (
-          <div key={plan.name} className="w-[86vw] shrink-0 snap-center">
+          <div key={plan.name} className={pricingStyles.mobileCard}>
             <PricingPlanCard plan={plan} active={plan.featured} />
           </div>
         ))}
       </div>
-
-      <div className="relative z-10 mt-1 flex justify-center gap-2 md:hidden">
+      <div className={pricingStyles.mobileDots}>
         {mobilePlans.map((plan, index) => (
-          <span
-            key={plan.name}
-            aria-label={`Paket ${plan.name}`}
-            className={cn(
-              "h-2.5 rounded-full transition",
-              mobileActiveIndex === index ? "w-9 bg-[#2F8A68]" : "w-2.5 bg-[#14213D]/18",
-            )}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 mt-4 hidden justify-center gap-2 md:mt-0 md:flex">
-        {pricingPlans.map((plan, index) => (
-          <button
-            key={plan.name}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Pilih ${plan.name}`}
-            className={cn(
-              "h-2.5 rounded-full transition",
-              activeIndex === index ? "w-9 bg-[#2F8A68]" : "w-2.5 bg-[#14213D]/18",
-            )}
-          />
+          <span key={plan.name} className={cn(mobileActiveIndex === index && pricingStyles.dotActive)} />
         ))}
       </div>
     </PageSection>
@@ -1111,26 +1037,25 @@ function PricingDeckSection() {
 function WhyKasirflowSection() {
   return (
     <PageSection>
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
         <SectionTitle
           align="left"
           badge="Kenapa Kasirflow"
           title="Bukan sekadar kasir. Ini flow operasional bisnis yang lebih rapi."
           subtitle="Kasirflow dibuat supaya owner bisa mulai dari kebutuhan paling penting, lalu berkembang bertahap sesuai alur bisnis."
         />
-        <div className="grid gap-4 sm:grid-cols-2">
-          {whyPoints.map((point, index) => (
-            <FadeBlock key={point} delay={index * 0.04}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)]"
-              >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#2F8A68] text-white">
-                  <Check className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <p className="font-semibold leading-7 text-[#14213D]">{point}</p>
-              </motion.div>
-            </FadeBlock>
+        <div data-reveal className="grid min-w-0 gap-4 sm:grid-cols-2">
+          {whyPoints.map((point) => (
+            <motion.div
+              key={point}
+              whileHover={{ y: -6 }}
+              className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)]"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#2F8A68] text-white">
+                <Check className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <p className="font-semibold leading-7 text-[#14213D]">{point}</p>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -1144,24 +1069,35 @@ function FAQSection() {
   return (
     <PageSection id="faq" className="bg-white">
       <SectionTitle badge="FAQ" title="Pertanyaan yang sering muncul." />
-      <div className="mx-auto mt-12 grid max-w-4xl gap-3">
+      <div data-reveal className="mx-auto mt-12 grid max-w-4xl gap-3">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
+
           return (
-            <FadeBlock key={faq.question} delay={index * 0.03}>
-              <div className="overflow-hidden rounded-[1.5rem] border border-[#14213D]/8 bg-[#F8F3EA]/62">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[#14213D] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
-                  aria-expanded={isOpen}
-                >
-                  {faq.question}
-                  <ChevronDown className={cn("h-5 w-5 shrink-0 transition", isOpen && "rotate-180")} aria-hidden="true" />
-                </button>
-                {isOpen ? <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/65">{faq.answer}</div> : null}
-              </div>
-            </FadeBlock>
+            <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-[#14213D]/8 bg-[#F8F3EA]/62">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[#14213D] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
+                aria-expanded={isOpen}
+              >
+                {faq.question}
+                <ChevronDown className={cn("h-5 w-5 shrink-0 transition", isOpen && "rotate-180")} aria-hidden="true" />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen ? (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.22 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/65">{faq.answer}</div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
           );
         })}
       </div>
@@ -1172,27 +1108,23 @@ function FAQSection() {
 function FinalCTASection() {
   return (
     <PageSection>
-      <FadeBlock className="relative overflow-hidden rounded-[2.7rem] bg-[#103F31] p-8 text-white shadow-[0_45px_100px_rgba(16,63,49,0.25)] md:p-12">
-        <div className="absolute right-8 top-4 text-[6rem] font-black leading-none text-white/[0.04] md:text-[12rem]">
-          FLOW
-        </div>
-        <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
+      <div data-reveal className={landingStyles.finalCta}>
+        <div className={landingStyles.finalWord}>FLOW</div>
+        <div className="relative grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+          <div className="text-center lg:text-left">
             <Badge tone="dark">Konsultasi via WhatsApp</Badge>
-            <h2 className="mt-6 text-3xl font-semibold leading-tight md:text-5xl">
+            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-semibold leading-tight text-white">
               Siap bikin operasional bisnis lebih rapi?
             </h2>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg lg:mx-0">
               Konsultasikan kebutuhan cafe, restoran, minimarket, atau UMKM kamu.
               Tim Kasirflow akan bantu rekomendasikan paket yang paling cocok.
             </p>
           </div>
-          <div className="rounded-[2rem] border border-white/10 bg-white/10 p-5">
-            <div className="rounded-[1.6rem] bg-white p-5 text-[#14213D]">
-              <p className="text-sm font-semibold text-[#14213D]/55">Pesan otomatis</p>
-              <p className="mt-3 rounded-2xl bg-[#F8F3EA] p-4 text-sm font-semibold leading-7">
-                Halo Kasirflow, saya mau konsultasi paket POS dan QR Order.
-              </p>
+          <div className={landingStyles.finalMessage}>
+            <div>
+              <p>Pesan otomatis</p>
+              <span>Halo Kasirflow, saya mau konsultasi paket POS dan QR Order.</span>
               <ButtonLink href={whatsappLink} className="mt-5 w-full">
                 Konsultasi Gratis via WhatsApp
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1200,7 +1132,7 @@ function FinalCTASection() {
             </div>
           </div>
         </div>
-      </FadeBlock>
+      </div>
     </PageSection>
   );
 }
@@ -1215,23 +1147,24 @@ function Footer() {
           </span>
           <span className="font-bold text-[#14213D]">Kasirflow</span>
         </div>
-        <p className="text-sm leading-7 text-[#14213D]/55">
-          Kasir & QR Order, dibuat mudah untuk bisnis harian.
-        </p>
+        <p className="text-sm leading-7 text-[#14213D]/55">Kasir & QR Order, dibuat mudah untuk bisnis harian.</p>
       </div>
     </footer>
   );
 }
 
 export function KasirflowLanding() {
+  const rootRef = useRef<HTMLElement | null>(null);
+
+  useLandingGsap(rootRef);
+
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F8F3EA]">
+    <main ref={rootRef} className={landingStyles.page}>
       <Navbar />
       <HeroSection />
       <ProblemSection />
       <FlowSection />
       <FeatureShowcase />
-      <UseCaseSection />
       <ProductPreviewSection />
       <PricingDeckSection />
       <WhyKasirflowSection />
