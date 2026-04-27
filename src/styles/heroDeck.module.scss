@@ -37,11 +37,35 @@
 .backCard {
   position: absolute;
   top: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.4rem;
   width: min(78%, 31rem);
   height: min(64vw, 29rem);
   max-height: 29rem;
+  overflow: hidden;
   border-radius: clamp(1.8rem, 4vw, 2.3rem);
+  padding: clamp(1.2rem, 2.5vw, 1.6rem);
   box-shadow: 0 35px 90px rgba(20, 33, 61, 0.13);
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: rgba(20, 33, 61, 0.38);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    position: relative;
+    z-index: 1;
+    color: #14213d;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    line-height: 1.1;
+  }
 }
 
 .backLeft {
@@ -56,19 +80,35 @@
   right: 1%;
   transform: rotate(8deg);
   background: rgba(16, 63, 49, 0.88);
+
+  span,
+  strong {
+    color: rgba(255, 255, 255, 0.78);
+  }
 }
 
-.mainCard {
+.mainFloatLayer {
   position: relative;
   z-index: 3;
   width: min(100%, 36.8rem);
   margin-inline: auto;
+}
+
+.mainCard {
+  width: 100%;
   padding: clamp(1rem, 2.5vw, 1.7rem);
   border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: clamp(2rem, 4vw, 2.4rem);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 42px 100px rgba(20, 33, 61, 0.16);
   backdrop-filter: blur(18px);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.dragging {
+  cursor: grabbing;
 }
 
 .innerPanel {
@@ -84,6 +124,14 @@
   display: grid;
   gap: 0.8rem;
   margin-top: clamp(1.6rem, 3vw, 2rem);
+}
+
+.slideCopy {
+  display: block;
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 .featureRow {
@@ -142,37 +190,42 @@
   box-shadow: 0 18px 42px rgba(20, 33, 61, 0.14);
   backdrop-filter: blur(14px);
 
-  span {
+  button {
     display: grid;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.55rem;
+    height: 2.55rem;
     place-items: center;
+    border: 0;
     border-radius: 999px;
     background: #ffffff;
     color: #14213d;
+    cursor: pointer;
+    transition:
+      width 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
   }
 
-  span:last-child {
+  button:last-child {
     background: #103f31;
     color: #ffffff;
   }
+}
 
-  i,
-  b {
-    display: block;
-    height: 0.5rem;
-    border-radius: 999px;
-  }
+.dot {
+  width: 0.58rem !important;
+  height: 0.58rem !important;
+  background: rgba(20, 33, 61, 0.18) !important;
+}
 
-  i {
-    width: 2rem;
-    background: #2f8a68;
-  }
-
-  b {
-    width: 0.5rem;
-    background: rgba(20, 33, 61, 0.18);
-  }
+.dotActive {
+  width: 2rem !important;
+  background: #2f8a68 !important;
 }
 
 @media (max-width: 1023px) {

@@ -38,26 +38,78 @@ const navItems = [
   { label: "Flow", href: "#flow" },
   { label: "Fitur", href: "#features" },
   { label: "Preview", href: "#preview" },
+  { label: "WhatsApp", href: "#whatsapp" },
   { label: "Harga", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
 ];
 
-const heroFeatures = [
-  "Website Menu",
-  "QR Order",
-  "POS Kasir",
-  "Stok & Restock",
-  "Laporan",
-  "WhatsApp Automation",
+const heroSlides = [
+  {
+    eyebrow: "KASIRFLOW",
+    title: "Complete Business Flow",
+    copy: "Satu layar untuk memperlihatkan alur menu, order, kasir, stok, laporan, dan automation.",
+    items: [
+      "Website Menu",
+      "QR Order",
+      "POS Kasir",
+      "Stok & Restock",
+      "Laporan",
+      "WhatsApp Automation",
+    ],
+    stats: [
+      { label: "Order aktif", value: "7" },
+      { label: "Omzet hari ini", value: "Rp1,25 jt" },
+    ],
+  },
+  {
+    eyebrow: "ORDER FLOW",
+    title: "Order & Kasir Flow",
+    copy: "Pesanan meja masuk rapi, status jelas, dan kasir bisa lanjutkan transaksi tanpa catatan manual.",
+    items: [
+      "Pesanan Masuk",
+      "Status Pesanan",
+      "Meja Otomatis",
+      "Dashboard Kasir",
+      "Riwayat Transaksi",
+    ],
+    stats: [
+      { label: "Meja aktif", value: "12" },
+      { label: "Order baru", value: "5" },
+    ],
+  },
+  {
+    eyebrow: "OWNER VIEW",
+    title: "Owner Monitoring",
+    copy: "Owner tetap bisa membaca performa bisnis dari ringkasan penjualan, stok, dan insight WhatsApp.",
+    items: [
+      "Omzet Hari Ini",
+      "Produk Terlaris",
+      "Stok Menipis",
+      "Ringkasan Penjualan",
+      "WhatsApp Insight",
+    ],
+    stats: [
+      { label: "Produk terlaris", value: "Kopi Susu" },
+      { label: "Stok menipis", value: "3 item" },
+    ],
+  },
 ];
 
-const problems = [
-  "Order masih dicatat manual",
-  "Menu harus dicetak ulang saat harga berubah",
-  "Stok sering habis tanpa notifikasi",
-  "Owner sulit cek omzet harian",
-  "Pesanan meja sering tertukar",
-  "Laporan harus dihitung ulang",
+const productFlowBenefits = [
+  "Order dari QR langsung membawa konteks meja dan item.",
+  "Kasir melihat status pesanan tanpa menunggu catatan manual.",
+  "Owner bisa memantau omzet dan stok dari ringkasan yang sama.",
+];
+
+const productFlowCards: Array<{
+  label: string;
+  value: string;
+  icon: LucideIcon;
+}> = [
+  { label: "Meja A3", value: "Dine-in aktif", icon: Table2 },
+  { label: "Pesanan baru masuk", value: "2 item menunggu", icon: ClipboardList },
+  { label: "2 item diproses", value: "Kopi Susu + Croissant", icon: ShoppingCart },
+  { label: "Omzet hari ini", value: "Rp1,25 jt", icon: BarChart3 },
+  { label: "Stok Fresh Milk", value: "Menipis: 2 tersisa", icon: Package },
 ];
 
 const flowSteps: Array<{ title: string; icon: LucideIcon; copy: string }> = [
@@ -183,6 +235,51 @@ const previews = [
     metric: "Balas dalam detik",
     rows: ["Omzet hari ini?", "Stok Kopi Susu?", "Produk terlaris?"],
     copy: "Owner bisa tanya data bisnis dari WhatsApp.",
+  },
+];
+
+const whatsappCommands = [
+  {
+    label: "Omzet hari ini",
+    user: "Omzet hari ini",
+    bot: [
+      "Omzet hari ini Rp1.250.000 dari 38 transaksi.",
+      "Produk terlaris: Kopi Susu Gula Aren.",
+    ],
+    time: "10:24",
+  },
+  {
+    label: "Cek stok",
+    user: "Stok Kopi Susu",
+    bot: ["Stok Kopi Susu saat ini 12.", "Status: aman."],
+    time: "10:26",
+  },
+  {
+    label: "Stok menipis",
+    user: "Produk yang stoknya menipis?",
+    bot: [
+      "Ada 3 produk dengan stok menipis:",
+      "Espresso Beans: 4 | Fresh Milk: 2 | Gula Aren: 3",
+    ],
+    time: "10:27",
+  },
+  {
+    label: "Produk terlaris",
+    user: "Produk terlaris hari ini",
+    bot: [
+      "Produk terlaris hari ini: Kopi Susu Gula Aren.",
+      "Terjual 22 porsi dengan omzet Rp440.000.",
+    ],
+    time: "10:28",
+  },
+  {
+    label: "Laporan minggu ini",
+    user: "Laporan minggu ini",
+    bot: [
+      "Penjualan minggu ini Rp8.420.000.",
+      "Naik 12% dibanding minggu lalu.",
+    ],
+    time: "10:29",
   },
 ];
 
@@ -385,6 +482,15 @@ function useLandingGsap(rootRef: React.RefObject<HTMLElement | null>) {
         stagger: 0.2,
       });
 
+      gsap.to("[data-float-card]", {
+        y: -10,
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.18,
+      });
+
       gsap.to("[data-parallax='preview']", {
         yPercent: -5,
         ease: "none",
@@ -541,60 +647,117 @@ function Navbar() {
 }
 
 function HeroCardDeck() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const slide = heroSlides[activeSlide];
+  const previousSlide = heroSlides[(activeSlide - 1 + heroSlides.length) % heroSlides.length];
+  const nextSlide = heroSlides[(activeSlide + 1) % heroSlides.length];
+
+  const goToSlide = (index: number) => {
+    setActiveSlide((index + heroSlides.length) % heroSlides.length);
+  };
+
+  const moveSlide = (direction: 1 | -1) => {
+    setActiveSlide((current) => (current + direction + heroSlides.length) % heroSlides.length);
+  };
+
   return (
     <div data-reveal className={heroStyles.deckWrap}>
       <div className={heroStyles.flowText}>FLOW</div>
       <div className={heroStyles.glow} data-float="ambient" />
-      <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left" />
-      <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right" />
-      <div className={heroStyles.mainCard} data-float="hero-main">
-        <div className={heroStyles.innerPanel}>
-          <div className="flex items-start justify-between gap-5">
-            <div className="min-w-0">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">KASIRFLOW</p>
-              <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
-                Complete Business Flow
-              </h3>
-            </div>
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#103F31]">
-              <Sparkles className="h-5 w-5" aria-hidden="true" />
-            </span>
-          </div>
-          <div className={heroStyles.featureStack}>
-            {heroFeatures.map((feature) => (
-              <div key={feature} className={heroStyles.featureRow}>
-                <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
-                    <Check className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <span className="truncate">{feature}</span>
-                </span>
-                <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={heroStyles.stats}>
-          <div>
-            <p>Order aktif</p>
-            <strong>7</strong>
-          </div>
-          <div>
-            <p>Omzet hari ini</p>
-            <strong>Rp1,25 jt</strong>
-          </div>
-        </div>
+      <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left">
+        <span>{previousSlide.eyebrow}</span>
+        <strong>{previousSlide.title}</strong>
       </div>
-      <div className={heroStyles.controls} aria-hidden="true">
-        <span>
-          <ArrowLeft className="h-4 w-4" />
-        </span>
-        <i />
-        <b />
-        <b />
-        <span>
-          <ArrowRight className="h-4 w-4" />
-        </span>
+      <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right">
+        <span>{nextSlide.eyebrow}</span>
+        <strong>{nextSlide.title}</strong>
+      </div>
+      <div className={heroStyles.mainFloatLayer} data-float="hero-main">
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.16}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={(_, info) => {
+            setIsDragging(false);
+
+            if (info.offset.x < -64 || info.velocity.x < -420) {
+              moveSlide(1);
+            }
+
+            if (info.offset.x > 64 || info.velocity.x > 420) {
+              moveSlide(-1);
+            }
+          }}
+          whileTap={{ scale: 0.992 }}
+          className={cn(heroStyles.mainCard, isDragging && heroStyles.dragging)}
+          aria-roledescription="carousel"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.title}
+              initial={{ opacity: 0, x: 42 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -38 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className={heroStyles.innerPanel}>
+                <div className="flex items-start justify-between gap-5">
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
+                    <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
+                      {slide.title}
+                    </h3>
+                    <span className={heroStyles.slideCopy}>{slide.copy}</span>
+                  </div>
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#103F31]">
+                    <Sparkles className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                </div>
+                <div className={heroStyles.featureStack}>
+                  {slide.items.map((feature) => (
+                    <div key={feature} className={heroStyles.featureRow}>
+                      <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
+                        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
+                          <Check className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span className="truncate">{feature}</span>
+                      </span>
+                      <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={heroStyles.stats}>
+                {slide.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <p>{stat.label}</p>
+                    <strong>{stat.value}</strong>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
+      <div className={heroStyles.controls} aria-label="Navigasi preview Kasirflow">
+        <button type="button" aria-label="Slide sebelumnya" onClick={() => moveSlide(-1)}>
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        </button>
+        {heroSlides.map((item, index) => (
+          <button
+            key={item.title}
+            type="button"
+            aria-label={`Lihat ${item.title}`}
+            aria-current={activeSlide === index}
+            onClick={() => goToSlide(index)}
+            className={cn(heroStyles.dot, activeSlide === index && heroStyles.dotActive)}
+          />
+        ))}
+        <button type="button" aria-label="Slide berikutnya" onClick={() => moveSlide(1)}>
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
       </div>
     </div>
   );
@@ -634,30 +797,87 @@ function HeroSection() {
   );
 }
 
-function ProblemSection() {
+function ProductFlowShowcaseSection() {
   return (
     <PageSection className="bg-white">
-      <SectionTitle
-        badge="Masalah operasional"
-        title="Operasional bisnis sering berantakan karena semuanya masih terpisah."
-        subtitle="Menu, order, stok, dan laporan sering berjalan sendiri-sendiri. Kasirflow menyatukannya ke dalam satu alur yang lebih rapi."
-      />
-      <div data-reveal className={landingStyles.builderShell}>
-        <div className="grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {problems.map((problem, index) => (
-            <motion.article
-              key={problem}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className="h-full rounded-[1.65rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_50px_rgba(20,33,61,0.07)]"
-            >
-              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#103F31] text-white">
-                <ClipboardList className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <p className="mt-7 text-lg font-semibold leading-7 text-[#14213D] md:text-xl">
-                {index + 1}. {problem}
-              </p>
-            </motion.article>
-          ))}
+      <div data-reveal className={landingStyles.productFlowGrid}>
+        <div className={landingStyles.flowNarrative}>
+          <Badge>Product flow showcase</Badge>
+          <h2>Dari scan QR sampai transaksi, semuanya lebih rapi.</h2>
+          <p>
+            Pelanggan scan QR, pilih menu, pesanan masuk ke kasir, dan owner bisa
+            memantau bisnis tanpa membuka banyak aplikasi.
+          </p>
+          <div className={landingStyles.flowBenefits}>
+            {productFlowBenefits.map((benefit) => (
+              <motion.div key={benefit} whileHover={{ x: 4 }}>
+                <span>
+                  <Check className="h-4 w-4" aria-hidden="true" />
+                </span>
+                {benefit}
+              </motion.div>
+            ))}
+          </div>
+          <div className={landingStyles.flowNarrativeFooter}>
+            <strong>01</strong>
+            <span>QR order, dashboard kasir, stok, dan laporan bergerak dalam satu alur.</span>
+          </div>
+        </div>
+
+        <div className={landingStyles.productFlowShowcase}>
+          <div className={landingStyles.showcaseWord}>ORDER</div>
+          <motion.div
+            className={landingStyles.flowDevice}
+            whileHover={{ y: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 180, damping: 18 }}
+          >
+            <div className={landingStyles.flowDeviceHeader}>
+              <div>
+                <p>Dashboard Kasir</p>
+                <h3>Order masuk</h3>
+              </div>
+              <span>Live</span>
+            </div>
+            <div className={landingStyles.flowDeviceBody}>
+              <div className={landingStyles.orderSummary}>
+                <span>Meja A3</span>
+                <strong>Rp78.000</strong>
+                <small>2 item sedang diproses</small>
+              </div>
+              <div className={landingStyles.orderRows}>
+                {["Kopi Susu Gula Aren", "Croissant Butter", "Catatan: less ice"].map((row, index) => (
+                  <div key={row}>
+                    <span>{index + 1}</span>
+                    <strong>{row}</strong>
+                    <em>{index === 2 ? "Note" : "Ready"}</em>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <div className={landingStyles.floatingCards}>
+            {productFlowCards.map((card, index) => {
+              const Icon = card.icon;
+
+              return (
+                <motion.div
+                  key={card.label}
+                  data-float-card
+                  className={cn(landingStyles.floatingCard, landingStyles[`floatingCard${index + 1}`])}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                >
+                  <span>
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <strong>{card.label}</strong>
+                    <p>{card.value}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </PageSection>
@@ -822,6 +1042,168 @@ function ProductPreviewSection() {
   );
 }
 
+type ChatMessage = {
+  id: string;
+  role: "user" | "bot";
+  lines: string[];
+  time: string;
+};
+
+function WhatsAppBotSection() {
+  const [activeCommand, setActiveCommand] = useState(0);
+  const [typing, setTyping] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
+    {
+      id: "initial-user",
+      role: "user",
+      lines: [whatsappCommands[0].user],
+      time: whatsappCommands[0].time,
+    },
+    {
+      id: "initial-bot",
+      role: "bot",
+      lines: whatsappCommands[0].bot,
+      time: whatsappCommands[0].time,
+    },
+  ]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const runCommand = (index: number) => {
+    const command = whatsappCommands[index];
+
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+    }
+
+    setActiveCommand(index);
+    setTyping(true);
+    setMessages([
+      {
+        id: `user-${index}-${Date.now()}`,
+        role: "user",
+        lines: [command.user],
+        time: "baru saja",
+      },
+    ]);
+
+    timeoutRef.current = window.setTimeout(() => {
+      setTyping(false);
+      setMessages((current) => [
+        ...current,
+        {
+          id: `bot-${index}-${Date.now()}`,
+          role: "bot",
+          lines: command.bot,
+          time: command.time,
+        },
+      ]);
+    }, 620);
+  };
+
+  return (
+    <PageSection id="whatsapp" className="bg-white">
+      <div data-reveal className={landingStyles.whatsappGrid}>
+        <div className={landingStyles.whatsappCopy}>
+          <Badge>WhatsApp automation</Badge>
+          <h2>Tanya omzet dan stok langsung dari WhatsApp.</h2>
+          <p>
+            Kasirflow membantu owner memantau bisnis lewat percakapan yang sederhana.
+            Pilih command cepat di bawah untuk melihat simulasi balasan bot.
+          </p>
+          <div className={landingStyles.quickCommands}>
+            {whatsappCommands.map((command, index) => (
+              <button
+                key={command.label}
+                type="button"
+                onClick={() => runCommand(index)}
+                className={cn(activeCommand === index && landingStyles.quickCommandActive)}
+              >
+                {command.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={landingStyles.chatFrame}>
+          <div className={landingStyles.chatHeader}>
+            <div className={landingStyles.botAvatar}>
+              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div>
+              <strong>Kasirflow Bot</strong>
+              <span>online · automation aktif</span>
+            </div>
+          </div>
+          <div className={landingStyles.chatBody}>
+            <AnimatePresence initial={false}>
+              {messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  initial={{ opacity: 0, y: 14, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ duration: 0.22 }}
+                  className={cn(
+                    landingStyles.chatRow,
+                    message.role === "user" && landingStyles.chatRowUser,
+                  )}
+                >
+                  {message.role === "bot" ? (
+                    <span className={landingStyles.chatAvatar}>K</span>
+                  ) : null}
+                  <div
+                    className={cn(
+                      landingStyles.chatBubble,
+                      message.role === "user" ? landingStyles.userBubble : landingStyles.botBubble,
+                    )}
+                  >
+                    {message.lines.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                    <time>{message.time}</time>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            <AnimatePresence>
+              {typing ? (
+                <motion.div
+                  key="typing"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  className={landingStyles.typingRow}
+                >
+                  <span className={landingStyles.chatAvatar}>K</span>
+                  <div className={landingStyles.typingBubble} aria-label="Kasirflow Bot sedang mengetik">
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
+          <div className={landingStyles.chatInput}>
+            <span>{whatsappCommands[activeCommand].user}</span>
+            <button type="button" onClick={() => runCommand(activeCommand)} aria-label="Kirim command simulasi">
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </PageSection>
+  );
+}
+
 function PricingPlanCard({
   plan,
   active = false,
@@ -883,9 +1265,14 @@ function getCircularOffset(index: number, activeIndex: number) {
 function PricingDeckSection() {
   const [activeIndex, setActiveIndex] = useState(1);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+  const [isPricingDragging, setIsPricingDragging] = useState(false);
   const deckRef = useRef<HTMLDivElement>(null);
   const mobileDeckRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const pricingDragRef = useRef({ active: false, startX: 0, hasDragged: false });
+  const suppressPricingClickRef = useRef(false);
+  const lastPointerAtRef = useRef(0);
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3]];
 
   useEffect(() => {
@@ -930,6 +1317,92 @@ function PricingDeckSection() {
     setActiveIndex((current) => (current + direction + pricingPlans.length) % pricingPlans.length);
   };
 
+  const startPricingDrag = (clientX: number, target: HTMLElement) => {
+    if (target.closest("a, button")) {
+      return;
+    }
+
+    pricingDragRef.current = { active: true, startX: clientX, hasDragged: false };
+    setIsPricingDragging(true);
+  };
+
+  const movePricingDrag = (clientX: number) => {
+    if (!pricingDragRef.current.active) {
+      return;
+    }
+
+    if (Math.abs(clientX - pricingDragRef.current.startX) > 8) {
+      pricingDragRef.current.hasDragged = true;
+      suppressPricingClickRef.current = true;
+    }
+  };
+
+  const endPricingDrag = (clientX: number) => {
+    if (!pricingDragRef.current.active) {
+      return;
+    }
+
+    const delta = clientX - pricingDragRef.current.startX;
+
+    if (Math.abs(delta) > 54) {
+      pricingDragRef.current.hasDragged = true;
+      suppressPricingClickRef.current = true;
+      go(delta < 0 ? 1 : -1);
+    }
+
+    pricingDragRef.current.active = false;
+    setIsPricingDragging(false);
+    window.setTimeout(() => {
+      pricingDragRef.current.hasDragged = false;
+      suppressPricingClickRef.current = false;
+    }, 220);
+  };
+
+  const handlePricingPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    lastPointerAtRef.current = Date.now();
+    startPricingDrag(event.clientX, event.target as HTMLElement);
+
+    if (!pricingDragRef.current.active) {
+      return;
+    }
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePricingPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    lastPointerAtRef.current = Date.now();
+    movePricingDrag(event.clientX);
+  };
+
+  const handlePricingPointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    lastPointerAtRef.current = Date.now();
+    endPricingDrag(event.clientX);
+  };
+
+  const handlePricingMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (Date.now() - lastPointerAtRef.current < 450) {
+      return;
+    }
+
+    startPricingDrag(event.clientX, event.target as HTMLElement);
+  };
+
+  const handlePricingMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (Date.now() - lastPointerAtRef.current < 450) {
+      return;
+    }
+
+    movePricingDrag(event.clientX);
+  };
+
+  const handlePricingMouseEnd = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (Date.now() - lastPointerAtRef.current < 450) {
+      return;
+    }
+
+    endPricingDrag(event.clientX);
+  };
+
   const syncMobileDot = () => {
     const deck = mobileDeckRef.current;
 
@@ -954,6 +1427,15 @@ function PricingDeckSection() {
     }
   };
 
+  const scrollMobileTo = (index: number) => {
+    setMobileActiveIndex(index);
+    mobileCardRefs.current[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  };
+
   return (
     <PageSection id="pricing" className="bg-white">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
@@ -976,7 +1458,17 @@ function PricingDeckSection() {
           <ArrowRight className="h-5 w-5" aria-hidden="true" />
         </button>
 
-        <div className={pricingStyles.cardStage}>
+        <div
+          className={cn(pricingStyles.cardStage, isPricingDragging && pricingStyles.isDragging)}
+          onPointerDown={handlePricingPointerDown}
+          onPointerMove={handlePricingPointerMove}
+          onPointerUp={handlePricingPointerEnd}
+          onPointerCancel={handlePricingPointerEnd}
+          onMouseDown={handlePricingMouseDown}
+          onMouseMove={handlePricingMouseMove}
+          onMouseUp={handlePricingMouseEnd}
+          onMouseLeave={handlePricingMouseEnd}
+        >
           {pricingPlans.map((plan, index) => {
             const isActive = index === activeIndex;
 
@@ -988,7 +1480,11 @@ function PricingDeckSection() {
                 }}
                 role="button"
                 tabIndex={0}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  if (!pricingDragRef.current.hasDragged && !suppressPricingClickRef.current) {
+                    setActiveIndex(index);
+                  }
+                }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
                     setActiveIndex(index);
@@ -1019,15 +1515,27 @@ function PricingDeckSection() {
       </div>
 
       <div data-reveal className={pricingStyles.mobileDeck} ref={mobileDeckRef} onScroll={syncMobileDot}>
-        {mobilePlans.map((plan) => (
-          <div key={plan.name} className={pricingStyles.mobileCard}>
+        {mobilePlans.map((plan, index) => (
+          <div
+            key={plan.name}
+            ref={(element) => {
+              mobileCardRefs.current[index] = element;
+            }}
+            className={pricingStyles.mobileCard}
+          >
             <PricingPlanCard plan={plan} active={plan.featured} />
           </div>
         ))}
       </div>
       <div className={pricingStyles.mobileDots}>
         {mobilePlans.map((plan, index) => (
-          <span key={plan.name} className={cn(mobileActiveIndex === index && pricingStyles.dotActive)} />
+          <button
+            key={plan.name}
+            type="button"
+            onClick={() => scrollMobileTo(index)}
+            aria-label={`Lihat ${plan.name}`}
+            className={cn(mobileActiveIndex === index && pricingStyles.dotActive)}
+          />
         ))}
       </div>
     </PageSection>
@@ -1162,10 +1670,11 @@ export function KasirflowLanding() {
     <main ref={rootRef} className={landingStyles.page}>
       <Navbar />
       <HeroSection />
-      <ProblemSection />
+      <ProductFlowShowcaseSection />
       <FlowSection />
       <FeatureShowcase />
       <ProductPreviewSection />
+      <WhatsAppBotSection />
       <PricingDeckSection />
       <WhyKasirflowSection />
       <FAQSection />

@@ -44,6 +44,17 @@
   width: min(100%, 76rem);
   height: 51.5rem;
   margin-inline: auto;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.isDragging {
+  cursor: grabbing;
+
+  .deckCard {
+    cursor: grabbing;
+  }
 }
 
 .deckCard {
@@ -100,16 +111,16 @@
 }
 
 .desktopDots button,
-.mobileDots span {
+.mobileDots button {
   width: 0.65rem;
   height: 0.65rem;
   border: 0;
   border-radius: 999px;
   background: rgba(20, 33, 61, 0.16);
-}
-
-.desktopDots button {
   cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background 0.2s ease;
 }
 
 .desktopDots .dotActive,
@@ -308,6 +319,7 @@
   padding: 0 0.15rem 1.4rem;
   scroll-padding-inline: 1.25rem;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
