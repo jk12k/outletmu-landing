@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,13 +16,17 @@ import {
   LayoutDashboard,
   LineChart,
   MessageCircle,
+  Moon,
   Package,
+  Printer,
   QrCode,
+  ReceiptText,
   ScanLine,
   Search,
   ShoppingCart,
   Sparkles,
   Store,
+  Sun,
   Table2,
   WalletCards,
   type LucideIcon,
@@ -32,7 +37,7 @@ import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 
 const whatsappLink =
-  "https://wa.me/6281291960227?text=Halo%20Kasirflow%2C%20saya%20mau%20konsultasi%20paket%20POS%20dan%20QR%20Order.";
+  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20konsultasi%20paket%20POS%20dan%20QR%20Order.";
 
 const navItems = [
   { label: "Flow", href: "#flow" },
@@ -42,9 +47,63 @@ const navItems = [
   { label: "Harga", href: "#pricing" },
 ];
 
+type ThemeMode = "light" | "dark";
+type BrandLogoVariant = "full" | "wordmark" | "icon";
+type BrandLogoSize = "sm" | "md" | "lg";
+
+const themeStorageKey = "outletmu-theme";
+
+const brandLogoAssets: Record<
+  BrandLogoVariant,
+  Record<ThemeMode, { src: string; width: number; height: number; alt: string }>
+> = {
+  full: {
+    light: {
+      src: "/branding/outletmu-full-light.png",
+      width: 2002,
+      height: 451,
+      alt: "Outletmu",
+    },
+    dark: {
+      src: "/branding/outletmu-full-dark.png",
+      width: 2002,
+      height: 451,
+      alt: "Outletmu",
+    },
+  },
+  wordmark: {
+    light: {
+      src: "/branding/outletmu-wordmark-light.png",
+      width: 2002,
+      height: 451,
+      alt: "Outletmu",
+    },
+    dark: {
+      src: "/branding/outletmu-wordmark-dark.png",
+      width: 2002,
+      height: 451,
+      alt: "Outletmu",
+    },
+  },
+  icon: {
+    light: {
+      src: "/branding/outletmu-icon-light.png",
+      width: 925,
+      height: 925,
+      alt: "Outletmu icon",
+    },
+    dark: {
+      src: "/branding/outletmu-icon-dark.png",
+      width: 925,
+      height: 925,
+      alt: "Outletmu icon",
+    },
+  },
+};
+
 const heroSlides = [
   {
-    eyebrow: "KASIRFLOW",
+    eyebrow: "OUTLETMU",
     title: "Complete Business Flow",
     copy: "Satu layar untuk memperlihatkan alur menu, order, kasir, stok, laporan, dan automation.",
     items: [
@@ -181,6 +240,12 @@ const features: Array<{
     tone: "light",
   },
   {
+    title: "E-Struk Digital",
+    copy: "Setiap transaksi memiliki struk digital yang bisa dibuka ulang dan dicetak dari browser.",
+    icon: ReceiptText,
+    tone: "primary",
+  },
+  {
     title: "Stok & Restock",
     copy: "Pantau stok, restock manual, dan siapkan stok otomatis saat bisnis naik level.",
     icon: Package,
@@ -235,6 +300,14 @@ const previews = [
     metric: "Balas dalam detik",
     rows: ["Omzet hari ini?", "Stok Kopi Susu?", "Produk terlaris?"],
     copy: "Owner bisa tanya data bisnis dari WhatsApp.",
+  },
+  {
+    title: "E-Struk Digital",
+    eyebrow: "Struk transaksi",
+    metric: "TRX-20260427-0018",
+    rows: ["Kopi Susu Gula Aren x2", "Croissant Butter x1", "Total Rp78.000"],
+    copy: "Setiap transaksi punya struk digital yang bisa dibuka ulang dan dicetak dari browser.",
+    kind: "receipt",
   },
 ];
 
@@ -299,6 +372,7 @@ const pricingPlans = [
       "Input transaksi sederhana",
       "Riwayat transaksi",
       "Dashboard admin/kasir",
+      "E-Struk Digital",
       "Laporan penjualan basic",
       "Manajemen produk/menu",
       "Stok/restock basic",
@@ -320,6 +394,8 @@ const pricingPlans = [
       "Nomor meja otomatis terbaca",
       "Pesanan masuk ke dashboard kasir",
       "Status pesanan",
+      "E-Struk Digital",
+      "Cetak struk dari browser",
       "Laporan penjualan harian",
       "Backup database berkala",
       "Multi-user basic",
@@ -339,6 +415,8 @@ const pricingPlans = [
       "POS lebih lengkap",
       "Stok otomatis",
       "Laporan harian, mingguan, bulanan",
+      "E-Struk Digital",
+      "Riwayat struk transaksi",
       "Tanya omzet via WhatsApp",
       "Tanya stok via WhatsApp",
       "Notifikasi stok via WhatsApp",
@@ -360,8 +438,9 @@ const pricingPlans = [
       "QR Table advanced",
       "Kitchen display/dashboard dapur",
       "Laporan custom",
+      "E-Struk Digital",
+      "Format struk bisa disesuaikan saat konsultasi",
       "Custom domain",
-      "Integrasi printer struk",
       "Custom workflow",
       "Setup khusus sesuai kebutuhan bisnis",
     ],
@@ -379,9 +458,9 @@ const whyPoints = [
 
 const faqs = [
   {
-    question: "Apakah Kasirflow cocok untuk bisnis kecil?",
+    question: "Apakah Outletmu cocok untuk bisnis kecil?",
     answer:
-      "Ya. Kasirflow dibuat untuk cafe, kedai, restoran kecil, minimarket, dan UMKM yang ingin mulai memakai sistem digital tanpa sistem enterprise yang rumit.",
+      "Ya. Outletmu dibuat untuk cafe, kedai, restoran kecil, minimarket, dan UMKM yang ingin mulai memakai sistem digital tanpa sistem enterprise yang rumit.",
   },
   {
     question: "Apakah harus install aplikasi?",
@@ -414,6 +493,40 @@ const faqs = [
 ];
 
 type PricingPlan = (typeof pricingPlans)[number];
+
+function applyThemeMode(theme: ThemeMode) {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.dataset.theme = theme;
+}
+
+function useThemeMode() {
+  const [theme, setTheme] = useState<ThemeMode>("light");
+
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem(themeStorageKey);
+    const preferredTheme: ThemeMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    const initialTheme: ThemeMode =
+      storedTheme === "dark" || storedTheme === "light" ? storedTheme : preferredTheme;
+
+    setTheme(initialTheme);
+    applyThemeMode(initialTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => {
+      const nextTheme: ThemeMode = currentTheme === "dark" ? "light" : "dark";
+
+      window.localStorage.setItem(themeStorageKey, nextTheme);
+      applyThemeMode(nextTheme);
+
+      return nextTheme;
+    });
+  };
+
+  return { theme, toggleTheme };
+}
 
 function useLandingGsap(rootRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -528,7 +641,7 @@ function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?:
       className={cn(
         "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
         tone === "light"
-          ? "border border-[#2F8A68]/14 bg-white/86 text-[#2F8A68]"
+          ? "border border-[#2F8A68]/14 bg-white/86 text-[#2F8A68] dark:border-white/10 dark:bg-white/8 dark:text-[#B9F1DA]"
           : "border border-white/14 bg-white/10 text-white",
       )}
     >
@@ -562,8 +675,8 @@ function SectionTitle({
       <Badge tone={tone}>{badge}</Badge>
       <h2
         className={cn(
-          "mt-5 text-[clamp(2.2rem,6vw,4.9rem)] font-semibold leading-[1.04]",
-          tone === "dark" ? "text-white" : "text-[#14213D]",
+          "mt-5 text-[clamp(2.2rem,6vw,4.9rem)] font-extrabold leading-[1.04]",
+          tone === "dark" ? "text-white" : "text-[#14213D] dark:text-[#F8F3EA]",
         )}
       >
         {title}
@@ -573,7 +686,7 @@ function SectionTitle({
           className={cn(
             "mx-auto mt-5 max-w-2xl text-base leading-8 md:text-lg",
             align === "left" && "lg:mx-0",
-            tone === "dark" ? "text-white/68" : "text-[#14213D]/65",
+            tone === "dark" ? "text-white/68" : "text-[#14213D]/65 dark:text-[#F8F3EA]/68",
           )}
         >
           {subtitle}
@@ -618,7 +731,7 @@ function ButtonLink({
         variant === "primary" &&
           "bg-[#2F8A68] text-white shadow-[0_22px_55px_rgba(47,138,104,0.28)] hover:-translate-y-0.5 hover:bg-[#28795b]",
         variant === "secondary" &&
-          "border border-[#14213D]/10 bg-white text-[#14213D] shadow-sm hover:-translate-y-0.5 hover:border-[#2F8A68]/30",
+          "border border-[#14213D]/10 bg-white text-[#14213D] shadow-sm hover:-translate-y-0.5 hover:border-[#2F8A68]/30 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60",
         variant === "light" && "bg-white text-[#103F31] shadow-[0_22px_55px_rgba(16,63,49,0.2)] hover:-translate-y-0.5",
         className,
       )}
@@ -628,27 +741,79 @@ function ButtonLink({
   );
 }
 
-function Navbar() {
+function BrandLogo({
+  variant,
+  theme,
+  size,
+}: {
+  variant: BrandLogoVariant;
+  theme: ThemeMode;
+  size: BrandLogoSize;
+}) {
+  const logo = brandLogoAssets[variant][theme];
+  const sizeClass = {
+    sm: landingStyles.brandLogoSm,
+    md: landingStyles.brandLogoMd,
+    lg: landingStyles.brandLogoLg,
+  }[size];
+  const variantClass = {
+    full: landingStyles.brandLogoFull,
+    wordmark: landingStyles.brandLogoWordmark,
+    icon: landingStyles.brandLogoIcon,
+  }[variant];
+
+  return (
+    <Image
+      src={logo.src}
+      alt={logo.alt}
+      width={logo.width}
+      height={logo.height}
+      className={cn(landingStyles.brandLogo, sizeClass, variantClass)}
+      priority={variant !== "icon"}
+      sizes={
+        size === "lg"
+          ? "(max-width: 768px) 220px, 280px"
+          : size === "md"
+            ? "(max-width: 768px) 156px, 184px"
+            : "128px"
+      }
+    />
+  );
+}
+
+function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
   return (
     <header className={landingStyles.navbar}>
       <div className={cn(landingStyles.container, "flex items-center justify-between gap-4 py-4")}>
-        <a href="#" className="flex min-w-0 items-center gap-3" aria-label="Kasirflow">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#103F31] text-white shadow-[0_18px_40px_rgba(16,63,49,0.24)]">
-            <QrCode className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <span className="truncate text-xl font-bold text-[#14213D]">Kasirflow</span>
+        <a href="#" className="flex min-w-0 items-center" aria-label="Outletmu">
+          <BrandLogo variant="full" theme={theme} size="md" />
         </a>
-        <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm lg:flex">
+        <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm dark:border-white/10 dark:bg-white/8 lg:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14213D]/68 transition hover:text-[#2F8A68]">
+            <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14213D]/68 transition hover:text-[#2F8A68] dark:text-[#F8F3EA]/70 dark:hover:text-white">
               {item.label}
             </a>
           ))}
         </nav>
-        <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
-          Konsultasi Gratis
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </ButtonLink>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
+            className={landingStyles.themeToggle}
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4" aria-hidden="true" />
+            )}
+            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
+          <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
+            Konsultasi Gratis
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </ButtonLink>
+        </div>
         <a
           href={whatsappLink}
           aria-label="Konsultasi Gratis via WhatsApp"
@@ -748,7 +913,7 @@ function HeroCardDeck() {
   );
 
   const controls = (mobile = false) => (
-    <div className={cn(heroStyles.controls, mobile && heroStyles.mobileControls)} aria-label="Navigasi preview Kasirflow">
+    <div className={cn(heroStyles.controls, mobile && heroStyles.mobileControls)} aria-label="Navigasi preview Outletmu">
         <button type="button" aria-label="Slide sebelumnya" onClick={() => moveSlide(-1)}>
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -794,20 +959,24 @@ function HeroCardDeck() {
   );
 }
 
-function HeroSection() {
+function HeroSection({ theme }: { theme: ThemeMode }) {
   return (
     <section className={cn(landingStyles.section, landingStyles.heroSection)}>
       <div className={landingStyles.ambientOne} data-float="ambient" />
       <div className={landingStyles.ambientTwo} data-float="ambient" />
       <div className={cn(landingStyles.container, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
         <div data-reveal className="mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left">
-      <Badge>POS, QR Order & Website Menu</Badge>
-          <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-semibold leading-[1.04] text-[#14213D]">
-            Kasir & QR Order, dibuat mudah untuk bisnis harian.
+          <div className={landingStyles.heroLogoWrap}>
+            <BrandLogo variant="full" theme={theme} size="lg" />
+          </div>
+          <Badge>POS, QR Order & Website Menu</Badge>
+          <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]">
+            Kelola order, kasir, stok, dan laporan outlet dalam satu sistem.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#14213D]/68 md:text-xl xl:mx-0">
-            Satu sistem untuk website menu digital, QR order, transaksi kasir,
-            stok, laporan, dan WhatsApp automation.
+          <p className="mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0">
+            Outletmu membantu cafe, restoran, minimarket, dan UMKM menerima order
+            lewat QR, mencatat transaksi, membuat e-struk, memantau stok, dan
+            melihat laporan bisnis dengan lebih rapi.
           </p>
           <div className="mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start">
             <ButtonLink href={whatsappLink}>
@@ -818,7 +987,7 @@ function HeroSection() {
               Lihat Paket
             </ButtonLink>
           </div>
-          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-[#14213D]/58 xl:mx-0">
+          <p className="mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0">
             Cocok untuk cafe, restoran kecil, kedai, bakery, minimarket, dan UMKM.
           </p>
         </div>
@@ -830,7 +999,7 @@ function HeroSection() {
 
 function ProductFlowShowcaseSection() {
   return (
-    <PageSection className="bg-white">
+    <PageSection className="bg-white dark:bg-[#08111F]">
       <div data-reveal className={landingStyles.productFlowGrid}>
         <div className={landingStyles.flowNarrative}>
           <Badge>Product flow showcase</Badge>
@@ -917,7 +1086,7 @@ function ProductFlowShowcaseSection() {
 
 function FlowSection() {
   return (
-    <PageSection id="flow" className="bg-[#F8F3EA]">
+    <PageSection id="flow" className="bg-[#F8F3EA] dark:bg-[#07140F]">
       <SectionTitle
         badge="Solution flow"
         title="Dari scan QR sampai laporan, semuanya mengalir dalam satu sistem."
@@ -991,7 +1160,7 @@ function ProductPreviewSection() {
   const preview = previews[activePreview];
 
   return (
-    <PageSection id="preview" className="bg-[#F8F3EA]">
+    <PageSection id="preview" className="bg-[#F8F3EA] dark:bg-[#07140F]">
       <div data-preview-section>
         <SectionTitle
           badge="Product preview"
@@ -1039,31 +1208,75 @@ function ProductPreviewSection() {
                 transition={{ duration: 0.24 }}
                 className={landingStyles.previewMockup}
               >
-                <div className={landingStyles.mockupHeader}>
-                  <div>
-                    <p>Kasirflow</p>
-                    <h4>{preview.title}</h4>
-                  </div>
-                  <div>
-                    <Search className="h-4 w-4" aria-hidden="true" />
-                    <span>Cari data</span>
-                  </div>
-                </div>
-                <div className={landingStyles.mockupRows}>
-                  {preview.rows.map((row, index) => (
-                    <div key={row}>
-                      <span>{index + 1}</span>
-                      <strong>{row}</strong>
-                      <em>Aktif</em>
+                {preview.kind === "receipt" ? (
+                    <div className={landingStyles.receiptMockup}>
+                      <div className={landingStyles.receiptToolbar}>
+                      <BrandLogo variant="wordmark" theme="dark" size="sm" />
+                      <small>Siap cetak browser</small>
                     </div>
-                  ))}
-                </div>
-                <div className={landingStyles.mockupCta}>
-                  <strong>Flow siap diproses</strong>
-                  <span>
-                    Lihat detail <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                </div>
+                    <div className={landingStyles.receiptPaper}>
+                      <div className={landingStyles.receiptHeader}>
+                        <span>Nomor transaksi</span>
+                        <strong>TRX-20260427-0018</strong>
+                      </div>
+                      <div className={landingStyles.receiptStore}>
+                        <strong>Kedai Kopi Senja</strong>
+                        <span>Tanggal transaksi: 27 Apr 2026, 10:24</span>
+                      </div>
+                      <div className={landingStyles.receiptItems}>
+                        {[
+                          ["Kopi Susu Gula Aren", "2 x Rp22.000", "Rp44.000"],
+                          ["Croissant Butter", "1 x Rp24.000", "Rp24.000"],
+                          ["Es Teh Manis", "1 x Rp10.000", "Rp10.000"],
+                        ].map(([name, qty, total]) => (
+                          <div key={name}>
+                            <span>
+                              <strong>{name}</strong>
+                              <small>{qty}</small>
+                            </span>
+                            <em>{total}</em>
+                          </div>
+                        ))}
+                      </div>
+                      <div className={landingStyles.receiptTotal}>
+                        <span>Total pembayaran</span>
+                        <strong>Rp78.000</strong>
+                      </div>
+                      <button type="button" className={landingStyles.receiptPrintButton}>
+                        <Printer className="h-4 w-4" aria-hidden="true" />
+                        Cetak Struk
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className={landingStyles.mockupHeader}>
+                      <div>
+                        <p>Outletmu</p>
+                        <h4>{preview.title}</h4>
+                      </div>
+                      <div>
+                        <Search className="h-4 w-4" aria-hidden="true" />
+                        <span>Cari data</span>
+                      </div>
+                    </div>
+                    <div className={landingStyles.mockupRows}>
+                      {preview.rows.map((row, index) => (
+                        <div key={row}>
+                          <span>{index + 1}</span>
+                          <strong>{row}</strong>
+                          <em>Aktif</em>
+                        </div>
+                      ))}
+                    </div>
+                    <div className={landingStyles.mockupCta}>
+                      <strong>Flow siap diproses</strong>
+                      <span>
+                        Lihat detail <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </div>
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -1140,13 +1353,13 @@ function WhatsAppBotSection() {
   };
 
   return (
-    <PageSection id="whatsapp" className="bg-white">
+    <PageSection id="whatsapp" className="bg-white dark:bg-[#08111F]">
       <div data-reveal className={landingStyles.whatsappGrid}>
         <div className={landingStyles.whatsappCopy}>
           <Badge>WhatsApp automation</Badge>
           <h2>Tanya omzet dan stok langsung dari WhatsApp.</h2>
           <p>
-            Kasirflow membantu owner memantau bisnis lewat percakapan yang sederhana.
+            Outletmu membantu owner memantau bisnis lewat percakapan yang sederhana.
             Pilih command cepat di bawah untuk melihat simulasi balasan bot.
           </p>
         </div>
@@ -1157,7 +1370,7 @@ function WhatsAppBotSection() {
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
             </div>
             <div>
-              <strong>Kasirflow Bot</strong>
+              <strong>Outletmu Bot</strong>
               <span>online · automation aktif</span>
             </div>
           </div>
@@ -1176,7 +1389,7 @@ function WhatsAppBotSection() {
                   )}
                 >
                   {message.role === "bot" ? (
-                    <span className={landingStyles.chatAvatar}>K</span>
+                    <span className={landingStyles.chatAvatar}>O</span>
                   ) : null}
                   <div
                     className={cn(
@@ -1201,8 +1414,8 @@ function WhatsAppBotSection() {
                   exit={{ opacity: 0, y: -6 }}
                   className={landingStyles.typingRow}
                 >
-                  <span className={landingStyles.chatAvatar}>K</span>
-                  <div className={landingStyles.typingBubble} aria-label="Kasirflow Bot sedang mengetik">
+                  <span className={landingStyles.chatAvatar}>O</span>
+                  <div className={landingStyles.typingBubble} aria-label="Outletmu Bot sedang mengetik">
                     <i />
                     <i />
                     <i />
@@ -1429,7 +1642,7 @@ function PricingDeckSection() {
   };
 
   return (
-    <PageSection id="pricing" className="bg-white">
+    <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
@@ -1527,27 +1740,27 @@ function PricingDeckSection() {
   );
 }
 
-function WhyKasirflowSection() {
+function WhyOutletmuSection() {
   return (
     <PageSection>
       <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
         <SectionTitle
           align="left"
-          badge="Kenapa Kasirflow"
+          badge="Kenapa Outletmu"
           title="Bukan sekadar kasir. Ini flow operasional bisnis yang lebih rapi."
-          subtitle="Kasirflow dibuat supaya owner bisa mulai dari kebutuhan paling penting, lalu berkembang bertahap sesuai alur bisnis."
+          subtitle="Outletmu dibuat supaya owner bisa mulai dari kebutuhan paling penting, lalu berkembang bertahap sesuai alur bisnis."
         />
         <div data-reveal className="grid min-w-0 gap-4 sm:grid-cols-2">
           {whyPoints.map((point) => (
             <motion.div
               key={point}
               whileHover={{ y: -6 }}
-              className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)]"
+              className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)] dark:border-white/10 dark:bg-white/8 dark:shadow-[0_24px_70px_rgba(0,0,0,0.22)]"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#2F8A68] text-white">
                 <Check className="h-5 w-5" aria-hidden="true" />
               </span>
-              <p className="font-semibold leading-7 text-[#14213D]">{point}</p>
+              <p className="font-semibold leading-7 text-[#14213D] dark:text-[#F8F3EA]">{point}</p>
             </motion.div>
           ))}
         </div>
@@ -1560,18 +1773,18 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <PageSection id="faq" className="bg-white">
+    <PageSection id="faq" className="bg-white dark:bg-[#08111F]">
       <SectionTitle badge="FAQ" title="Pertanyaan yang sering muncul." />
       <div data-reveal className="mx-auto mt-12 grid max-w-4xl gap-3">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
-            <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-[#14213D]/8 bg-[#F8F3EA]/62">
+            <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-[#14213D]/8 bg-[#F8F3EA]/62 dark:border-white/10 dark:bg-white/7">
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[#14213D] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20"
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[#14213D] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20 dark:text-[#F8F3EA]"
                 aria-expanded={isOpen}
               >
                 {faq.question}
@@ -1586,7 +1799,7 @@ function FAQSection() {
                     transition={{ duration: 0.22 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/65">{faq.answer}</div>
+                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/65 dark:text-[#F8F3EA]/68">{faq.answer}</div>
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -1606,18 +1819,18 @@ function FinalCTASection() {
         <div className="relative grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div className="text-center lg:text-left">
             <Badge tone="dark">Konsultasi via WhatsApp</Badge>
-            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-semibold leading-tight text-white">
+            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-white">
               Siap bikin operasional bisnis lebih rapi?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg lg:mx-0">
               Konsultasikan kebutuhan cafe, restoran, minimarket, atau UMKM kamu.
-              Tim Kasirflow akan bantu rekomendasikan paket yang paling cocok.
+              Tim Outletmu akan bantu rekomendasikan paket yang paling cocok.
             </p>
           </div>
           <div className={landingStyles.finalMessage}>
             <div>
               <p>Pesan otomatis</p>
-              <span>Halo Kasirflow, saya mau konsultasi paket POS dan QR Order.</span>
+              <span>Halo Outletmu, saya mau konsultasi paket POS dan QR Order.</span>
               <ButtonLink href={whatsappLink} className="mt-5 w-full">
                 Konsultasi Gratis via WhatsApp
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1630,41 +1843,39 @@ function FinalCTASection() {
   );
 }
 
-function Footer() {
+function Footer({ theme }: { theme: ThemeMode }) {
   return (
-    <footer className="border-t border-[#14213D]/6 bg-white px-5 py-10 md:px-8">
+    <footer className="border-t border-[#14213D]/6 bg-white px-5 py-10 dark:border-white/10 dark:bg-[#07140F] md:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-[#103F31] text-white">
-            <QrCode className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <span className="font-bold text-[#14213D]">Kasirflow</span>
-        </div>
-        <p className="text-sm leading-7 text-[#14213D]/55">Kasir & QR Order, dibuat mudah untuk bisnis harian.</p>
+        <BrandLogo variant="full" theme={theme} size="md" />
+        <p className="text-sm font-medium leading-7 text-[#14213D]/55 dark:text-[#F8F3EA]/58">
+          POS, QR Order, E-Struk, stok, laporan, dan WhatsApp automation untuk outlet harian.
+        </p>
       </div>
     </footer>
   );
 }
 
-export function KasirflowLanding() {
+export function OutletmuLanding() {
   const rootRef = useRef<HTMLElement | null>(null);
+  const { theme, toggleTheme } = useThemeMode();
 
   useLandingGsap(rootRef);
 
   return (
     <main ref={rootRef} className={landingStyles.page}>
-      <Navbar />
-      <HeroSection />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <HeroSection theme={theme} />
       <ProductFlowShowcaseSection />
       <FlowSection />
       <FeatureShowcase />
       <ProductPreviewSection />
       <WhatsAppBotSection />
       <PricingDeckSection />
-      <WhyKasirflowSection />
+      <WhyOutletmuSection />
       <FAQSection />
       <FinalCTASection />
-      <Footer />
+      <Footer theme={theme} />
     </main>
   );
 }

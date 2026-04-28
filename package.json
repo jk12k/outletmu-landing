@@ -1,5 +1,5 @@
 {
-  "name": "kasirflow-page1",
+  "name": "outletmu-page1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "clsx": "^2.1.1",
     "framer-motion": "^12.6.3",
     "gsap": "^3.15.0",

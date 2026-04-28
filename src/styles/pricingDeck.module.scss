@@ -503,3 +503,104 @@
     margin-top: 1.25rem;
   }
 }
+
+:global(.dark) {
+  .backgroundWord {
+    color: rgba(248, 243, 234, 0.055);
+  }
+
+  .microPills span {
+    background: rgba(255, 255, 255, 0.075);
+    color: rgba(248, 243, 234, 0.68);
+  }
+
+  .arrowPrev {
+    background: rgba(248, 243, 234, 0.94);
+    color: #103f31;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+  }
+
+  .arrowNext {
+    background: #2f8a68;
+    color: #ffffff;
+    box-shadow: 0 18px 45px rgba(47, 138, 104, 0.18);
+  }
+
+  .desktopDots button,
+  .mobileDots button {
+    background: rgba(248, 243, 234, 0.2);
+  }
+
+  .desktopDots .dotActive,
+  .mobileDots .dotActive {
+    background: #2f8a68;
+  }
+
+  .planCard {
+    border-color: rgba(248, 243, 234, 0.1);
+    background:
+      radial-gradient(circle at 82% 5%, rgba(47, 138, 104, 0.18), transparent 32%),
+      rgba(255, 255, 255, 0.075);
+    color: #f8f3ea;
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.28);
+  }
+
+  .planCardFeatured {
+    border-color: rgba(47, 138, 104, 0.68);
+    background:
+      radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.34), transparent 34%),
+      #103f31;
+    box-shadow:
+      0 35px 95px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(47, 138, 104, 0.08);
+  }
+
+  .planHeader {
+    span {
+      background: rgba(47, 138, 104, 0.18);
+      color: #b9f1da;
+    }
+
+    p {
+      color: rgba(248, 243, 234, 0.64);
+    }
+  }
+
+  .planCardFeatured .planHeader span {
+    background: #f8f3ea;
+    color: #103f31;
+  }
+
+  .priceBox {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(255, 255, 255, 0.065);
+
+    small,
+    p {
+      color: rgba(248, 243, 234, 0.64);
+    }
+
+    p {
+      background: rgba(255, 255, 255, 0.075);
+    }
+  }
+
+  .planCardFeatured .priceBox p {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .featureList {
+    li {
+      color: rgba(248, 243, 234, 0.72);
+    }
+
+    span {
+      background: rgba(47, 138, 104, 0.18);
+      color: #b9f1da;
+    }
+  }
+
+  .moreFeature {
+    background: rgba(47, 138, 104, 0.14);
+  }
+}

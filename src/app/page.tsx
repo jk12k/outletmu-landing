@@ -1,5 +1,5 @@
-import { KasirflowLanding } from "@/components/landing/kasirflow-landing";
+import { OutletmuLanding } from "@/components/landing/outletmu-landing";
 
 export default function Home() {
-  return <KasirflowLanding />;
+  return <OutletmuLanding />;
 }
