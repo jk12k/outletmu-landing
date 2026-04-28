@@ -298,6 +298,36 @@
   font-weight: 900;
 }
 
+.expandFeatures {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(47, 138, 104, 0.14);
+  border-radius: 999px;
+  background: rgba(47, 138, 104, 0.08);
+  padding: 0.65rem 1rem;
+  color: #103f31;
+  font-size: 0.86rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(47, 138, 104, 0.32);
+    background: rgba(47, 138, 104, 0.12);
+  }
+}
+
 .planCardFeatured .featureList {
   li {
     color: rgba(255, 255, 255, 0.82);
@@ -311,6 +341,17 @@
   .moreFeature {
     background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.92);
+  }
+}
+
+.planCardFeatured .expandFeatures {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.16);
   }
 }
 
@@ -602,5 +643,11 @@
 
   .moreFeature {
     background: rgba(47, 138, 104, 0.14);
+  }
+
+  .expandFeatures {
+    border-color: rgba(47, 138, 104, 0.22);
+    background: rgba(47, 138, 104, 0.14);
+    color: #b9f1da;
   }
 }

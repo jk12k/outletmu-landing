@@ -188,24 +188,24 @@ const flowSteps: Array<{ title: string; icon: LucideIcon; copy: string }> = [
     copy: "Kasir melihat pesanan, meja, dan status.",
   },
   {
-    title: "Transaksi",
+    title: "Kasir proses",
     icon: CreditCard,
-    copy: "Pembayaran dicatat dan riwayat tersimpan.",
+    copy: "Pesanan diproses sampai pembayaran tercatat.",
   },
   {
-    title: "Stok update",
+    title: "Stok terpantau",
     icon: Package,
-    copy: "Stok dan restock lebih mudah dipantau.",
+    copy: "Produk dan restock lebih mudah dikontrol.",
   },
   {
-    title: "Laporan",
+    title: "Laporan otomatis",
     icon: LineChart,
-    copy: "Owner melihat omzet dan performa penjualan.",
+    copy: "Owner membaca omzet dan performa penjualan.",
   },
   {
-    title: "WhatsApp",
+    title: "Notifikasi WhatsApp",
     icon: MessageCircle,
-    copy: "Automation bantu cek omzet dan stok lebih cepat.",
+    copy: "Info penting bisa diterima tanpa buka banyak aplikasi.",
   },
 ];
 
@@ -971,12 +971,12 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
           </div>
           <Badge>POS, QR Order & Website Menu</Badge>
           <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]">
-            Kelola order, kasir, stok, dan laporan outlet dalam satu sistem.
+            Kelola order, kasir, stok, dan laporan outlet dalam satu flow.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0">
             Outletmu membantu cafe, restoran, minimarket, dan UMKM menerima order
-            lewat QR, mencatat transaksi, membuat e-struk, memantau stok, dan
-            melihat laporan bisnis dengan lebih rapi.
+            lewat QR, mencatat transaksi, memantau stok, dan melihat laporan
+            bisnis dalam satu dashboard.
           </p>
           <div className="mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start">
             <ButtonLink href={whatsappLink}>
@@ -1455,14 +1455,18 @@ function PricingPlanCard({
   plan,
   active = false,
   compact = false,
+  allowExpand = false,
 }: {
   plan: PricingPlan;
   active?: boolean;
   compact?: boolean;
+  allowExpand?: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const isDark = active && plan.featured;
-  const shownFeatures = compact ? plan.features.slice(0, 6) : plan.features;
-  const hiddenFeatureCount = compact ? plan.features.length - shownFeatures.length : 0;
+  const shouldCompact = compact && !expanded;
+  const shownFeatures = shouldCompact ? plan.features.slice(0, 6) : plan.features;
+  const hiddenFeatureCount = shouldCompact ? plan.features.length - shownFeatures.length : 0;
 
   return (
     <article className={cn(pricingStyles.planCard, isDark && pricingStyles.planCardFeatured)}>
@@ -1488,13 +1492,24 @@ function PricingPlanCard({
             {feature}
           </li>
         ))}
-        {hiddenFeatureCount > 0 && (
+        {hiddenFeatureCount > 0 && !allowExpand && (
           <li className={pricingStyles.moreFeature}>
             <span>+</span>
             {hiddenFeatureCount} fitur lain tersedia di paket ini
           </li>
         )}
       </ul>
+      {hiddenFeatureCount > 0 && allowExpand ? (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className={pricingStyles.expandFeatures}
+          aria-label={`Lihat semua fitur ${plan.name}`}
+        >
+          Lihat semua fitur
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
+      ) : null}
       <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
         {plan.cta}
       </ButtonLink>
@@ -1647,7 +1662,7 @@ function PricingDeckSection() {
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
-        subtitle="Mulai dari menu digital dan POS basic, sampai QR Table, stok otomatis, laporan, dan WhatsApp automation."
+        subtitle="Mulai dari sistem kasir sederhana sampai workflow outlet yang lebih lengkap."
       />
       <div data-reveal className={pricingStyles.microPills}>
         {["Hosting termasuk", "Maintenance termasuk", "Dibantu setup awal"].map((item) => (
@@ -1721,7 +1736,7 @@ function PricingDeckSection() {
             }}
             className={pricingStyles.mobileCard}
           >
-            <PricingPlanCard plan={plan} active={plan.featured} compact />
+            <PricingPlanCard plan={plan} active={plan.featured} compact allowExpand />
           </div>
         ))}
       </div>
