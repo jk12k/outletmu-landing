@@ -230,6 +230,198 @@
   }
 }
 
+.addOnsHeader {
+  max-width: 100%;
+  overflow: hidden;
+
+  h2 {
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+  }
+
+  p {
+    max-width: 48rem;
+    margin: 1.2rem auto 0;
+    border: 1px solid rgba(47, 138, 104, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 0.85rem 1.25rem;
+    color: rgba(20, 33, 61, 0.66);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    text-align: center;
+    box-shadow: 0 16px 42px rgba(20, 33, 61, 0.055);
+  }
+}
+
+.addOnsGrid {
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.05rem, 2vw, 1.45rem);
+  width: 100%;
+  max-width: 100%;
+  margin-top: clamp(2.4rem, 5vw, 4rem);
+}
+
+.addOnCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.07);
+  border-radius: clamp(1.55rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(47, 138, 104, 0.1), transparent 32%),
+    rgba(255, 255, 255, 0.78);
+  padding: clamp(1.25rem, 2.4vw, 1.8rem);
+  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.075);
+}
+
+.addOnCardHeader {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.9rem;
+
+  span {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 1.05rem;
+    background: #103f31;
+    color: #ffffff;
+    box-shadow: 0 14px 32px rgba(16, 63, 49, 0.16);
+  }
+
+  h3 {
+    min-width: 0;
+    color: #14213d;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 900;
+    line-height: 1.22;
+  }
+}
+
+.addOnDescription {
+  margin-top: 1rem;
+  color: rgba(20, 33, 61, 0.64);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.addOnItems {
+  display: grid;
+  gap: 0.76rem;
+  margin-top: 1.2rem;
+}
+
+.addOnItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10.5rem, max-content);
+  gap: 1.35rem;
+  align-items: center;
+  min-height: 3.65rem;
+  border: 1px solid rgba(20, 33, 61, 0.055);
+  border-radius: 1.1rem;
+  background: rgba(248, 243, 234, 0.68);
+  padding: 0.88rem 1rem;
+
+  span {
+    min-width: 0;
+    color: rgba(20, 33, 61, 0.68);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  strong {
+    color: #103f31;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.35;
+    text-align: right;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+.addOnCard small {
+  display: block;
+  margin-top: 1rem;
+  border-left: 3px solid rgba(47, 138, 104, 0.42);
+  padding-left: 0.85rem;
+  color: rgba(20, 33, 61, 0.52);
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.addOnsNoteBox {
+  max-width: 58rem;
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+  border: 1px solid rgba(47, 138, 104, 0.16);
+  border-radius: clamp(1.35rem, 3vw, 1.8rem);
+  background: rgba(255, 255, 255, 0.76);
+  padding: clamp(1.15rem, 2.5vw, 1.55rem);
+  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.07);
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #103f31;
+    font-weight: 900;
+
+    span {
+      display: grid;
+      width: 2.55rem;
+      height: 2.55rem;
+      place-items: center;
+      border-radius: 0.9rem;
+      background: rgba(47, 138, 104, 0.12);
+      color: #2f8a68;
+    }
+  }
+
+  ul {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.65;
+
+    &::before {
+      position: absolute;
+      top: 0.7rem;
+      left: 0;
+      width: 0.38rem;
+      height: 0.38rem;
+      border-radius: 999px;
+      background: #2f8a68;
+      content: "";
+    }
+  }
+}
+
 .darkSection {
   background:
     radial-gradient(circle at 18% 12%, rgba(47, 138, 104, 0.3), transparent 34%),
@@ -1605,6 +1797,96 @@
     padding: 1rem;
   }
 
+  .addOnsHeader p {
+    max-width: 100%;
+    border-radius: 1.25rem;
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .addOnsHeader,
+  .addOnsGrid,
+  .addOnsNoteBox {
+    width: 100%;
+    max-width: calc(100vw - 2.5rem);
+    margin-inline: auto;
+  }
+
+  .addOnsHeader h2 {
+    max-width: 20rem;
+    margin-inline: auto;
+    font-size: clamp(1.85rem, 7.6vw, 2.2rem);
+  }
+
+  .addOnsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .addOnCard {
+    border-radius: 1.35rem;
+    padding: 1rem;
+  }
+
+  .addOnCardHeader {
+    gap: 0.75rem;
+
+    span {
+      width: 2.55rem;
+      height: 2.55rem;
+      border-radius: 0.9rem;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+    }
+  }
+
+  .addOnDescription {
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
+    line-height: 1.62;
+  }
+
+  .addOnItems {
+    gap: 0.65rem;
+    margin-top: 1rem;
+  }
+
+  .addOnItem {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.45rem;
+    align-items: flex-start;
+    min-height: 0;
+    border-radius: 0.95rem;
+    padding: 0.78rem 0.85rem 0.82rem;
+
+    span,
+    strong {
+      font-size: 0.84rem;
+      line-height: 1.42;
+      text-align: left;
+    }
+  }
+
+  .addOnCard small {
+    margin-top: 0.85rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .addOnsNoteBox {
+    border-radius: 1.25rem;
+    padding: 1rem;
+
+    li {
+      font-size: 0.84rem;
+      line-height: 1.58;
+    }
+  }
+
   .featureCard,
   .featureCardLarge {
     min-height: auto;
@@ -1718,6 +2000,51 @@
       white-space: normal;
     }
   }
+
+  .addOnsHeader p {
+    padding: 0.82rem 0.9rem;
+    font-size: 0.82rem;
+  }
+
+  .addOnsHeader h2 {
+    max-width: 18rem;
+    font-size: clamp(1.75rem, 8vw, 2rem);
+  }
+
+  .addOnCard {
+    padding: 0.92rem;
+  }
+
+  .addOnItems {
+    gap: 0.5rem;
+  }
+
+  .addOnItem {
+    gap: 0.38rem;
+    border-radius: 0.9rem;
+    padding: 0.72rem 0.78rem;
+  }
+
+  .addOnCardHeader h3 {
+    font-size: 1.04rem;
+  }
+
+  .addOnDescription,
+  .addOnItem span,
+  .addOnItem strong {
+    font-size: 0.8rem;
+  }
+
+  .addOnsNoteBox {
+    li {
+      padding-left: 0.95rem;
+      font-size: 0.8rem;
+    }
+
+    > div {
+      align-items: flex-start;
+    }
+  }
 }
 
 :global(.dark) {
@@ -1796,6 +2123,74 @@
     span {
       background: #f8f3ea;
       color: #103f31;
+    }
+  }
+
+  .addOnsHeader p {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(248, 243, 234, 0.68);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
+  }
+
+  .addOnCard {
+    border-color: rgba(248, 243, 234, 0.1);
+    background:
+      radial-gradient(circle at 88% 0%, rgba(47, 138, 104, 0.18), transparent 32%),
+      rgba(255, 255, 255, 0.065);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  }
+
+  .addOnCardHeader {
+    span {
+      background: rgba(47, 138, 104, 0.2);
+      color: #b9f1da;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      color: #f8f3ea;
+    }
+  }
+
+  .addOnDescription {
+    color: rgba(248, 243, 234, 0.64);
+  }
+
+  .addOnItem {
+    border-color: rgba(248, 243, 234, 0.08);
+    background: rgba(255, 255, 255, 0.07);
+
+    span {
+      color: rgba(248, 243, 234, 0.68);
+    }
+
+    strong {
+      color: #b9f1da;
+    }
+  }
+
+  .addOnCard small {
+    border-left-color: rgba(47, 138, 104, 0.72);
+    color: rgba(248, 243, 234, 0.56);
+  }
+
+  .addOnsNoteBox {
+    border-color: rgba(47, 138, 104, 0.22);
+    background: rgba(255, 255, 255, 0.065);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+
+    > div {
+      color: #f8f3ea;
+
+      span {
+        background: rgba(47, 138, 104, 0.18);
+        color: #b9f1da;
+      }
+    }
+
+    li {
+      color: rgba(248, 243, 234, 0.62);
     }
   }
 

@@ -13,6 +13,9 @@ import {
   ChevronDown,
   ClipboardList,
   CreditCard,
+  Globe2,
+  GraduationCap,
+  Layers3,
   LayoutDashboard,
   LineChart,
   MessageCircle,
@@ -445,6 +448,69 @@ const pricingPlans = [
       "Setup khusus sesuai kebutuhan bisnis",
     ],
   },
+];
+
+const addOnGroups: Array<{
+  title: string;
+  description?: string;
+  note?: string;
+  icon: LucideIcon;
+  items: Array<{ name: string; value: string }>;
+}> = [
+  {
+    title: "Link & Custom Domain",
+    icon: Globe2,
+    description:
+      "Link default Outletmu tersedia gratis untuk semua paket. Jika ingin alamat website sendiri, kamu bisa menggunakan custom domain sesuai kebutuhan brand outlet.",
+    note:
+      "Harga domain mengikuti provider dan dapat berubah sewaktu-waktu. Harga promo tahun pertama tidak selalu berlaku untuk perpanjangan.",
+    items: [
+      { name: "Link default Outletmu", value: "Gratis" },
+      { name: "Custom domain .com", value: "+Rp209.900/tahun" },
+      { name: "Custom domain .id", value: "+Rp252.900/tahun" },
+      { name: "Domain lain", value: "Hubungi kami" },
+    ],
+  },
+  {
+    title: "QR Meja",
+    icon: QrCode,
+    description: "Termasuk desain QR sesuai brand outlet dan file siap cetak PNG/PDF.",
+    note: "Cafe dapat mencetak QR sendiri atau dibantu cetak jika dibutuhkan.",
+    items: [{ name: "Custom QR Design", value: "Rp25.000" }],
+  },
+  {
+    title: "Training & Onsite",
+    icon: GraduationCap,
+    note: "Training awal onsite sudah termasuk 1x dalam biaya setup.",
+    items: [
+      { name: "Training awal onsite", value: "Gratis 1x" },
+      { name: "Training online tambahan", value: "+Rp50.000/sesi" },
+      { name: "Training onsite tambahan", value: "+Rp100.000/sesi" },
+      { name: "Kunjungan onsite tambahan", value: "+Rp150.000-Rp300.000/kedatangan" },
+    ],
+  },
+  {
+    title: "Data, Custom, dan Outlet",
+    icon: Layers3,
+    note: "Biaya tambahan hanya berlaku jika ada request di luar paket.",
+    items: [
+      { name: "Input menu awal", value: "Gratis" },
+      { name: "Input menu tambahan", value: "Gratis" },
+      { name: "Custom landing page outlet/cafe", value: "Termasuk mulai paket Table POS Basic" },
+      { name: "Setup WhatsApp chatbot custom", value: "Mulai paket Pro Automation / sesuai kebutuhan" },
+      { name: "Outlet tambahan", value: "+Rp100.000-Rp300.000/bulan/outlet" },
+    ],
+  },
+];
+
+const addOnNotes = [
+  "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
+  "Link default Outletmu tersedia gratis untuk semua paket.",
+  "Input menu awal dan tambahan tidak dikenakan biaya.",
+  "Training awal onsite sudah termasuk 1x dalam biaya setup.",
+  "Custom QR Design diberikan dalam format siap cetak PNG/PDF.",
+  "Biaya tambahan hanya berlaku jika ada request di luar paket.",
+  "Tidak semua add-ons wajib diambil. Tim Outletmu akan bantu rekomendasikan tambahan yang benar-benar dibutuhkan sesuai kondisi outlet.",
 ];
 
 const whyPoints = [
@@ -1755,6 +1821,70 @@ function PricingDeckSection() {
   );
 }
 
+function AddOnsSection() {
+  return (
+    <PageSection id="addons" className="bg-[#F8F3EA] dark:bg-[#07140F]">
+      <div className={landingStyles.addOnsHeader}>
+        <SectionTitle
+          badge="Tambahan opsional"
+          title={"Tambahan Opsional /\nAdd-ons"}
+          subtitle="Paket bulanan Outletmu sudah mencakup sistem utama. Add-ons hanya berlaku jika outlet membutuhkan domain custom, QR meja custom, training tambahan, atau kebutuhan khusus di luar paket."
+        />
+        <p data-reveal>
+          Tidak semua add-ons wajib diambil. Tim Outletmu akan bantu rekomendasikan
+          tambahan yang benar-benar dibutuhkan sesuai kondisi outlet.
+        </p>
+      </div>
+
+      <div data-reveal className={landingStyles.addOnsGrid}>
+        {addOnGroups.map((group) => {
+          const Icon = group.icon;
+
+          return (
+            <motion.article
+              key={group.title}
+              className={landingStyles.addOnCard}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 190, damping: 20 }}
+            >
+              <div className={landingStyles.addOnCardHeader}>
+                <span>
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3>{group.title}</h3>
+              </div>
+              {group.description ? <p className={landingStyles.addOnDescription}>{group.description}</p> : null}
+              <div className={landingStyles.addOnItems}>
+                {group.items.map((item) => (
+                  <div key={`${group.title}-${item.name}`} className={landingStyles.addOnItem}>
+                    <span>{item.name}</span>
+                    <strong>{item.value}</strong>
+                  </div>
+                ))}
+              </div>
+              {group.note ? <small>{group.note}</small> : null}
+            </motion.article>
+          );
+        })}
+      </div>
+
+      <div data-reveal className={landingStyles.addOnsNoteBox}>
+        <div>
+          <span>
+            <Check className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <strong>Catatan add-ons</strong>
+        </div>
+        <ul>
+          {addOnNotes.map((note) => (
+            <li key={note}>{note}</li>
+          ))}
+        </ul>
+      </div>
+    </PageSection>
+  );
+}
+
 function WhyOutletmuSection() {
   return (
     <PageSection>
@@ -1887,6 +2017,7 @@ export function OutletmuLanding() {
       <ProductPreviewSection />
       <WhatsAppBotSection />
       <PricingDeckSection />
+      <AddOnsSection />
       <WhyOutletmuSection />
       <FAQSection />
       <FinalCTASection />
