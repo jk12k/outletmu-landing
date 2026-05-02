@@ -1539,7 +1539,8 @@ function PricingPlanCard({
   const [expanded, setExpanded] = useState(false);
   const isDark = active && plan.featured;
   const shouldCompact = compact && !expanded;
-  const shownFeatures = shouldCompact ? plan.features.slice(0, 6) : plan.features;
+  const compactFeatureLimit = allowExpand ? 5 : 6;
+  const shownFeatures = shouldCompact ? plan.features.slice(0, compactFeatureLimit) : plan.features;
   const hiddenFeatureCount = shouldCompact ? plan.features.length - shownFeatures.length : 0;
 
   return (
@@ -1623,7 +1624,7 @@ function PricingDeckSection() {
         return;
       }
 
-      const spread = Math.min(Math.max(window.innerWidth * 0.22, 240), 340);
+      const spread = Math.min(Math.max(window.innerWidth * 0.18, 210), 300);
 
       cardRefs.current.forEach((card, index) => {
         if (!card) {
@@ -1638,12 +1639,12 @@ function PricingDeckSection() {
         gsap.to(card, {
           xPercent: -50,
           x: isBack ? 0 : side * spread,
-          y: offset === 0 ? 0 : isBack ? 76 : 42,
-          rotate: offset === 0 || isBack ? 0 : side * -6,
-          scale: offset === 0 ? 1 : isBack ? 0.76 : 0.86,
-          autoAlpha: offset === 0 ? 1 : isBack ? 0.2 : 0.54,
+          y: offset === 0 ? 0 : isBack ? 52 : 28,
+          rotate: offset === 0 || isBack ? 0 : side * -3,
+          scale: offset === 0 ? 1 : isBack ? 0.78 : 0.9,
+          autoAlpha: offset === 0 ? 1 : isBack ? 0.18 : 0.66,
           zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
-          duration: 0.68,
+          duration: 0.58,
           ease: "power3.out",
         });
       });
@@ -1730,6 +1731,11 @@ function PricingDeckSection() {
     });
   };
 
+  const goMobile = (direction: 1 | -1) => {
+    const nextIndex = (mobileActiveIndex + direction + mobilePlans.length) % mobilePlans.length;
+    scrollMobileTo(nextIndex);
+  };
+
   return (
     <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
@@ -1801,18 +1807,38 @@ function PricingDeckSection() {
         </div>
       </div>
 
-      <div data-reveal className={pricingStyles.mobileDeck} ref={mobileDeckRef} onScroll={syncMobileDot}>
-        {mobilePlans.map((plan, index) => (
-          <div
-            key={plan.name}
-            ref={(element) => {
-              mobileCardRefs.current[index] = element;
-            }}
-            className={pricingStyles.mobileCard}
-          >
-            <PricingPlanCard plan={plan} active={plan.featured} compact allowExpand />
-          </div>
-        ))}
+      <div data-reveal className={pricingStyles.mobileCarouselWrap}>
+        <button
+          type="button"
+          onClick={() => goMobile(-1)}
+          aria-label="Paket sebelumnya"
+          aria-controls="pricing-mobile-deck"
+          className={cn(pricingStyles.mobileArrow, pricingStyles.mobileArrowPrev)}
+        >
+          <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+        <div id="pricing-mobile-deck" className={pricingStyles.mobileDeck} ref={mobileDeckRef} onScroll={syncMobileDot}>
+          {mobilePlans.map((plan, index) => (
+            <div
+              key={plan.name}
+              ref={(element) => {
+                mobileCardRefs.current[index] = element;
+              }}
+              className={pricingStyles.mobileCard}
+            >
+              <PricingPlanCard plan={plan} active={plan.featured} compact allowExpand />
+            </div>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => goMobile(1)}
+          aria-label="Paket berikutnya"
+          aria-controls="pricing-mobile-deck"
+          className={cn(pricingStyles.mobileArrow, pricingStyles.mobileArrowNext)}
+        >
+          <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </button>
       </div>
       <div className={pricingStyles.mobileDots}>
         {mobilePlans.map((plan, index) => (
