@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Outletmu | POS, QR Order & E-Struk untuk Bisnis Harian",
+  title: "Outletmu | POS & Workflow Kasir Premium untuk Outlet",
   description:
-    "Outletmu membantu cafe, restoran, minimarket, retail kecil, dan UMKM menerima order lewat QR, mencatat transaksi, membuat e-struk, memantau stok, dan melihat laporan bisnis dengan lebih rapi.",
+    "Outletmu membantu cafe, restoran, minimarket, dan UMKM mengelola POS kasir, QR order, menu digital, stok, laporan, kitchen workflow, dan WhatsApp automation dalam satu sistem bulanan yang dikelola.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

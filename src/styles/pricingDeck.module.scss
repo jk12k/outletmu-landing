@@ -226,8 +226,10 @@
   }
 
   strong {
-    font-size: clamp(2.4rem, 5vw, 3.15rem);
+    font-size: clamp(1.95rem, 4vw, 2.85rem);
+    letter-spacing: -0.025em;
     line-height: 1;
+    white-space: nowrap;
   }
 
   small {
@@ -520,7 +522,7 @@
   }
 
   .priceBox strong {
-    font-size: 2rem;
+    font-size: clamp(1.55rem, 8vw, 1.95rem);
   }
 
   .priceBox p {

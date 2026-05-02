@@ -40,7 +40,7 @@ import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 
 const whatsappLink =
-  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20konsultasi%20paket%20POS%20dan%20QR%20Order.";
+  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20konsultasi%20paket%20POS%20untuk%20outlet%20saya";
 
 const navItems = [
   { label: "Flow", href: "#flow" },
@@ -119,7 +119,7 @@ const heroSlides = [
     ],
     stats: [
       { label: "Order aktif", value: "7" },
-      { label: "Omzet hari ini", value: "Rp1,25 jt" },
+      { label: "Omzet hari ini", value: "Rp1.250.000" },
     ],
   },
   {
@@ -170,7 +170,7 @@ const productFlowCards: Array<{
   { label: "Meja A3", value: "Dine-in aktif", icon: Table2 },
   { label: "Pesanan baru masuk", value: "2 item menunggu", icon: ClipboardList },
   { label: "2 item diproses", value: "Kopi Susu + Croissant", icon: ShoppingCart },
-  { label: "Omzet hari ini", value: "Rp1,25 jt", icon: BarChart3 },
+  { label: "Omzet hari ini", value: "Rp1.250.000", icon: BarChart3 },
   { label: "Stok Fresh Milk", value: "Menipis: 2 tersisa", icon: Package },
 ];
 
@@ -286,7 +286,7 @@ const previews = [
   {
     title: "Owner Report",
     eyebrow: "Laporan",
-    metric: "Rp1,25 jt hari ini",
+    metric: "Rp1.250.000 hari ini",
     rows: ["38 transaksi selesai", "Produk terlaris: Kopi Susu", "Omzet naik 12%"],
     copy: "Ringkasan bisnis untuk owner tanpa buka spreadsheet.",
   },
@@ -361,91 +361,99 @@ const whatsappCommands = [
 
 const pricingPlans = [
   {
-    name: "Menu Starter",
-    price: "Rp199.000",
+    name: "Starter",
+    price: "Rp299.000",
     suffix: "/bulan",
-    setup: "Setup & onboarding Rp299.000",
-    label: "Mulai Digital",
+    setup: "Untuk outlet kecil yang butuh sistem ringan dan laporan sederhana.",
+    label: "Awal digital",
     cta: "Konsultasi Paket Starter",
-    audience: "Untuk UMKM yang butuh menu digital, order, dan POS basic.",
+    audience:
+      "Untuk outlet kecil yang butuh website menu ringan, QR order biasa, POS basic, laporan sederhana, dan stok/restock basic.",
     features: [
       "Website menu digital",
-      "QR menu/order biasa",
+      "QR menu/order",
       "POS basic",
       "Input transaksi sederhana",
-      "Riwayat transaksi",
-      "Dashboard admin/kasir",
-      "E-Struk Digital",
       "Laporan penjualan basic",
-      "Manajemen produk/menu",
-      "Stok/restock basic",
-      "Hosting & maintenance",
+      "Stok/restock basic via dashboard",
     ],
   },
   {
-    name: "Table POS Basic",
-    price: "Rp499.000",
+    name: "POS Basic",
+    price: "Rp699.000",
     suffix: "/bulan",
-    setup: "Setup & onboarding Rp599.000",
+    setup: "Paket utama untuk cafe/resto aktif yang butuh POS, QR meja, dan landing page outlet.",
     label: "Paling Direkomendasikan",
-    cta: "Konsultasi Paket Table POS",
-    audience: "Untuk cafe/resto kecil yang butuh QR Table dan POS basic.",
+    cta: "Konsultasi Paket POS Basic",
+    audience:
+      "Untuk cafe/resto yang butuh POS kasir, QR meja, order dashboard, product management, daily report, dan custom landing page outlet.",
     featured: true,
     features: [
-      "Semua fitur Menu Starter",
-      "QR Table/per meja",
-      "Nomor meja otomatis terbaca",
-      "Pesanan masuk ke dashboard kasir",
-      "Status pesanan",
-      "E-Struk Digital",
-      "Cetak struk dari browser",
-      "Laporan penjualan harian",
-      "Backup database berkala",
-      "Multi-user basic",
-      "Role admin dan kasir",
+      "Semua fitur Starter",
+      "QR Table / QR per meja",
+      "Table auto-detection",
+      "POS kasir lebih rapi",
+      "Dashboard order masuk",
+      "Product/menu management",
+      "Daily report",
+      "Periodic database backup",
+      "Custom outlet/cafe landing page",
     ],
   },
   {
     name: "Pro Automation",
-    price: "Rp799.000",
+    price: "Rp1.299.000",
     suffix: "/bulan",
-    setup: "Setup & onboarding Rp999.000",
-    label: "Lebih Otomatis",
+    setup: "Untuk outlet yang butuh automation operasional lebih lengkap.",
+    label: "Automation lengkap",
     cta: "Konsultasi Paket Pro",
-    audience: "Untuk owner yang ingin sistem lebih otomatis.",
+    audience: "Untuk outlet yang butuh automation lebih lengkap.",
     features: [
-      "Semua fitur Table POS Basic",
+      "Semua fitur POS Basic",
       "POS lebih lengkap",
-      "Stok otomatis",
-      "Laporan harian, mingguan, bulanan",
-      "E-Struk Digital",
-      "Riwayat struk transaksi",
-      "Tanya omzet via WhatsApp",
-      "Tanya stok via WhatsApp",
-      "Notifikasi stok via WhatsApp",
-      "WhatsApp automation",
-      "Export laporan",
+      "Auto stock",
+      "Laporan harian/mingguan/bulanan",
+      "Best-seller product",
+      "Role staff",
+      "WhatsApp revenue query",
+      "Stock notification",
+      "Priority support",
     ],
   },
   {
     name: "Business Custom",
-    price: "Mulai Rp1.299.000",
+    price: "Mulai Rp1.999.000",
     suffix: "/bulan",
-    setup: "Setup & onboarding Rp1.500.000-Rp3.000.000",
+    setup: "Untuk kebutuhan workflow custom dan multi-outlet ringan/menengah.",
     label: "Custom Workflow",
     cta: "Diskusikan Kebutuhan",
-    audience: "Untuk resto/cafe serius, multi-outlet, atau sistem custom.",
+    audience: "Untuk kebutuhan workflow custom dan multi-outlet ringan/menengah.",
     features: [
-      "Semua fitur Pro Automation",
+      "Semua fitur Pro",
       "Multi-outlet",
-      "QR Table advanced",
-      "Kitchen display/dashboard dapur",
-      "Laporan custom",
-      "E-Struk Digital",
-      "Format struk bisa disesuaikan saat konsultasi",
+      "Advanced QR Table",
+      "Kitchen display",
+      "Custom reports",
       "Custom domain",
       "Custom workflow",
-      "Setup khusus sesuai kebutuhan bisnis",
+      "Custom resource",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: "Konsultasi",
+    suffix: "",
+    setup: "Untuk dedicated/managed server, SLA, integrasi khusus, dan advanced multi-outlet.",
+    label: "Managed enterprise",
+    cta: "Chat WhatsApp Outletmu",
+    audience: "Untuk dedicated/managed server, SLA, integrasi khusus, dan advanced multi-outlet.",
+    features: [
+      "Dedicated/managed server",
+      "Advanced multi-outlet",
+      "Integrasi khusus",
+      "SLA",
+      "Onboarding serius",
+      "Support prioritas/custom",
     ],
   },
 ];
@@ -461,11 +469,11 @@ const addOnGroups: Array<{
     title: "Link & Custom Domain",
     icon: Globe2,
     description:
-      "Link default Outletmu tersedia gratis untuk semua paket. Jika ingin alamat website sendiri, kamu bisa menggunakan custom domain sesuai kebutuhan brand outlet.",
+      "Link default Outletmu tersedia untuk semua paket. Jika ingin alamat website sendiri, kamu bisa menggunakan custom domain sesuai kebutuhan brand outlet.",
     note:
       "Harga domain mengikuti provider dan dapat berubah sewaktu-waktu. Harga promo tahun pertama tidak selalu berlaku untuk perpanjangan.",
     items: [
-      { name: "Link default Outletmu", value: "Gratis" },
+      { name: "Default Outletmu link", value: "Rp10.000/bulan" },
       { name: "Custom domain .com", value: "+Rp209.900/tahun" },
       { name: "Custom domain .id", value: "+Rp252.900/tahun" },
       { name: "Domain lain", value: "Hubungi kami" },
@@ -474,19 +482,19 @@ const addOnGroups: Array<{
   {
     title: "QR Meja",
     icon: QrCode,
-    description: "Termasuk desain QR sesuai brand outlet dan file siap cetak PNG/PDF.",
+    description: "Desain QR sesuai brand outlet dan file siap cetak PNG/PDF.",
     note: "Cafe dapat mencetak QR sendiri atau dibantu cetak jika dibutuhkan.",
-    items: [{ name: "Custom QR Design", value: "Rp25.000" }],
+    items: [{ name: "QR design", value: "Rp25.000" }],
   },
   {
     title: "Training & Onsite",
     icon: GraduationCap,
-    note: "Training awal onsite sudah termasuk 1x dalam biaya setup.",
+    note: "Initial onsite training free 1x untuk membantu tim outlet mulai memakai sistem.",
     items: [
-      { name: "Training awal onsite", value: "Gratis 1x" },
-      { name: "Training online tambahan", value: "+Rp50.000/sesi" },
-      { name: "Training onsite tambahan", value: "+Rp100.000/sesi" },
-      { name: "Kunjungan onsite tambahan", value: "+Rp150.000-Rp300.000/kedatangan" },
+      { name: "Initial onsite training", value: "free 1x" },
+      { name: "Extra online training", value: "Rp50.000/sesi" },
+      { name: "Extra onsite training", value: "Rp100.000/sesi" },
+      { name: "Extra onsite visit", value: "Rp150.000–300.000/visit" },
     ],
   },
   {
@@ -494,32 +502,32 @@ const addOnGroups: Array<{
     icon: Layers3,
     note: "Biaya tambahan hanya berlaku jika ada request di luar paket.",
     items: [
-      { name: "Input menu awal", value: "Gratis" },
-      { name: "Input menu tambahan", value: "Gratis" },
-      { name: "Custom landing page outlet/cafe", value: "Termasuk mulai paket Table POS Basic" },
-      { name: "Setup WhatsApp chatbot custom", value: "Mulai paket Pro Automation / sesuai kebutuhan" },
-      { name: "Outlet tambahan", value: "+Rp100.000-Rp300.000/bulan/outlet" },
+      { name: "Initial menu input", value: "free" },
+      { name: "Additional menu input", value: "free" },
+      { name: "Custom landing included", value: "from POS Basic" },
+      { name: "WhatsApp chatbot custom", value: "from Pro/as needed" },
+      { name: "Extra outlet", value: "Rp100.000–300.000/bulan/outlet" },
     ],
   },
 ];
 
 const addOnNotes = [
   "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
-  "Link default Outletmu tersedia gratis untuk semua paket.",
-  "Input menu awal dan tambahan tidak dikenakan biaya.",
-  "Training awal onsite sudah termasuk 1x dalam biaya setup.",
-  "Custom QR Design diberikan dalam format siap cetak PNG/PDF.",
+  "Default Outletmu link tersedia dengan biaya Rp10.000/bulan.",
+  "Initial menu input dan additional menu input tidak dikenakan biaya.",
+  "Initial onsite training free 1x.",
+  "QR design diberikan dalam format siap cetak PNG/PDF.",
   "Biaya tambahan hanya berlaku jika ada request di luar paket.",
   "Tidak semua add-ons wajib diambil. Tim Outletmu akan bantu rekomendasikan tambahan yang benar-benar dibutuhkan sesuai kondisi outlet.",
 ];
 
 const whyPoints = [
-  "Bisa mulai dari paket kecil",
-  "Sistem bisa dikembangkan bertahap",
-  "Cocok untuk owner yang belum teknis",
   "Setup dibantu dari awal",
-  "Bisa custom sesuai alur bisnis",
-  "Support lebih personal",
+  "Workflow disesuaikan",
+  "Data disimpan di database sungguhan",
+  "Bisa berkembang ke multi-outlet",
+  "Ada opsi custom resource",
+  "Dedicated server tersedia untuk bisnis besar",
 ];
 
 const faqs = [
@@ -535,7 +543,7 @@ const faqs = [
   },
   {
     question: "Apakah bisa pakai QR per meja?",
-    answer: "Bisa, fitur QR Table/per meja tersedia mulai dari paket Table POS Basic.",
+    answer: "Bisa, fitur QR Table/per meja tersedia mulai dari paket POS Basic.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -876,13 +884,13 @@ function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () 
             <span>{theme === "dark" ? "Light" : "Dark"}</span>
           </button>
           <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
-            Konsultasi Gratis
+            Konsultasi via WhatsApp
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
         </div>
         <a
           href={whatsappLink}
-          aria-label="Konsultasi Gratis via WhatsApp"
+          aria-label="Konsultasi via WhatsApp"
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden"
         >
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
@@ -1035,18 +1043,18 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
           <div className={landingStyles.heroLogoWrap}>
             <BrandLogo variant="full" theme={theme} size="lg" />
           </div>
-          <Badge>POS, QR Order & Website Menu</Badge>
+          <Badge>Gratis setup untuk 100 outlet pertama</Badge>
           <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]">
-            Kelola order, kasir, stok, dan laporan outlet dalam satu flow.
+            POS & workflow kasir premium untuk outlet yang mau terlihat lebih profesional
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0">
-            Outletmu membantu cafe, restoran, minimarket, dan UMKM menerima order
-            lewat QR, mencatat transaksi, memantau stok, dan melihat laporan
-            bisnis dalam satu dashboard.
+            Outletmu membantu cafe, restoran, minimarket, dan UMKM mengelola POS
+            kasir, QR order, menu digital, stok, laporan, kitchen workflow, dan
+            WhatsApp automation dalam satu sistem bulanan yang dikelola.
           </p>
           <div className="mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start">
             <ButtonLink href={whatsappLink}>
-              Konsultasi Gratis
+              Konsultasi via WhatsApp
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
             <ButtonLink href="#pricing" variant="secondary">
@@ -1545,7 +1553,7 @@ function PricingPlanCard({
       <div className={pricingStyles.priceBox}>
         <div>
           <strong>{plan.price}</strong>
-          <small>{plan.suffix}</small>
+          {plan.suffix ? <small>{plan.suffix}</small> : null}
         </div>
         <p>{plan.setup}</p>
       </div>
@@ -1607,7 +1615,7 @@ function PricingDeckSection() {
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const pricingDragRef = useRef({ startX: 0, hasMoved: false });
   const suppressPricingClickRef = useRef(false);
-  const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3]];
+  const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3], pricingPlans[4]];
 
   useEffect(() => {
     const layoutCards = () => {
@@ -1728,10 +1736,10 @@ function PricingDeckSection() {
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
-        subtitle="Mulai dari sistem kasir sederhana sampai workflow outlet yang lebih lengkap."
+        subtitle="Premium managed monthly POS/workflow SaaS untuk outlet yang ingin setup dibantu, workflow bisa disesuaikan, dan sistemnya siap berkembang."
       />
       <div data-reveal className={pricingStyles.microPills}>
-        {["Hosting termasuk", "Maintenance termasuk", "Dibantu setup awal"].map((item) => (
+        {["Gratis setup untuk 100 outlet pertama", "Database sungguhan", "Workflow bisa disesuaikan"].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </div>
@@ -1892,8 +1900,8 @@ function WhyOutletmuSection() {
         <SectionTitle
           align="left"
           badge="Kenapa Outletmu"
-          title="Bukan sekadar kasir. Ini flow operasional bisnis yang lebih rapi."
-          subtitle="Outletmu dibuat supaya owner bisa mulai dari kebutuhan paling penting, lalu berkembang bertahap sesuai alur bisnis."
+          title="Bukan sekadar aplikasi kasir murah. Outletmu dikelola seperti sistem operasional."
+          subtitle="Outletmu adalah premium managed monthly POS/workflow SaaS: setup dibantu, workflow bisa disesuaikan, data disimpan di database sungguhan, dan sistem bisa berkembang ke multi-outlet."
         />
         <div data-reveal className="grid min-w-0 gap-4 sm:grid-cols-2">
           {whyPoints.map((point) => (
@@ -1969,15 +1977,15 @@ function FinalCTASection() {
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg lg:mx-0">
               Konsultasikan kebutuhan cafe, restoran, minimarket, atau UMKM kamu.
-              Tim Outletmu akan bantu rekomendasikan paket yang paling cocok.
+              Tim Outletmu akan bantu rekomendasikan paket POS dan workflow yang paling cocok.
             </p>
           </div>
           <div className={landingStyles.finalMessage}>
             <div>
               <p>Pesan otomatis</p>
-              <span>Halo Outletmu, saya mau konsultasi paket POS dan QR Order.</span>
+              <span>Halo Outletmu, saya mau konsultasi paket POS untuk outlet saya</span>
               <ButtonLink href={whatsappLink} className="mt-5 w-full">
-                Konsultasi Gratis via WhatsApp
+                Chat WhatsApp Outletmu
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </ButtonLink>
             </div>
