@@ -891,7 +891,7 @@ function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () 
         <a
           href={whatsappLink}
           aria-label="Konsultasi via WhatsApp"
-          className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden"
+          className={cn(landingStyles.mobileNavCta, "grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden")}
         >
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
         </a>
@@ -1038,21 +1038,21 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
     <section className={cn(landingStyles.section, landingStyles.heroSection)}>
       <div className={landingStyles.ambientOne} data-float="ambient" />
       <div className={landingStyles.ambientTwo} data-float="ambient" />
-      <div className={cn(landingStyles.container, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
-        <div data-reveal className="mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left">
+      <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
+        <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left")}>
           <div className={landingStyles.heroLogoWrap}>
             <BrandLogo variant="full" theme={theme} size="lg" />
           </div>
           <Badge>Gratis setup untuk 100 outlet pertama</Badge>
-          <h1 className="mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]">
+          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]")}>
             POS & workflow kasir premium untuk outlet yang mau terlihat lebih profesional
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0">
+          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0")}>
             Outletmu membantu cafe, restoran, minimarket, dan UMKM mengelola POS
             kasir, QR order, menu digital, stok, laporan, kitchen workflow, dan
             WhatsApp automation dalam satu sistem bulanan yang dikelola.
           </p>
-          <div className="mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start">
+          <div className={cn(landingStyles.heroActions, "mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start")}>
             <ButtonLink href={whatsappLink}>
               Konsultasi via WhatsApp
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1061,7 +1061,7 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
               Lihat Paket
             </ButtonLink>
           </div>
-          <p className="mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0">
+          <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0")}>
             Cocok untuk cafe, restoran kecil, kedai, bakery, minimarket, dan UMKM.
           </p>
         </div>
@@ -2030,6 +2030,10 @@ export function OutletmuLanding() {
       <FAQSection />
       <FinalCTASection />
       <Footer theme={theme} />
+      <a href={whatsappLink} className={landingStyles.mobileStickyCta} aria-label="Chat WhatsApp Outletmu">
+        <MessageCircle className="h-5 w-5" aria-hidden="true" />
+        Chat WhatsApp
+      </a>
     </main>
   );
 }
