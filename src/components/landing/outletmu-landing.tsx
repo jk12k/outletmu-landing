@@ -15,7 +15,6 @@ import {
   CreditCard,
   Globe2,
   GraduationCap,
-  Layers3,
   LayoutDashboard,
   LineChart,
   MessageCircle,
@@ -396,7 +395,7 @@ const pricingPlans = [
       "Dashboard order masuk",
       "Product/menu management",
       "Daily report",
-      "Periodic database backup",
+      "Backup berkala",
       "Custom outlet/cafe landing page",
     ],
   },
@@ -435,8 +434,8 @@ const pricingPlans = [
       "Kitchen display",
       "Custom reports",
       "Custom domain",
-      "Custom workflow",
-      "Custom resource",
+      "Workflow disesuaikan",
+      "Support prioritas",
     ],
   },
   {
@@ -466,47 +465,35 @@ const addOnGroups: Array<{
   items: Array<{ name: string; value: string }>;
 }> = [
   {
-    title: "Link & Custom Domain",
+    title: "Domain & QR",
     icon: Globe2,
     description:
-      "Link default Outletmu tersedia untuk semua paket. Jika ingin alamat website sendiri, kamu bisa menggunakan custom domain sesuai kebutuhan brand outlet.",
-    note:
-      "Harga domain mengikuti provider dan dapat berubah sewaktu-waktu. Harga promo tahun pertama tidak selalu berlaku untuk perpanjangan.",
+      "Alamat menu dan QR yang siap dipakai pelanggan, dengan opsi domain brand sendiri.",
     items: [
       { name: "Default Outletmu link", value: "Rp10.000/bulan" },
-      { name: "Custom domain .com", value: "+Rp209.900/tahun" },
-      { name: "Custom domain .id", value: "+Rp252.900/tahun" },
-      { name: "Domain lain", value: "Hubungi kami" },
+      { name: "Domain .com", value: "+Rp209.900/tahun" },
+      { name: "Domain .id", value: "+Rp252.900/tahun" },
+      { name: "Desain QR", value: "Rp25.000" },
     ],
   },
   {
-    title: "QR Meja",
-    icon: QrCode,
-    description: "Desain QR sesuai brand outlet dan file siap cetak PNG/PDF.",
-    note: "Cafe dapat mencetak QR sendiri atau dibantu cetak jika dibutuhkan.",
-    items: [{ name: "QR design", value: "Rp25.000" }],
-  },
-  {
-    title: "Training & Onsite",
+    title: "Training & Setup",
     icon: GraduationCap,
-    note: "Initial onsite training free 1x untuk membantu tim outlet mulai memakai sistem.",
+    description: "Pendampingan awal agar tim outlet bisa langsung memakai sistem dengan rapi.",
     items: [
-      { name: "Initial onsite training", value: "free 1x" },
-      { name: "Extra online training", value: "Rp50.000/sesi" },
-      { name: "Extra onsite training", value: "Rp100.000/sesi" },
-      { name: "Extra onsite visit", value: "Rp150.000–300.000/visit" },
+      { name: "Training onsite awal", value: "Free 1x" },
+      { name: "Training online tambahan", value: "Rp50.000/sesi" },
+      { name: "Training onsite tambahan", value: "Rp100.000/sesi" },
     ],
   },
   {
-    title: "Data, Custom, dan Outlet",
-    icon: Layers3,
-    note: "Biaya tambahan hanya berlaku jika ada request di luar paket.",
+    title: "Bantuan Tambahan",
+    icon: QrCode,
+    description: "Bantuan operasional ringan untuk mempercepat outlet mulai berjalan.",
     items: [
-      { name: "Initial menu input", value: "free" },
-      { name: "Additional menu input", value: "free" },
-      { name: "Custom landing included", value: "from POS Basic" },
-      { name: "WhatsApp chatbot custom", value: "from Pro/as needed" },
-      { name: "Extra outlet", value: "Rp100.000–300.000/bulan/outlet" },
+      { name: "Input menu awal", value: "Free" },
+      { name: "Input menu tambahan", value: "Free" },
+      { name: "WhatsApp chatbot custom", value: "Sesuai kebutuhan" },
     ],
   },
 ];
@@ -514,20 +501,18 @@ const addOnGroups: Array<{
 const addOnNotes = [
   "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
   "Default Outletmu link tersedia dengan biaya Rp10.000/bulan.",
-  "Initial menu input dan additional menu input tidak dikenakan biaya.",
-  "Initial onsite training free 1x.",
-  "QR design diberikan dalam format siap cetak PNG/PDF.",
-  "Biaya tambahan hanya berlaku jika ada request di luar paket.",
-  "Tidak semua add-ons wajib diambil. Tim Outletmu akan bantu rekomendasikan tambahan yang benar-benar dibutuhkan sesuai kondisi outlet.",
+  "Training onsite awal: Free 1x.",
+  "Desain QR diberikan dalam format siap cetak.",
+  "Add-ons bersifat opsional. Tim Outletmu akan bantu pilih yang benar-benar dibutuhkan outlet.",
 ];
 
 const whyPoints = [
   "Setup dibantu dari awal",
   "Workflow disesuaikan",
-  "Data disimpan di database sungguhan",
+  "Operasional lebih terpusat",
   "Bisa berkembang ke multi-outlet",
-  "Ada opsi custom resource",
-  "Dedicated server tersedia untuk bisnis besar",
+  "Ada opsi penyesuaian sistem",
+  "Support prioritas untuk bisnis besar",
 ];
 
 const faqs = [
@@ -1239,7 +1224,7 @@ function ProductPreviewSection() {
         <SectionTitle
           badge="Product preview"
           title="Dibuat simpel untuk kasir, owner, dan pelanggan."
-          subtitle="Semua ini dummy mockup untuk landing page. Belum ada backend, database, auth, atau POS asli."
+          subtitle="Preview tampilan agar calon pembeli bisa membayangkan alur POS, QR order, stok, dan laporan sebelum konsultasi."
         />
         <div data-reveal data-parallax="preview" className={landingStyles.previewShell}>
           <div className={landingStyles.previewTabs}>
@@ -1553,7 +1538,7 @@ function PricingPlanCard({
       </div>
       <div className={pricingStyles.priceBox}>
         <div>
-          <strong>{plan.price}</strong>
+          <strong className={cn(plan.price.length > 13 && pricingStyles.priceLong)}>{plan.price}</strong>
           {plan.suffix ? <small>{plan.suffix}</small> : null}
         </div>
         <p>{plan.setup}</p>
@@ -1742,10 +1727,10 @@ function PricingDeckSection() {
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
-        subtitle="Premium managed monthly POS/workflow SaaS untuk outlet yang ingin setup dibantu, workflow bisa disesuaikan, dan sistemnya siap berkembang."
+        subtitle="Paket bulanan untuk outlet yang ingin POS, QR order, stok, laporan, dan operasional harian lebih rapi."
       />
       <div data-reveal className={pricingStyles.microPills}>
-        {["Gratis setup untuk 100 outlet pertama", "Database sungguhan", "Workflow bisa disesuaikan"].map((item) => (
+        {["Gratis setup untuk 100 outlet pertama", "QR order siap pakai", "Pendampingan awal"].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </div>
@@ -1862,11 +1847,10 @@ function AddOnsSection() {
         <SectionTitle
           badge="Tambahan opsional"
           title={"Tambahan Opsional /\nAdd-ons"}
-          subtitle="Paket bulanan Outletmu sudah mencakup sistem utama. Add-ons hanya berlaku jika outlet membutuhkan domain custom, QR meja custom, training tambahan, atau kebutuhan khusus di luar paket."
+          subtitle="Paket bulanan Outletmu sudah mencakup sistem utama. Add-ons hanya dipakai jika outlet membutuhkan domain, desain QR, training tambahan, atau bantuan khusus."
         />
         <p data-reveal>
-          Tidak semua add-ons wajib diambil. Tim Outletmu akan bantu rekomendasikan
-          tambahan yang benar-benar dibutuhkan sesuai kondisi outlet.
+          Pilih tambahan seperlunya. Tim Outletmu akan bantu rekomendasikan yang paling relevan untuk outlet.
         </p>
       </div>
 
@@ -1927,7 +1911,7 @@ function WhyOutletmuSection() {
           align="left"
           badge="Kenapa Outletmu"
           title="Bukan sekadar aplikasi kasir murah. Outletmu dikelola seperti sistem operasional."
-          subtitle="Outletmu adalah premium managed monthly POS/workflow SaaS: setup dibantu, workflow bisa disesuaikan, data disimpan di database sungguhan, dan sistem bisa berkembang ke multi-outlet."
+          subtitle="Outletmu adalah sistem POS bulanan yang setup-nya dibantu, alurnya bisa disesuaikan, dan siap berkembang ketika outlet bertambah."
         />
         <div data-reveal className="grid min-w-0 gap-4 sm:grid-cols-2">
           {whyPoints.map((point) => (

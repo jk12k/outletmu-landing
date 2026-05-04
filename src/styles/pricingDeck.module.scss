@@ -250,6 +250,11 @@
     white-space: nowrap;
   }
 
+  .priceLong {
+    font-size: clamp(1.58rem, 2.85vw, 2.12rem);
+    letter-spacing: -0.02em;
+  }
+
   small {
     color: rgba(20, 33, 61, 0.46);
     font-size: 0.9rem;
@@ -615,6 +620,10 @@
 
   .priceBox strong {
     font-size: clamp(1.32rem, 6.2vw, 1.58rem);
+  }
+
+  .priceBox .priceLong {
+    font-size: clamp(1.18rem, 5vw, 1.36rem);
   }
 
   .priceBox small {
