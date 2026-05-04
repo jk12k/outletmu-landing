@@ -26,7 +26,6 @@ import {
   ScanLine,
   Search,
   ShoppingCart,
-  Sparkles,
   Store,
   Sun,
   Table2,
@@ -698,13 +697,12 @@ function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?:
   return (
     <span
       className={cn(
-        "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
+        "inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
         tone === "light"
           ? "border border-[#2F8A68]/14 bg-white/86 text-[#2F8A68] dark:border-white/10 dark:bg-white/8 dark:text-[#B9F1DA]"
           : "border border-white/14 bg-white/10 text-white",
       )}
     >
-      <Sparkles className="h-4 w-4" aria-hidden="true" />
       {children}
     </span>
   );
@@ -932,17 +930,12 @@ function HeroCardDeck() {
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <div className={heroStyles.innerPanel}>
-            <div className="flex items-start justify-between gap-5">
-              <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
-                <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
-                  {slide.title}
-                </h3>
-                <span className={heroStyles.slideCopy}>{slide.copy}</span>
-              </div>
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#103F31]">
-                <Sparkles className="h-5 w-5" aria-hidden="true" />
-              </span>
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
+              <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
+                {slide.title}
+              </h3>
+              <span className={heroStyles.slideCopy}>{slide.copy}</span>
             </div>
             <div className={heroStyles.featureStack}>
               {slide.items.map((feature) => (
