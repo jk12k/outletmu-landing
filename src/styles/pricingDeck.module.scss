@@ -35,8 +35,8 @@
   position: relative;
   z-index: 2;
   display: block;
-  max-width: 70rem;
-  min-height: 50rem;
+  max-width: 74rem;
+  min-height: 55rem;
   margin: clamp(2.25rem, 4vw, 3.25rem) auto 0;
 }
 
@@ -58,8 +58,8 @@
 
 .cardStage {
   position: relative;
-  width: min(100%, 68.75rem);
-  height: 47.25rem;
+  width: min(100%, 74rem);
+  height: 52rem;
   margin-inline: auto;
   cursor: grab;
   touch-action: pan-y;
@@ -78,8 +78,8 @@
   position: absolute;
   top: 0;
   left: 50%;
-  width: clamp(21rem, 30vw, 25.5rem);
-  height: 46.25rem;
+  width: clamp(23.75rem, 34vw, 26.875rem);
+  height: 51rem;
   cursor: pointer;
   outline: none;
 
@@ -105,13 +105,13 @@
 }
 
 .arrowPrev {
-  left: max(0rem, calc((100% - 68.75rem) / 2));
+  left: max(0rem, calc((100% - 74rem) / 2));
   background: #ffffff;
   color: #14213d;
 }
 
 .arrowNext {
-  right: max(0rem, calc((100% - 68.75rem) / 2));
+  right: max(0rem, calc((100% - 74rem) / 2));
   background: #103f31;
   color: #ffffff;
 }
@@ -159,7 +159,7 @@
   background:
     radial-gradient(circle at 82% 5%, rgba(47, 138, 104, 0.12), transparent 32%),
     #ffffff;
-  padding: clamp(1.55rem, 2.5vw, 1.9rem);
+  padding: clamp(1.7rem, 2.5vw, 2.05rem);
   color: #14213d;
   box-shadow: 0 35px 90px rgba(20, 33, 61, 0.12);
 }
@@ -196,15 +196,15 @@
     display: inline-flex;
     border-radius: 999px;
     background: #f8f3ea;
-    padding: 0.6rem 1rem;
+    padding: 0.62rem 1.05rem;
     color: #2f8a68;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 900;
   }
 
   h3 {
     margin-top: 1.25rem;
-    font-size: clamp(1.72rem, 3vw, 2.15rem);
+    font-size: clamp(1.92rem, 3vw, 2.35rem);
     font-weight: 800;
     line-height: 1.1;
   }
@@ -212,7 +212,7 @@
   p {
     margin-top: 0.75rem;
     color: rgba(20, 33, 61, 0.62);
-    font-size: 0.92rem;
+    font-size: 1rem;
     line-height: 1.7;
   }
 }
@@ -244,21 +244,22 @@
   }
 
   strong {
-    font-size: clamp(1.82rem, 3.6vw, 2.55rem);
+    font-size: clamp(2.15rem, 4.2vw, 3rem);
     letter-spacing: -0.025em;
     line-height: 1;
     white-space: nowrap;
   }
 
   .priceLong {
-    font-size: clamp(1.58rem, 2.85vw, 2.12rem);
+    font-size: clamp(1.65rem, 2.6vw, 2.12rem);
     letter-spacing: -0.02em;
   }
 
   small {
     color: rgba(20, 33, 61, 0.46);
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     font-weight: 900;
+    white-space: nowrap;
   }
 
   p {
@@ -267,9 +268,9 @@
     background: #ffffff;
     padding: 0.9rem 1rem;
     color: rgba(20, 33, 61, 0.64);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 900;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 }
 
@@ -289,23 +290,23 @@
 
 .featureList {
   display: grid;
-  gap: 0.55rem;
-  margin: 1.25rem 0 0;
+  gap: 0.7rem;
+  margin: 1.35rem 0 0;
   padding: 0;
   list-style: none;
 
   li {
     display: flex;
-    gap: 0.8rem;
+    gap: 0.85rem;
     color: rgba(20, 33, 61, 0.66);
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: clamp(0.94rem, 0.22vw + 0.9rem, 1rem);
+    line-height: 1.55;
   }
 
   span {
     display: grid;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.35rem;
+    height: 1.35rem;
     flex: 0 0 auto;
     place-items: center;
     margin-top: 0.08rem;
@@ -393,6 +394,7 @@
   display: none;
   max-width: 100%;
   margin-top: 2.75rem;
+  overflow: hidden;
 }
 
 .mobileDeck {
@@ -456,7 +458,7 @@
 
 @media (max-width: 1180px) {
   .cardStage {
-    width: min(100%, 64rem);
+    width: min(100%, 66rem);
   }
 
   .arrowPrev {
@@ -504,7 +506,7 @@
   }
 
   .mobileCard .planCard {
-    width: min(86vw, 22.5rem);
+    width: min(calc(100vw - 2rem), 22.5rem);
   }
 
   .planCard {
@@ -548,7 +550,7 @@
   }
 
   .mobileCard .planCard {
-    width: min(86vw, 22.5rem);
+    width: min(calc(100vw - 2rem), 22.5rem);
   }
 }
 
@@ -594,62 +596,63 @@
 
   .planCard {
     border-radius: 1.45rem;
-    padding: 0.95rem;
+    padding: 1.12rem;
   }
 
   .planHeader span {
-    padding: 0.52rem 0.8rem;
-    font-size: 0.72rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.76rem;
   }
 
   .planHeader h3 {
     margin-top: 0.85rem;
-    font-size: 1.42rem;
+    font-size: 1.58rem;
   }
 
   .planHeader p {
-    font-size: 0.84rem;
-    line-height: 1.48;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .priceBox {
     margin-top: 0.8rem;
     border-radius: 1.25rem;
-    padding: 0.78rem;
+    padding: 0.9rem;
   }
 
   .priceBox strong {
-    font-size: clamp(1.32rem, 6.2vw, 1.58rem);
+    font-size: clamp(1.74rem, 7vw, 2.05rem);
   }
 
   .priceBox .priceLong {
-    font-size: clamp(1.18rem, 5vw, 1.36rem);
+    font-size: clamp(1.26rem, 4.8vw, 1.48rem);
   }
 
   .priceBox small {
-    font-size: 0.76rem;
+    font-size: 0.82rem;
   }
 
   .priceBox p {
     border-radius: 0.95rem;
     margin-top: 0.65rem;
-    padding: 0.65rem;
-    font-size: 0.78rem;
+    padding: 0.72rem;
+    font-size: 0.86rem;
+    line-height: 1.48;
   }
 
   .featureList {
-    gap: 0.42rem;
-    margin-top: 0.9rem;
+    gap: 0.54rem;
+    margin-top: 1rem;
 
     li {
-      gap: 0.52rem;
-      font-size: 0.8rem;
-      line-height: 1.36;
+      gap: 0.62rem;
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     span {
-      width: 1.08rem;
-      height: 1.08rem;
+      width: 1.18rem;
+      height: 1.18rem;
     }
   }
 

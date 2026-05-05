@@ -372,12 +372,10 @@ const pricingPlans = [
       "Menu digital online",
       "QR meja untuk 1 outlet",
       "Guest checkout",
-      "Order masuk ke dashboard kasir basic",
+      "Dashboard kasir basic",
       "Kitchen display basic",
       "Inventory/stok basic",
-      "Kelola menu & produk basic",
-      "Laporan penjualan harian basic",
-      "Link default Outletmu",
+      "Laporan harian basic",
       "Setup awal dibantu",
       "Support WhatsApp basic",
     ],
@@ -402,7 +400,7 @@ const pricingPlans = [
       "Laporan harian lebih lengkap",
       "Backup berkala",
       "Custom outlet/cafe landing page basic",
-      "Support WhatsApp prioritas standar",
+      "Support WhatsApp prioritas",
     ],
   },
   {
@@ -418,9 +416,9 @@ const pricingPlans = [
       "Inventory lebih lengkap",
       "Laporan harian/mingguan/bulanan",
       "Laporan profit/HPP jika tersedia",
-      "Best-seller products",
+      "Produk terlaris",
       "Role staff lebih lengkap",
-      "WhatsApp stock notification / revenue query jika tersedia",
+      "WhatsApp stock notification / revenue query",
       "Priority support",
       "Backup lebih sering",
     ],
@@ -447,17 +445,17 @@ const pricingPlans = [
     name: "Enterprise",
     price: "Konsultasi",
     suffix: "",
-    setup: "Untuk dedicated/managed server, SLA, integrasi khusus, dan kebutuhan skala besar.",
+    setup: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
     label: "Managed enterprise",
     cta: "Chat WhatsApp Outletmu",
-    audience: "Untuk dedicated/managed server, SLA, integrasi khusus, dan kebutuhan skala besar.",
+    audience: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
     features: [
       "Dedicated/managed server",
-      "Kebutuhan skala besar",
+      "SLA/support khusus",
+      "Advanced multi-outlet",
       "Integrasi khusus",
-      "SLA",
-      "Onboarding serius",
-      "Support prioritas/custom",
+      "Onboarding enterprise",
+      "Konsultasi kebutuhan",
     ],
   },
 ];
@@ -1524,7 +1522,7 @@ function PricingPlanCard({
   const [expanded, setExpanded] = useState(false);
   const isDark = active && plan.featured;
   const shouldCompact = compact && !expanded;
-  const compactFeatureLimit = allowExpand ? 5 : 6;
+  const compactFeatureLimit = allowExpand ? 6 : 4;
   const shownFeatures = shouldCompact ? plan.features.slice(0, compactFeatureLimit) : plan.features;
   const hiddenFeatureCount = shouldCompact ? plan.features.length - shownFeatures.length : 0;
 
@@ -1609,7 +1607,7 @@ function PricingDeckSection() {
         return;
       }
 
-      const spread = Math.min(Math.max(window.innerWidth * 0.18, 210), 300);
+      const spread = Math.min(Math.max(window.innerWidth * 0.2, 260), 340);
 
       cardRefs.current.forEach((card, index) => {
         if (!card) {
@@ -1624,10 +1622,10 @@ function PricingDeckSection() {
         gsap.to(card, {
           xPercent: -50,
           x: isBack ? 0 : side * spread,
-          y: offset === 0 ? 0 : isBack ? 52 : 28,
-          rotate: offset === 0 || isBack ? 0 : side * -3,
-          scale: offset === 0 ? 1 : isBack ? 0.78 : 0.9,
-          autoAlpha: offset === 0 ? 1 : isBack ? 0.18 : 0.66,
+          y: offset === 0 ? 0 : isBack ? 68 : 38,
+          rotate: offset === 0 || isBack ? 0 : side * -2,
+          scale: offset === 0 ? 1 : isBack ? 0.68 : 0.76,
+          autoAlpha: offset === 0 ? 1 : isBack ? 0.1 : 0.48,
           zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
           duration: 0.58,
           ease: "power3.out",
