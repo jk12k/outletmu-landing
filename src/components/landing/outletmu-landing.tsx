@@ -362,18 +362,24 @@ const pricingPlans = [
     name: "Starter",
     price: "Rp299.000",
     suffix: "/bulan",
-    setup: "Untuk outlet kecil yang butuh sistem ringan dan laporan sederhana.",
-    label: "Awal digital",
+    setup:
+      "Cocok untuk 1 outlet kecil. Untuk POS kasir lengkap, multi staff, workflow kitchen rapi, laporan detail, backup, dan custom landing page, naik ke POS Basic.",
+    label: "Starter QR",
     cta: "Konsultasi Paket Starter",
     audience:
-      "Untuk outlet kecil yang butuh website menu ringan, QR order biasa, POS basic, laporan sederhana, dan stok/restock basic.",
+      "Mulai digitalisasi outlet dengan menu digital, QR meja, kitchen basic, stok basic, dan laporan harian sederhana.",
     features: [
-      "Website menu digital",
-      "QR menu/order",
-      "POS basic",
-      "Input transaksi sederhana",
-      "Laporan penjualan basic",
-      "Stok/restock basic via dashboard",
+      "Menu digital online",
+      "QR meja tanpa batas untuk 1 outlet",
+      "Guest checkout",
+      "Order masuk ke dashboard kasir basic",
+      "Kitchen display basic",
+      "Inventory/stok basic",
+      "Kelola menu & produk basic",
+      "Laporan penjualan harian basic",
+      "Link default Outletmu",
+      "Setup awal dibantu",
+      "Cocok untuk 1 outlet",
     ],
   },
   {
@@ -384,17 +390,17 @@ const pricingPlans = [
     label: "Paling Direkomendasikan",
     cta: "Konsultasi Paket POS Basic",
     audience:
-      "Untuk cafe/resto yang butuh POS kasir, QR meja, order dashboard, product management, daily report, dan custom landing page outlet.",
+      "Upgrade utama untuk outlet yang butuh POS kasir lebih lengkap, staff role, kitchen flow lebih rapi, laporan detail, backup, dan landing page outlet.",
     featured: true,
     features: [
       "Semua fitur Starter",
-      "QR Table / QR per meja",
-      "Table auto-detection",
-      "POS kasir lebih rapi",
-      "Dashboard order masuk",
-      "Product/menu management",
-      "Daily report",
-      "Backup berkala",
+      "POS kasir lebih lengkap",
+      "QR meja + dashboard order lebih rapi",
+      "Role/staff lebih lengkap",
+      "Kitchen/order flow lebih stabil",
+      "Product management lebih lengkap",
+      "Daily reports lebih lengkap",
+      "Backup database berkala",
       "Custom outlet/cafe landing page",
     ],
   },
@@ -469,7 +475,7 @@ const addOnGroups: Array<{
     description:
       "Alamat menu dan QR yang siap dipakai pelanggan, dengan opsi domain brand sendiri.",
     items: [
-      { name: "Default Outletmu link", value: "Rp10.000/bulan" },
+      { name: "Default Outletmu link tambahan", value: "Rp10.000/bulan" },
       { name: "Domain .com", value: "+Rp209.900/tahun" },
       { name: "Domain .id", value: "+Rp252.900/tahun" },
       { name: "Desain QR", value: "Rp25.000" },
@@ -499,7 +505,7 @@ const addOnGroups: Array<{
 
 const addOnNotes = [
   "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
-  "Default Outletmu link tersedia dengan biaya Rp10.000/bulan.",
+  "Default Outletmu link untuk outlet utama sudah termasuk; link tambahan Rp10.000/bulan.",
   "Training onsite awal: Free 1x.",
   "Desain QR diberikan dalam format siap cetak.",
   "Add-ons bersifat opsional. Tim Outletmu akan bantu pilih yang benar-benar dibutuhkan outlet.",
@@ -527,7 +533,8 @@ const faqs = [
   },
   {
     question: "Apakah bisa pakai QR per meja?",
-    answer: "Bisa, fitur QR Table/per meja tersedia mulai dari paket POS Basic.",
+    answer:
+      "Bisa. Starter sudah termasuk QR meja tanpa batas untuk 1 outlet, lalu POS Basic menambah dashboard order, workflow kitchen, staff role, laporan, backup, dan landing page outlet yang lebih lengkap.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
