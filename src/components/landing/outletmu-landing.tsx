@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -33,6 +34,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AnimatedLogo } from "@/components/landing/animated-logo";
 import landingStyles from "@/styles/landing.module.scss";
 import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
@@ -847,9 +849,9 @@ function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () 
   return (
     <header className={landingStyles.navbar}>
       <div className={cn(landingStyles.container, "flex items-center justify-between gap-4 py-4")}>
-        <a href="#" className="flex min-w-0 items-center" aria-label="Outletmu">
-          <BrandLogo variant="full" theme={theme} size="md" />
-        </a>
+        <Link href="/" className="flex min-w-0 items-center" aria-label="Outletmu homepage">
+          <AnimatedLogo theme={theme} />
+        </Link>
         <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm dark:border-white/10 dark:bg-white/8 lg:flex">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14213D]/68 transition hover:text-[#2F8A68] dark:text-[#F8F3EA]/70 dark:hover:text-white">
