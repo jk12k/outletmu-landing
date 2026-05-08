@@ -1021,45 +1021,69 @@ function HeaderLogo({ theme }: { theme: ThemeMode }) {
 }
 
 function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      const nextScrolled = window.scrollY > 24;
+
+      setIsScrolled((current) => (current === nextScrolled ? current : nextScrolled));
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
+
   return (
-    <header className={landingStyles.navbar}>
-      <div className={cn(landingStyles.container, "flex items-center justify-between gap-4 py-4")}>
-        <Link href="/" className="flex min-w-0 items-center" aria-label="Outletmu homepage">
-          <HeaderLogo theme={theme} />
-        </Link>
-        <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm dark:border-white/10 dark:bg-white/8 lg:flex">
+    <header className={cn(landingStyles.navbar, isScrolled && landingStyles.navbarScrolled)}>
+      <div className={cn(landingStyles.container, landingStyles.navbarInner)}>
+        <div className={landingStyles.navbarTopRow}>
+          <Link href="/" className="flex min-w-0 items-center" aria-label="Outletmu homepage">
+            <HeaderLogo theme={theme} />
+          </Link>
+          <nav className={landingStyles.desktopNav} aria-label="Navigasi utama Outletmu">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className={landingStyles.navbarActions}>
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
+              className={landingStyles.themeToggle}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <Moon className="h-4 w-4" aria-hidden="true" />
+              )}
+              <span>{theme === "dark" ? "Light" : "Dark"}</span>
+            </button>
+            <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
+              Konsultasi via WhatsApp
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </ButtonLink>
+          </div>
+          <a
+            href={whatsappLink}
+            aria-label="Konsultasi via WhatsApp"
+            className={cn(landingStyles.mobileNavCta, "grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden")}
+          >
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+          </a>
+        </div>
+        <nav className={landingStyles.mobileSectionNav} aria-label="Navigasi section Outletmu">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-semibold text-[#14213D]/68 transition hover:text-[#2F8A68] dark:text-[#F8F3EA]/70 dark:hover:text-white">
+            <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
-            className={landingStyles.themeToggle}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-4 w-4" aria-hidden="true" />
-            ) : (
-              <Moon className="h-4 w-4" aria-hidden="true" />
-            )}
-            <span>{theme === "dark" ? "Light" : "Dark"}</span>
-          </button>
-          <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
-            Konsultasi via WhatsApp
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </ButtonLink>
-        </div>
-        <a
-          href={whatsappLink}
-          aria-label="Konsultasi via WhatsApp"
-          className={cn(landingStyles.mobileNavCta, "grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden")}
-        >
-          <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        </a>
       </div>
     </header>
   );
