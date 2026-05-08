@@ -46,6 +46,7 @@ import pricingStyles from "@/styles/pricingDeck.module.scss";
 
 const whatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20sistem%20kasir%20dan%20QR%20order";
+const customerMenuDemoLink = "https://kasir.outletmu.store/scan/K7F9A2P9";
 
 const navItems = [
   { label: "Solusi", href: "#solutions" },
@@ -2320,11 +2321,38 @@ function FinalCTASection() {
 function Footer({ theme }: { theme: ThemeMode }) {
   return (
     <footer className="border-t border-[#14213D]/6 bg-white px-5 py-10 dark:border-white/10 dark:bg-[#07140F] md:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
-        <BrandLogo variant="full" theme={theme} size="md" />
-        <p className="text-sm font-medium leading-7 text-[#14213D]/55 dark:text-[#F8F3EA]/58">
-          POS, QR Order, E-Struk, stok, laporan, dan automasi WhatsApp untuk outlet harian.
-        </p>
+      <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+        <div className="flex min-w-0 flex-col items-start gap-4">
+          <BrandLogo variant="full" theme={theme} size="md" />
+          <p className="max-w-xl text-sm font-medium leading-7 text-[#14213D]/60 dark:text-[#F8F3EA]/64">
+            POS kasir, QR order, menu digital, stok, dan laporan untuk outlet yang ingin operasional lebih rapi.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+          <ButtonLink href={whatsappLink} className="w-full sm:w-auto">
+            Chat WhatsApp
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </ButtonLink>
+          <a
+            href={customerMenuDemoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#14213D]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[#14213D] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#2F8A68]/30 focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/25 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60 sm:w-auto"
+          >
+            Lihat Demo Menu Pelanggan
+          </a>
+        </div>
+      </div>
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/50 dark:border-white/10 dark:text-[#F8F3EA]/52 sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 Outletmu. All rights reserved.</p>
+        <a
+          href={customerMenuDemoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#2F8A68] transition hover:text-[#28795b] dark:text-[#B9F1DA] dark:hover:text-white"
+        >
+          Demo Menu Pelanggan
+        </a>
       </div>
     </footer>
   );
