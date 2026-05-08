@@ -427,7 +427,7 @@ const pricingPlans = [
     price: "Rp499.000",
     suffix: "/bulan",
     label: "Recommended",
-    cta: "Konsultasi Paket POS Basic",
+    cta: "Konsultasi POS Basic",
     audience: "Untuk cafe/resto yang butuh kasir harian dan order lebih rapi.",
     featured: true,
     features: [
@@ -444,7 +444,7 @@ const pricingPlans = [
     price: "Rp999.000",
     suffix: "/bulan",
     label: "Automation",
-    cta: "Konsultasi Paket Pro",
+    cta: "Konsultasi Pro",
     audience: "Untuk outlet yang butuh kontrol stok, laporan, dan bantuan WhatsApp lebih serius.",
     features: [
       "Semua fitur POS Basic",
@@ -1748,9 +1748,51 @@ function PricingPlanCard({
 function PricingDeckSection() {
   const [activeIndex, setActiveIndex] = useState(1);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+  const desktopDeckRef = useRef<HTMLDivElement>(null);
+  const desktopCardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mobileDeckRef = useRef<HTMLDivElement>(null);
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const desktopPlans = [
+    { key: "desktop-clone-enterprise", plan: pricingPlans[4], actualIndex: 4 },
+    ...pricingPlans.map((plan, index) => ({ key: plan.name, plan, actualIndex: index })),
+    { key: "desktop-clone-starter", plan: pricingPlans[0], actualIndex: 0 },
+  ];
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3], pricingPlans[4]];
+
+  const getClosestSlideIndex = (
+    deck: HTMLDivElement,
+    fallbackIndex: number,
+    elements?: Array<HTMLElement | null>,
+  ) => {
+    const center = deck.scrollLeft + deck.clientWidth / 2;
+    const cards = elements?.filter(Boolean) as HTMLElement[] | undefined;
+    const slideElements = cards?.length ? cards : (Array.from(deck.children) as HTMLElement[]);
+
+    return slideElements.reduce(
+      (closest, card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(center - cardCenter);
+
+        return distance < closest.distance ? { index, distance } : closest;
+      },
+      { index: fallbackIndex, distance: Number.POSITIVE_INFINITY },
+    ).index;
+  };
+
+  const syncDesktopDot = () => {
+    const deck = desktopDeckRef.current;
+
+    if (!deck) {
+      return;
+    }
+
+    const closestIndex = getClosestSlideIndex(deck, activeIndex + 1, desktopCardRefs.current);
+    const nextActiveIndex = desktopPlans[closestIndex]?.actualIndex ?? activeIndex;
+
+    if (nextActiveIndex !== activeIndex) {
+      setActiveIndex(nextActiveIndex);
+    }
+  };
 
   const syncMobileDot = () => {
     const deck = mobileDeckRef.current;
@@ -1759,21 +1801,20 @@ function PricingDeckSection() {
       return;
     }
 
-    const center = deck.scrollLeft + deck.clientWidth / 2;
-    const cards = Array.from(deck.children) as HTMLElement[];
-    const closestIndex = cards.reduce(
-      (closest, card, index) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(center - cardCenter);
-
-        return distance < closest.distance ? { index, distance } : closest;
-      },
-      { index: mobileActiveIndex, distance: Number.POSITIVE_INFINITY },
-    ).index;
+    const closestIndex = getClosestSlideIndex(deck, mobileActiveIndex);
 
     if (closestIndex !== mobileActiveIndex) {
       setMobileActiveIndex(closestIndex);
     }
+  };
+
+  const scrollDesktopTo = (index: number, behavior: ScrollBehavior = "smooth") => {
+    setActiveIndex(index);
+    desktopCardRefs.current[index + 1]?.scrollIntoView({
+      behavior,
+      block: "nearest",
+      inline: "center",
+    });
   };
 
   const scrollMobileTo = (index: number) => {
@@ -1785,10 +1826,23 @@ function PricingDeckSection() {
     });
   };
 
+  const goDesktop = (direction: 1 | -1) => {
+    const nextIndex = (activeIndex + direction + pricingPlans.length) % pricingPlans.length;
+    scrollDesktopTo(nextIndex);
+  };
+
   const goMobile = (direction: 1 | -1) => {
     const nextIndex = (mobileActiveIndex + direction + mobilePlans.length) % mobilePlans.length;
     scrollMobileTo(nextIndex);
   };
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      scrollDesktopTo(1, "auto");
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
@@ -1809,7 +1863,7 @@ function PricingDeckSection() {
             <button
               key={plan.name}
               type="button"
-              onClick={() => setActiveIndex(index)}
+              onClick={() => scrollDesktopTo(index)}
               aria-label={`Pilih ${plan.name}`}
               aria-pressed={activeIndex === index}
               className={cn(activeIndex === index && pricingStyles.planTabActive)}
@@ -1818,36 +1872,75 @@ function PricingDeckSection() {
             </button>
           ))}
         </div>
-        <div className={pricingStyles.desktopGrid}>
-          {pricingPlans.map((plan, index) => {
-            const isSelected = index === activeIndex;
+        <div className={pricingStyles.desktopDots}>
+          {pricingPlans.map((plan, index) => (
+            <button
+              key={plan.name}
+              type="button"
+              onClick={() => scrollDesktopTo(index)}
+              aria-label={`Lihat ${plan.name}`}
+              className={cn(activeIndex === index && pricingStyles.dotActive)}
+            />
+          ))}
+        </div>
+        <div className={pricingStyles.desktopCarousel}>
+          <button
+            type="button"
+            onClick={() => goDesktop(-1)}
+            aria-label="Paket sebelumnya"
+            aria-controls="pricing-desktop-deck"
+            className={cn(pricingStyles.carouselArrow, pricingStyles.carouselArrowPrev)}
+          >
+            <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <div
+            id="pricing-desktop-deck"
+            className={pricingStyles.desktopDeck}
+            ref={desktopDeckRef}
+            onScroll={syncDesktopDot}
+          >
+            {desktopPlans.map(({ key, plan, actualIndex }, index) => {
+              const isSelected = actualIndex === activeIndex && !key.startsWith("desktop-clone");
 
-            return (
-              <motion.div
-                key={plan.name}
-                role="button"
-                tabIndex={0}
-                aria-label={`Pilih paket ${plan.name}`}
-                aria-pressed={isSelected}
-                onClick={() => setActiveIndex(index)}
-                onKeyDown={(event) => {
-                  if ((event.target as HTMLElement).closest("a, button")) {
-                    return;
-                  }
+              return (
+                <motion.div
+                  key={key}
+                  ref={(element) => {
+                    desktopCardRefs.current[index] = element;
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Pilih paket ${plan.name}`}
+                  aria-pressed={isSelected}
+                  onClick={() => scrollDesktopTo(actualIndex)}
+                  onKeyDown={(event) => {
+                    if ((event.target as HTMLElement).closest("a, button")) {
+                      return;
+                    }
 
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setActiveIndex(index);
-                  }
-                }}
-                className={cn(pricingStyles.desktopPlanCard, isSelected && pricingStyles.desktopPlanCardSelected)}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 220, damping: 22 }}
-              >
-                <PricingPlanCard plan={plan} selected={isSelected} />
-              </motion.div>
-            );
-          })}
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      scrollDesktopTo(actualIndex);
+                    }
+                  }}
+                  className={cn(pricingStyles.desktopSlide, isSelected && pricingStyles.desktopSlideActive)}
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 220, damping: 22 }}
+                >
+                  <PricingPlanCard plan={plan} selected={isSelected} />
+                </motion.div>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            onClick={() => goDesktop(1)}
+            aria-label="Paket berikutnya"
+            aria-controls="pricing-desktop-deck"
+            className={cn(pricingStyles.carouselArrow, pricingStyles.carouselArrowNext)}
+          >
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
       </div>
 
