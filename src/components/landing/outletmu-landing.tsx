@@ -416,7 +416,7 @@ const pricingPlans = [
     audience: "Untuk outlet yang ingin mulai pakai menu digital dan QR order sederhana.",
     features: [
       "Menu digital online",
-      "QR meja basic",
+      "QR meja",
       "Pesanan masuk ke dashboard",
       "Laporan harian basic",
       "Setup awal dibantu",
@@ -1700,34 +1700,40 @@ function WhatsAppBotSection() {
 
 function PricingPlanCard({
   plan,
-  selected = false,
+  active = false,
+  compact = false,
+  allowExpand = false,
 }: {
   plan: PricingPlan;
-  selected?: boolean;
+  active?: boolean;
+  compact?: boolean;
+  allowExpand?: boolean;
 }) {
-  const isFeatured = Boolean(plan.featured);
+  const [expanded, setExpanded] = useState(false);
+  const isDark = active && plan.featured;
+  const shouldCompact = compact && !expanded;
+  const compactFeatureLimit = allowExpand ? 6 : 4;
+  const shownFeatures = shouldCompact ? plan.features.slice(0, compactFeatureLimit) : plan.features;
+  const hiddenFeatureCount = shouldCompact ? plan.features.length - shownFeatures.length : 0;
+  const planSetup = "setup" in plan && typeof plan.setup === "string" ? plan.setup : "";
 
   return (
-    <article
-      className={cn(
-        pricingStyles.planCard,
-        isFeatured && pricingStyles.planCardFeatured,
-        selected && pricingStyles.planCardSelected,
-      )}
-    >
+    <article className={cn(pricingStyles.planCard, isDark && pricingStyles.planCardFeatured)}>
+      <div className={pricingStyles.cardGlow} />
       <div className={pricingStyles.planHeader}>
         <span>{plan.label}</span>
         <h3>{plan.name}</h3>
         <p>{plan.audience}</p>
       </div>
       <div className={pricingStyles.priceBox}>
-        <div className={pricingStyles.priceValue}>
-          <strong className={cn(plan.price.length > 9 && pricingStyles.priceLong)}>{plan.price}</strong>
+        <div>
+          <strong className={cn(plan.price.length > 13 && pricingStyles.priceLong)}>{plan.price}</strong>
           {plan.suffix ? <small>{plan.suffix}</small> : null}
         </div>
+        {planSetup ? <p>{planSetup}</p> : null}
       </div>
       <ul className={pricingStyles.featureList}>
-        {plan.features.map((feature) => (
+        {shownFeatures.map((feature) => (
           <li key={feature}>
             <span>
               <Check className="h-3.5 w-3.5" aria-hidden="true" />
@@ -1735,63 +1741,135 @@ function PricingPlanCard({
             {feature}
           </li>
         ))}
+        {hiddenFeatureCount > 0 && !allowExpand && (
+          <li className={pricingStyles.moreFeature}>
+            <span>+</span>
+            {hiddenFeatureCount} fitur lain tersedia di paket ini
+          </li>
+        )}
       </ul>
-      <div className={pricingStyles.planCtaWrap} onClick={(event) => event.stopPropagation()}>
-        <ButtonLink href={whatsappLink} variant={isFeatured ? "light" : "primary"} className={pricingStyles.planCta}>
-          {plan.cta}
-        </ButtonLink>
-      </div>
+      {hiddenFeatureCount > 0 && allowExpand ? (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className={pricingStyles.expandFeatures}
+          aria-label={`Lihat semua fitur ${plan.name}`}
+        >
+          Lihat semua fitur
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
+      ) : null}
+      <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
+        {plan.cta}
+      </ButtonLink>
     </article>
   );
+}
+
+function getCircularOffset(index: number, activeIndex: number) {
+  let diff = index - activeIndex;
+
+  if (diff > pricingPlans.length / 2) {
+    diff -= pricingPlans.length;
+  }
+
+  if (diff < -pricingPlans.length / 2) {
+    diff += pricingPlans.length;
+  }
+
+  return diff;
 }
 
 function PricingDeckSection() {
   const [activeIndex, setActiveIndex] = useState(1);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
-  const desktopDeckRef = useRef<HTMLDivElement>(null);
-  const desktopCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [isPricingDragging, setIsPricingDragging] = useState(false);
+  const deckRef = useRef<HTMLDivElement>(null);
   const mobileDeckRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const desktopPlans = [
-    { key: "desktop-clone-enterprise", plan: pricingPlans[4], actualIndex: 4 },
-    ...pricingPlans.map((plan, index) => ({ key: plan.name, plan, actualIndex: index })),
-    { key: "desktop-clone-starter", plan: pricingPlans[0], actualIndex: 0 },
-  ];
+  const pricingDragRef = useRef({ startX: 0, hasMoved: false });
+  const suppressPricingClickRef = useRef(false);
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3], pricingPlans[4]];
 
-  const getClosestSlideIndex = (
-    deck: HTMLDivElement,
-    fallbackIndex: number,
-    elements?: Array<HTMLElement | null>,
-  ) => {
-    const center = deck.scrollLeft + deck.clientWidth / 2;
-    const cards = elements?.filter(Boolean) as HTMLElement[] | undefined;
-    const slideElements = cards?.length ? cards : (Array.from(deck.children) as HTMLElement[]);
+  useEffect(() => {
+    const layoutCards = () => {
+      if (!deckRef.current || window.innerWidth < 1024) {
+        return;
+      }
 
-    return slideElements.reduce(
-      (closest, card, index) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(center - cardCenter);
+      const spread = Math.min(Math.max(window.innerWidth * 0.2, 260), 340);
 
-        return distance < closest.distance ? { index, distance } : closest;
-      },
-      { index: fallbackIndex, distance: Number.POSITIVE_INFINITY },
-    ).index;
+      cardRefs.current.forEach((card, index) => {
+        if (!card) {
+          return;
+        }
+
+        const offset = getCircularOffset(index, activeIndex);
+        const distance = Math.abs(offset);
+        const side = offset === 0 ? 0 : offset > 0 ? 1 : -1;
+        const isBack = distance > 1;
+
+        gsap.to(card, {
+          xPercent: -50,
+          x: isBack ? 0 : side * spread,
+          y: offset === 0 ? 0 : isBack ? 68 : 38,
+          rotate: offset === 0 || isBack ? 0 : side * -2,
+          scale: offset === 0 ? 1 : isBack ? 0.68 : 0.76,
+          autoAlpha: offset === 0 ? 1 : isBack ? 0.1 : 0.48,
+          zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
+          duration: 0.58,
+          ease: "power3.out",
+        });
+      });
+    };
+
+    layoutCards();
+    window.addEventListener("resize", layoutCards);
+
+    return () => window.removeEventListener("resize", layoutCards);
+  }, [activeIndex]);
+
+  const go = (direction: 1 | -1) => {
+    setActiveIndex((current) => (current + direction + pricingPlans.length) % pricingPlans.length);
   };
 
-  const syncDesktopDot = () => {
-    const deck = desktopDeckRef.current;
-
-    if (!deck) {
+  const handlePricingMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    if ((event.target as HTMLElement).closest("a, button")) {
       return;
     }
 
-    const closestIndex = getClosestSlideIndex(deck, activeIndex + 1, desktopCardRefs.current);
-    const nextActiveIndex = desktopPlans[closestIndex]?.actualIndex ?? activeIndex;
+    pricingDragRef.current = { startX: event.clientX, hasMoved: false };
+    setIsPricingDragging(true);
 
-    if (nextActiveIndex !== activeIndex) {
-      setActiveIndex(nextActiveIndex);
-    }
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const delta = moveEvent.clientX - pricingDragRef.current.startX;
+
+      if (Math.abs(delta) > 8) {
+        pricingDragRef.current.hasMoved = true;
+        suppressPricingClickRef.current = true;
+      }
+    };
+
+    const handleMouseUp = (upEvent: MouseEvent) => {
+      const delta = upEvent.clientX - pricingDragRef.current.startX;
+
+      if (Math.abs(delta) > 54) {
+        suppressPricingClickRef.current = true;
+        go(delta < 0 ? 1 : -1);
+      }
+
+      setIsPricingDragging(false);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.setTimeout(() => {
+        pricingDragRef.current.hasMoved = false;
+        suppressPricingClickRef.current = false;
+      }, 220);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
   };
 
   const syncMobileDot = () => {
@@ -1801,20 +1879,21 @@ function PricingDeckSection() {
       return;
     }
 
-    const closestIndex = getClosestSlideIndex(deck, mobileActiveIndex);
+    const center = deck.scrollLeft + deck.clientWidth / 2;
+    const cards = Array.from(deck.children) as HTMLElement[];
+    const closestIndex = cards.reduce(
+      (closest, card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(center - cardCenter);
+
+        return distance < closest.distance ? { index, distance } : closest;
+      },
+      { index: mobileActiveIndex, distance: Number.POSITIVE_INFINITY },
+    ).index;
 
     if (closestIndex !== mobileActiveIndex) {
       setMobileActiveIndex(closestIndex);
     }
-  };
-
-  const scrollDesktopTo = (index: number, behavior: ScrollBehavior = "smooth") => {
-    setActiveIndex(index);
-    desktopCardRefs.current[index + 1]?.scrollIntoView({
-      behavior,
-      block: "nearest",
-      inline: "center",
-    });
   };
 
   const scrollMobileTo = (index: number) => {
@@ -1826,125 +1905,83 @@ function PricingDeckSection() {
     });
   };
 
-  const goDesktop = (direction: 1 | -1) => {
-    const nextIndex = (activeIndex + direction + pricingPlans.length) % pricingPlans.length;
-    scrollDesktopTo(nextIndex);
-  };
-
   const goMobile = (direction: 1 | -1) => {
     const nextIndex = (mobileActiveIndex + direction + mobilePlans.length) % mobilePlans.length;
     scrollMobileTo(nextIndex);
   };
 
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      scrollDesktopTo(1, "auto");
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
   return (
     <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
+      <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
         subtitle="Paket bulanan untuk outlet yang ingin POS, QR order, stok, laporan, dan operasional harian lebih rapi."
       />
-      <div className={pricingStyles.microPills}>
+      <div data-reveal className={pricingStyles.microPills}>
         {["Gratis setup untuk 100 outlet pertama", "QR order siap pakai", "Pendampingan awal"].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </div>
 
-      <div className={pricingStyles.desktopPricing}>
-        <div className={pricingStyles.planTabs} aria-label="Pilih paket Outletmu">
-          {pricingPlans.map((plan, index) => (
-            <button
-              key={plan.name}
-              type="button"
-              onClick={() => scrollDesktopTo(index)}
-              aria-label={`Pilih ${plan.name}`}
-              aria-pressed={activeIndex === index}
-              className={cn(activeIndex === index && pricingStyles.planTabActive)}
-            >
-              {plan.name}
-            </button>
-          ))}
-        </div>
+      <div data-reveal className={pricingStyles.desktopDeck} ref={deckRef}>
+        <button type="button" onClick={() => go(-1)} aria-label="Paket sebelumnya" className={pricingStyles.arrowPrev}>
+          <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+        <button type="button" onClick={() => go(1)} aria-label="Paket berikutnya" className={pricingStyles.arrowNext}>
+          <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </button>
+
+        <motion.div
+          className={cn(pricingStyles.cardStage, isPricingDragging && pricingStyles.isDragging)}
+          onMouseDown={handlePricingMouseDown}
+        >
+          {pricingPlans.map((plan, index) => {
+            const isActive = index === activeIndex;
+
+            return (
+              <div
+                key={plan.name}
+                ref={(element) => {
+                  cardRefs.current[index] = element;
+                }}
+                role="button"
+                tabIndex={0}
+                onClick={() => {
+                  if (!suppressPricingClickRef.current) {
+                    setActiveIndex(index);
+                  }
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    setActiveIndex(index);
+                  }
+                }}
+                className={pricingStyles.deckCard}
+                aria-label={`Pilih paket ${plan.name}`}
+              >
+                <motion.div whileHover={{ y: isActive ? -4 : -2 }} className="h-full">
+                  <PricingPlanCard plan={plan} active={isActive} compact={!isActive} />
+                </motion.div>
+              </div>
+            );
+          })}
+        </motion.div>
+
         <div className={pricingStyles.desktopDots}>
           {pricingPlans.map((plan, index) => (
             <button
               key={plan.name}
               type="button"
-              onClick={() => scrollDesktopTo(index)}
-              aria-label={`Lihat ${plan.name}`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Pilih ${plan.name}`}
               className={cn(activeIndex === index && pricingStyles.dotActive)}
             />
           ))}
         </div>
-        <div className={pricingStyles.desktopCarousel}>
-          <button
-            type="button"
-            onClick={() => goDesktop(-1)}
-            aria-label="Paket sebelumnya"
-            aria-controls="pricing-desktop-deck"
-            className={cn(pricingStyles.carouselArrow, pricingStyles.carouselArrowPrev)}
-          >
-            <ArrowLeft className="h-5 w-5" aria-hidden="true" />
-          </button>
-          <div
-            id="pricing-desktop-deck"
-            className={pricingStyles.desktopDeck}
-            ref={desktopDeckRef}
-            onScroll={syncDesktopDot}
-          >
-            {desktopPlans.map(({ key, plan, actualIndex }, index) => {
-              const isSelected = actualIndex === activeIndex && !key.startsWith("desktop-clone");
-
-              return (
-                <motion.div
-                  key={key}
-                  ref={(element) => {
-                    desktopCardRefs.current[index] = element;
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Pilih paket ${plan.name}`}
-                  aria-pressed={isSelected}
-                  onClick={() => scrollDesktopTo(actualIndex)}
-                  onKeyDown={(event) => {
-                    if ((event.target as HTMLElement).closest("a, button")) {
-                      return;
-                    }
-
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      scrollDesktopTo(actualIndex);
-                    }
-                  }}
-                  className={cn(pricingStyles.desktopSlide, isSelected && pricingStyles.desktopSlideActive)}
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 220, damping: 22 }}
-                >
-                  <PricingPlanCard plan={plan} selected={isSelected} />
-                </motion.div>
-              );
-            })}
-          </div>
-          <button
-            type="button"
-            onClick={() => goDesktop(1)}
-            aria-label="Paket berikutnya"
-            aria-controls="pricing-desktop-deck"
-            className={cn(pricingStyles.carouselArrow, pricingStyles.carouselArrowNext)}
-          >
-            <ArrowRight className="h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
       </div>
 
-      <div className={pricingStyles.mobileCarouselWrap}>
+      <div data-reveal className={pricingStyles.mobileCarouselWrap}>
         <button
           type="button"
           onClick={() => goMobile(-1)}
@@ -1978,7 +2015,7 @@ function PricingDeckSection() {
                 }
               }}
             >
-              <PricingPlanCard plan={plan} selected={index === mobileActiveIndex} />
+              <PricingPlanCard plan={plan} active={plan.featured} compact allowExpand />
             </div>
           ))}
         </div>
