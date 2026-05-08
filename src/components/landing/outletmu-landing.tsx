@@ -45,7 +45,7 @@ import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 
 const whatsappLink =
-  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20sistem%20kasir%20dan%20QR%20order";
+  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20tentang%20POS%20kasir%20dan%20QR%20order";
 const customerMenuDemoLink = "https://kasir.outletmu.store/scan/K7F9A2P9";
 
 const navItems = [
@@ -1002,12 +1002,30 @@ function BrandLogo({
   );
 }
 
+function HeaderLogo({ theme }: { theme: ThemeMode }) {
+  const logo = brandLogoAssets.wordmark[theme];
+
+  return (
+    <span className={landingStyles.headerLogo}>
+      <Image
+        src={logo.src}
+        alt="Outletmu"
+        width={logo.width}
+        height={logo.height}
+        className={landingStyles.headerLogoImage}
+        priority
+        sizes="(max-width: 480px) 132px, (max-width: 768px) 148px, 168px"
+      />
+    </span>
+  );
+}
+
 function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
   return (
     <header className={landingStyles.navbar}>
       <div className={cn(landingStyles.container, "flex items-center justify-between gap-4 py-4")}>
         <Link href="/" className="flex min-w-0 items-center" aria-label="Outletmu homepage">
-          <BrandLogo variant="full" theme={theme} size="md" />
+          <HeaderLogo theme={theme} />
         </Link>
         <nav className="hidden items-center gap-7 rounded-full border border-[#14213D]/5 bg-white/68 px-6 py-3 shadow-sm dark:border-white/10 dark:bg-white/8 lg:flex">
           {navItems.map((item) => (
@@ -1163,16 +1181,13 @@ function HeroCardDeck() {
   );
 }
 
-function HeroSection({ theme }: { theme: ThemeMode }) {
+function HeroSection() {
   return (
     <section className={cn(landingStyles.section, landingStyles.heroSection)}>
       <div className={landingStyles.ambientOne} data-float="ambient" />
       <div className={landingStyles.ambientTwo} data-float="ambient" />
       <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)]")}>
         <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-2xl text-center xl:mx-0 xl:text-left")}>
-          <div className={landingStyles.heroLogoWrap}>
-            <BrandLogo variant="full" theme={theme} size="lg" />
-          </div>
           <Badge>Gratis setup untuk 100 outlet pertama</Badge>
           <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-[#14213D] dark:text-[#F8F3EA]")}>
             POS kasir dan QR order untuk outlet yang ingin lebih rapi
@@ -2276,10 +2291,9 @@ function OperationsCTASection() {
         </div>
         <div className={landingStyles.midCtaActions}>
           <ButtonLink href={whatsappLink} variant="light">
-            Chat WhatsApp
+            Konsultasi via WhatsApp
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
-          <span>https://wa.me/6281291960227</span>
         </div>
       </div>
     </PageSection>
@@ -2305,9 +2319,9 @@ function FinalCTASection() {
           <div className={landingStyles.finalMessage}>
             <div>
               <p>Pesan otomatis</p>
-              <span>Halo Outletmu, saya mau tanya sistem kasir dan QR order</span>
+              <span>Halo Outletmu, saya mau tanya tentang POS kasir dan QR order</span>
               <ButtonLink href={whatsappLink} className="mt-5 w-full">
-                Chat WhatsApp
+                Konsultasi via WhatsApp
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </ButtonLink>
             </div>
@@ -2330,7 +2344,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
           <ButtonLink href={whatsappLink} className="w-full sm:w-auto">
-            Chat WhatsApp
+            Konsultasi via WhatsApp
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
           <a
@@ -2367,7 +2381,7 @@ export function OutletmuLanding() {
   return (
     <main ref={rootRef} className={landingStyles.page}>
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <HeroSection theme={theme} />
+      <HeroSection />
       <BusinessSolutionSection />
       <StaffFeatureSection />
       <CustomerFeatureSection />
@@ -2383,9 +2397,9 @@ export function OutletmuLanding() {
       <FAQSection />
       <FinalCTASection />
       <Footer theme={theme} />
-      <a href={whatsappLink} className={landingStyles.mobileStickyCta} aria-label="Chat WhatsApp Outletmu">
+      <a href={whatsappLink} className={landingStyles.mobileStickyCta} aria-label="Konsultasi via WhatsApp Outletmu">
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        Chat WhatsApp
+        Konsultasi via WhatsApp
       </a>
     </main>
   );
