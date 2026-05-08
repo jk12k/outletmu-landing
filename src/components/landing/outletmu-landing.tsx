@@ -461,7 +461,7 @@ const pricingPlans = [
       "Laporan mingguan/bulanan",
       "Produk terlaris",
       "Notifikasi stok",
-      "WhatsApp laporan",
+      "WhatsApp laporan otomatis",
       "Support prioritas",
     ],
   },
@@ -579,12 +579,12 @@ const packageComparisonRows: Array<
     Enterprise: "Custom",
   },
   {
-    feature: "WhatsApp laporan",
+    feature: "WhatsApp automation",
     "Starter QR": "-",
     "POS Basic": "-",
     Pro: "Ya",
-    Business: "Opsional",
-    Enterprise: "Custom",
+    Business: "Ya",
+    Enterprise: "Ya",
   },
   {
     feature: "Multi-outlet",
@@ -633,7 +633,7 @@ const addOnGroups: Array<{
     description:
       "Alamat menu dan QR yang siap dipakai pelanggan, dengan opsi domain brand sendiri.",
     items: [
-      { name: "Default Outletmu link tambahan", value: "Rp10.000/bulan" },
+      { name: "Default link Outletmu", value: "Free" },
       { name: "Domain .com", value: "+Rp209.900/tahun" },
       { name: "Domain .id", value: "+Rp252.900/tahun" },
       { name: "Desain QR", value: "Rp25.000" },
@@ -663,7 +663,7 @@ const addOnGroups: Array<{
 
 const addOnNotes = [
   "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
-  "Default Outletmu link untuk outlet utama sudah termasuk; link tambahan Rp10.000/bulan.",
+  "Default link Outletmu tersedia Free untuk outlet utama.",
   "Training onsite awal: Free 1x.",
   "Desain QR diberikan dalam format siap cetak.",
   "Add-ons bersifat opsional. Tim Outletmu akan bantu pilih yang benar-benar dibutuhkan outlet.",
