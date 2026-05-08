@@ -409,16 +409,22 @@ const whatsappCommands = [
 const pricingPlans = [
   {
     name: "Starter QR",
-    price: "Rp199.000",
+    price: "Rp299.000",
     suffix: "/bulan",
     label: "Paket awal",
     cta: "Mulai Starter",
-    audience: "Untuk outlet yang ingin mulai pakai menu digital dan QR order sederhana.",
+    audience: "Untuk outlet yang ingin mulai pakai QR order meja, kasir basic, dan laporan awal.",
     features: [
       "Menu digital online",
-      "QR meja",
-      "Pesanan masuk ke dashboard",
+      "QR order meja",
+      "Guest checkout",
+      "Dashboard order/kasir basic",
+      "POS kasir basic",
+      "Produk & stok basic",
+      "Kitchen display basic",
       "Laporan harian basic",
+      "Laporan mingguan/bulanan basic",
+      "Staff & role basic",
       "Setup awal dibantu",
     ],
   },
@@ -428,15 +434,18 @@ const pricingPlans = [
     suffix: "/bulan",
     label: "Recommended",
     cta: "Konsultasi POS Basic",
-    audience: "Untuk cafe/resto yang butuh kasir harian dan order lebih rapi.",
+    audience: "Untuk cafe/resto yang butuh kasir harian lebih lengkap dan operasional lebih rapi.",
     featured: true,
     features: [
       "Semua fitur Starter QR",
-      "POS kasir",
-      "Dashboard order",
-      "Produk & stok basic",
-      "Staff/role basic",
+      "POS kasir lebih lengkap",
+      "Dashboard order lebih rapi",
+      "QR table/order lebih lengkap",
+      "Inventory/stok lebih rapi",
+      "Laporan harian lebih lengkap",
       "Backup berkala",
+      "Landing page outlet/cafe basic",
+      "Dukungan WhatsApp prioritas",
     ],
   },
   {
@@ -514,8 +523,8 @@ const packageComparisonRows: Array<
   },
   {
     feature: "POS kasir",
-    "Starter QR": "-",
-    "POS Basic": "Ya",
+    "Starter QR": "Basic",
+    "POS Basic": "Lengkap",
     Pro: "Ya",
     Business: "Custom",
     Enterprise: "Custom",
@@ -530,15 +539,15 @@ const packageComparisonRows: Array<
   },
   {
     feature: "Produk & stok",
-    "Starter QR": "-",
-    "POS Basic": "Basic",
+    "Starter QR": "Basic",
+    "POS Basic": "Lebih rapi",
     Pro: "Lengkap",
     Business: "Lengkap",
     Enterprise: "Custom",
   },
   {
     feature: "Kitchen display",
-    "Starter QR": "-",
+    "Starter QR": "Basic",
     "POS Basic": "Basic",
     Pro: "Lengkap",
     Business: "Lengkap",
@@ -547,23 +556,23 @@ const packageComparisonRows: Array<
   {
     feature: "Laporan harian",
     "Starter QR": "Basic",
-    "POS Basic": "Ya",
+    "POS Basic": "Lengkap",
     Pro: "Lengkap",
     Business: "Ya",
     Enterprise: "Custom",
   },
   {
     feature: "Laporan mingguan/bulanan",
-    "Starter QR": "-",
-    "POS Basic": "-",
-    Pro: "Ya",
-    Business: "Ya",
+    "Starter QR": "Basic",
+    "POS Basic": "Basic",
+    Pro: "Lengkap",
+    Business: "Lengkap",
     Enterprise: "Custom",
   },
   {
     feature: "Staff & role",
-    "Starter QR": "-",
-    "POS Basic": "Basic",
+    "Starter QR": "Basic",
+    "POS Basic": "Lebih rapi",
     Pro: "Lengkap",
     Business: "Lengkap",
     Enterprise: "Custom",
@@ -682,7 +691,7 @@ const faqs = [
   {
     question: "Apakah bisa pakai QR per meja?",
     answer:
-      "Bisa. Starter QR sudah termasuk QR meja untuk 1 outlet, lalu POS Basic menambah dashboard order, kitchen flow, staff/role, laporan, backup, dan landing page outlet yang lebih lengkap.",
+      "Bisa. Starter QR sudah termasuk QR order meja, POS kasir basic, kitchen display basic, produk dan stok basic, laporan basic, serta staff & role basic untuk 1 outlet. POS Basic cocok jika butuh alur kasir, dashboard order, backup, landing page outlet, dan dukungan WhatsApp yang lebih rapi.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -2111,7 +2120,7 @@ function PackageComparisonSection() {
         </div>
         <div className={landingStyles.comparisonNote}>
           <Check className="h-4 w-4" aria-hidden="true" />
-          <span>POS Basic cocok sebagai titik awal untuk outlet yang butuh POS kasir restoran, QR order meja, dashboard order, stok basic, dan laporan harian yang lebih rapi.</span>
+          <span>Starter QR sudah mencakup fitur basic untuk mulai digital. POS Basic tetap recommended untuk outlet yang butuh POS kasir, QR table/order, dashboard order, stok, laporan, backup, landing page outlet, dan dukungan WhatsApp yang lebih lengkap.</span>
         </div>
       </div>
     </PageSection>
