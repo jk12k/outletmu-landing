@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100dvh;
   overflow-x: hidden;
-  background: #f8f3ea;
+  background: #f7faf4;
   color: #14213d;
   transition:
     background 0.24s ease,
@@ -163,7 +163,7 @@
 .section {
   position: relative;
   overflow: hidden;
-  padding: clamp(4.25rem, 7vw, 6.85rem) clamp(1.25rem, 4vw, 2rem);
+  padding: clamp(3.6rem, 6vw, 5.8rem) clamp(1.25rem, 4vw, 2rem);
 }
 
 .navbar {
@@ -172,7 +172,7 @@
   z-index: 60;
   padding-inline: clamp(1.25rem, 4vw, 2rem);
   border-bottom: 1px solid rgba(20, 33, 61, 0.06);
-  background: rgba(248, 243, 234, 0.84);
+  background: rgba(247, 250, 244, 0.86);
   backdrop-filter: blur(18px);
 }
 
@@ -203,8 +203,11 @@
 
 .heroSection {
   isolation: isolate;
-  padding-top: clamp(3.8rem, 6vw, 6.35rem);
-  padding-bottom: clamp(4.25rem, 7vw, 6.8rem);
+  padding-top: clamp(3.2rem, 5.2vw, 5.2rem);
+  padding-bottom: clamp(3.7rem, 6vw, 5.6rem);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(47, 138, 104, 0.08), transparent 30rem),
+    linear-gradient(180deg, #fbfdf9 0%, #f7faf4 100%);
 }
 
 .ambientOne,
@@ -221,13 +224,13 @@
 .ambientOne {
   top: 6rem;
   left: -8rem;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .ambientTwo {
   top: 9rem;
   right: -8rem;
-  background: rgba(47, 138, 104, 0.13);
+  background: rgba(47, 138, 104, 0.09);
 }
 
 .builderShell {
@@ -334,7 +337,8 @@
 .customerFeatureCard,
 .problemCard,
 .solutionStrip,
-.midCtaPanel {
+.midCtaPanel,
+.comparisonShell {
   min-width: 0;
   max-width: 100%;
 }
@@ -354,9 +358,9 @@
     max-width: 28rem;
     margin-top: 1.35rem;
     color: #14213d;
-    font-size: clamp(1.65rem, 3vw, 2.45rem);
+    font-size: clamp(1.55rem, 2.6vw, 2.1rem);
     font-weight: 900;
-    line-height: 1.08;
+    line-height: 1.14;
   }
 
   p {
@@ -453,10 +457,9 @@
 
 .staffSection {
   background:
-    radial-gradient(circle at 18% 12%, rgba(248, 243, 234, 0.08), transparent 32%),
-    radial-gradient(circle at 88% 18%, rgba(47, 138, 104, 0.3), transparent 30%),
-    linear-gradient(180deg, #103f31 0%, #08111f 100%);
-  color: #ffffff;
+    radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.08), transparent 28rem),
+    #f7faf4;
+  color: #14213d;
 }
 
 .roleFeatureGrid {
@@ -468,34 +471,33 @@
 
 .roleFeatureCard {
   overflow: hidden;
-  min-height: 16rem;
-  border: 1px solid rgba(248, 243, 234, 0.11);
-  border-radius: clamp(1.4rem, 3vw, 1.9rem);
-  background: rgba(255, 255, 255, 0.075);
+  min-height: 14rem;
+  border: 1px solid rgba(20, 33, 61, 0.07);
+  border-radius: clamp(1.25rem, 3vw, 1.65rem);
+  background: rgba(255, 255, 255, 0.82);
   padding: clamp(1.15rem, 2.5vw, 1.55rem);
-  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 55px rgba(20, 33, 61, 0.065);
 
   h3 {
-    margin-top: 1.35rem;
-    color: #ffffff;
-    font-size: clamp(1.28rem, 2.4vw, 1.65rem);
+    margin-top: 1.15rem;
+    color: #14213d;
+    font-size: clamp(1.18rem, 2.2vw, 1.45rem);
     font-weight: 900;
-    line-height: 1.12;
+    line-height: 1.18;
   }
 
   p {
-    margin-top: 0.82rem;
-    color: rgba(248, 243, 234, 0.68);
+    margin-top: 0.7rem;
+    color: rgba(20, 33, 61, 0.62);
     font-size: 0.94rem;
-    line-height: 1.7;
+    line-height: 1.62;
   }
 }
 
 .roleFeatureCardWide {
   background:
-    radial-gradient(circle at 88% 12%, rgba(248, 243, 234, 0.13), transparent 32%),
-    rgba(47, 138, 104, 0.26);
+    radial-gradient(circle at 88% 12%, rgba(47, 138, 104, 0.12), transparent 32%),
+    #eef8f2;
 }
 
 .roleFeatureTopline {
@@ -510,13 +512,13 @@
     height: 3rem;
     place-items: center;
     border-radius: 1rem;
-    background: rgba(248, 243, 234, 0.94);
-    color: #103f31;
+    background: rgba(47, 138, 104, 0.12);
+    color: #2f8a68;
   }
 
   small {
-    color: rgba(248, 243, 234, 0.32);
-    font-size: 1.65rem;
+    color: rgba(20, 33, 61, 0.24);
+    font-size: 1.35rem;
     font-weight: 900;
     line-height: 1;
   }
@@ -745,6 +747,155 @@
     color: rgba(255, 255, 255, 0.58);
     font-size: 0.84rem;
     font-weight: 800;
+  }
+}
+
+.comparisonSection {
+  background:
+    radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.08), transparent 28rem),
+    #ffffff;
+}
+
+.comparisonShell {
+  margin-top: clamp(2rem, 4.5vw, 3rem);
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.075);
+  border-radius: clamp(1.45rem, 3vw, 1.9rem);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 28px 80px rgba(20, 33, 61, 0.08);
+}
+
+.comparisonScroller {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparisonTable {
+  width: 100%;
+  min-width: 64rem;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th,
+  td {
+    border-right: 1px solid rgba(20, 33, 61, 0.06);
+    border-bottom: 1px solid rgba(20, 33, 61, 0.06);
+    padding: 0.95rem 1rem;
+    color: rgba(20, 33, 61, 0.68);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+
+  thead th {
+    background: #f7faf4;
+    color: #14213d;
+    font-weight: 900;
+  }
+
+  thead th:first-child,
+  tbody th {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #ffffff;
+  }
+
+  thead th:first-child {
+    z-index: 3;
+    background: #f7faf4;
+  }
+
+  tbody th {
+    color: #14213d;
+    font-weight: 850;
+  }
+
+  tr:last-child th,
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  th:last-child,
+  td:last-child {
+    border-right: 0;
+  }
+}
+
+.comparisonRecommended {
+  background: #e8f3ef !important;
+
+  span {
+    display: block;
+  }
+
+  small {
+    display: inline-flex;
+    margin-top: 0.4rem;
+    border-radius: 999px;
+    background: #103f31;
+    padding: 0.28rem 0.58rem;
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.comparisonRecommendedCell {
+  background: rgba(232, 243, 239, 0.42);
+}
+
+.comparisonCheck,
+.comparisonValue,
+.comparisonDash {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.66rem;
+  font-weight: 820;
+}
+
+.comparisonCheck {
+  gap: 0.35rem;
+  background: #e8f3ef;
+  color: #103f31;
+}
+
+.comparisonValue {
+  background: rgba(20, 33, 61, 0.045);
+  color: rgba(20, 33, 61, 0.72);
+}
+
+.comparisonDash {
+  color: rgba(20, 33, 61, 0.34);
+}
+
+.comparisonNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  border-top: 1px solid rgba(20, 33, 61, 0.06);
+  background: #f7faf4;
+  padding: 1rem 1.15rem;
+  color: rgba(20, 33, 61, 0.64);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.6;
+
+  svg {
+    margin-top: 0.18rem;
+    flex: 0 0 auto;
+    color: #2f8a68;
   }
 }
 
@@ -2198,11 +2349,11 @@
 
   .heroTitle {
     width: 100%;
-    max-width: min(100%, 20rem);
+    max-width: min(100%, 22.5rem);
     margin-inline: auto;
     margin-top: 1rem;
-    font-size: clamp(1.82rem, 7.7vw, 2.35rem) !important;
-    line-height: 1.02 !important;
+    font-size: clamp(2.05rem, 8.2vw, 2.4rem) !important;
+    line-height: 1.08 !important;
     overflow-wrap: break-word;
   }
 
@@ -2275,7 +2426,8 @@
   .customerFeatureCard,
   .problemCard,
   .solutionStrip,
-  .midCtaPanel {
+  .midCtaPanel,
+  .comparisonShell {
     border-radius: 1.35rem;
   }
 
@@ -2311,6 +2463,34 @@
       max-width: 100%;
       overflow-wrap: anywhere;
     }
+  }
+
+  .comparisonShell {
+    margin-top: 1.55rem;
+  }
+
+  .comparisonTable {
+    min-width: 58rem;
+
+    th,
+    td {
+      padding: 0.72rem 0.68rem;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+  }
+
+  .comparisonCheck,
+  .comparisonValue,
+  .comparisonDash {
+    min-height: 1.8rem;
+    padding: 0.28rem 0.52rem;
+    font-size: 0.76rem;
+  }
+
+  .comparisonNote {
+    padding: 0.85rem 0.95rem;
+    font-size: 0.82rem;
   }
 
   .ambientOne,
@@ -2842,6 +3022,12 @@
     background: rgba(248, 243, 234, 0.07);
   }
 
+  .heroSection {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(47, 138, 104, 0.16), transparent 30rem),
+      linear-gradient(180deg, #08111f 0%, #07140f 100%);
+  }
+
   .builderShell,
   .previewShell {
     border-color: rgba(248, 243, 234, 0.1);
@@ -2882,6 +3068,44 @@
     span {
       background: #f8f3ea;
       color: #103f31;
+    }
+  }
+
+  .staffSection,
+  .comparisonSection {
+    background:
+      radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.16), transparent 28rem),
+      #08111f;
+  }
+
+  .roleFeatureCard {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 22px 62px rgba(0, 0, 0, 0.22);
+
+    h3 {
+      color: #f8f3ea;
+    }
+
+    p {
+      color: rgba(248, 243, 234, 0.66);
+    }
+  }
+
+  .roleFeatureCardWide {
+    background:
+      radial-gradient(circle at 88% 12%, rgba(47, 138, 104, 0.22), transparent 32%),
+      rgba(255, 255, 255, 0.075);
+  }
+
+  .roleFeatureTopline {
+    span {
+      background: rgba(47, 138, 104, 0.18);
+      color: #b9f1da;
+    }
+
+    small {
+      color: rgba(248, 243, 234, 0.26);
     }
   }
 
@@ -2953,6 +3177,64 @@
     svg {
       color: #b9f1da;
     }
+  }
+
+  .comparisonShell {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
+  }
+
+  .comparisonTable {
+    th,
+    td {
+      border-color: rgba(248, 243, 234, 0.08);
+      color: rgba(248, 243, 234, 0.68);
+    }
+
+    thead th {
+      background: rgba(255, 255, 255, 0.075);
+      color: #f8f3ea;
+    }
+
+    thead th:first-child,
+    tbody th {
+      background: #08111f;
+      color: #f8f3ea;
+    }
+  }
+
+  .comparisonRecommended {
+    background: rgba(47, 138, 104, 0.2) !important;
+
+    small {
+      background: #f8f3ea;
+      color: #103f31;
+    }
+  }
+
+  .comparisonRecommendedCell {
+    background: rgba(47, 138, 104, 0.08);
+  }
+
+  .comparisonCheck {
+    background: rgba(47, 138, 104, 0.18);
+    color: #b9f1da;
+  }
+
+  .comparisonValue {
+    background: rgba(255, 255, 255, 0.075);
+    color: rgba(248, 243, 234, 0.72);
+  }
+
+  .comparisonDash {
+    color: rgba(248, 243, 234, 0.34);
+  }
+
+  .comparisonNote {
+    border-color: rgba(248, 243, 234, 0.08);
+    background: rgba(255, 255, 255, 0.055);
+    color: rgba(248, 243, 234, 0.66);
   }
 
   .midCtaSection {

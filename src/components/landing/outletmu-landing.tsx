@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowLeft,
   ArrowRight,
-  BadgeCheck,
   BarChart3,
   ChefHat,
   Check,
@@ -37,7 +36,6 @@ import {
   Store,
   Sun,
   Table2,
-  Users,
   WalletCards,
   type LucideIcon,
 } from "lucide-react";
@@ -52,7 +50,7 @@ const whatsappLink =
 const navItems = [
   { label: "Solusi", href: "#solutions" },
   { label: "Staff", href: "#staff" },
-  { label: "Customer", href: "#customer" },
+  { label: "Pembeli", href: "#customer" },
   { label: "Alur", href: "#flow" },
   { label: "Harga", href: "#pricing" },
 ];
@@ -114,16 +112,9 @@ const brandLogoAssets: Record<
 const heroSlides = [
   {
     eyebrow: "OUTLETMU",
-    title: "Complete Business Flow",
-    copy: "Satu layar untuk memperlihatkan alur menu, order, kasir, stok, laporan, dan automation.",
-    items: [
-      "Website Menu",
-      "QR Order",
-      "POS Kasir",
-      "Stok & Restock",
-      "Laporan",
-      "WhatsApp Automation",
-    ],
+    title: "Dashboard outlet ringkas",
+    copy: "Order aktif, omzet hari ini, QR order, POS kasir, dan laporan dibuat mudah dibaca.",
+    items: ["Order aktif", "Omzet hari ini", "QR Order", "POS Kasir", "Laporan"],
     stats: [
       { label: "Order aktif", value: "7" },
       { label: "Omzet hari ini", value: "Rp1.250.000" },
@@ -131,15 +122,9 @@ const heroSlides = [
   },
   {
     eyebrow: "ORDER FLOW",
-    title: "Order & Kasir Flow",
-    copy: "Pesanan meja masuk rapi, status jelas, dan kasir bisa lanjutkan transaksi tanpa catatan manual.",
-    items: [
-      "Pesanan Masuk",
-      "Status Pesanan",
-      "Meja Otomatis",
-      "Dashboard Kasir",
-      "Riwayat Transaksi",
-    ],
+    title: "Order dan kitchen",
+    copy: "Pesanan meja masuk ke dashboard, kitchen memproses, lalu kasir menyelesaikan pembayaran.",
+    items: ["Order QR meja", "Dashboard order", "Kitchen display", "Status pesanan", "Pembayaran"],
     stats: [
       { label: "Meja aktif", value: "12" },
       { label: "Order baru", value: "5" },
@@ -147,38 +132,14 @@ const heroSlides = [
   },
   {
     eyebrow: "OWNER VIEW",
-    title: "Owner Monitoring",
-    copy: "Owner tetap bisa membaca performa bisnis dari ringkasan penjualan, stok, dan insight WhatsApp.",
-    items: [
-      "Omzet Hari Ini",
-      "Produk Terlaris",
-      "Stok Menipis",
-      "Ringkasan Penjualan",
-      "WhatsApp Insight",
-    ],
+    title: "Pantauan owner",
+    copy: "Owner bisa membaca omzet, produk terlaris, stok menipis, dan laporan tanpa rekap manual.",
+    items: ["Omzet harian", "Produk terlaris", "Stok menipis", "Laporan", "WhatsApp query"],
     stats: [
       { label: "Produk terlaris", value: "Kopi Susu" },
       { label: "Stok menipis", value: "3 item" },
     ],
   },
-];
-
-const productFlowBenefits = [
-  "Order dari QR langsung membawa konteks meja dan item.",
-  "Kasir melihat status pesanan tanpa menunggu catatan manual.",
-  "Owner bisa memantau omzet dan stok dari ringkasan yang sama.",
-];
-
-const productFlowCards: Array<{
-  label: string;
-  value: string;
-  icon: LucideIcon;
-}> = [
-  { label: "Meja A3", value: "Dine-in aktif", icon: Table2 },
-  { label: "Pesanan baru masuk", value: "2 item menunggu", icon: ClipboardList },
-  { label: "2 item diproses", value: "Kopi Susu + Croissant", icon: ShoppingCart },
-  { label: "Omzet hari ini", value: "Rp1.250.000", icon: BarChart3 },
-  { label: "Stok Fresh Milk", value: "Menipis: 2 tersisa", icon: Package },
 ];
 
 const businessSolutionCards: Array<{
@@ -187,33 +148,33 @@ const businessSolutionCards: Array<{
   icon: LucideIcon;
 }> = [
   {
-    title: "Order dari kasir & QR meja",
-    copy: "Terima pesanan langsung dari dashboard kasir atau QR order meja tanpa alur yang terpisah.",
+    title: "Rapikan order masuk",
+    copy: "Order dari kasir dan QR order meja masuk ke alur yang sama.",
     icon: QrCode,
   },
   {
-    title: "Pesanan masuk terpantau",
-    copy: "Staff bisa melihat order baru, status dapur, dan transaksi yang perlu diselesaikan.",
+    title: "Kurangi salah catat",
+    copy: "Detail meja, item, catatan, dan status pesanan lebih mudah dipantau.",
     icon: ClipboardList,
   },
   {
-    title: "Produk dan menu rapi",
-    copy: "Kelola menu, kategori, harga, dan status produk untuk menu digital cafe yang mudah dibuka pelanggan.",
-    icon: Store,
-  },
-  {
-    title: "Stok dan laporan harian",
-    copy: "Owner mendapat gambaran omzet, transaksi, produk terlaris, dan stok tanpa rekap manual berulang.",
+    title: "Pantau omzet harian",
+    copy: "Owner bisa melihat omzet harian, transaksi, dan produk terlaris dengan format rupiah penuh.",
     icon: BarChart3,
   },
   {
-    title: "Performa outlet terlihat",
-    copy: "Cocok untuk owner yang ingin membaca performa cafe, restoran, coffee shop, dan UMKM F&B lebih cepat.",
+    title: "Menu digital mudah diperbarui",
+    copy: "Harga, kategori, dan status menu digital cafe bisa diubah tanpa cetak ulang.",
+    icon: Store,
+  },
+  {
+    title: "Stok lebih terkontrol",
+    copy: "Stok basic membantu tim mengurangi risiko produk habis terlambat diketahui.",
     icon: MonitorCheck,
   },
   {
-    title: "Sistem kasir UMKM yang dikelola",
-    copy: "Outletmu diposisikan sebagai layanan bulanan managed, bukan aplikasi kasir cafe sekali beli yang ditinggal sendiri.",
+    title: "Siap berkembang",
+    copy: "Mulai dari satu outlet, lalu naik ke POS kasir restoran dan multi-outlet saat kebutuhan bertambah.",
     icon: ShieldCheck,
   },
 ];
@@ -251,62 +212,6 @@ const flowSteps: Array<{ title: string; icon: LucideIcon; copy: string }> = [
   },
 ];
 
-const features: Array<{
-  title: string;
-  copy: string;
-  icon: LucideIcon;
-  tone: "primary" | "light" | "dark";
-}> = [
-  {
-    title: "Website Menu Digital",
-    copy: "Menu online dengan kategori, foto, harga, deskripsi, dan status produk yang mudah diperbarui.",
-    icon: Store,
-    tone: "dark",
-  },
-  {
-    title: "QR Order",
-    copy: "Pelanggan scan QR, pilih menu dari HP, lalu pesanan diteruskan ke alur kasir.",
-    icon: QrCode,
-    tone: "primary",
-  },
-  {
-    title: "QR Table",
-    copy: "Nomor meja otomatis terbaca agar pesanan dine-in tidak tertukar.",
-    icon: Table2,
-    tone: "light",
-  },
-  {
-    title: "POS Basic",
-    copy: "Transaksi, order, dan riwayat penjualan dalam tampilan yang mudah dipakai kasir.",
-    icon: WalletCards,
-    tone: "light",
-  },
-  {
-    title: "E-Struk Digital",
-    copy: "Setiap transaksi memiliki struk digital yang bisa dibuka ulang dan dicetak dari browser.",
-    icon: ReceiptText,
-    tone: "primary",
-  },
-  {
-    title: "Stok & Restock",
-    copy: "Pantau stok, restock manual, dan siapkan stok otomatis saat bisnis naik level.",
-    icon: Package,
-    tone: "light",
-  },
-  {
-    title: "Laporan Penjualan",
-    copy: "Omzet, jumlah transaksi, dan produk terlaris bisa dibaca cepat oleh owner.",
-    icon: BarChart3,
-    tone: "light",
-  },
-  {
-    title: "WhatsApp Automation",
-    copy: "Owner dapat cek omzet, cek stok, dan menerima notifikasi lewat WhatsApp.",
-    icon: MessageCircle,
-    tone: "primary",
-  },
-];
-
 const staffFeatureCards: Array<{
   title: string;
   copy: string;
@@ -314,33 +219,28 @@ const staffFeatureCards: Array<{
 }> = [
   {
     title: "POS Kasir",
-    copy: "Input pesanan cepat dari dashboard kasir, cocok untuk transaksi langsung di outlet.",
+    copy: "Input pesanan cepat untuk transaksi langsung di outlet.",
     icon: WalletCards,
   },
   {
     title: "Dashboard Order",
-    copy: "Pesanan dari kasir dan QR masuk ke satu tempat, sehingga staff bisa pantau status order.",
+    copy: "Pesanan dari kasir dan QR masuk ke satu tempat yang mudah dipantau.",
     icon: LayoutDashboard,
   },
   {
     title: "Kitchen Display",
-    copy: "Dapur bisa melihat pesanan tanpa kertas manual dan mengubah status sampai siap disajikan.",
+    copy: "Kitchen melihat order masuk dan mengubah status sampai siap disajikan.",
     icon: ChefHat,
   },
   {
     title: "Produk & Stok",
-    copy: "Kelola menu, harga, kategori, dan stok agar pencatatan harian tidak mudah meleset.",
+    copy: "Kelola menu, harga, kategori, dan stok basic dari dashboard.",
     icon: Package,
   },
   {
-    title: "Laporan Penjualan",
-    copy: "Owner bisa melihat omzet Rp1.250.000, 38 transaksi, dan produk terlaris dengan tampilan yang mudah dibaca.",
+    title: "Laporan",
+    copy: "Owner bisa melihat omzet Rp1.250.000, transaksi, dan produk terlaris.",
     icon: BarChart3,
-  },
-  {
-    title: "Staff & Role",
-    copy: "Hak akses untuk owner, kasir, kitchen, dan staff dibuat sesuai kebutuhan kerja harian.",
-    icon: Users,
   },
 ];
 
@@ -350,34 +250,29 @@ const customerFeatureCards: Array<{
   icon: LucideIcon;
 }> = [
   {
-    title: "Menu Digital",
-    copy: "Pembeli membuka menu dari QR meja tanpa perlu download aplikasi.",
-    icon: Smartphone,
-  },
-  {
-    title: "QR Meja",
-    copy: "Setiap meja bisa punya QR sendiri, sehingga pesanan otomatis membawa informasi meja.",
+    title: "Scan QR meja",
+    copy: "Pembeli membuka menu dari QR meja langsung dari browser HP.",
     icon: Table2,
   },
   {
-    title: "Checkout Pesanan",
-    copy: "Pembeli memilih menu, catatan, dan jumlah item; pesanan masuk ke dashboard atau kitchen.",
+    title: "Pilih menu dari HP",
+    copy: "Menu dibuat nyaman untuk dine-in tanpa aplikasi tambahan.",
     icon: ShoppingCart,
   },
   {
-    title: "Tampilan Mobile",
-    copy: "Menu dibuat nyaman dibuka dari HP, cocok untuk dine-in di cafe dan restoran.",
-    icon: MonitorCheck,
-  },
-  {
-    title: "Status Pesanan",
-    copy: "Flow pesanan lebih rapi dari masuk, diproses, sampai siap disajikan.",
+    title: "Catatan pesanan",
+    copy: "Pembeli bisa menambahkan jumlah item dan catatan sebelum checkout.",
     icon: ListChecks,
   },
   {
-    title: "Branding Outlet",
-    copy: "Tampilan dapat disesuaikan dengan identitas cafe, restoran, coffee shop, atau minimarket kecil.",
-    icon: BadgeCheck,
+    title: "Masuk ke staff",
+    copy: "Pesanan masuk ke dashboard order atau kitchen dengan konteks meja.",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Tanpa download aplikasi",
+    copy: "Pembeli cukup scan, pilih menu, lalu kirim pesanan.",
+    icon: Smartphone,
   },
 ];
 
@@ -422,7 +317,7 @@ const outletmuSolutions = [
 
 const previews = [
   {
-    title: "Customer Menu",
+    title: "Menu Pembeli",
     eyebrow: "QR menu",
     metric: "38 item aktif",
     rows: ["Kopi Susu Gula Aren", "Croissant Butter", "Nasi Ayam Sambal"],
@@ -436,7 +331,7 @@ const previews = [
     copy: "Kasir fokus pada order, status, dan transaksi harian.",
   },
   {
-    title: "Owner Report",
+    title: "Laporan Owner",
     eyebrow: "Laporan",
     metric: "Rp1.250.000 hari ini",
     rows: ["38 transaksi selesai", "Produk terlaris: Kopi Susu", "Omzet naik 12%"],
@@ -446,12 +341,12 @@ const previews = [
     title: "Stok",
     eyebrow: "Inventori",
     metric: "5 stok menipis",
-    rows: ["Susu UHT: 8 tersisa", "Cup 16oz: perlu restock", "Export laporan"],
+    rows: ["Susu UHT: 8 tersisa", "Cup 16oz: perlu restock", "Unduh laporan"],
     copy: "Stok dan restock dibuat lebih rapi dari dashboard.",
   },
   {
     title: "WhatsApp",
-    eyebrow: "Automation",
+    eyebrow: "Automasi",
     metric: "Balas dalam detik",
     rows: ["Omzet hari ini?", "Stok Kopi Susu?", "Produk terlaris?"],
     copy: "Owner bisa tanya data bisnis dari WhatsApp.",
@@ -517,8 +412,8 @@ const pricingPlans = [
     price: "Rp199.000",
     suffix: "/bulan",
     setup:
-      "Cocok untuk 1 outlet kecil di shared managed server. Untuk POS lengkap, staff/role, laporan detail, backup, dan custom landing page, naik ke POS Basic.",
-    label: "Entry digital",
+      "Cocok untuk 1 outlet kecil di server managed bersama. Untuk POS lengkap, staff/role, laporan detail, backup, dan landing page basic, naik ke POS Basic.",
+    label: "Paket awal",
     cta: "Konsultasi Paket Starter QR",
     audience:
       "Mulai digitalisasi outlet dengan menu digital, QR meja, kitchen basic, stok basic, dan laporan harian sederhana.",
@@ -531,7 +426,7 @@ const pricingPlans = [
       "Inventory/stok basic",
       "Laporan harian basic",
       "Setup awal dibantu",
-      "Support WhatsApp basic",
+      "Dukungan WhatsApp basic",
     ],
   },
   {
@@ -539,7 +434,7 @@ const pricingPlans = [
     price: "Rp499.000",
     suffix: "/bulan",
     setup: "Recommended untuk cafe/resto yang butuh sistem kasir harian lebih rapi.",
-    label: "Paling Direkomendasikan",
+    label: "Recommended",
     cta: "Konsultasi Paket POS Basic",
     audience:
       "Sistem kasir dan QR order yang lebih lengkap untuk operasional harian cafe/resto.",
@@ -553,18 +448,18 @@ const pricingPlans = [
       "Staff/role basic",
       "Laporan harian lebih lengkap",
       "Backup berkala",
-      "Custom outlet/cafe landing page basic",
-      "Support WhatsApp prioritas",
+      "Landing page outlet/cafe basic",
+      "Dukungan WhatsApp prioritas",
     ],
   },
   {
     name: "Pro Automation",
     price: "Rp999.000",
     suffix: "/bulan",
-    setup: "Untuk outlet yang butuh kontrol stok, laporan, dan automation lebih serius.",
-    label: "Automation lengkap",
+    setup: "Untuk outlet yang butuh kontrol stok, laporan, dan automasi lebih serius.",
+    label: "Automasi lengkap",
     cta: "Konsultasi Paket Pro",
-    audience: "Untuk outlet yang butuh kontrol stok, laporan, dan automation lebih serius.",
+    audience: "Untuk outlet yang butuh kontrol stok, laporan, dan automasi lebih serius.",
     features: [
       "Semua fitur POS Basic",
       "Inventory lebih lengkap",
@@ -572,8 +467,8 @@ const pricingPlans = [
       "Laporan profit/HPP jika tersedia",
       "Produk terlaris",
       "Role staff lebih lengkap",
-      "WhatsApp stock notification / revenue query",
-      "Priority support",
+      "Notifikasi stok / cek omzet WhatsApp",
+      "Support prioritas",
       "Backup lebih sering",
     ],
   },
@@ -581,10 +476,10 @@ const pricingPlans = [
     name: "Business",
     price: "Mulai Rp1.499.000",
     suffix: "/bulan",
-    setup: "Untuk bisnis yang mulai butuh multi-outlet, workflow khusus, dan laporan custom.",
-    label: "Workflow custom",
+    setup: "Untuk bisnis yang mulai butuh multi-outlet, alur khusus, dan laporan custom.",
+    label: "Alur custom",
     cta: "Diskusikan Kebutuhan",
-    audience: "Untuk bisnis yang mulai butuh multi-outlet, workflow khusus, dan laporan custom.",
+    audience: "Untuk bisnis yang mulai butuh multi-outlet, alur khusus, dan laporan custom.",
     features: [
       "Semua fitur Pro",
       "Multi-outlet basic / sesuai kebutuhan",
@@ -600,7 +495,7 @@ const pricingPlans = [
     price: "Konsultasi",
     suffix: "",
     setup: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
-    label: "Managed enterprise",
+    label: "Enterprise dikelola",
     cta: "Chat WhatsApp Outletmu",
     audience: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
     features: [
@@ -611,6 +506,151 @@ const pricingPlans = [
       "Onboarding enterprise",
       "Konsultasi kebutuhan",
     ],
+  },
+];
+
+const comparisonPlans = ["Starter QR", "POS Basic", "Pro Automation", "Business", "Enterprise"] as const;
+
+type ComparisonPlanKey = (typeof comparisonPlans)[number];
+
+const packageComparisonRows: Array<
+  { feature: string } & Record<ComparisonPlanKey, string>
+> = [
+  {
+    feature: "Menu digital online",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    "Pro Automation": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "QR order meja",
+    "Starter QR": "Basic",
+    "POS Basic": "QR per meja",
+    "Pro Automation": "Lengkap",
+    Business: "Advanced",
+    Enterprise: "Advanced",
+  },
+  {
+    feature: "POS kasir",
+    "Starter QR": "Basic",
+    "POS Basic": "Lengkap",
+    "Pro Automation": "Lengkap",
+    Business: "Custom",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Dashboard order",
+    "Starter QR": "Basic",
+    "POS Basic": "Lengkap",
+    "Pro Automation": "Lengkap",
+    Business: "Lengkap",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Kitchen display",
+    "Starter QR": "Basic",
+    "POS Basic": "Ya",
+    "Pro Automation": "Ya",
+    Business: "Lengkap",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Manajemen produk/menu",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    "Pro Automation": "Ya",
+    Business: "Ya",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Inventory/stok",
+    "Starter QR": "Basic",
+    "POS Basic": "Basic",
+    "Pro Automation": "Lengkap",
+    Business: "Lengkap",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Laporan harian",
+    "Starter QR": "Basic",
+    "POS Basic": "Ya",
+    "Pro Automation": "Ya",
+    Business: "Ya",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Laporan mingguan/bulanan",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    "Pro Automation": "Ya",
+    Business: "Ya",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Best seller product",
+    "Starter QR": "-",
+    "POS Basic": "Basic",
+    "Pro Automation": "Ya",
+    Business: "Ya",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Staff & role",
+    "Starter QR": "-",
+    "POS Basic": "Basic",
+    "Pro Automation": "Lengkap",
+    Business: "Lengkap",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "WhatsApp automation",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    "Pro Automation": "Revenue query",
+    Business: "Opsional",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Multi-outlet",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    "Pro Automation": "-",
+    Business: "Basic",
+    Enterprise: "Advanced",
+  },
+  {
+    feature: "Custom report",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    "Pro Automation": "-",
+    Business: "Ya",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Custom domain/workflow",
+    "Starter QR": "-",
+    "POS Basic": "Landing basic",
+    "Pro Automation": "-",
+    Business: "Custom",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Dedicated/managed server",
+    "Starter QR": "Server managed",
+    "POS Basic": "Server managed",
+    "Pro Automation": "Server managed",
+    Business: "Opsional",
+    Enterprise: "Dedicated",
+  },
+  {
+    feature: "Support/onboarding",
+    "Starter QR": "Basic",
+    "POS Basic": "Prioritas",
+    "Pro Automation": "Prioritas",
+    Business: "Onboarding serius",
+    Enterprise: "SLA/support khusus",
   },
 ];
 
@@ -665,7 +705,7 @@ const addOnNotes = [
 
 const whyPoints = [
   "Setup dibantu dari awal",
-  "Workflow disesuaikan",
+  "Alur operasional bisa disesuaikan",
   "Operasional lebih terpusat",
   "Bisa berkembang ke multi-outlet",
   "Ada opsi penyesuaian sistem",
@@ -695,7 +735,7 @@ const faqs = [
   {
     question: "Apakah bisa custom fitur?",
     answer:
-      "Bisa. Kebutuhan custom cocok dibahas lewat paket Business, terutama untuk workflow khusus, multi-outlet, atau integrasi tambahan.",
+      "Bisa. Kebutuhan custom cocok dibahas lewat paket Business, terutama untuk alur khusus, multi-outlet, atau integrasi tambahan.",
   },
   {
     question: "Apakah bisa integrasi QRIS?",
@@ -882,7 +922,6 @@ function SectionTitle({
 }) {
   return (
     <div
-      data-reveal
       className={cn(
         "relative z-10 mx-auto max-w-4xl",
         align === "center" ? "text-center" : "text-center lg:text-left",
@@ -891,7 +930,7 @@ function SectionTitle({
       <Badge tone={tone}>{badge}</Badge>
       <h2
         className={cn(
-          "mt-5 text-[clamp(2.2rem,6vw,4.9rem)] font-extrabold leading-[1.04]",
+          "mt-5 text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold leading-[1.1]",
           tone === "dark" ? "text-white" : "text-[#14213D] dark:text-[#F8F3EA]",
         )}
       >
@@ -1046,8 +1085,6 @@ function HeroCardDeck() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const slide = heroSlides[activeSlide];
-  const previousSlide = heroSlides[(activeSlide - 1 + heroSlides.length) % heroSlides.length];
-  const nextSlide = heroSlides[(activeSlide + 1) % heroSlides.length];
 
   const goToSlide = (index: number) => {
     setActiveSlide((index + heroSlides.length) % heroSlides.length);
@@ -1091,7 +1128,7 @@ function HeroCardDeck() {
           <div className={heroStyles.innerPanel}>
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
-              <h3 className="mt-3 text-[clamp(1.95rem,5vw,3rem)] font-semibold leading-tight text-white">
+              <h3 className="mt-3 text-[clamp(1.6rem,4vw,2.25rem)] font-semibold leading-tight text-white">
                 {slide.title}
               </h3>
               <span className={heroStyles.slideCopy}>{slide.copy}</span>
@@ -1105,7 +1142,7 @@ function HeroCardDeck() {
                     </span>
                     <span className="truncate">{feature}</span>
                   </span>
-                  <span className="shrink-0 text-xs font-semibold text-white/48">Ready</span>
+                  <span className="shrink-0 text-xs font-semibold text-white/48">Aktif</span>
                 </div>
               ))}
             </div>
@@ -1147,16 +1184,6 @@ function HeroCardDeck() {
   return (
     <div data-reveal className={heroStyles.deckWrap}>
       <div className={heroStyles.desktopDeckVisual}>
-        <div className={heroStyles.flowText}>FLOW</div>
-        <div className={heroStyles.glow} data-float="ambient" />
-        <div className={cn(heroStyles.backCard, heroStyles.backLeft)} data-float="hero-back-left">
-          <span>{previousSlide.eyebrow}</span>
-          <strong>{previousSlide.title}</strong>
-        </div>
-        <div className={cn(heroStyles.backCard, heroStyles.backRight)} data-float="hero-back-right">
-          <span>{nextSlide.eyebrow}</span>
-          <strong>{nextSlide.title}</strong>
-        </div>
         <div className={heroStyles.mainFloatLayer} data-float="hero-main">
           {card()}
         </div>
@@ -1175,19 +1202,18 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
     <section className={cn(landingStyles.section, landingStyles.heroSection)}>
       <div className={landingStyles.ambientOne} data-float="ambient" />
       <div className={landingStyles.ambientTwo} data-float="ambient" />
-      <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
-        <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-3xl text-center xl:mx-0 xl:text-left")}>
+      <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)]")}>
+        <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-2xl text-center xl:mx-0 xl:text-left")}>
           <div className={landingStyles.heroLogoWrap}>
             <BrandLogo variant="full" theme={theme} size="lg" />
           </div>
           <Badge>Gratis setup untuk 100 outlet pertama</Badge>
-          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.25rem,9.6vw,4.95rem)] font-extrabold leading-[1.04] text-[#14213D] dark:text-[#F8F3EA]")}>
-            POS & workflow kasir premium untuk outlet yang mau terlihat lebih profesional
+          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-[#14213D] dark:text-[#F8F3EA]")}>
+            POS kasir dan QR order untuk outlet yang ingin lebih rapi
           </h1>
-          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-2xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-xl xl:mx-0")}>
-            Outletmu membantu cafe, restoran, minimarket, dan UMKM mengelola POS
-            kasir, QR order, menu digital, stok, laporan, kitchen workflow, dan
-            WhatsApp automation dalam satu sistem bulanan yang dikelola.
+          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-lg xl:mx-0")}>
+            Outletmu membantu cafe, restoran, dan UMKM F&B mengelola kasir, QR order meja, menu digital,
+            stok, kitchen, dan laporan dalam satu sistem bulanan yang dibantu setup.
           </p>
           <div className={cn(landingStyles.heroActions, "mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start")}>
             <ButtonLink href={whatsappLink}>
@@ -1199,7 +1225,7 @@ function HeroSection({ theme }: { theme: ThemeMode }) {
             </ButtonLink>
           </div>
           <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0")}>
-            Cocok untuk cafe, restoran kecil, kedai, bakery, minimarket, dan UMKM.
+            Cocok untuk cafe, restoran, coffee shop, UMKM F&B, dan minimarket kecil.
           </p>
         </div>
         <HeroCardDeck />
@@ -1221,11 +1247,10 @@ function BusinessSolutionSection() {
           <span className={landingStyles.solutionIntroIcon}>
             <Store className="h-6 w-6" aria-hidden="true" />
           </span>
-          <h3>Premium managed monthly POS/workflow SaaS</h3>
+          <h3>Sistem bulanan yang dibantu setup</h3>
           <p>
-            Outletmu bukan paket POS murah sekali beli. Sistem disiapkan sebagai layanan bulanan yang dikelola,
-            cocok untuk bisnis yang ingin punya aplikasi kasir cafe, POS kasir restoran, QR order meja, dan laporan
-            tanpa mengurus teknis sendiri.
+            Outletmu cocok untuk bisnis yang ingin punya aplikasi kasir cafe, POS kasir restoran, QR order meja,
+            dan laporan tanpa harus mengurus teknis sendiri dari awal.
           </p>
           <div className={landingStyles.solutionIntroStats}>
             <div>
@@ -1270,7 +1295,6 @@ function StaffFeatureSection() {
         badge="Untuk kasir & staff"
         title="Lebih mudah untuk kasir, kitchen, dan owner"
         subtitle="Operasional harian dibuat jelas dari pesanan masuk, proses kitchen, pembayaran, sampai laporan penjualan."
-        tone="dark"
       />
       <div data-reveal className={landingStyles.roleFeatureGrid}>
         {staffFeatureCards.map((feature, index) => {
@@ -1337,93 +1361,6 @@ function CustomerFeatureSection() {
             </motion.article>
           );
         })}
-      </div>
-    </PageSection>
-  );
-}
-
-function ProductFlowShowcaseSection() {
-  return (
-    <PageSection className="bg-white dark:bg-[#08111F]">
-      <div data-reveal className={landingStyles.productFlowGrid}>
-        <div className={landingStyles.flowNarrative}>
-          <Badge>Product flow showcase</Badge>
-          <h2>Dari scan QR sampai transaksi, semuanya lebih rapi.</h2>
-          <p>
-            Pelanggan scan QR, pilih menu, pesanan masuk ke kasir, dan owner bisa
-            memantau bisnis tanpa membuka banyak aplikasi.
-          </p>
-          <div className={landingStyles.flowBenefits}>
-            {productFlowBenefits.map((benefit) => (
-              <motion.div key={benefit} whileHover={{ x: 4 }}>
-                <span>
-                  <Check className="h-4 w-4" aria-hidden="true" />
-                </span>
-                {benefit}
-              </motion.div>
-            ))}
-          </div>
-          <div className={landingStyles.flowNarrativeFooter}>
-            <strong>01</strong>
-            <span>QR order, dashboard kasir, stok, dan laporan bergerak dalam satu alur.</span>
-          </div>
-        </div>
-
-        <div className={landingStyles.productFlowShowcase}>
-          <div className={landingStyles.showcaseWord}>ORDER</div>
-          <motion.div
-            className={landingStyles.flowDevice}
-            whileHover={{ y: -6, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 180, damping: 18 }}
-          >
-            <div className={landingStyles.flowDeviceHeader}>
-              <div>
-                <p>Dashboard Kasir</p>
-                <h3>Order masuk</h3>
-              </div>
-              <span>Live</span>
-            </div>
-            <div className={landingStyles.flowDeviceBody}>
-              <div className={landingStyles.orderSummary}>
-                <span>Meja A3</span>
-                <strong>Rp78.000</strong>
-                <small>2 item sedang diproses</small>
-              </div>
-              <div className={landingStyles.orderRows}>
-                {["Kopi Susu Gula Aren", "Croissant Butter", "Catatan: less ice"].map((row, index) => (
-                  <div key={row}>
-                    <span>{index + 1}</span>
-                    <strong>{row}</strong>
-                    <em>{index === 2 ? "Note" : "Ready"}</em>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <div className={landingStyles.floatingCards}>
-            {productFlowCards.map((card, index) => {
-              const Icon = card.icon;
-
-              return (
-                <motion.div
-                  key={card.label}
-                  data-float-card
-                  className={cn(landingStyles.floatingCard, landingStyles[`floatingCard${index + 1}`])}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <span>
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <div>
-                    <strong>{card.label}</strong>
-                    <p>{card.value}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
       </div>
     </PageSection>
   );
@@ -1509,43 +1446,6 @@ function ProblemSolutionSection() {
   );
 }
 
-function FeatureShowcase() {
-  return (
-    <PageSection id="features" className={landingStyles.darkSection}>
-      <SectionTitle
-        badge="Feature showcase"
-        title="Fitur utama untuk operasional harian."
-        subtitle="Tampilan dibuat benefit-first: owner paham manfaatnya, kasir paham alurnya, pelanggan paham cara order."
-        tone="dark"
-      />
-      <div data-reveal className={landingStyles.featureGrid}>
-        {features.map((feature, index) => {
-          const Icon = feature.icon;
-          return (
-            <motion.article
-              key={feature.title}
-              whileHover={{ y: -8, scale: 1.01 }}
-              className={cn(
-                landingStyles.featureCard,
-                index < 3 && landingStyles.featureCardLarge,
-                feature.tone === "dark" && landingStyles.featureCardDark,
-                feature.tone === "primary" && landingStyles.featureCardPrimary,
-              )}
-            >
-              <div className={landingStyles.featureNumber}>0{index + 1}</div>
-              <span className={landingStyles.featureIcon}>
-                <Icon className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <h3>{feature.title}</h3>
-              <p>{feature.copy}</p>
-            </motion.article>
-          );
-        })}
-      </div>
-    </PageSection>
-  );
-}
-
 function ProductPreviewSection() {
   const [activePreview, setActivePreview] = useState(0);
   const preview = previews[activePreview];
@@ -1554,7 +1454,7 @@ function ProductPreviewSection() {
     <PageSection id="preview" className="bg-[#F8F3EA] dark:bg-[#07140F]">
       <div data-preview-section>
         <SectionTitle
-          badge="Product preview"
+        badge="Preview sistem"
           title="Dibuat simpel untuk kasir, owner, dan pelanggan."
           subtitle="Preview tampilan agar calon pembeli bisa membayangkan alur POS, QR order, stok, dan laporan sebelum konsultasi."
         />
@@ -1747,7 +1647,7 @@ function WhatsAppBotSection() {
     <PageSection id="whatsapp" className="bg-white dark:bg-[#08111F]">
       <div data-reveal className={landingStyles.whatsappGrid}>
         <div className={landingStyles.whatsappCopy}>
-          <Badge>WhatsApp automation</Badge>
+          <Badge>WhatsApp owner</Badge>
           <h2>Tanya omzet dan stok langsung dari WhatsApp.</h2>
           <p>
             Outletmu membantu owner memantau bisnis lewat percakapan yang sederhana.
@@ -1762,7 +1662,7 @@ function WhatsAppBotSection() {
             </div>
             <div>
               <strong>Outletmu Bot</strong>
-              <span>online · automation aktif</span>
+              <span>online · automasi aktif</span>
             </div>
           </div>
           <div className={landingStyles.chatBody}>
@@ -1869,8 +1769,8 @@ function PricingPlanCard({
         <p>{plan.audience}</p>
       </div>
       <div className={pricingStyles.priceBox}>
-        <div>
-          <strong className={cn(plan.price.length > 13 && pricingStyles.priceLong)}>{plan.price}</strong>
+        <div className={pricingStyles.priceValue}>
+          <strong className={cn(plan.price.length > 9 && pricingStyles.priceLong)}>{plan.price}</strong>
           {plan.suffix ? <small>{plan.suffix}</small> : null}
         </div>
         <p>{plan.setup}</p>
@@ -1941,7 +1841,7 @@ function PricingDeckSection() {
         return;
       }
 
-      const spread = Math.min(Math.max(window.innerWidth * 0.2, 260), 340);
+      const spread = Math.min(Math.max(window.innerWidth * 0.18, 230), 300);
 
       cardRefs.current.forEach((card, index) => {
         if (!card) {
@@ -1956,10 +1856,12 @@ function PricingDeckSection() {
         gsap.to(card, {
           xPercent: -50,
           x: isBack ? 0 : side * spread,
-          y: offset === 0 ? 0 : isBack ? 68 : 38,
-          rotate: offset === 0 || isBack ? 0 : side * -2,
-          scale: offset === 0 ? 1 : isBack ? 0.68 : 0.76,
-          autoAlpha: offset === 0 ? 1 : isBack ? 0.1 : 0.48,
+          y: offset === 0 ? 0 : isBack ? 50 : 28,
+          rotate: offset === 0 || isBack ? 0 : side * -1.4,
+          scale: offset === 0 ? 1 : isBack ? 0.62 : 0.72,
+          autoAlpha: offset === 0 ? 1 : isBack ? 0 : 0.24,
+          filter: offset === 0 ? "blur(0px)" : isBack ? "blur(4px)" : "blur(1.4px)",
+          pointerEvents: offset === 0 ? "auto" : "none",
           zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
           duration: 0.58,
           ease: "power3.out",
@@ -2061,13 +1963,13 @@ function PricingDeckSection() {
         title="Pilih paket sesuai kebutuhan bisnismu."
         subtitle="Paket bulanan untuk outlet yang ingin POS, QR order, stok, laporan, dan operasional harian lebih rapi."
       />
-      <div data-reveal className={pricingStyles.microPills}>
+      <div className={pricingStyles.microPills}>
         {["Gratis setup untuk 100 outlet pertama", "QR order siap pakai", "Pendampingan awal"].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </div>
 
-      <div data-reveal className={pricingStyles.desktopDeck} ref={deckRef}>
+      <div className={pricingStyles.desktopDeck} ref={deckRef}>
         <button type="button" onClick={() => go(-1)} aria-label="Paket sebelumnya" className={pricingStyles.arrowPrev}>
           <ArrowLeft className="h-5 w-5" aria-hidden="true" />
         </button>
@@ -2089,7 +1991,7 @@ function PricingDeckSection() {
                   cardRefs.current[index] = element;
                 }}
                 role="button"
-                tabIndex={0}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => {
                   if (!suppressPricingClickRef.current) {
                     setActiveIndex(index);
@@ -2124,7 +2026,7 @@ function PricingDeckSection() {
         </div>
       </div>
 
-      <div data-reveal className={pricingStyles.mobileCarouselWrap}>
+      <div className={pricingStyles.mobileCarouselWrap}>
         <button
           type="button"
           onClick={() => goMobile(-1)}
@@ -2167,6 +2069,80 @@ function PricingDeckSection() {
             className={cn(mobileActiveIndex === index && pricingStyles.dotActive)}
           />
         ))}
+      </div>
+    </PageSection>
+  );
+}
+
+function ComparisonCell({ value }: { value: string }) {
+  if (value === "-" || value.toLowerCase() === "tidak") {
+    return <span className={landingStyles.comparisonDash}>-</span>;
+  }
+
+  if (value === "Ya") {
+    return (
+      <span className={landingStyles.comparisonCheck}>
+        <Check className="h-3.5 w-3.5" aria-hidden="true" />
+        Ya
+      </span>
+    );
+  }
+
+  return <span className={landingStyles.comparisonValue}>{value}</span>;
+}
+
+function PackageComparisonSection() {
+  return (
+    <PageSection className={landingStyles.comparisonSection}>
+      <SectionTitle
+        badge="Perbandingan paket"
+        title="Bandingkan paket Outletmu"
+        subtitle="Pilih paket sesuai tahap operasional outlet Anda. Bisa mulai dari QR order, lalu naik ke POS dan automasi saat bisnis berkembang."
+      />
+      <div className={landingStyles.comparisonShell}>
+        <div
+          className={landingStyles.comparisonScroller}
+          role="region"
+          aria-label="Tabel perbandingan paket Outletmu"
+          tabIndex={0}
+        >
+          <table className={landingStyles.comparisonTable}>
+            <thead>
+              <tr>
+                <th scope="col">Fitur</th>
+                {comparisonPlans.map((plan) => (
+                  <th
+                    key={plan}
+                    scope="col"
+                    className={cn(plan === "POS Basic" && landingStyles.comparisonRecommended)}
+                  >
+                    <span>{plan}</span>
+                    {plan === "POS Basic" ? <small>Recommended</small> : null}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {packageComparisonRows.map((row) => (
+                <tr key={row.feature}>
+                  <th scope="row">{row.feature}</th>
+                  {comparisonPlans.map((plan) => (
+                    <td
+                      key={`${row.feature}-${plan}`}
+                      className={cn(plan === "POS Basic" && landingStyles.comparisonRecommendedCell)}
+                    >
+                      <ComparisonCell value={row[plan]} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className={landingStyles.comparisonNote}>
+          <Check className="h-4 w-4" aria-hidden="true" />
+          <span>POS Basic cocok sebagai titik awal untuk outlet yang butuh POS kasir restoran, QR order meja, dashboard order, stok basic, dan laporan harian yang lebih rapi.</span>
+        </div>
       </div>
     </PageSection>
   );
@@ -2368,7 +2344,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
       <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <BrandLogo variant="full" theme={theme} size="md" />
         <p className="text-sm font-medium leading-7 text-[#14213D]/55 dark:text-[#F8F3EA]/58">
-          POS, QR Order, E-Struk, stok, laporan, dan WhatsApp automation untuk outlet harian.
+          POS, QR Order, E-Struk, stok, laporan, dan automasi WhatsApp untuk outlet harian.
         </p>
       </div>
     </footer>
@@ -2391,11 +2367,10 @@ export function OutletmuLanding() {
       <FlowSection />
       <ProblemSolutionSection />
       <OperationsCTASection />
-      <ProductFlowShowcaseSection />
-      <FeatureShowcase />
       <ProductPreviewSection />
       <WhatsAppBotSection />
       <PricingDeckSection />
+      <PackageComparisonSection />
       <AddOnsSection />
       <WhyOutletmuSection />
       <FAQSection />
