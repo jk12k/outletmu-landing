@@ -411,82 +411,63 @@ const pricingPlans = [
     name: "Starter QR",
     price: "Rp199.000",
     suffix: "/bulan",
-    setup:
-      "Cocok untuk 1 outlet kecil di server managed bersama. Untuk POS lengkap, staff/role, laporan detail, backup, dan landing page basic, naik ke POS Basic.",
     label: "Paket awal",
-    cta: "Konsultasi Paket Starter QR",
-    audience:
-      "Mulai digitalisasi outlet dengan menu digital, QR meja, kitchen basic, stok basic, dan laporan harian sederhana.",
+    cta: "Mulai Starter",
+    audience: "Untuk outlet yang ingin mulai pakai menu digital dan QR order sederhana.",
     features: [
       "Menu digital online",
-      "QR meja untuk 1 outlet",
-      "Guest checkout",
-      "Dashboard kasir basic",
-      "Kitchen display basic",
-      "Inventory/stok basic",
+      "QR meja basic",
+      "Pesanan masuk ke dashboard",
       "Laporan harian basic",
       "Setup awal dibantu",
-      "Dukungan WhatsApp basic",
     ],
   },
   {
     name: "POS Basic",
     price: "Rp499.000",
     suffix: "/bulan",
-    setup: "Recommended untuk cafe/resto yang butuh sistem kasir harian lebih rapi.",
     label: "Recommended",
     cta: "Konsultasi Paket POS Basic",
-    audience:
-      "Sistem kasir dan QR order yang lebih lengkap untuk operasional harian cafe/resto.",
+    audience: "Untuk cafe/resto yang butuh kasir harian dan order lebih rapi.",
     featured: true,
     features: [
       "Semua fitur Starter QR",
-      "POS kasir lebih lengkap",
-      "Dashboard order lebih rapi",
-      "Kitchen/order flow lebih stabil",
-      "Inventory/stok lebih rapi",
+      "POS kasir",
+      "Dashboard order",
+      "Produk & stok basic",
       "Staff/role basic",
-      "Laporan harian lebih lengkap",
       "Backup berkala",
-      "Landing page outlet/cafe basic",
-      "Dukungan WhatsApp prioritas",
     ],
   },
   {
     name: "Pro Automation",
     price: "Rp999.000",
     suffix: "/bulan",
-    setup: "Untuk outlet yang butuh kontrol stok, laporan, dan automasi lebih serius.",
-    label: "Automasi lengkap",
+    label: "Automation",
     cta: "Konsultasi Paket Pro",
-    audience: "Untuk outlet yang butuh kontrol stok, laporan, dan automasi lebih serius.",
+    audience: "Untuk outlet yang butuh kontrol stok, laporan, dan bantuan WhatsApp lebih serius.",
     features: [
       "Semua fitur POS Basic",
-      "Inventory lebih lengkap",
-      "Laporan harian/mingguan/bulanan",
-      "Laporan profit/HPP jika tersedia",
+      "Laporan mingguan/bulanan",
       "Produk terlaris",
-      "Role staff lebih lengkap",
-      "Notifikasi stok / cek omzet WhatsApp",
+      "Notifikasi stok",
+      "WhatsApp laporan",
       "Support prioritas",
-      "Backup lebih sering",
     ],
   },
   {
     name: "Business",
     price: "Mulai Rp1.499.000",
     suffix: "/bulan",
-    setup: "Untuk bisnis yang mulai butuh multi-outlet, alur khusus, dan laporan custom.",
-    label: "Alur custom",
-    cta: "Diskusikan Kebutuhan",
-    audience: "Untuk bisnis yang mulai butuh multi-outlet, alur khusus, dan laporan custom.",
+    label: "Untuk bisnis berkembang",
+    cta: "Diskusikan Business",
+    audience: "Untuk bisnis yang mulai punya kebutuhan multi-outlet dan operasional lebih khusus.",
     features: [
       "Semua fitur Pro",
-      "Multi-outlet basic / sesuai kebutuhan",
-      "Advanced QR Table",
-      "Kitchen display lebih lengkap",
-      "Custom report",
-      "Custom domain/workflow/resource sesuai kebutuhan",
+      "Multi-outlet",
+      "QR order lebih lengkap",
+      "Kitchen flow lebih rapi",
+      "Laporan custom",
       "Onboarding lebih serius",
     ],
   },
@@ -494,22 +475,21 @@ const pricingPlans = [
     name: "Enterprise",
     price: "Konsultasi",
     suffix: "",
-    setup: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
-    label: "Enterprise dikelola",
-    cta: "Chat WhatsApp Outletmu",
-    audience: "Untuk kebutuhan skala besar, integrasi khusus, dan dedicated managed server.",
+    label: "Skala besar",
+    cta: "Hubungi Outletmu",
+    audience: "Untuk bisnis dengan kebutuhan integrasi, kontrol, dan pendampingan khusus.",
     features: [
-      "Dedicated/managed server",
-      "SLA/support khusus",
-      "Advanced multi-outlet",
+      "Semua fitur Business",
       "Integrasi khusus",
-      "Onboarding enterprise",
-      "Konsultasi kebutuhan",
+      "Akses dan role lanjutan",
+      "Laporan khusus",
+      "Support khusus",
+      "Pendampingan prioritas",
     ],
   },
 ];
 
-const comparisonPlans = ["Starter QR", "POS Basic", "Pro Automation", "Business", "Enterprise"] as const;
+const comparisonPlans = ["Starter QR", "POS Basic", "Pro", "Business", "Enterprise"] as const;
 
 type ComparisonPlanKey = (typeof comparisonPlans)[number];
 
@@ -517,26 +497,26 @@ const packageComparisonRows: Array<
   { feature: string } & Record<ComparisonPlanKey, string>
 > = [
   {
-    feature: "Menu digital online",
+    feature: "Menu digital",
     "Starter QR": "Ya",
     "POS Basic": "Ya",
-    "Pro Automation": "Ya",
+    Pro: "Ya",
     Business: "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "QR order meja",
     "Starter QR": "Basic",
-    "POS Basic": "QR per meja",
-    "Pro Automation": "Lengkap",
-    Business: "Advanced",
-    Enterprise: "Advanced",
+    "POS Basic": "Lengkap",
+    Pro: "Lengkap",
+    Business: "Custom",
+    Enterprise: "Custom",
   },
   {
     feature: "POS kasir",
-    "Starter QR": "Basic",
-    "POS Basic": "Lengkap",
-    "Pro Automation": "Lengkap",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Pro: "Ya",
     Business: "Custom",
     Enterprise: "Custom",
   },
@@ -544,31 +524,23 @@ const packageComparisonRows: Array<
     feature: "Dashboard order",
     "Starter QR": "Basic",
     "POS Basic": "Lengkap",
-    "Pro Automation": "Lengkap",
+    Pro: "Lengkap",
+    Business: "Lengkap",
+    Enterprise: "Custom",
+  },
+  {
+    feature: "Produk & stok",
+    "Starter QR": "-",
+    "POS Basic": "Basic",
+    Pro: "Lengkap",
     Business: "Lengkap",
     Enterprise: "Custom",
   },
   {
     feature: "Kitchen display",
-    "Starter QR": "Basic",
-    "POS Basic": "Ya",
-    "Pro Automation": "Ya",
-    Business: "Lengkap",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Manajemen produk/menu",
-    "Starter QR": "Ya",
-    "POS Basic": "Ya",
-    "Pro Automation": "Ya",
-    Business: "Ya",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Inventory/stok",
-    "Starter QR": "Basic",
+    "Starter QR": "-",
     "POS Basic": "Basic",
-    "Pro Automation": "Lengkap",
+    Pro: "Lengkap",
     Business: "Lengkap",
     Enterprise: "Custom",
   },
@@ -576,7 +548,7 @@ const packageComparisonRows: Array<
     feature: "Laporan harian",
     "Starter QR": "Basic",
     "POS Basic": "Ya",
-    "Pro Automation": "Ya",
+    Pro: "Lengkap",
     Business: "Ya",
     Enterprise: "Custom",
   },
@@ -584,15 +556,7 @@ const packageComparisonRows: Array<
     feature: "Laporan mingguan/bulanan",
     "Starter QR": "-",
     "POS Basic": "-",
-    "Pro Automation": "Ya",
-    Business: "Ya",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Best seller product",
-    "Starter QR": "-",
-    "POS Basic": "Basic",
-    "Pro Automation": "Ya",
+    Pro: "Ya",
     Business: "Ya",
     Enterprise: "Custom",
   },
@@ -600,15 +564,15 @@ const packageComparisonRows: Array<
     feature: "Staff & role",
     "Starter QR": "-",
     "POS Basic": "Basic",
-    "Pro Automation": "Lengkap",
+    Pro: "Lengkap",
     Business: "Lengkap",
     Enterprise: "Custom",
   },
   {
-    feature: "WhatsApp automation",
+    feature: "WhatsApp laporan",
     "Starter QR": "-",
     "POS Basic": "-",
-    "Pro Automation": "Revenue query",
+    Pro: "Ya",
     Business: "Opsional",
     Enterprise: "Custom",
   },
@@ -616,41 +580,33 @@ const packageComparisonRows: Array<
     feature: "Multi-outlet",
     "Starter QR": "-",
     "POS Basic": "-",
-    "Pro Automation": "-",
-    Business: "Basic",
-    Enterprise: "Advanced",
-  },
-  {
-    feature: "Custom report",
-    "Starter QR": "-",
-    "POS Basic": "-",
-    "Pro Automation": "-",
+    Pro: "-",
     Business: "Ya",
     Enterprise: "Custom",
   },
   {
-    feature: "Custom domain/workflow",
+    feature: "Laporan custom",
     "Starter QR": "-",
-    "POS Basic": "Landing basic",
-    "Pro Automation": "-",
-    Business: "Custom",
+    "POS Basic": "-",
+    Pro: "-",
+    Business: "Ya",
     Enterprise: "Custom",
   },
   {
-    feature: "Dedicated/managed server",
-    "Starter QR": "Server managed",
-    "POS Basic": "Server managed",
-    "Pro Automation": "Server managed",
+    feature: "Integrasi khusus",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Pro: "-",
     Business: "Opsional",
-    Enterprise: "Dedicated",
+    Enterprise: "Custom",
   },
   {
-    feature: "Support/onboarding",
+    feature: "Support prioritas",
     "Starter QR": "Basic",
     "POS Basic": "Prioritas",
-    "Pro Automation": "Prioritas",
-    Business: "Onboarding serius",
-    Enterprise: "SLA/support khusus",
+    Pro: "Prioritas",
+    Business: "Khusus",
+    Enterprise: "Khusus",
   },
 ];
 
@@ -1744,25 +1700,21 @@ function WhatsAppBotSection() {
 
 function PricingPlanCard({
   plan,
-  active = false,
-  compact = false,
-  allowExpand = false,
+  selected = false,
 }: {
   plan: PricingPlan;
-  active?: boolean;
-  compact?: boolean;
-  allowExpand?: boolean;
+  selected?: boolean;
 }) {
-  const [expanded, setExpanded] = useState(false);
-  const isDark = active && plan.featured;
-  const shouldCompact = compact && !expanded;
-  const compactFeatureLimit = allowExpand ? 6 : 4;
-  const shownFeatures = shouldCompact ? plan.features.slice(0, compactFeatureLimit) : plan.features;
-  const hiddenFeatureCount = shouldCompact ? plan.features.length - shownFeatures.length : 0;
+  const isFeatured = Boolean(plan.featured);
 
   return (
-    <article className={cn(pricingStyles.planCard, isDark && pricingStyles.planCardFeatured)}>
-      <div className={pricingStyles.cardGlow} />
+    <article
+      className={cn(
+        pricingStyles.planCard,
+        isFeatured && pricingStyles.planCardFeatured,
+        selected && pricingStyles.planCardSelected,
+      )}
+    >
       <div className={pricingStyles.planHeader}>
         <span>{plan.label}</span>
         <h3>{plan.name}</h3>
@@ -1773,10 +1725,9 @@ function PricingPlanCard({
           <strong className={cn(plan.price.length > 9 && pricingStyles.priceLong)}>{plan.price}</strong>
           {plan.suffix ? <small>{plan.suffix}</small> : null}
         </div>
-        <p>{plan.setup}</p>
       </div>
       <ul className={pricingStyles.featureList}>
-        {shownFeatures.map((feature) => (
+        {plan.features.map((feature) => (
           <li key={feature}>
             <span>
               <Check className="h-3.5 w-3.5" aria-hidden="true" />
@@ -1784,138 +1735,22 @@ function PricingPlanCard({
             {feature}
           </li>
         ))}
-        {hiddenFeatureCount > 0 && !allowExpand && (
-          <li className={pricingStyles.moreFeature}>
-            <span>+</span>
-            {hiddenFeatureCount} fitur lain tersedia di paket ini
-          </li>
-        )}
       </ul>
-      {hiddenFeatureCount > 0 && allowExpand ? (
-        <button
-          type="button"
-          onClick={() => setExpanded(true)}
-          className={pricingStyles.expandFeatures}
-          aria-label={`Lihat semua fitur ${plan.name}`}
-        >
-          Lihat semua fitur
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
-      ) : null}
-      <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
-        {plan.cta}
-      </ButtonLink>
+      <div className={pricingStyles.planCtaWrap} onClick={(event) => event.stopPropagation()}>
+        <ButtonLink href={whatsappLink} variant={isFeatured ? "light" : "primary"} className={pricingStyles.planCta}>
+          {plan.cta}
+        </ButtonLink>
+      </div>
     </article>
   );
-}
-
-function getCircularOffset(index: number, activeIndex: number) {
-  let diff = index - activeIndex;
-
-  if (diff > pricingPlans.length / 2) {
-    diff -= pricingPlans.length;
-  }
-
-  if (diff < -pricingPlans.length / 2) {
-    diff += pricingPlans.length;
-  }
-
-  return diff;
 }
 
 function PricingDeckSection() {
   const [activeIndex, setActiveIndex] = useState(1);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
-  const [isPricingDragging, setIsPricingDragging] = useState(false);
-  const deckRef = useRef<HTMLDivElement>(null);
   const mobileDeckRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const pricingDragRef = useRef({ startX: 0, hasMoved: false });
-  const suppressPricingClickRef = useRef(false);
   const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3], pricingPlans[4]];
-
-  useEffect(() => {
-    const layoutCards = () => {
-      if (!deckRef.current || window.innerWidth < 1024) {
-        return;
-      }
-
-      const spread = Math.min(Math.max(window.innerWidth * 0.18, 230), 300);
-
-      cardRefs.current.forEach((card, index) => {
-        if (!card) {
-          return;
-        }
-
-        const offset = getCircularOffset(index, activeIndex);
-        const distance = Math.abs(offset);
-        const side = offset === 0 ? 0 : offset > 0 ? 1 : -1;
-        const isBack = distance > 1;
-
-        gsap.to(card, {
-          xPercent: -50,
-          x: isBack ? 0 : side * spread,
-          y: offset === 0 ? 0 : isBack ? 50 : 28,
-          rotate: offset === 0 || isBack ? 0 : side * -1.4,
-          scale: offset === 0 ? 1 : isBack ? 0.62 : 0.72,
-          autoAlpha: offset === 0 ? 1 : isBack ? 0 : 0.24,
-          filter: offset === 0 ? "blur(0px)" : isBack ? "blur(4px)" : "blur(1.4px)",
-          pointerEvents: offset === 0 ? "auto" : "none",
-          zIndex: offset === 0 ? 30 : isBack ? 4 : 16,
-          duration: 0.58,
-          ease: "power3.out",
-        });
-      });
-    };
-
-    layoutCards();
-    window.addEventListener("resize", layoutCards);
-
-    return () => window.removeEventListener("resize", layoutCards);
-  }, [activeIndex]);
-
-  const go = (direction: 1 | -1) => {
-    setActiveIndex((current) => (current + direction + pricingPlans.length) % pricingPlans.length);
-  };
-
-  const handlePricingMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    if ((event.target as HTMLElement).closest("a, button")) {
-      return;
-    }
-
-    pricingDragRef.current = { startX: event.clientX, hasMoved: false };
-    setIsPricingDragging(true);
-
-    const handleMouseMove = (moveEvent: MouseEvent) => {
-      const delta = moveEvent.clientX - pricingDragRef.current.startX;
-
-      if (Math.abs(delta) > 8) {
-        pricingDragRef.current.hasMoved = true;
-        suppressPricingClickRef.current = true;
-      }
-    };
-
-    const handleMouseUp = (upEvent: MouseEvent) => {
-      const delta = upEvent.clientX - pricingDragRef.current.startX;
-
-      if (Math.abs(delta) > 54) {
-        suppressPricingClickRef.current = true;
-        go(delta < 0 ? 1 : -1);
-      }
-
-      setIsPricingDragging(false);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.setTimeout(() => {
-        pricingDragRef.current.hasMoved = false;
-        suppressPricingClickRef.current = false;
-      }, 220);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
-  };
 
   const syncMobileDot = () => {
     const deck = mobileDeckRef.current;
@@ -1957,7 +1792,6 @@ function PricingDeckSection() {
 
   return (
     <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
-      <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
@@ -1969,60 +1803,51 @@ function PricingDeckSection() {
         ))}
       </div>
 
-      <div className={pricingStyles.desktopDeck} ref={deckRef}>
-        <button type="button" onClick={() => go(-1)} aria-label="Paket sebelumnya" className={pricingStyles.arrowPrev}>
-          <ArrowLeft className="h-5 w-5" aria-hidden="true" />
-        </button>
-        <button type="button" onClick={() => go(1)} aria-label="Paket berikutnya" className={pricingStyles.arrowNext}>
-          <ArrowRight className="h-5 w-5" aria-hidden="true" />
-        </button>
-
-        <motion.div
-          className={cn(pricingStyles.cardStage, isPricingDragging && pricingStyles.isDragging)}
-          onMouseDown={handlePricingMouseDown}
-        >
-          {pricingPlans.map((plan, index) => {
-            const isActive = index === activeIndex;
-
-            return (
-              <div
-                key={plan.name}
-                ref={(element) => {
-                  cardRefs.current[index] = element;
-                }}
-                role="button"
-                tabIndex={isActive ? 0 : -1}
-                onClick={() => {
-                  if (!suppressPricingClickRef.current) {
-                    setActiveIndex(index);
-                  }
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    setActiveIndex(index);
-                  }
-                }}
-                className={pricingStyles.deckCard}
-                aria-label={`Pilih paket ${plan.name}`}
-              >
-                <motion.div whileHover={{ y: isActive ? -4 : -2 }} className="h-full">
-                  <PricingPlanCard plan={plan} active={isActive} compact={!isActive} />
-                </motion.div>
-              </div>
-            );
-          })}
-        </motion.div>
-
-        <div className={pricingStyles.desktopDots}>
+      <div className={pricingStyles.desktopPricing}>
+        <div className={pricingStyles.planTabs} aria-label="Pilih paket Outletmu">
           {pricingPlans.map((plan, index) => (
             <button
               key={plan.name}
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`Pilih ${plan.name}`}
-              className={cn(activeIndex === index && pricingStyles.dotActive)}
-            />
+              aria-pressed={activeIndex === index}
+              className={cn(activeIndex === index && pricingStyles.planTabActive)}
+            >
+              {plan.name}
+            </button>
           ))}
+        </div>
+        <div className={pricingStyles.desktopGrid}>
+          {pricingPlans.map((plan, index) => {
+            const isSelected = index === activeIndex;
+
+            return (
+              <motion.div
+                key={plan.name}
+                role="button"
+                tabIndex={0}
+                aria-label={`Pilih paket ${plan.name}`}
+                aria-pressed={isSelected}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={(event) => {
+                  if ((event.target as HTMLElement).closest("a, button")) {
+                    return;
+                  }
+
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setActiveIndex(index);
+                  }
+                }}
+                className={cn(pricingStyles.desktopPlanCard, isSelected && pricingStyles.desktopPlanCardSelected)}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 220, damping: 22 }}
+              >
+                <PricingPlanCard plan={plan} selected={isSelected} />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
@@ -2044,8 +1869,23 @@ function PricingDeckSection() {
                 mobileCardRefs.current[index] = element;
               }}
               className={pricingStyles.mobileCard}
+              role="button"
+              tabIndex={0}
+              aria-label={`Pilih paket ${plan.name}`}
+              aria-pressed={index === mobileActiveIndex}
+              onClick={() => scrollMobileTo(index)}
+              onKeyDown={(event) => {
+                if ((event.target as HTMLElement).closest("a, button")) {
+                  return;
+                }
+
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  scrollMobileTo(index);
+                }
+              }}
             >
-              <PricingPlanCard plan={plan} active={plan.featured} compact allowExpand />
+              <PricingPlanCard plan={plan} selected={index === mobileActiveIndex} />
             </div>
           ))}
         </div>

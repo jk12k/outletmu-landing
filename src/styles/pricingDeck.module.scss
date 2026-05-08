@@ -8,132 +8,92 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
-  margin: 2rem auto 0;
+  gap: 0.65rem;
+  margin: 1.65rem auto 0;
 
   span {
     border-radius: 999px;
     background: #f7faf4;
-    padding: 0.65rem 1.05rem;
+    padding: 0.6rem 0.95rem;
     color: rgba(20, 33, 61, 0.62);
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     font-weight: 800;
   }
 }
 
-.desktopDeck {
+.desktopPricing {
   position: relative;
   z-index: 2;
   display: block;
-  max-width: 74rem;
-  min-height: 49rem;
-  margin: clamp(2rem, 3.5vw, 2.8rem) auto 0;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
 }
 
-.desktopDeck::before {
-  content: "";
-  position: absolute;
-  inset: 1.9rem clamp(1rem, 4vw, 3.25rem) 2.7rem;
-  z-index: -1;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 2.35rem;
-  background:
-    radial-gradient(circle at 50% 4%, rgba(47, 138, 104, 0.08), transparent 38%),
-    rgba(247, 250, 244, 0.74);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.74),
-    0 24px 70px rgba(20, 33, 61, 0.06);
-  pointer-events: none;
-}
+.planTabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0 auto 1.35rem;
 
-.cardStage {
-  position: relative;
-  width: min(100%, 74rem);
-  height: 46.75rem;
-  margin-inline: auto;
-  cursor: grab;
-  touch-action: pan-y;
-  user-select: none;
-}
+  button {
+    min-height: 2.55rem;
+    border: 1px solid rgba(20, 33, 61, 0.08);
+    border-radius: 999px;
+    background: #ffffff;
+    padding: 0.62rem 0.95rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.84rem;
+    font-weight: 850;
+    cursor: pointer;
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease;
 
-.isDragging {
-  cursor: grabbing;
+    &:hover {
+      transform: translateY(-1px);
+      border-color: rgba(47, 138, 104, 0.28);
+      color: #103f31;
+    }
 
-  .deckCard {
-    cursor: grabbing;
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(47, 138, 104, 0.22);
+    }
   }
 }
 
-.deckCard {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: clamp(22.75rem, 31vw, 25.8rem);
-  height: 45.9rem;
+.planTabActive {
+  border-color: rgba(47, 138, 104, 0.4) !important;
+  background: #103f31 !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 34px rgba(16, 63, 49, 0.16);
+}
+
+.desktopGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.4vw, 1.1rem);
+  align-items: stretch;
+}
+
+.desktopPlanCard {
+  min-width: 0;
   cursor: pointer;
   outline: none;
 
   &:focus-visible {
-    border-radius: 2.2rem;
-    box-shadow: 0 0 0 4px rgba(47, 138, 104, 0.22);
+    border-radius: 1.55rem;
+    box-shadow: 0 0 0 4px rgba(47, 138, 104, 0.24);
   }
 }
 
-.arrowPrev,
-.arrowNext {
-  position: absolute;
-  top: 41%;
-  z-index: 40;
-  display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
-  place-items: center;
-  border: 0;
-  border-radius: 999px;
-  box-shadow: 0 18px 45px rgba(20, 33, 61, 0.14);
-  cursor: pointer;
-}
-
-.arrowPrev {
-  left: max(0rem, calc((100% - 74rem) / 2));
-  background: #ffffff;
-  color: #14213d;
-}
-
-.arrowNext {
-  right: max(0rem, calc((100% - 74rem) / 2));
-  background: #103f31;
-  color: #ffffff;
-}
-
-.desktopDots,
-.mobileDots {
-  display: flex;
-  justify-content: center;
-  gap: 0.45rem;
-}
-
-.desktopDots {
-  margin-top: 0.5rem;
-}
-
-.desktopDots button,
-.mobileDots button {
-  width: 0.65rem;
-  height: 0.65rem;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(20, 33, 61, 0.16);
-  cursor: pointer;
-  transition:
-    width 0.2s ease,
-    background 0.2s ease;
-}
-
-.desktopDots .dotActive,
-.mobileDots .dotActive {
-  width: 2.25rem;
-  background: #2f8a68;
+.desktopPlanCardSelected {
+  .planCard {
+    transform: translateY(-0.15rem);
+  }
 }
 
 .planCard {
@@ -141,60 +101,66 @@
   display: flex;
   min-width: 0;
   height: 100%;
-  min-height: 100%;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: clamp(1.45rem, 2.6vw, 1.85rem);
-  background:
-    #ffffff;
-  padding: clamp(1.35rem, 2.2vw, 1.65rem);
+  border: 1px solid rgba(20, 33, 61, 0.075);
+  border-radius: clamp(1.25rem, 2.6vw, 1.55rem);
+  background: #ffffff;
+  padding: clamp(1.1rem, 1.5vw, 1.3rem);
   color: #14213d;
-  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.09);
+  box-shadow: 0 18px 46px rgba(20, 33, 61, 0.07);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.planCardSelected {
+  border-color: rgba(47, 138, 104, 0.32);
+  box-shadow:
+    0 22px 58px rgba(20, 33, 61, 0.1),
+    0 0 0 1px rgba(47, 138, 104, 0.12);
 }
 
 .planCardFeatured {
   border-color: rgba(47, 138, 104, 0.5);
   background:
-    radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.32), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(47, 138, 104, 0.26), transparent 36%),
     #103f31;
   color: #ffffff;
+  box-shadow: 0 24px 70px rgba(16, 63, 49, 0.18);
 }
 
 .cardGlow {
   display: none;
 }
 
-.planHeader,
-.priceBox,
-.featureList {
-  position: relative;
-  z-index: 2;
-}
-
 .planHeader {
   span {
     display: inline-flex;
+    width: fit-content;
     border-radius: 999px;
-    background: #f8f3ea;
-    padding: 0.62rem 1.05rem;
+    background: #e8f3ef;
+    padding: 0.48rem 0.76rem;
     color: #2f8a68;
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     font-weight: 900;
   }
 
   h3 {
-    margin-top: 1rem;
-    font-size: clamp(1.55rem, 2.4vw, 1.95rem);
-    font-weight: 800;
-    line-height: 1.1;
+    margin-top: 0.82rem;
+    color: currentColor;
+    font-size: clamp(1.25rem, 1.7vw, 1.55rem);
+    font-weight: 900;
+    line-height: 1.12;
   }
 
   p {
-    margin-top: 0.62rem;
+    margin-top: 0.58rem;
     color: rgba(20, 33, 61, 0.62);
-    font-size: 1rem;
-    line-height: 1.58;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.55;
   }
 }
 
@@ -205,90 +171,82 @@
   }
 
   p {
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.72);
   }
 }
 
 .priceBox {
-  margin-top: 1rem;
+  margin-top: 0.95rem;
   border: 1px solid rgba(20, 33, 61, 0.08);
-  border-radius: 1.25rem;
-  background: rgba(247, 250, 244, 0.8);
-  padding: 1rem;
+  border-radius: 1.05rem;
+  background: #f7faf4;
+  padding: 0.85rem;
+}
 
-  .priceValue {
-    display: grid;
-    gap: 0.35rem;
-    align-items: start;
-    min-width: 0;
-  }
+.priceValue {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.24rem 0.45rem;
 
   strong {
-    display: block;
-    font-size: clamp(2rem, 3.6vw, 2.5rem);
+    color: #14213d;
+    font-size: clamp(1.62rem, 2.2vw, 2rem);
+    font-weight: 950;
     letter-spacing: 0;
-    line-height: 1;
+    line-height: 1.05;
     white-space: nowrap;
   }
 
   .priceLong {
-    font-size: clamp(1.45rem, 2.1vw, 1.72rem);
-    letter-spacing: 0;
+    font-size: clamp(1.22rem, 1.55vw, 1.45rem);
     white-space: normal;
   }
 
   small {
-    color: rgba(20, 33, 61, 0.46);
-    font-size: 0.9rem;
+    color: rgba(20, 33, 61, 0.52);
+    font-size: 0.86rem;
     font-weight: 900;
     white-space: nowrap;
-  }
-
-  p {
-    margin-top: 0.8rem;
-    border-radius: 1rem;
-    background: #ffffff;
-    padding: 0.75rem 0.85rem;
-    color: rgba(20, 33, 61, 0.64);
-    font-size: 0.95rem;
-    font-weight: 900;
-    line-height: 1.48;
   }
 }
 
 .planCardFeatured .priceBox {
   border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+}
 
-  small,
-  p {
-    color: rgba(255, 255, 255, 0.72);
+.planCardFeatured .priceValue {
+  strong {
+    color: #ffffff;
   }
 
-  p {
-    background: rgba(255, 255, 255, 0.12);
+  small {
+    color: rgba(255, 255, 255, 0.72);
   }
 }
 
 .featureList {
   display: grid;
-  gap: 0.58rem;
+  gap: 0.52rem;
   margin: 1rem 0 0;
   padding: 0;
   list-style: none;
 
   li {
     display: flex;
-    gap: 0.7rem;
+    gap: 0.55rem;
     color: rgba(20, 33, 61, 0.66);
-    font-size: clamp(0.94rem, 0.22vw + 0.9rem, 1rem);
-    line-height: 1.46;
+    font-size: 0.86rem;
+    font-weight: 650;
+    line-height: 1.42;
   }
 
   span {
     display: grid;
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 1.1rem;
+    height: 1.1rem;
     flex: 0 0 auto;
     place-items: center;
     margin-top: 0.08rem;
@@ -298,76 +256,35 @@
   }
 }
 
-.moreFeature {
-  align-items: center;
-  border-radius: 1rem;
-  background: rgba(47, 138, 104, 0.08);
-  padding: 0.65rem 0.75rem;
-  font-weight: 900;
-}
-
-.expandFeatures {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  width: fit-content;
-  min-height: 2.65rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  border: 1px solid rgba(47, 138, 104, 0.14);
-  border-radius: 999px;
-  background: rgba(47, 138, 104, 0.08);
-  padding: 0.65rem 1rem;
-  color: #103f31;
-  font-size: 0.86rem;
-  font-weight: 900;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-    border-color: rgba(47, 138, 104, 0.32);
-    background: rgba(47, 138, 104, 0.12);
-  }
-}
-
 .planCardFeatured .featureList {
   li {
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(255, 255, 255, 0.84);
   }
 
   span {
     background: #ffffff;
     color: #103f31;
   }
-
-  .moreFeature {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.92);
-  }
 }
 
-.planCardFeatured .expandFeatures {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.32);
-    background: rgba(255, 255, 255, 0.16);
-  }
+.moreFeature,
+.expandFeatures {
+  display: none;
 }
 
-.planCta {
+.planCtaWrap {
   position: relative;
   z-index: 2;
   width: 100%;
   margin-top: auto;
+  padding-top: 1rem;
+}
+
+.planCta {
+  width: 100%;
+  min-height: 2.95rem;
+  padding-inline: 0.95rem !important;
+  font-size: 0.84rem !important;
 }
 
 .mobileCarouselWrap {
@@ -375,19 +292,17 @@
   z-index: 2;
   display: none;
   max-width: 100%;
-  margin-top: 2.75rem;
+  margin-top: 2rem;
   overflow: hidden;
 }
 
 .mobileDeck {
   position: relative;
   display: none;
-  gap: 1rem;
   max-width: 100%;
-  margin-top: 0;
   overflow-x: auto;
-  padding: 0 0.15rem 1.4rem;
-  scroll-padding-inline: 1.25rem;
+  padding: 0 0 1rem;
+  scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -397,9 +312,35 @@
   }
 }
 
+.mobileCard {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+  min-width: 0;
+  place-items: center;
+  padding-inline: 0;
+  scroll-snap-align: center;
+  outline: none;
+
+  &:focus-visible {
+    .planCard {
+      box-shadow:
+        0 22px 58px rgba(20, 33, 61, 0.1),
+        0 0 0 4px rgba(47, 138, 104, 0.22);
+    }
+  }
+
+  .planCard {
+    width: min(calc(100vw - 2rem), 23rem);
+    min-height: 0;
+    height: auto;
+  }
+}
+
 .mobileArrow {
   position: absolute;
-  top: 48%;
+  top: 50%;
   z-index: 8;
   display: none;
   width: 2.65rem;
@@ -407,7 +348,7 @@
   place-items: center;
   border: 1px solid rgba(20, 33, 61, 0.08);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: #103f31;
   box-shadow: 0 16px 42px rgba(20, 33, 61, 0.14);
   cursor: pointer;
@@ -416,102 +357,77 @@
 }
 
 .mobileArrowPrev {
-  left: 0.2rem;
+  left: 0.15rem;
 }
 
 .mobileArrowNext {
-  right: 0.2rem;
+  right: 0.15rem;
   background: #103f31;
   color: #ffffff;
 }
 
-.mobileCard {
-  width: min(100%, 25rem);
-  max-width: calc(100vw - 2.5rem);
-  flex: 0 0 min(100%, 25rem);
-  min-width: 0;
-  scroll-snap-align: center;
-}
-
 .mobileDots {
   display: none;
-  margin-top: 0.4rem;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.mobileDots button {
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(20, 33, 61, 0.16);
+  cursor: pointer;
+  transition:
+    width 0.18s ease,
+    background 0.18s ease;
+}
+
+.mobileDots .dotActive {
+  width: 2.2rem;
+  background: #2f8a68;
 }
 
 @media (max-width: 1180px) {
-  .cardStage {
-    width: min(100%, 66rem);
-  }
-
-  .arrowPrev {
-    left: 0;
-  }
-
-  .arrowNext {
-    right: 0;
+  .desktopGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 1023px) {
-  .desktopDeck {
+  .desktopPricing {
     display: none;
   }
 
   .mobileCarouselWrap {
     display: block;
-    margin-top: 2.15rem;
   }
 
   .mobileDeck {
     display: flex;
-    gap: 0;
-    margin-top: 0;
-    padding: 0 0 1rem;
-    scroll-padding-inline: 0;
+  }
+
+  .mobileArrow,
+  .mobileDots {
+    display: flex;
   }
 
   .mobileArrow {
     display: grid;
   }
-
-  .mobileDots {
-    display: flex;
-  }
-
-  .mobileCard {
-    display: grid;
-    width: 100%;
-    max-width: 100%;
-    flex: 0 0 100%;
-    place-items: center;
-    padding-inline: 0;
-  }
-
-  .mobileCard .planCard {
-    width: min(calc(100vw - 2rem), 22.5rem);
-  }
-
-  .planCard {
-    min-height: 0;
-    height: auto;
-  }
 }
 
 @media (max-width: 768px) {
-  .backgroundWord {
-    display: none;
-  }
-
   .microPills {
-    display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 0.55rem;
+    gap: 0.5rem;
     max-width: 100%;
-    margin-top: 1.35rem;
+    margin-top: 1.25rem;
     overflow-x: auto;
-    padding: 0 0 0.2rem;
-    scroll-snap-type: x proximity;
+    padding-bottom: 0.2rem;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -520,49 +436,20 @@
 
     span {
       flex: 0 0 auto;
-      scroll-snap-align: start;
-      padding: 0.55rem 0.82rem;
-      font-size: 0.8rem;
+      padding: 0.52rem 0.78rem;
+      font-size: 0.78rem;
       white-space: nowrap;
     }
-  }
-
-  .mobileDeck {
-    margin-top: 0;
-  }
-
-  .mobileCard .planCard {
-    width: min(calc(100vw - 2rem), 22.5rem);
   }
 }
 
 @media (max-width: 480px) {
-  .backgroundWord {
-    top: 4.2rem;
-    font-size: clamp(4.5rem, 25vw, 6.2rem);
-  }
-
-  .microPills {
-    align-items: center;
-    flex-direction: row;
-    gap: 0.55rem;
-    margin-top: 1.2rem;
-
-    span {
-      padding: 0.52rem 0.78rem;
-      font-size: 0.78rem;
-    }
-  }
-
   .mobileCarouselWrap {
-    margin-top: 1.15rem;
+    margin-top: 0.7rem;
   }
 
   .mobileDeck {
-    gap: 0.85rem;
-    margin-top: 0;
-    padding-inline: 0;
-    scroll-padding-inline: 0;
+    padding-bottom: 0.35rem;
   }
 
   .mobileArrow {
@@ -570,171 +457,102 @@
     height: 2.35rem;
   }
 
-  .mobileCard {
-    width: 100%;
-    max-width: 100%;
-    flex-basis: 100%;
-  }
-
-  .planCard {
-    border-radius: 1.45rem;
-    padding: 1.12rem;
+  .mobileCard .planCard {
+    width: min(calc(100vw - 2rem), 22.5rem);
+    border-radius: 1.35rem;
+    padding: 1rem;
   }
 
   .planHeader span {
-    padding: 0.55rem 0.85rem;
-    font-size: 0.76rem;
+    padding: 0.46rem 0.72rem;
+    font-size: 0.72rem;
   }
 
   .planHeader h3 {
-    margin-top: 0.85rem;
-    font-size: 1.58rem;
+    margin-top: 0.72rem;
+    font-size: 1.42rem;
   }
 
   .planHeader p {
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: 0.88rem;
+    line-height: 1.52;
   }
 
   .priceBox {
-    margin-top: 0.8rem;
-    border-radius: 1.25rem;
-    padding: 0.9rem;
+    margin-top: 0.75rem;
+    padding: 0.78rem;
   }
 
-  .priceBox strong {
-    font-size: clamp(1.74rem, 7vw, 2.05rem);
+  .priceValue strong {
+    font-size: clamp(1.58rem, 6.3vw, 1.88rem);
   }
 
-  .priceBox .priceLong {
-    font-size: clamp(1.26rem, 4.8vw, 1.48rem);
+  .priceValue .priceLong {
+    font-size: clamp(1.18rem, 4.8vw, 1.36rem);
   }
 
-  .priceBox small {
-    font-size: 0.82rem;
-  }
-
-  .priceBox p {
-    border-radius: 0.95rem;
-    margin-top: 0.65rem;
-    padding: 0.72rem;
-    font-size: 0.86rem;
-    line-height: 1.48;
+  .priceValue small {
+    font-size: 0.8rem;
   }
 
   .featureList {
-    gap: 0.54rem;
-    margin-top: 1rem;
+    gap: 0.42rem;
+    margin-top: 0.72rem;
 
     li {
-      gap: 0.62rem;
-      font-size: 0.9rem;
-      line-height: 1.45;
+      gap: 0.52rem;
+      font-size: 0.84rem;
+      line-height: 1.38;
     }
+  }
 
-    span {
-      width: 1.18rem;
-      height: 1.18rem;
-    }
+  .planCtaWrap {
+    padding-top: 0.72rem;
   }
 
   .planCta {
     min-height: 2.8rem;
-    margin-top: 1rem;
-  }
-
-  .expandFeatures {
-    min-height: 2.45rem;
-    margin-top: 0.8rem;
-    padding: 0.58rem 0.82rem;
-    font-size: 0.8rem;
-  }
-
-  .mobileDots {
-    margin-top: 0.15rem;
-  }
-
-  .mobileDots button {
-    width: 0.72rem;
-    height: 0.72rem;
-  }
-
-  .mobileDots .dotActive {
-    width: 2.15rem;
+    font-size: 0.82rem !important;
   }
 }
 
 :global(.dark) {
-  .backgroundWord {
-    color: rgba(248, 243, 234, 0.055);
-  }
-
-  .microPills span {
+  .microPills span,
+  .planTabs button {
+    border-color: rgba(248, 243, 234, 0.1);
     background: rgba(255, 255, 255, 0.075);
     color: rgba(248, 243, 234, 0.68);
   }
 
-  .arrowPrev {
-    background: rgba(248, 243, 234, 0.94);
-    color: #103f31;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
-  }
-
-  .arrowNext {
-    background: #2f8a68;
-    color: #ffffff;
-    box-shadow: 0 18px 45px rgba(47, 138, 104, 0.18);
-  }
-
-  .desktopDeck::before {
-    border-color: rgba(248, 243, 234, 0.08);
-    background:
-      radial-gradient(circle at 50% 4%, rgba(47, 138, 104, 0.18), transparent 38%),
-      rgba(255, 255, 255, 0.035);
-    box-shadow:
-      inset 0 1px 0 rgba(248, 243, 234, 0.04),
-      0 34px 90px rgba(0, 0, 0, 0.18);
-  }
-
-  .mobileArrow {
-    border-color: rgba(248, 243, 234, 0.1);
-    background: rgba(248, 243, 234, 0.92);
-    color: #103f31;
-    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
-  }
-
-  .mobileArrowNext {
-    background: #2f8a68;
+  .planTabs button:hover {
+    border-color: rgba(47, 138, 104, 0.5);
     color: #ffffff;
   }
 
-  .desktopDots button,
-  .mobileDots button {
-    background: rgba(248, 243, 234, 0.2);
-  }
-
-  .desktopDots .dotActive,
-  .mobileDots .dotActive {
-    background: #2f8a68;
+  .planTabActive {
+    background: #2f8a68 !important;
+    color: #ffffff !important;
   }
 
   .planCard {
     border-color: rgba(248, 243, 234, 0.1);
-    background:
-      radial-gradient(circle at 82% 5%, rgba(47, 138, 104, 0.18), transparent 32%),
-      rgba(255, 255, 255, 0.075);
+    background: rgba(255, 255, 255, 0.075);
     color: #f8f3ea;
-    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+  }
+
+  .planCardSelected {
+    border-color: rgba(47, 138, 104, 0.42);
+    box-shadow:
+      0 24px 74px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(47, 138, 104, 0.14);
   }
 
   .planCardFeatured {
     border-color: rgba(47, 138, 104, 0.68);
     background:
-      radial-gradient(circle at 82% 10%, rgba(47, 138, 104, 0.34), transparent 34%),
+      radial-gradient(circle at 90% 0%, rgba(47, 138, 104, 0.32), transparent 36%),
       #103f31;
-    box-shadow:
-      0 35px 95px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(47, 138, 104, 0.08);
   }
 
   .planHeader {
@@ -744,7 +562,7 @@
     }
 
     p {
-      color: rgba(248, 243, 234, 0.64);
+      color: rgba(248, 243, 234, 0.66);
     }
   }
 
@@ -756,19 +574,16 @@
   .priceBox {
     border-color: rgba(248, 243, 234, 0.1);
     background: rgba(255, 255, 255, 0.065);
-
-    small,
-    p {
-      color: rgba(248, 243, 234, 0.64);
-    }
-
-    p {
-      background: rgba(255, 255, 255, 0.075);
-    }
   }
 
-  .planCardFeatured .priceBox p {
-    background: rgba(255, 255, 255, 0.1);
+  .priceValue {
+    strong {
+      color: #f8f3ea;
+    }
+
+    small {
+      color: rgba(248, 243, 234, 0.64);
+    }
   }
 
   .featureList {
@@ -782,13 +597,33 @@
     }
   }
 
-  .moreFeature {
-    background: rgba(47, 138, 104, 0.14);
+  .planCardFeatured .featureList {
+    li {
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    span {
+      background: #f8f3ea;
+      color: #103f31;
+    }
   }
 
-  .expandFeatures {
-    border-color: rgba(47, 138, 104, 0.22);
-    background: rgba(47, 138, 104, 0.14);
-    color: #b9f1da;
+  .mobileArrow {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(248, 243, 234, 0.92);
+    color: #103f31;
+  }
+
+  .mobileArrowNext {
+    background: #2f8a68;
+    color: #ffffff;
+  }
+
+  .mobileDots button {
+    background: rgba(248, 243, 234, 0.2);
+  }
+
+  .mobileDots .dotActive {
+    background: #2f8a68;
   }
 }
