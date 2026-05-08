@@ -320,6 +320,434 @@
   }
 }
 
+.solutionLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.1rem, 3vw, 1.6rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.solutionIntroCard,
+.solutionCard,
+.roleFeatureCard,
+.customerMiniPanel,
+.customerFeatureCard,
+.problemCard,
+.solutionStrip,
+.midCtaPanel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.solutionIntroCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.07);
+  border-radius: clamp(1.75rem, 4vw, 2.4rem);
+  background:
+    radial-gradient(circle at 82% 8%, rgba(47, 138, 104, 0.14), transparent 34%),
+    #f8f3ea;
+  padding: clamp(1.4rem, 3vw, 2.1rem);
+  box-shadow: 0 32px 90px rgba(20, 33, 61, 0.09);
+
+  h3 {
+    max-width: 28rem;
+    margin-top: 1.35rem;
+    color: #14213d;
+    font-size: clamp(1.65rem, 3vw, 2.45rem);
+    font-weight: 900;
+    line-height: 1.08;
+  }
+
+  p {
+    margin-top: 1.05rem;
+    color: rgba(20, 33, 61, 0.65);
+    font-size: 0.98rem;
+    font-weight: 520;
+    line-height: 1.8;
+  }
+}
+
+.solutionIntroIcon {
+  display: grid;
+  width: 3.3rem;
+  height: 3.3rem;
+  place-items: center;
+  border-radius: 1.12rem;
+  background: #103f31;
+  color: #ffffff;
+  box-shadow: 0 18px 42px rgba(16, 63, 49, 0.18);
+}
+
+.solutionIntroStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: clamp(1.35rem, 3vw, 2rem);
+
+  div {
+    border: 1px solid rgba(20, 33, 61, 0.065);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.74);
+    padding: 1rem;
+  }
+
+  strong {
+    display: block;
+    color: #103f31;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.45rem;
+    color: rgba(20, 33, 61, 0.56);
+    font-size: 0.82rem;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+}
+
+.solutionCardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.15rem);
+}
+
+.solutionCard {
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.065);
+  border-radius: clamp(1.35rem, 3vw, 1.7rem);
+  background: #ffffff;
+  padding: clamp(1.1rem, 2.3vw, 1.45rem);
+  box-shadow: 0 22px 60px rgba(20, 33, 61, 0.065);
+
+  span {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    place-items: center;
+    border-radius: 1rem;
+    background: rgba(47, 138, 104, 0.11);
+    color: #2f8a68;
+  }
+
+  h3 {
+    margin-top: 1.15rem;
+    color: #14213d;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-top: 0.65rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.9rem;
+    font-weight: 520;
+    line-height: 1.65;
+  }
+}
+
+.staffSection {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(248, 243, 234, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(47, 138, 104, 0.3), transparent 30%),
+    linear-gradient(180deg, #103f31 0%, #08111f 100%);
+  color: #ffffff;
+}
+
+.roleFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.95rem, 2vw, 1.25rem);
+  margin-top: clamp(2.4rem, 5vw, 4rem);
+}
+
+.roleFeatureCard {
+  overflow: hidden;
+  min-height: 16rem;
+  border: 1px solid rgba(248, 243, 234, 0.11);
+  border-radius: clamp(1.4rem, 3vw, 1.9rem);
+  background: rgba(255, 255, 255, 0.075);
+  padding: clamp(1.15rem, 2.5vw, 1.55rem);
+  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+
+  h3 {
+    margin-top: 1.35rem;
+    color: #ffffff;
+    font-size: clamp(1.28rem, 2.4vw, 1.65rem);
+    font-weight: 900;
+    line-height: 1.12;
+  }
+
+  p {
+    margin-top: 0.82rem;
+    color: rgba(248, 243, 234, 0.68);
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+}
+
+.roleFeatureCardWide {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(248, 243, 234, 0.13), transparent 32%),
+    rgba(47, 138, 104, 0.26);
+}
+
+.roleFeatureTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  span {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border-radius: 1rem;
+    background: rgba(248, 243, 234, 0.94);
+    color: #103f31;
+  }
+
+  small {
+    color: rgba(248, 243, 234, 0.32);
+    font-size: 1.65rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+}
+
+.customerHeaderGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.42fr);
+  align-items: end;
+  gap: clamp(1.2rem, 4vw, 3rem);
+}
+
+.customerMiniPanel {
+  border: 1px solid rgba(47, 138, 104, 0.15);
+  border-radius: clamp(1.45rem, 3vw, 1.85rem);
+  background: rgba(255, 255, 255, 0.78);
+  padding: clamp(1.15rem, 2.3vw, 1.45rem);
+  box-shadow: 0 24px 65px rgba(20, 33, 61, 0.075);
+
+  div {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.5rem;
+    border-radius: 999px;
+    background: #103f31;
+    padding: 0 0.85rem;
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 850;
+  }
+
+  strong {
+    display: block;
+    margin-top: 1rem;
+    color: #14213d;
+    font-size: clamp(1.85rem, 4vw, 2.45rem);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  p {
+    margin-top: 0.75rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+}
+
+.customerFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.15rem);
+  margin-top: clamp(2.2rem, 4.5vw, 3.4rem);
+}
+
+.customerFeatureCard {
+  border: 1px solid rgba(20, 33, 61, 0.065);
+  border-radius: clamp(1.35rem, 3vw, 1.7rem);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(47, 138, 104, 0.09), transparent 32%),
+    rgba(255, 255, 255, 0.78);
+  padding: clamp(1.05rem, 2.3vw, 1.4rem);
+  box-shadow: 0 22px 60px rgba(20, 33, 61, 0.065);
+
+  span {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    place-items: center;
+    border-radius: 1rem;
+    background: #ffffff;
+    color: #2f8a68;
+    box-shadow: 0 12px 28px rgba(20, 33, 61, 0.07);
+  }
+
+  h3 {
+    margin-top: 1rem;
+    color: #14213d;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-top: 0.62rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+}
+
+.problemGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.12rem);
+  margin-top: clamp(2.3rem, 5vw, 3.6rem);
+}
+
+.problemCard {
+  border: 1px solid rgba(20, 33, 61, 0.065);
+  border-radius: clamp(1.35rem, 3vw, 1.7rem);
+  background: #ffffff;
+  padding: clamp(1.05rem, 2.3vw, 1.4rem);
+  box-shadow: 0 22px 58px rgba(20, 33, 61, 0.06);
+
+  span {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    place-items: center;
+    border-radius: 1rem;
+    background: rgba(175, 75, 60, 0.1);
+    color: #af4b3c;
+  }
+
+  h3 {
+    margin-top: 1rem;
+    color: #14213d;
+    font-size: clamp(1.05rem, 2vw, 1.24rem);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-top: 0.62rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+}
+
+.solutionStrip {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.8rem);
+  margin-top: clamp(1.2rem, 3vw, 1.8rem);
+  overflow: hidden;
+  border: 1px solid rgba(47, 138, 104, 0.18);
+  border-radius: clamp(1.55rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(47, 138, 104, 0.18), transparent 34%),
+    #f8f3ea;
+  padding: clamp(1.2rem, 3vw, 1.7rem);
+  box-shadow: 0 28px 75px rgba(20, 33, 61, 0.075);
+
+  h3 {
+    margin-top: 1rem;
+    color: #14213d;
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
+    font-weight: 900;
+    line-height: 1.12;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.72rem;
+    color: rgba(20, 33, 61, 0.68);
+    font-weight: 760;
+    line-height: 1.55;
+
+    svg {
+      margin-top: 0.18rem;
+      flex: 0 0 auto;
+      color: #2f8a68;
+    }
+  }
+}
+
+.midCtaSection {
+  background: #f8f3ea;
+}
+
+.midCtaPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.2rem, 4vw, 2rem);
+  overflow: hidden;
+  border-radius: clamp(1.7rem, 4vw, 2.35rem);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(248, 243, 234, 0.13), transparent 35%),
+    #103f31;
+  padding: clamp(1.45rem, 4vw, 2.35rem);
+  color: #ffffff;
+  box-shadow: 0 35px 90px rgba(16, 63, 49, 0.22);
+}
+
+.midCtaCopy {
+  h2 {
+    margin-top: 1rem;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.05;
+  }
+
+  p {
+    max-width: 45rem;
+    margin-top: 0.95rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: clamp(0.98rem, 1.5vw, 1.1rem);
+    line-height: 1.75;
+  }
+}
+
+.midCtaActions {
+  display: grid;
+  justify-items: end;
+  gap: 0.75rem;
+
+  a {
+    min-width: 12rem;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.84rem;
+    font-weight: 800;
+  }
+}
+
 .addOnsHeader {
   max-width: 100%;
   overflow: hidden;
@@ -1607,7 +2035,11 @@
   }
 
   .productFlowGrid,
-  .whatsappGrid {
+  .whatsappGrid,
+  .solutionLayout,
+  .customerHeaderGrid,
+  .solutionStrip,
+  .midCtaPanel {
     grid-template-columns: 1fr;
   }
 
@@ -1643,6 +2075,51 @@
   .productFlowShowcase {
     width: min(100%, 43rem);
     margin-inline: auto;
+  }
+
+  .solutionIntroCard {
+    text-align: center;
+
+    h3,
+    p {
+      margin-inline: auto;
+    }
+  }
+
+  .solutionIntroIcon {
+    margin-inline: auto;
+  }
+
+  .roleFeatureGrid,
+  .customerFeatureGrid,
+  .problemGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .customerMiniPanel {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+  }
+
+  .solutionStrip {
+    text-align: center;
+
+    li {
+      justify-content: center;
+      text-align: left;
+    }
+  }
+
+  .midCtaPanel {
+    text-align: center;
+  }
+
+  .midCtaCopy p {
+    margin-inline: auto;
+  }
+
+  .midCtaActions {
+    justify-items: center;
   }
 
   .previewGrid {
@@ -1775,6 +2252,65 @@
     margin-top: 2rem;
     border-radius: 1.45rem;
     padding: 0.9rem;
+  }
+
+  .solutionLayout,
+  .roleFeatureGrid,
+  .customerFeatureGrid,
+  .problemGrid {
+    margin-top: 2rem;
+  }
+
+  .solutionCardGrid,
+  .roleFeatureGrid,
+  .customerFeatureGrid,
+  .problemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .solutionIntroCard,
+  .solutionCard,
+  .roleFeatureCard,
+  .customerMiniPanel,
+  .customerFeatureCard,
+  .problemCard,
+  .solutionStrip,
+  .midCtaPanel {
+    border-radius: 1.35rem;
+  }
+
+  .solutionIntroCard,
+  .midCtaPanel {
+    padding: 1.2rem;
+  }
+
+  .solutionIntroStats {
+    grid-template-columns: 1fr;
+  }
+
+  .roleFeatureCard {
+    min-height: auto;
+  }
+
+  .customerHeaderGrid {
+    gap: 1rem;
+  }
+
+  .solutionStrip {
+    padding: 1.1rem;
+  }
+
+  .midCtaActions {
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+
+    span {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
   }
 
   .ambientOne,
@@ -2347,6 +2883,87 @@
       background: #f8f3ea;
       color: #103f31;
     }
+  }
+
+  .solutionIntroCard,
+  .solutionCard,
+  .customerMiniPanel,
+  .customerFeatureCard,
+  .problemCard,
+  .solutionStrip {
+    border-color: rgba(248, 243, 234, 0.1);
+    background:
+      radial-gradient(circle at 88% 0%, rgba(47, 138, 104, 0.18), transparent 32%),
+      rgba(255, 255, 255, 0.065);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  }
+
+  .solutionIntroCard,
+  .solutionCard,
+  .customerMiniPanel,
+  .customerFeatureCard,
+  .problemCard,
+  .solutionStrip {
+    h3,
+    strong {
+      color: #f8f3ea;
+    }
+
+    p {
+      color: rgba(248, 243, 234, 0.66);
+    }
+  }
+
+  .solutionIntroIcon,
+  .customerFeatureCard span,
+  .solutionCard span {
+    background: rgba(47, 138, 104, 0.18);
+    color: #b9f1da;
+    box-shadow: none;
+  }
+
+  .solutionIntroStats div {
+    border-color: rgba(248, 243, 234, 0.09);
+    background: rgba(255, 255, 255, 0.065);
+  }
+
+  .solutionIntroStats span {
+    color: rgba(248, 243, 234, 0.58);
+  }
+
+  .customerMiniPanel div {
+    background: #2f8a68;
+    color: #ffffff;
+
+    span {
+      color: #ffffff;
+    }
+  }
+
+  .problemCard span {
+    background: rgba(175, 75, 60, 0.18);
+    color: #f3b4aa;
+  }
+
+  .solutionStrip {
+    li {
+      color: rgba(248, 243, 234, 0.7);
+    }
+
+    svg {
+      color: #b9f1da;
+    }
+  }
+
+  .midCtaSection {
+    background: #07140f;
+  }
+
+  .midCtaPanel {
+    background:
+      radial-gradient(circle at 82% 18%, rgba(47, 138, 104, 0.26), transparent 35%),
+      #103f31;
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.28);
   }
 
   .addOnsHeader p {
