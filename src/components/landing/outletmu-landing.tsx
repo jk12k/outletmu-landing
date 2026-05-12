@@ -414,92 +414,75 @@ const pricingPlans = [
     suffix: "/bulan",
     label: "Paket awal",
     cta: "Mulai Starter",
-    audience: "Untuk outlet yang ingin mulai pakai QR order meja, kasir basic, dan laporan awal.",
+    audience: "Untuk outlet yang ingin mulai pakai QR order meja, kasir, dan operasional dasar dalam satu alur.",
     features: [
-      "Menu digital online",
+      "Dashboard",
+      "POS kasir",
+      "Orders",
+      "Kitchen",
+      "Transaksi",
+      "Produk",
+      "Inventory",
+      "Report",
       "QR order meja",
-      "Guest checkout",
-      "Dashboard order/kasir basic",
-      "POS kasir basic",
-      "Produk & stok basic",
-      "Kitchen display basic",
-      "Laporan harian basic",
-      "Laporan mingguan/bulanan basic",
-      "Staff & role basic",
-      "Setup awal dibantu",
+      "Staff",
     ],
   },
   {
     name: "POS Basic",
     price: "Rp499.000",
     suffix: "/bulan",
-    label: "Recommended",
+    label: "Rekomendasi",
     cta: "Konsultasi POS Basic",
-    audience: "Untuk cafe/resto yang butuh kasir harian lebih lengkap dan operasional lebih rapi.",
+    audience: "Untuk cafe/resto yang butuh operasional kasir lebih rapi, data pelanggan, dan backup berkala.",
     featured: true,
     features: [
-      "Semua fitur Starter QR",
-      "POS kasir lebih lengkap",
-      "Dashboard order lebih rapi",
-      "QR table/order lebih lengkap",
-      "Inventory/stok lebih rapi",
-      "Laporan harian lebih lengkap",
+      "Semua fitur Starter",
+      "Absensi staff",
+      "Login member",
+      "Data pelanggan",
+      "Saldo member",
+      "Riwayat transaksi",
       "Backup berkala",
-      "Landing page outlet/cafe basic",
-      "Dukungan WhatsApp prioritas",
-    ],
-  },
-  {
-    name: "Pro Automation",
-    price: "Rp999.000",
-    suffix: "/bulan",
-    label: "Automation",
-    cta: "Konsultasi Pro",
-    audience: "Untuk outlet yang butuh kontrol stok, laporan, dan bantuan WhatsApp lebih serius.",
-    features: [
-      "Semua fitur POS Basic",
-      "Laporan mingguan/bulanan",
-      "Produk terlaris",
-      "Notifikasi stok",
-      "WhatsApp laporan otomatis",
-      "Support prioritas",
     ],
   },
   {
     name: "Business",
-    price: "Mulai Rp1.499.000",
+    price: "Rp799.000",
     suffix: "/bulan",
-    label: "Untuk bisnis berkembang",
-    cta: "Diskusikan Business",
-    audience: "Untuk bisnis yang mulai punya kebutuhan multi-outlet dan operasional lebih khusus.",
+    label: "Automation",
+    cta: "Konsultasi Business",
+    audience: "Untuk outlet yang butuh automation WhatsApp, laporan cepat via WA, dan support prioritas.",
     features: [
-      "Semua fitur Pro",
-      "Multi-outlet",
-      "QR order lebih lengkap",
-      "Kitchen flow lebih rapi",
-      "Laporan custom",
-      "Onboarding lebih serius",
+      "Semua fitur POS Basic",
+      "WhatsApp automation",
+      "Tanya laporan via WA",
+      "Absen lewat WA",
+      "Notifikasi stok",
+      "Report otomatis",
+      "Priority support",
     ],
   },
   {
     name: "Enterprise",
     price: "Konsultasi",
     suffix: "",
-    label: "Skala besar",
+    label: "Custom",
     cta: "Hubungi Outletmu",
     audience: "Untuk bisnis dengan kebutuhan integrasi, kontrol, dan pendampingan khusus.",
     features: [
       "Semua fitur Business",
+      "Setup custom",
+      "Multi-outlet advanced",
       "Integrasi khusus",
-      "Akses dan role lanjutan",
-      "Laporan khusus",
-      "Support khusus",
-      "Pendampingan prioritas",
+      "Custom workflow",
+      "Dedicated support",
+      "Onboarding khusus",
     ],
   },
 ];
 
-const comparisonPlans = ["Starter QR", "POS Basic", "Pro", "Business", "Enterprise"] as const;
+const comparisonPlans = ["Starter QR", "POS Basic", "Business", "Enterprise"] as const;
 
 type ComparisonPlanKey = (typeof comparisonPlans)[number];
 
@@ -507,116 +490,200 @@ const packageComparisonRows: Array<
   { feature: string } & Record<ComparisonPlanKey, string>
 > = [
   {
-    feature: "Menu digital",
+    feature: "Dashboard",
     "Starter QR": "Ya",
     "POS Basic": "Ya",
-    Pro: "Ya",
     Business: "Ya",
     Enterprise: "Ya",
   },
   {
-    feature: "QR order meja",
-    "Starter QR": "Basic",
-    "POS Basic": "Lengkap",
-    Pro: "Lengkap",
-    Business: "Custom",
-    Enterprise: "Custom",
-  },
-  {
     feature: "POS kasir",
-    "Starter QR": "Basic",
-    "POS Basic": "Lengkap",
-    Pro: "Ya",
-    Business: "Custom",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Dashboard order",
-    "Starter QR": "Basic",
-    "POS Basic": "Lengkap",
-    Pro: "Lengkap",
-    Business: "Lengkap",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Produk & stok",
-    "Starter QR": "Basic",
-    "POS Basic": "Lebih rapi",
-    Pro: "Lengkap",
-    Business: "Lengkap",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Kitchen display",
-    "Starter QR": "Basic",
-    "POS Basic": "Basic",
-    Pro: "Lengkap",
-    Business: "Lengkap",
-    Enterprise: "Custom",
-  },
-  {
-    feature: "Laporan harian",
-    "Starter QR": "Basic",
-    "POS Basic": "Lengkap",
-    Pro: "Lengkap",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
     Business: "Ya",
-    Enterprise: "Custom",
+    Enterprise: "Ya",
   },
   {
-    feature: "Laporan mingguan/bulanan",
-    "Starter QR": "Basic",
-    "POS Basic": "Basic",
-    Pro: "Lengkap",
-    Business: "Lengkap",
-    Enterprise: "Custom",
+    feature: "Orders",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
   },
   {
-    feature: "Staff & role",
-    "Starter QR": "Basic",
-    "POS Basic": "Lebih rapi",
-    Pro: "Lengkap",
-    Business: "Lengkap",
-    Enterprise: "Custom",
+    feature: "Kitchen",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Transaksi",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Produk",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Inventory",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Report",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "QR meja",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Staff",
+    "Starter QR": "Ya",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Absensi staff",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Login member",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Data pelanggan",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Saldo member",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Riwayat transaksi",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Backup berkala",
+    "Starter QR": "-",
+    "POS Basic": "Ya",
+    Business: "Ya",
+    Enterprise: "Ya",
   },
   {
     feature: "WhatsApp automation",
     "Starter QR": "-",
     "POS Basic": "-",
-    Pro: "Ya",
     Business: "Ya",
     Enterprise: "Ya",
   },
   {
-    feature: "Multi-outlet",
+    feature: "Tanya laporan via WA",
     "Starter QR": "-",
     "POS Basic": "-",
-    Pro: "-",
     Business: "Ya",
-    Enterprise: "Custom",
+    Enterprise: "Ya",
   },
   {
-    feature: "Laporan custom",
+    feature: "Absen lewat WA",
     "Starter QR": "-",
     "POS Basic": "-",
-    Pro: "-",
     Business: "Ya",
-    Enterprise: "Custom",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Notifikasi stok",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Report otomatis",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "Ya",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Priority support",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "Ya",
+    Enterprise: "Dedicated",
+  },
+  {
+    feature: "Setup custom",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "-",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Multi-outlet advanced",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "-",
+    Enterprise: "Ya",
   },
   {
     feature: "Integrasi khusus",
     "Starter QR": "-",
     "POS Basic": "-",
-    Pro: "-",
-    Business: "Opsional",
-    Enterprise: "Custom",
+    Business: "-",
+    Enterprise: "Ya",
   },
   {
-    feature: "Support prioritas",
-    "Starter QR": "Basic",
-    "POS Basic": "Prioritas",
-    Pro: "Prioritas",
-    Business: "Khusus",
-    Enterprise: "Khusus",
+    feature: "Custom workflow",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "-",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Dedicated support",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "-",
+    Enterprise: "Ya",
+  },
+  {
+    feature: "Onboarding khusus",
+    "Starter QR": "-",
+    "POS Basic": "-",
+    Business: "-",
+    Enterprise: "Ya",
   },
 ];
 
@@ -692,7 +759,7 @@ const faqs = [
   {
     question: "Apakah bisa pakai QR per meja?",
     answer:
-      "Bisa. Starter QR sudah termasuk QR order meja, POS kasir basic, kitchen display basic, produk dan stok basic, laporan basic, serta staff & role basic untuk 1 outlet. POS Basic cocok jika butuh alur kasir, dashboard order, backup, landing page outlet, dan dukungan WhatsApp yang lebih rapi.",
+      "Bisa. Starter QR sudah termasuk Dashboard, POS kasir, Orders, Kitchen, Transaksi, Produk, Inventory, Report, QR meja, dan Staff. Jika butuh absensi staff, login member, data pelanggan, saldo member, riwayat transaksi, dan backup berkala, naik ke POS Basic.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -701,7 +768,7 @@ const faqs = [
   {
     question: "Apakah bisa custom fitur?",
     answer:
-      "Bisa. Kebutuhan custom cocok dibahas lewat paket Business, terutama untuk alur khusus, multi-outlet, atau integrasi tambahan.",
+      "Bisa. Kebutuhan automation cocok di Business. Jika butuh setup custom, multi-outlet advanced, integrasi khusus, atau workflow khusus, lanjut ke Enterprise.",
   },
   {
     question: "Apakah bisa integrasi QRIS?",
@@ -1839,7 +1906,7 @@ function PricingDeckSection() {
   const mobileCardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const pricingDragRef = useRef({ startX: 0, hasMoved: false });
   const suppressPricingClickRef = useRef(false);
-  const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3], pricingPlans[4]];
+  const mobilePlans = [pricingPlans[1], pricingPlans[0], pricingPlans[2], pricingPlans[3]];
 
   useEffect(() => {
     const layoutCards = () => {
@@ -2116,7 +2183,7 @@ function PackageComparisonSection() {
       <SectionTitle
         badge="Perbandingan paket"
         title="Bandingkan paket Outletmu"
-        subtitle="Pilih paket sesuai tahap operasional outlet Anda. Bisa mulai dari QR order, lalu naik ke POS dan automasi saat bisnis berkembang."
+        subtitle="Pilih paket sesuai tahap operasional outlet Anda. Mulai dari QR order dan kasir, lalu naik ke member, automation, sampai kebutuhan custom."
       />
       <div className={landingStyles.comparisonShell}>
         <div
@@ -2136,7 +2203,7 @@ function PackageComparisonSection() {
                     className={cn(plan === "POS Basic" && landingStyles.comparisonRecommended)}
                   >
                     <span>{plan}</span>
-                    {plan === "POS Basic" ? <small>Recommended</small> : null}
+                    {plan === "POS Basic" ? <small>Rekomendasi</small> : null}
                   </th>
                 ))}
               </tr>
@@ -2160,7 +2227,7 @@ function PackageComparisonSection() {
         </div>
         <div className={landingStyles.comparisonNote}>
           <Check className="h-4 w-4" aria-hidden="true" />
-          <span>Starter QR sudah mencakup fitur basic untuk mulai digital. POS Basic tetap recommended untuk outlet yang butuh POS kasir, QR table/order, dashboard order, stok, laporan, backup, landing page outlet, dan dukungan WhatsApp yang lebih lengkap.</span>
+          <span>Starter QR cocok untuk mulai digital dengan kasir, order, kitchen, transaksi, report, QR meja, dan staff. POS Basic tetap rekomendasi untuk outlet yang butuh absensi staff, login member, data pelanggan, saldo member, riwayat transaksi, dan backup berkala.</span>
         </div>
       </div>
     </PageSection>
