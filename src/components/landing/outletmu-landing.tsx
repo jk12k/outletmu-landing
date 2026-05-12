@@ -410,7 +410,7 @@ const whatsappCommands = [
 const pricingPlans = [
   {
     name: "Starter QR",
-    price: "Rp299.000",
+    price: "Rp249.000",
     suffix: "/bulan",
     label: "Paket awal",
     cta: "Mulai Starter",
