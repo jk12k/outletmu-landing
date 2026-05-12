@@ -230,10 +230,10 @@
 
 .priceBox {
   margin-top: 1.25rem;
-  border: 1px solid rgba(20, 33, 61, 0.08);
-  border-radius: 1.65rem;
-  background: rgba(248, 243, 234, 0.6);
-  padding: 1.25rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
 
   div {
     display: flex;
@@ -275,8 +275,8 @@
 }
 
 .planCardFeatured .priceBox {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: transparent;
+  background: transparent;
 
   small,
   p {
@@ -616,8 +616,6 @@
 
   .priceBox {
     margin-top: 0.8rem;
-    border-radius: 1.25rem;
-    padding: 0.9rem;
   }
 
   .priceBox strong {
@@ -772,8 +770,8 @@
   }
 
   .priceBox {
-    border-color: rgba(248, 243, 234, 0.1);
-    background: rgba(255, 255, 255, 0.065);
+    border-color: transparent;
+    background: transparent;
 
     small,
     p {

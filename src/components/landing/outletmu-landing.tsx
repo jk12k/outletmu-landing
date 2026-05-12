@@ -426,6 +426,8 @@ const pricingPlans = [
       "Report",
       "QR order meja",
       "Staff",
+      "Data pelanggan",
+      "Riwayat transaksi",
     ],
   },
   {
@@ -434,16 +436,13 @@ const pricingPlans = [
     suffix: "/bulan",
     label: "Rekomendasi",
     cta: "Konsultasi POS Basic",
-    audience: "Untuk cafe/resto yang butuh operasional kasir lebih rapi, data pelanggan, dan backup berkala.",
+    audience: "Untuk cafe/resto yang butuh operasional kasir lebih rapi, absensi staff, login member, dan saldo member.",
     featured: true,
     features: [
       "Semua fitur Starter",
       "Absensi staff",
       "Login member",
-      "Data pelanggan",
       "Saldo member",
-      "Riwayat transaksi",
-      "Backup berkala",
     ],
   },
   {
@@ -575,7 +574,7 @@ const packageComparisonRows: Array<
   },
   {
     feature: "Data pelanggan",
-    "Starter QR": "-",
+    "Starter QR": "Ya",
     "POS Basic": "Ya",
     Business: "Ya",
     Enterprise: "Ya",
@@ -589,14 +588,7 @@ const packageComparisonRows: Array<
   },
   {
     feature: "Riwayat transaksi",
-    "Starter QR": "-",
-    "POS Basic": "Ya",
-    Business: "Ya",
-    Enterprise: "Ya",
-  },
-  {
-    feature: "Backup berkala",
-    "Starter QR": "-",
+    "Starter QR": "Ya",
     "POS Basic": "Ya",
     Business: "Ya",
     Enterprise: "Ya",
@@ -759,7 +751,7 @@ const faqs = [
   {
     question: "Apakah bisa pakai QR per meja?",
     answer:
-      "Bisa. Starter QR sudah termasuk Dashboard, POS kasir, Orders, Kitchen, Transaksi, Produk, Inventory, Report, QR meja, dan Staff. Jika butuh absensi staff, login member, data pelanggan, saldo member, riwayat transaksi, dan backup berkala, naik ke POS Basic.",
+      "Bisa. Starter QR sudah termasuk Dashboard, POS kasir, Orders, Kitchen, Transaksi, Produk, Inventory, Report, QR meja, Staff, Data pelanggan, dan Riwayat transaksi. Jika butuh absensi staff, login member, dan saldo member, naik ke POS Basic.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -2227,7 +2219,7 @@ function PackageComparisonSection() {
         </div>
         <div className={landingStyles.comparisonNote}>
           <Check className="h-4 w-4" aria-hidden="true" />
-          <span>Starter QR cocok untuk mulai digital dengan kasir, order, kitchen, transaksi, report, QR meja, dan staff. POS Basic tetap rekomendasi untuk outlet yang butuh absensi staff, login member, data pelanggan, saldo member, riwayat transaksi, dan backup berkala.</span>
+          <span>Starter QR cocok untuk mulai digital dengan kasir, order, kitchen, transaksi, report, QR meja, staff, data pelanggan, dan riwayat transaksi. POS Basic tetap rekomendasi untuk outlet yang butuh absensi staff, login member, dan saldo member.</span>
         </div>
       </div>
     </PageSection>
