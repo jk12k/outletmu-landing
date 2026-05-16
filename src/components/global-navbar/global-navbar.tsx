@@ -16,7 +16,7 @@ type Theme = "light" | "dark";
 
 type GlobalNavbarProps = {
   theme?: Theme;
-  /** When true, navbar tetap di atas halaman dengan posisi sticky */
+  /** When true, navbar tetap di atas halaman dengan posisi sticky/fixed */
   sticky?: boolean;
   /** Optional theme toggle handler. Kalau diset, tombol theme toggle muncul. */
   onToggleTheme?: () => void;
@@ -75,145 +75,155 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
     theme === "dark" ? "/branding/outletmu-full-dark.png" : "/branding/outletmu-full-light.png";
 
   return (
-    <header
-      data-theme={theme}
-      data-sticky={sticky ? "true" : "false"}
-      data-scrolled={isScrolled ? "true" : "false"}
-      className={styles.shell}
-    >
-      <div className={styles.inner}>
-        <Link href="/" className={styles.brand} aria-label="Outletmu homepage">
-          <Image
-            src={logoSrc}
-            alt="Outletmu"
-            width={1280}
-            height={320}
-            priority
-            sizes="(max-width: 480px) 132px, (max-width: 768px) 148px, 168px"
-            className={styles.brandImage}
-          />
-        </Link>
-
-        <nav className={styles.desktopNav} aria-label="Navigasi utama Outletmu">
-          {globalNavItems.map((item) => renderTopItem(item, openDropdown, handleEnter, handleLeave))}
-        </nav>
-
-        <div className={styles.actions}>
-          {onToggleTheme ? (
-            <button
-              type="button"
-              onClick={onToggleTheme}
-              aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
-              className={styles.themeToggle}
-            >
-              {theme === "dark" ? (
-                <Sun aria-hidden="true" />
-              ) : (
-                <Moon aria-hidden="true" />
-              )}
-              <span>{theme === "dark" ? "Light" : "Dark"}</span>
-            </button>
-          ) : null}
-          <Link href={globalLoginLink} className={styles.loginLink}>
-            Login
+    <>
+      {sticky ? <div className={styles.spacer} aria-hidden="true" /> : null}
+      <header
+        data-theme={theme}
+        data-sticky={sticky ? "true" : "false"}
+        data-scrolled={isScrolled ? "true" : "false"}
+        className={styles.shell}
+      >
+        <div className={styles.inner}>
+          <Link href="/" className={styles.brand} aria-label="Outletmu homepage">
+            <Image
+              src={logoSrc}
+              alt="Outletmu"
+              width={1280}
+              height={320}
+              priority
+              sizes="(max-width: 480px) 116px, (max-width: 768px) 132px, 148px"
+              className={styles.brandImage}
+            />
           </Link>
-          <a
-            href={globalWhatsappLink}
-            className={styles.cta}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Konsultasi via WhatsApp
-            <MessageCircle className={styles.ctaIcon} aria-hidden="true" />
-          </a>
-        </div>
 
-        <button
-          type="button"
-          className={styles.mobileToggle}
-          aria-label={openMobile ? "Tutup menu" : "Buka menu"}
-          aria-expanded={openMobile}
-          onClick={() => {
-            setOpenMobile((v) => !v);
-            setOpenMobileGroup(null);
-          }}
-        >
-          {openMobile ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
-      </div>
-
-      {openMobile ? (
-        <div className={styles.mobileSheet} role="dialog" aria-label="Menu navigasi Outletmu">
-          <nav className={styles.mobileNav}>
-            {globalNavItems.map((item) => {
-              if (item.kind === "link") {
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={styles.mobileLink}
-                    onClick={() => setOpenMobile(false)}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-              const isOpen = openMobileGroup === item.label;
-              return (
-                <div key={item.label} className={styles.mobileGroup}>
-                  <button
-                    type="button"
-                    className={styles.mobileGroupTrigger}
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenMobileGroup(isOpen ? null : item.label)}
-                  >
-                    <span>{item.label}</span>
-                    <ChevronDown
-                      className={isOpen ? styles.mobileChevronOpen : styles.mobileChevron}
-                      aria-hidden="true"
-                    />
-                  </button>
-                  {isOpen ? (
-                    <div className={styles.mobileGroupItems}>
-                      {item.items.map((leaf) => (
-                        <Link
-                          key={leaf.href}
-                          href={leaf.href}
-                          className={styles.mobileLeaf}
-                          onClick={() => setOpenMobile(false)}
-                        >
-                          <span>{leaf.label}</span>
-                          {leaf.description ? <small>{leaf.description}</small> : null}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              );
-            })}
+          <nav className={styles.desktopNav} aria-label="Navigasi utama Outletmu">
+            {globalNavItems.map((item) =>
+              renderTopItem(item, openDropdown, handleEnter, handleLeave),
+            )}
           </nav>
-          <div className={styles.mobileActions}>
-            <Link
-              href={globalLoginLink}
-              className={styles.mobileLogin}
-              onClick={() => setOpenMobile(false)}
-            >
-              Login ke aplikasi kasir
+
+          <div className={styles.actions}>
+            {onToggleTheme ? (
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
+                className={styles.themeToggle}
+              >
+                {theme === "dark" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+                <span>{theme === "dark" ? "Light" : "Dark"}</span>
+              </button>
+            ) : null}
+            <Link href={globalLoginLink} className={styles.loginLink}>
+              Login
             </Link>
             <a
               href={globalWhatsappLink}
-              className={styles.mobileCta}
+              className={styles.cta}
               target="_blank"
               rel="noreferrer noopener"
-              onClick={() => setOpenMobile(false)}
             >
               Konsultasi via WhatsApp
-              <MessageCircle aria-hidden="true" />
+              <MessageCircle className={styles.ctaIcon} aria-hidden="true" />
             </a>
           </div>
+
+          <a
+            href={globalWhatsappLink}
+            aria-label="Konsultasi via WhatsApp"
+            className={styles.mobileCtaIcon}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <MessageCircle aria-hidden="true" />
+          </a>
+          <button
+            type="button"
+            className={styles.mobileToggle}
+            aria-label={openMobile ? "Tutup menu" : "Buka menu"}
+            aria-expanded={openMobile}
+            onClick={() => {
+              setOpenMobile((v) => !v);
+              setOpenMobileGroup(null);
+            }}
+          >
+            {openMobile ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
         </div>
-      ) : null}
-    </header>
+
+        {openMobile ? (
+          <div className={styles.mobileSheet} role="dialog" aria-label="Menu navigasi Outletmu">
+            <nav className={styles.mobileNav}>
+              {globalNavItems.map((item) => {
+                if (item.kind === "link") {
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={styles.mobileLink}
+                      onClick={() => setOpenMobile(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                const isOpen = openMobileGroup === item.label;
+                return (
+                  <div key={item.label} className={styles.mobileGroup}>
+                    <button
+                      type="button"
+                      className={styles.mobileGroupTrigger}
+                      aria-expanded={isOpen}
+                      onClick={() => setOpenMobileGroup(isOpen ? null : item.label)}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        className={isOpen ? styles.mobileChevronOpen : styles.mobileChevron}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    {isOpen ? (
+                      <div className={styles.mobileGroupItems}>
+                        {item.items.map((leaf) => (
+                          <Link
+                            key={leaf.href}
+                            href={leaf.href}
+                            className={styles.mobileLeaf}
+                            onClick={() => setOpenMobile(false)}
+                          >
+                            <span>{leaf.label}</span>
+                            {leaf.description ? <small>{leaf.description}</small> : null}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </nav>
+            <div className={styles.mobileActions}>
+              <Link
+                href={globalLoginLink}
+                className={styles.mobileLogin}
+                onClick={() => setOpenMobile(false)}
+              >
+                Login ke aplikasi kasir
+              </Link>
+              <a
+                href={globalWhatsappLink}
+                className={styles.mobileCta}
+                target="_blank"
+                rel="noreferrer noopener"
+                onClick={() => setOpenMobile(false)}
+              >
+                Konsultasi via WhatsApp
+                <MessageCircle aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        ) : null}
+      </header>
+    </>
   );
 }
 
