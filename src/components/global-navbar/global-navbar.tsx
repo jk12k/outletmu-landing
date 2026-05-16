@@ -153,7 +153,32 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
 
         {openMobile ? (
           <div className={styles.mobileSheet} role="dialog" aria-label="Menu navigasi Outletmu">
-            <nav className={styles.mobileNav}>
+            <div className={styles.mobileSheetHeader}>
+              <Link
+                href="/"
+                className={styles.mobileBrand}
+                aria-label="Outletmu homepage"
+                onClick={() => setOpenMobile(false)}
+              >
+                <Image
+                  src={logoSrc}
+                  alt="Outletmu"
+                  width={1280}
+                  height={320}
+                  className={styles.mobileBrandImage}
+                  sizes="148px"
+                />
+              </Link>
+              <button
+                type="button"
+                className={styles.mobileSheetClose}
+                aria-label="Tutup menu"
+                onClick={() => setOpenMobile(false)}
+              >
+                <X aria-hidden="true" />
+              </button>
+            </div>
+            <nav className={styles.mobileNav} aria-label="Menu utama Outletmu">
               {globalNavItems.map((item) => {
                 if (item.kind === "link") {
                   return (
@@ -169,7 +194,11 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
                 }
                 const isOpen = openMobileGroup === item.label;
                 return (
-                  <div key={item.label} className={styles.mobileGroup}>
+                  <div
+                    key={item.label}
+                    className={styles.mobileGroup}
+                    data-open={isOpen ? "true" : "false"}
+                  >
                     <button
                       type="button"
                       className={styles.mobileGroupTrigger}
