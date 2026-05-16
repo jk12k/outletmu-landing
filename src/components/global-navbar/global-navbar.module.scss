@@ -5,7 +5,8 @@
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: saturate(140%) blur(12px);
   border-bottom: 1px solid rgba(15, 31, 61, 0.06);
-  transition: box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow 0.24s ease, background 0.24s ease, border-color 0.24s ease,
+    padding 0.24s ease, top 0.24s ease;
 }
 
 .shell[data-theme="dark"] {
@@ -20,13 +21,27 @@
 }
 
 .shell[data-scrolled="true"] {
-  box-shadow: 0 8px 28px rgba(15, 31, 61, 0.08);
-  background: rgba(255, 255, 255, 0.98);
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  padding-top: clamp(0.55rem, 1.3vw, 1rem);
 }
 
-.shell[data-theme="dark"][data-scrolled="true"] {
-  background: rgba(15, 31, 61, 0.94);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+.shell[data-scrolled="true"] .inner {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  padding: 8px 14px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 31, 61, 0.08);
+  box-shadow: 0 24px 70px rgba(15, 31, 61, 0.12);
+  backdrop-filter: saturate(150%) blur(18px);
+}
+
+.shell[data-theme="dark"][data-scrolled="true"] .inner {
+  background: rgba(15, 31, 61, 0.92);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
 }
 
 .inner {
@@ -36,6 +51,8 @@
   width: min(1280px, 100%);
   margin: 0 auto;
   padding: 14px 24px;
+  transition: width 0.24s ease, padding 0.24s ease, background 0.24s ease,
+    border-radius 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
 }
 
 .brand {
