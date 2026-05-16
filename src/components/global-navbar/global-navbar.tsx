@@ -91,7 +91,7 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
               width={1945}
               height={395}
               priority
-              sizes="(max-width: 480px) 152px, (max-width: 768px) 174px, 198px"
+              sizes="(max-width: 480px) 168px, (max-width: 768px) 188px, 220px"
               className={styles.brandImage}
             />
           </Link>
