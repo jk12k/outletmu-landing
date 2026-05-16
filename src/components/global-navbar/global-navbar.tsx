@@ -88,10 +88,10 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
             <Image
               src={logoSrc}
               alt="Outletmu"
-              width={1280}
-              height={320}
+              width={1945}
+              height={395}
               priority
-              sizes="(max-width: 480px) 116px, (max-width: 768px) 132px, 148px"
+              sizes="(max-width: 480px) 152px, (max-width: 768px) 174px, 198px"
               className={styles.brandImage}
             />
           </Link>
