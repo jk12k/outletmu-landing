@@ -13,7 +13,7 @@ const animatedLogoAssets = {
       alt: "",
     },
     dark: {
-      src: "/branding/outletmu-icon-dark.png",
+      src: "/branding/outletmu-icon-light.png",
       width: 925,
       height: 925,
       alt: "",
@@ -27,7 +27,7 @@ const animatedLogoAssets = {
       alt: "",
     },
     dark: {
-      src: "/branding/outletmu-wordmark-dark.png",
+      src: "/branding/outletmu-wordmark-light.png",
       width: 2002,
       height: 451,
       alt: "",

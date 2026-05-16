@@ -71,8 +71,7 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
     closeTimer.current = setTimeout(() => setOpenDropdown(null), 120);
   };
 
-  const logoSrc =
-    theme === "dark" ? "/branding/outletmu-full-dark.png" : "/branding/outletmu-full-light.png";
+  const logoSrc = "/branding/outletmu-full-light.png";
 
   return (
     <>

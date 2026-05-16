@@ -88,7 +88,7 @@ const brandLogoAssets: Record<
       alt: "Outletmu",
     },
     dark: {
-      src: "/branding/outletmu-full-dark.png",
+      src: "/branding/outletmu-full-light.png",
       width: 2002,
       height: 451,
       alt: "Outletmu",
@@ -102,7 +102,7 @@ const brandLogoAssets: Record<
       alt: "Outletmu",
     },
     dark: {
-      src: "/branding/outletmu-wordmark-dark.png",
+      src: "/branding/outletmu-wordmark-light.png",
       width: 2002,
       height: 451,
       alt: "Outletmu",
@@ -116,7 +116,7 @@ const brandLogoAssets: Record<
       alt: "Outletmu icon",
     },
     dark: {
-      src: "/branding/outletmu-icon-dark.png",
+      src: "/branding/outletmu-icon-light.png",
       width: 925,
       height: 925,
       alt: "Outletmu icon",

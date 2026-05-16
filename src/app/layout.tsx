@@ -37,10 +37,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/branding/outletmu-favicon-light-32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: light)" },
-      { url: "/branding/outletmu-favicon-light-192.png", sizes: "192x192", type: "image/png", media: "(prefers-color-scheme: light)" },
-      { url: "/branding/outletmu-favicon-dark-32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: dark)" },
-      { url: "/branding/outletmu-favicon-dark-192.png", sizes: "192x192", type: "image/png", media: "(prefers-color-scheme: dark)" }
+      { url: "/branding/outletmu-favicon-light-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/branding/outletmu-favicon-light-192.png", sizes: "192x192", type: "image/png" }
     ],
     shortcut: "/favicon.ico",
     apple: "/branding/outletmu-favicon.png",
