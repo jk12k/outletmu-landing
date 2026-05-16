@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { seoPages, type SeoPageContent, whatsappLink } from "./seo-pages";
+import { JsonLd } from "./json-ld";
+import { GlobalNavbar } from "@/components/global-navbar";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  graphSchema,
+  organizationSchema,
+  softwareApplicationSchema,
+  websiteSchema,
+} from "./schema";
 import styles from "@/styles/seoLanding.module.scss";
 
 type SeoLandingPageProps = {
@@ -9,16 +19,19 @@ type SeoLandingPageProps = {
 export function SeoLandingPage({ page }: SeoLandingPageProps) {
   return (
     <main className={styles.page}>
-      <nav className={styles.navbar} aria-label="Navigasi halaman SEO Outletmu">
-        <Link href="/" className={styles.brand}>
-          <span className={styles.brandMark}>O</span>
-          <span>Outletmu</span>
-        </Link>
-        <div className={styles.navActions}>
-          <Link href="/#pricing">Lihat Paket</Link>
-          <a href={whatsappLink}>WhatsApp</a>
-        </div>
-      </nav>
+      <JsonLd
+        data={graphSchema([
+          organizationSchema,
+          websiteSchema,
+          softwareApplicationSchema(page),
+          ...(page.faqs?.length ? [faqPageSchema(page.faqs)] : []),
+          breadcrumbSchema([
+            { name: "Outletmu", path: "/" },
+            { name: page.h1, path: page.path },
+          ]),
+        ])}
+      />
+      <GlobalNavbar />
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
@@ -30,7 +43,7 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
             <a href={whatsappLink} className={styles.primaryCta}>
               {page.primaryCta}
             </a>
-            <Link href="/#pricing" className={styles.secondaryCta}>
+            <Link href="/harga" className={styles.secondaryCta}>
               Cek Paket Bulanan
             </Link>
           </div>
@@ -87,6 +100,23 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
         </ol>
       </section>
 
+      {page.faqs?.length ? (
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span>FAQ</span>
+            <h2>Pertanyaan yang sering muncul</h2>
+          </div>
+          <div className={styles.storyGrid}>
+            {page.faqs.map((faq) => (
+              <article key={faq.question} className={styles.storyBlock}>
+                <h2>{faq.question}</h2>
+                <p>{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className={styles.section}>
         <div className={styles.ctaBand}>
           <div>
@@ -102,6 +132,23 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
           </a>
         </div>
       </section>
+
+      {page.guideLinks?.length ? (
+        <section className={styles.relatedSection}>
+          <div className={styles.sectionHeader}>
+            <span>Panduan terkait</span>
+            <h2>Baca juga sebelum memilih sistem</h2>
+          </div>
+          <div className={styles.relatedLinks}>
+            {page.guideLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                <strong>{link.label}</strong>
+                <small>{link.description}</small>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className={styles.relatedSection}>
         <div className={styles.sectionHeader}>

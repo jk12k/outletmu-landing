@@ -23,7 +23,6 @@ import {
   ListChecks,
   MessageCircle,
   MonitorCheck,
-  Moon,
   Package,
   Printer,
   QrCode,
@@ -34,7 +33,6 @@ import {
   ShoppingCart,
   Smartphone,
   Store,
-  Sun,
   Table2,
   WalletCards,
   type LucideIcon,
@@ -43,6 +41,7 @@ import { cn } from "@/lib/utils";
 import landingStyles from "@/styles/landing.module.scss";
 import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
+import { GlobalNavbar } from "@/components/global-navbar";
 
 const whatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20tentang%20POS%20kasir%20dan%20QR%20order";
@@ -53,7 +52,22 @@ const navItems = [
   { label: "Staff", href: "#staff" },
   { label: "Pembeli", href: "#customer" },
   { label: "Alur", href: "#flow" },
-  { label: "Harga", href: "#pricing" },
+  { label: "Harga", href: "/harga" },
+] as const;
+void navItems;
+
+const footerSeoLinks = [
+  { label: "Aplikasi Kasir Cafe", href: "/pos-kasir-cafe" },
+  { label: "QR Order Meja", href: "/qr-order-meja" },
+  { label: "Menu Digital Cafe", href: "/menu-digital-cafe" },
+  { label: "Harga", href: "/harga" },
+  { label: "Software Kasir F&B", href: "/software-kasir-fnb" },
+  { label: "Sistem Kasir Coffee Shop", href: "/sistem-kasir-coffee-shop" },
+  { label: "Aplikasi Kasir Restoran", href: "/aplikasi-kasir-restoran" },
+  { label: "Laporan WhatsApp", href: "/fitur/laporan-whatsapp" },
+  { label: "Kitchen Display", href: "/fitur/kitchen-display" },
+  { label: "Panduan Memilih Aplikasi Kasir", href: "/panduan/memilih-aplikasi-kasir-cafe" },
+  { label: "Panduan QR Order Meja", href: "/panduan/qr-order-meja-cafe" },
 ];
 
 type ThemeMode = "light" | "dark";
@@ -1078,74 +1092,11 @@ function HeaderLogo({ theme }: { theme: ThemeMode }) {
     </span>
   );
 }
+void HeaderLogo;
+
 
 function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const updateScrollState = () => {
-      const nextScrolled = window.scrollY > 24;
-
-      setIsScrolled((current) => (current === nextScrolled ? current : nextScrolled));
-    };
-
-    updateScrollState();
-    window.addEventListener("scroll", updateScrollState, { passive: true });
-
-    return () => window.removeEventListener("scroll", updateScrollState);
-  }, []);
-
-  return (
-    <header className={cn(landingStyles.navbar, isScrolled && landingStyles.navbarScrolled)}>
-      <div className={cn(landingStyles.container, landingStyles.navbarInner)}>
-        <div className={landingStyles.navbarTopRow}>
-          <Link href="/" className="flex min-w-0 items-center" aria-label="Outletmu homepage">
-            <HeaderLogo theme={theme} />
-          </Link>
-          <nav className={landingStyles.desktopNav} aria-label="Navigasi utama Outletmu">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <div className={landingStyles.navbarActions}>
-            <button
-              type="button"
-              onClick={onToggleTheme}
-              aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
-              className={landingStyles.themeToggle}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4" aria-hidden="true" />
-              ) : (
-                <Moon className="h-4 w-4" aria-hidden="true" />
-              )}
-              <span>{theme === "dark" ? "Light" : "Dark"}</span>
-            </button>
-            <ButtonLink href={whatsappLink} className="hidden lg:inline-flex">
-              Konsultasi via WhatsApp
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </ButtonLink>
-          </div>
-          <a
-            href={whatsappLink}
-            aria-label="Konsultasi via WhatsApp"
-            className={cn(landingStyles.mobileNavCta, "grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2F8A68] text-white shadow-lg lg:hidden")}
-          >
-            <MessageCircle className="h-5 w-5" aria-hidden="true" />
-          </a>
-        </div>
-        <nav className={landingStyles.mobileSectionNav} aria-label="Navigasi section Outletmu">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
+  return <GlobalNavbar theme={theme} onToggleTheme={onToggleTheme} />;
 }
 
 function HeroCardDeck() {
@@ -1273,7 +1224,7 @@ function HeroSection() {
         <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-2xl text-center xl:mx-0 xl:text-left")}>
           <Badge>Gratis setup untuk 100 outlet pertama</Badge>
           <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-[#14213D] dark:text-[#F8F3EA]")}>
-            POS kasir dan QR order untuk outlet yang ingin lebih rapi
+            Aplikasi kasir cafe dan QR order untuk outlet F&B yang ingin lebih rapi
           </h1>
           <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-lg xl:mx-0")}>
             Outletmu membantu cafe, restoran, dan UMKM F&B mengelola kasir, QR order meja, menu digital,
@@ -1284,8 +1235,8 @@ function HeroSection() {
               Konsultasi via WhatsApp
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
-            <ButtonLink href="#pricing" variant="secondary">
-              Lihat Paket
+            <ButtonLink href="/harga" variant="secondary">
+              Lihat Harga
             </ButtonLink>
           </div>
           <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0")}>
@@ -2440,6 +2391,16 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </a>
         </div>
       </div>
+      <nav
+        className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-x-5 gap-y-3 border-t border-[#14213D]/6 pt-6 text-sm font-semibold text-[#14213D]/60 dark:border-white/10 dark:text-[#F8F3EA]/60"
+        aria-label="Halaman utama Outletmu"
+      >
+        {footerSeoLinks.map((item) => (
+          <Link key={item.href} href={item.href} className="transition hover:text-[#2F8A68] dark:hover:text-white">
+            {item.label}
+          </Link>
+        ))}
+      </nav>
       <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/50 dark:border-white/10 dark:text-[#F8F3EA]/52 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
