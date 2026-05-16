@@ -12,6 +12,7 @@ import {
 } from "@/components/seo/schema";
 import { seoPages, siteUrl, whatsappLink } from "@/components/seo/seo-pages";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { ScrollReveal } from "@/components/effects/scroll-reveal";
 import styles from "@/styles/seoLanding.module.scss";
 
 const title = "Harga Aplikasi Kasir Cafe dan QR Order | Outletmu";
@@ -160,8 +161,9 @@ export default function HargaPage() {
 
       <GlobalNavbar />
 
+      <ScrollReveal>
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
+        <div className={styles.heroCopy} data-reveal>
           <p className={styles.eyebrow}>Harga aplikasi kasir cafe</p>
           <h1>Paket harga Outletmu untuk POS kasir dan QR order</h1>
           <p className={styles.lead}>
@@ -178,7 +180,7 @@ export default function HargaPage() {
           </div>
         </div>
 
-        <aside className={styles.intentPanel} aria-label="Ringkasan harga Outletmu">
+        <aside className={styles.intentPanel} aria-label="Ringkasan harga Outletmu" data-reveal>
           <span>Mulai dari</span>
           <p>
             Rp249.000/bulan untuk outlet yang ingin memakai QR order meja, menu digital,
@@ -193,13 +195,13 @@ export default function HargaPage() {
       </section>
 
       <section className={styles.section}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Paket bulanan</span>
           <h2>Harga untuk kebutuhan outlet yang berbeda</h2>
         </div>
         <div className={styles.priceGrid}>
           {plans.map((plan) => (
-            <article key={plan.name} className={styles.priceCard}>
+            <article key={plan.name} className={styles.priceCard} data-reveal>
               <span>{plan.label}</span>
               <h3>{plan.name}</h3>
               <p>{plan.description}</p>
@@ -221,13 +223,13 @@ export default function HargaPage() {
       </section>
 
       <section className={styles.workflowSection}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Add-ons</span>
           <h2>Tambahan hanya dipakai kalau outlet memang butuh</h2>
         </div>
         <div className={styles.featureGrid}>
           {addOns.map((item) => (
-            <article key={item.name} className={styles.featureCard}>
+            <article key={item.name} className={styles.featureCard} data-reveal>
               <h3>{item.name}</h3>
               <p>{item.value}</p>
             </article>
@@ -236,13 +238,13 @@ export default function HargaPage() {
       </section>
 
       <section className={styles.relatedSection}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Panduan terkait</span>
           <h2>Baca dulu sebelum memilih paket</h2>
         </div>
         <div className={styles.relatedLinks}>
           {guideLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link key={link.href} href={link.href} data-reveal>
               <strong>{link.label}</strong>
               <small>{link.description}</small>
             </Link>
@@ -253,7 +255,7 @@ export default function HargaPage() {
       <section className={styles.section}>
         <div className={styles.storyGrid}>
           {faqs.map((faq) => (
-            <article key={faq.question} className={styles.storyBlock}>
+            <article key={faq.question} className={styles.storyBlock} data-reveal>
               <h2>{faq.question}</h2>
               <p>{faq.answer}</p>
             </article>
@@ -262,7 +264,7 @@ export default function HargaPage() {
       </section>
 
       <section className={styles.section}>
-        <div className={styles.ctaBand}>
+        <div className={styles.ctaBand} data-reveal>
           <div>
             <span>Outletmu</span>
             <h2>Belum yakin paket mana yang paling masuk akal?</h2>
@@ -276,6 +278,7 @@ export default function HargaPage() {
           </a>
         </div>
       </section>
+      </ScrollReveal>
     </main>
   );
 }

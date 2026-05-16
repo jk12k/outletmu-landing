@@ -2,6 +2,7 @@ import Link from "next/link";
 import { seoPages, type SeoPageContent, whatsappLink } from "./seo-pages";
 import { JsonLd } from "./json-ld";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { ScrollReveal } from "@/components/effects/scroll-reveal";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -33,8 +34,9 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       />
       <GlobalNavbar />
 
+      <ScrollReveal>
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
+        <div className={styles.heroCopy} data-reveal>
           <p className={styles.eyebrow}>{page.eyebrow}</p>
           <h1>{page.h1}</h1>
           <p className={styles.lead}>{page.lead}</p>
@@ -49,7 +51,7 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
           </div>
         </div>
 
-        <aside className={styles.intentPanel} aria-label="Ringkasan kebutuhan outlet">
+        <aside className={styles.intentPanel} aria-label="Ringkasan kebutuhan outlet" data-reveal>
           <span>Untuk siapa</span>
           <p>{page.intent}</p>
           <div className={styles.intentTags}>
@@ -61,13 +63,13 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       </section>
 
       <section className={styles.section}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Fitur utama</span>
           <h2>Yang dibantu Outletmu untuk operasional outlet</h2>
         </div>
         <div className={styles.featureGrid}>
           {page.highlights.map((item) => (
-            <article key={item} className={styles.featureCard}>
+            <article key={item} className={styles.featureCard} data-reveal>
               <h3>{item}</h3>
             </article>
           ))}
@@ -77,7 +79,7 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       <section className={styles.section}>
         <div className={styles.storyGrid}>
           {page.sections.map((section) => (
-            <article key={section.title} className={styles.storyBlock}>
+            <article key={section.title} className={styles.storyBlock} data-reveal>
               <h2>{section.title}</h2>
               <p>{section.body}</p>
             </article>
@@ -86,13 +88,13 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       </section>
 
       <section className={styles.workflowSection}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Alur kerja</span>
           <h2>Dari menu sampai laporan penjualan</h2>
         </div>
         <ol className={styles.workflowList}>
           {page.workflow.map((item, index) => (
-            <li key={item}>
+            <li key={item} data-reveal>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <p>{item}</p>
             </li>
@@ -102,13 +104,13 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       {page.faqs?.length ? (
         <section className={styles.section}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span>FAQ</span>
             <h2>Pertanyaan yang sering muncul</h2>
           </div>
           <div className={styles.storyGrid}>
             {page.faqs.map((faq) => (
-              <article key={faq.question} className={styles.storyBlock}>
+              <article key={faq.question} className={styles.storyBlock} data-reveal>
                 <h2>{faq.question}</h2>
                 <p>{faq.answer}</p>
               </article>
@@ -118,7 +120,7 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       ) : null}
 
       <section className={styles.section}>
-        <div className={styles.ctaBand}>
+        <div className={styles.ctaBand} data-reveal>
           <div>
             <span>Outletmu</span>
             <h2>Diskusikan kebutuhan sistem kasir outlet kamu</h2>
@@ -135,13 +137,13 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       {page.guideLinks?.length ? (
         <section className={styles.relatedSection}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span>Panduan terkait</span>
             <h2>Baca juga sebelum memilih sistem</h2>
           </div>
           <div className={styles.relatedLinks}>
             {page.guideLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
+              <Link key={link.href} href={link.href} data-reveal>
                 <strong>{link.label}</strong>
                 <small>{link.description}</small>
               </Link>
@@ -151,19 +153,20 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       ) : null}
 
       <section className={styles.relatedSection}>
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionHeader} data-reveal>
           <span>Halaman terkait</span>
           <h2>Topik Outletmu lainnya</h2>
         </div>
         <div className={styles.relatedLinks}>
-          <Link href="/">Homepage Outletmu</Link>
+          <Link href="/" data-reveal>Homepage Outletmu</Link>
           {page.related.map((key) => (
-            <Link key={key} href={seoPages[key].path}>
+            <Link key={key} href={seoPages[key].path} data-reveal>
               {seoPages[key].h1}
             </Link>
           ))}
         </div>
       </section>
+      </ScrollReveal>
     </main>
   );
 }

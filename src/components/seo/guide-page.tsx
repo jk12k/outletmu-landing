@@ -11,6 +11,7 @@ import {
 } from "./schema";
 import { whatsappLink } from "./seo-pages";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { ScrollReveal } from "@/components/effects/scroll-reveal";
 import styles from "@/styles/seoLanding.module.scss";
 
 type GuidePageProps = {
@@ -41,9 +42,10 @@ export function GuidePage({ page }: GuidePageProps) {
 
       <GlobalNavbar />
 
+      <ScrollReveal>
       <article>
         <header className={styles.hero}>
-          <div className={styles.heroCopy}>
+          <div className={styles.heroCopy} data-reveal>
             <p className={styles.eyebrow}>{page.eyebrow}</p>
             <h1>{page.h1}</h1>
             <p className={styles.lead}>{page.intro[0]}</p>
@@ -58,7 +60,7 @@ export function GuidePage({ page }: GuidePageProps) {
             </div>
           </div>
 
-          <aside className={styles.intentPanel} aria-label="Ringkasan panduan">
+          <aside className={styles.intentPanel} aria-label="Ringkasan panduan" data-reveal>
             <span>Inti panduan</span>
             <p>{page.intent}</p>
             <div className={styles.intentTags}>
@@ -71,14 +73,14 @@ export function GuidePage({ page }: GuidePageProps) {
 
         <section className={styles.guideShell}>
           <div className={styles.guideBody}>
-            <div className={styles.guideIntro}>
+            <div className={styles.guideIntro} data-reveal>
               {page.intro.slice(1).map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
             {page.sections.map((section) => (
-              <section key={section.title} className={styles.guideSection}>
+              <section key={section.title} className={styles.guideSection} data-reveal>
                 <h2>{section.title}</h2>
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -93,7 +95,7 @@ export function GuidePage({ page }: GuidePageProps) {
               </section>
             ))}
 
-            <section className={styles.guideChecklist}>
+            <section className={styles.guideChecklist} data-reveal>
               <h2>{page.checklist.title}</h2>
               <ul>
                 {page.checklist.items.map((item) => (
@@ -102,7 +104,7 @@ export function GuidePage({ page }: GuidePageProps) {
               </ul>
             </section>
 
-            <section className={styles.guideCta}>
+            <section className={styles.guideCta} data-reveal>
               <span>Outletmu</span>
               <h2>{page.cta.title}</h2>
               <p>{page.cta.body}</p>
@@ -112,13 +114,13 @@ export function GuidePage({ page }: GuidePageProps) {
             </section>
 
             <section className={styles.guideFaq}>
-              <div className={styles.sectionHeader}>
+              <div className={styles.sectionHeader} data-reveal>
                 <span>FAQ</span>
                 <h2>Pertanyaan yang sering muncul</h2>
               </div>
               <div className={styles.guideFaqList}>
                 {page.faqs.map((faq) => (
-                  <article key={faq.question}>
+                  <article key={faq.question} data-reveal>
                     <h3>{faq.question}</h3>
                     <p>{faq.answer}</p>
                   </article>
@@ -127,7 +129,7 @@ export function GuidePage({ page }: GuidePageProps) {
             </section>
           </div>
 
-          <aside className={styles.guideSidebar} aria-label="Link internal panduan">
+          <aside className={styles.guideSidebar} aria-label="Link internal panduan" data-reveal>
             <span>Baca juga</span>
             <div className={styles.guideLinks}>
               {page.internalLinks.map((link) => (
@@ -140,6 +142,7 @@ export function GuidePage({ page }: GuidePageProps) {
           </aside>
         </section>
       </article>
+      </ScrollReveal>
     </main>
   );
 }
