@@ -790,35 +790,26 @@ const faqs = [
 
 type PricingPlan = (typeof pricingPlans)[number];
 
-function applyThemeMode(theme: ThemeMode) {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-  document.documentElement.dataset.theme = theme;
+function applyThemeMode(_: ThemeMode) {
+  document.documentElement.classList.remove("dark");
+  document.documentElement.dataset.theme = "light";
 }
 
 function useThemeMode() {
   const [theme, setTheme] = useState<ThemeMode>("light");
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem(themeStorageKey);
-    const preferredTheme: ThemeMode = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    const initialTheme: ThemeMode =
-      storedTheme === "dark" || storedTheme === "light" ? storedTheme : preferredTheme;
-
-    setTheme(initialTheme);
-    applyThemeMode(initialTheme);
+    setTheme("light");
+    applyThemeMode("light");
+    try {
+      window.localStorage.setItem(themeStorageKey, "light");
+    } catch (_) {}
   }, []);
 
   const toggleTheme = () => {
-    setTheme((currentTheme) => {
-      const nextTheme: ThemeMode = currentTheme === "dark" ? "light" : "dark";
-
-      window.localStorage.setItem(themeStorageKey, nextTheme);
-      applyThemeMode(nextTheme);
-
-      return nextTheme;
-    });
+    // Dark mode dimatikan permanen, force light.
+    applyThemeMode("light");
+    setTheme("light");
   };
 
   return { theme, toggleTheme };
@@ -1095,8 +1086,8 @@ function HeaderLogo({ theme }: { theme: ThemeMode }) {
 void HeaderLogo;
 
 
-function Navbar({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
-  return <GlobalNavbar theme={theme} onToggleTheme={onToggleTheme} />;
+function Navbar() {
+  return <GlobalNavbar theme="light" />;
 }
 
 function HeroCardDeck() {
@@ -2424,7 +2415,7 @@ export function OutletmuLanding() {
 
   return (
     <main ref={rootRef} className={landingStyles.page}>
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <Navbar />
       <HeroSection />
       <BusinessSolutionSection />
       <StaffFeatureSection />

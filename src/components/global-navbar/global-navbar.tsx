@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, MessageCircle, Moon, Sun, X } from "lucide-react";
+import { ChevronDown, Menu, MessageCircle, X } from "lucide-react";
 import {
   globalLoginLink,
   globalNavItems,
@@ -12,17 +12,15 @@ import {
 } from "./nav-config";
 import styles from "./global-navbar.module.scss";
 
-type Theme = "light" | "dark";
+type Theme = "light";
 
 type GlobalNavbarProps = {
   theme?: Theme;
   /** When true, navbar tetap di atas halaman dengan posisi sticky/fixed */
   sticky?: boolean;
-  /** Optional theme toggle handler. Kalau diset, tombol theme toggle muncul. */
-  onToggleTheme?: () => void;
 };
 
-export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: GlobalNavbarProps) {
+export function GlobalNavbar({ theme = "light", sticky = true }: GlobalNavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobile, setOpenMobile] = useState(false);
@@ -102,17 +100,6 @@ export function GlobalNavbar({ theme = "light", sticky = true, onToggleTheme }: 
           </nav>
 
           <div className={styles.actions}>
-            {onToggleTheme ? (
-              <button
-                type="button"
-                onClick={onToggleTheme}
-                aria-label={`Aktifkan ${theme === "dark" ? "light" : "dark"} mode`}
-                className={styles.themeToggle}
-              >
-                {theme === "dark" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
-                <span>{theme === "dark" ? "Light" : "Dark"}</span>
-              </button>
-            ) : null}
             <Link href={globalLoginLink} className={styles.loginLink}>
               Login
             </Link>
