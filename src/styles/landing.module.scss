@@ -407,6 +407,329 @@
   object-position: center;
 }
 
+.heroCafeShowcase {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  aspect-ratio: 3 / 2;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  border-radius: clamp(1.65rem, 3vw, 2.35rem);
+  background: #f8f3ea;
+  padding: clamp(0.42rem, 1vw, 0.65rem);
+  line-height: 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 34px 95px rgba(20, 33, 61, 0.13);
+}
+
+.heroCafeImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(1.25rem, 2.4vw, 1.78rem);
+  object-fit: cover;
+  object-position: center;
+}
+
+.operationalSection {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(47, 138, 104, 0.1), transparent 28rem),
+    #f8f3ea;
+}
+
+.operationalGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(1.6rem, 5vw, 4rem);
+}
+
+.operationalCopy {
+  min-width: 0;
+
+  h2 {
+    margin-top: 1.1rem;
+    color: #14213d;
+    font-size: clamp(2.05rem, 4.6vw, 3.7rem);
+    font-weight: 900;
+    line-height: 1.06;
+  }
+
+  > p {
+    max-width: 39rem;
+    margin-top: 1.2rem;
+    color: rgba(20, 33, 61, 0.66);
+    font-size: clamp(0.98rem, 1.55vw, 1.12rem);
+    font-weight: 540;
+    line-height: 1.82;
+  }
+}
+
+.operationalBenefits {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.55rem;
+
+  > div {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.8rem;
+    min-width: 0;
+    border: 1px solid rgba(20, 33, 61, 0.065);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.76);
+    padding: 0.9rem 1rem;
+    box-shadow: 0 14px 34px rgba(20, 33, 61, 0.055);
+  }
+
+  span {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 0.85rem;
+    background: #103f31;
+    color: #ffffff;
+  }
+
+  strong,
+  small {
+    display: block;
+    min-width: 0;
+  }
+
+  strong {
+    color: #14213d;
+    font-size: 0.96rem;
+    font-weight: 900;
+    line-height: 1.28;
+  }
+
+  small {
+    margin-top: 0.2rem;
+    color: rgba(20, 33, 61, 0.58);
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1.52;
+  }
+}
+
+.operationalVisualPanel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.075);
+  border-radius: clamp(1.65rem, 3vw, 2.35rem);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(47, 138, 104, 0.12), transparent 32%),
+    rgba(255, 255, 255, 0.72);
+  padding: clamp(0.8rem, 2.2vw, 1.35rem);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 34px 95px rgba(20, 33, 61, 0.11);
+}
+
+.operationalMockup {
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 61, 0.06);
+  border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: #fffaf3;
+  padding: clamp(0.95rem, 2.2vw, 1.25rem);
+}
+
+.operationalMockupTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 1.2rem;
+  background: #ffffff;
+  padding: 1rem;
+
+  span,
+  strong,
+  small {
+    display: block;
+  }
+
+  span {
+    color: #2f8a68;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  strong {
+    margin-top: 0.25rem;
+    color: #14213d;
+    font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  small {
+    flex: 0 0 auto;
+    border: 1px solid rgba(20, 33, 61, 0.08);
+    border-radius: 999px;
+    background: #f8f3ea;
+    padding: 0.52rem 0.78rem;
+    color: #103f31;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+}
+
+.operationalMetricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+
+  div {
+    min-width: 0;
+    border: 1px solid rgba(20, 33, 61, 0.055);
+    border-radius: 1rem;
+    background: #ffffff;
+    padding: 0.85rem;
+  }
+
+  span {
+    display: block;
+    color: rgba(20, 33, 61, 0.48);
+    font-size: 0.73rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+
+  strong {
+    display: block;
+    margin-top: 0.35rem;
+    color: #14213d;
+    font-size: clamp(1rem, 2vw, 1.28rem);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+}
+
+.operationalChartCard {
+  overflow: hidden;
+  margin-top: 0.85rem;
+  border: 1px solid rgba(20, 33, 61, 0.055);
+  border-radius: 1.2rem;
+  background: #ffffff;
+  padding: 1rem;
+
+  > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+
+  span {
+    color: rgba(20, 33, 61, 0.52);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  strong {
+    color: #2f8a68;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+}
+
+.operationalChartLine {
+  position: relative;
+  height: clamp(5.5rem, 14vw, 8rem);
+  margin-top: 0.8rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(47, 138, 104, 0.12), rgba(47, 138, 104, 0.02)),
+    repeating-linear-gradient(180deg, transparent 0 1.55rem, rgba(20, 33, 61, 0.055) 1.6rem 1.65rem);
+
+  &::before {
+    position: absolute;
+    inset: 18% 5% 20%;
+    border-bottom: 0.18rem solid #2f8a68;
+    border-left: 0.18rem solid transparent;
+    border-radius: 40% 55% 30% 45%;
+    clip-path: polygon(0 74%, 15% 58%, 28% 63%, 43% 38%, 58% 48%, 72% 25%, 86% 36%, 100% 18%, 100% 100%, 0 100%);
+    background: linear-gradient(180deg, rgba(47, 138, 104, 0.32), rgba(47, 138, 104, 0.04));
+    content: "";
+  }
+}
+
+.operationalBottomGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.42fr);
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.operationalTicketList,
+.operationalQrCard {
+  min-width: 0;
+  border: 1px solid rgba(20, 33, 61, 0.055);
+  border-radius: 1.2rem;
+  background: #ffffff;
+  padding: 1rem;
+}
+
+.operationalTicketList {
+  display: grid;
+  gap: 0.58rem;
+
+  > span {
+    color: rgba(20, 33, 61, 0.52);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  p {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    color: rgba(20, 33, 61, 0.72);
+    font-size: 0.84rem;
+    font-weight: 800;
+    line-height: 1.35;
+
+    svg {
+      flex: 0 0 auto;
+      color: #2f8a68;
+    }
+  }
+}
+
+.operationalQrCard {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #103f31;
+
+  svg {
+    color: #103f31;
+  }
+
+  strong {
+    margin-top: 0.45rem;
+    color: #14213d;
+    font-size: 0.94rem;
+    font-weight: 900;
+  }
+
+  span {
+    margin-top: 0.2rem;
+    color: rgba(20, 33, 61, 0.52);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+}
+
 .builderShell {
   position: relative;
   z-index: 1;
@@ -626,6 +949,63 @@
     font-size: 0.9rem;
     font-weight: 520;
     line-height: 1.65;
+  }
+}
+
+.coreFeatureSection {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(47, 138, 104, 0.08), transparent 26rem),
+    #f8f3ea;
+}
+
+.coreFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.8vw, 1rem);
+  margin-top: clamp(2rem, 4.2vw, 3.1rem);
+}
+
+.coreFeatureCard {
+  min-width: 0;
+  min-height: 12.1rem;
+  border: 1px solid rgba(20, 33, 61, 0.065);
+  border-radius: clamp(1.2rem, 2.5vw, 1.55rem);
+  background: rgba(255, 255, 255, 0.82);
+  padding: clamp(1rem, 2vw, 1.25rem);
+  box-shadow: 0 18px 46px rgba(20, 33, 61, 0.058);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: rgba(47, 138, 104, 0.22);
+    box-shadow: 0 22px 56px rgba(20, 33, 61, 0.078);
+  }
+
+  span {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    place-items: center;
+    border-radius: 0.95rem;
+    background: #e8f3ef;
+    color: #2f8a68;
+  }
+
+  h3 {
+    margin-top: 1rem;
+    color: #14213d;
+    font-size: 1.08rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+
+  p {
+    margin-top: 0.58rem;
+    color: rgba(20, 33, 61, 0.62);
+    font-size: 0.88rem;
+    font-weight: 540;
+    line-height: 1.58;
   }
 }
 
@@ -2379,6 +2759,7 @@
 
   .productFlowGrid,
   .whatsappGrid,
+  .operationalGrid,
   .solutionLayout,
   .customerHeaderGrid,
   .solutionStrip,
@@ -2438,9 +2819,28 @@
     margin-inline: auto;
   }
 
+  .operationalCopy {
+    text-align: center;
+
+    > p {
+      margin-inline: auto;
+    }
+  }
+
+  .operationalBenefits {
+    max-width: 38rem;
+    margin-inline: auto;
+  }
+
+  .operationalVisualPanel {
+    width: min(100%, 44rem);
+    margin-inline: auto;
+  }
+
   .roleFeatureGrid,
   .customerFeatureGrid,
-  .problemGrid {
+  .problemGrid,
+  .coreFeatureGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2610,7 +3010,18 @@
     padding: 0.48rem;
   }
 
+  .heroCafeShowcase {
+    width: min(100%, 40rem);
+    max-height: 24rem;
+    border-radius: 1.55rem;
+    padding: 0.42rem;
+  }
+
   .heroShowcaseImage {
+    border-radius: 1.2rem;
+  }
+
+  .heroCafeImage {
     border-radius: 1.2rem;
   }
 
@@ -2650,6 +3061,8 @@
   }
 
   .solutionLayout,
+  .operationalGrid,
+  .coreFeatureGrid,
   .roleFeatureGrid,
   .customerFeatureGrid,
   .problemGrid {
@@ -2657,6 +3070,7 @@
   }
 
   .solutionCardGrid,
+  .coreFeatureGrid,
   .roleFeatureGrid,
   .customerFeatureGrid,
   .problemGrid {
@@ -2664,6 +3078,9 @@
   }
 
   .solutionIntroCard,
+  .operationalVisualPanel,
+  .operationalMockup,
+  .coreFeatureCard,
   .solutionCard,
   .roleFeatureCard,
   .customerMiniPanel,
@@ -2676,8 +3093,45 @@
   }
 
   .solutionIntroCard,
-  .midCtaPanel {
+  .midCtaPanel,
+  .operationalVisualPanel {
     padding: 1.2rem;
+  }
+
+  .operationalCopy h2 {
+    font-size: clamp(2rem, 8.5vw, 2.65rem);
+  }
+
+  .operationalCopy > p {
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  .operationalBenefits {
+    gap: 0.65rem;
+  }
+
+  .operationalBenefits > div {
+    padding: 0.82rem;
+    text-align: left;
+  }
+
+  .operationalMetricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .operationalChartCard > div:first-child,
+  .operationalMockupTop {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .operationalBottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .coreFeatureCard {
+    min-height: auto;
   }
 
   .solutionIntroStats {
@@ -3123,6 +3577,12 @@
 @media (max-width: 480px) {
   .heroImageShowcase {
     width: min(100%, 21.5rem);
+  }
+
+  .heroCafeShowcase {
+    width: min(100%, 22.5rem);
+    aspect-ratio: 4 / 3;
+    max-height: 18rem;
   }
 
   .dashboardVisualFrame,

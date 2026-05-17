@@ -34,6 +34,7 @@ import {
   Smartphone,
   Store,
   Table2,
+  UserCheck,
   WalletCards,
   type LucideIcon,
 } from "lucide-react";
@@ -124,6 +125,12 @@ const brandLogoAssets: Record<
 };
 
 const landingImages = {
+  heroCafeDashboard: {
+    src: "/images/landing/outletmu-hero-cafe-dashboard.png",
+    width: 1536,
+    height: 1024,
+    alt: "Outletmu dashboard kasir cafe dan QR menu",
+  },
   deviceShowcase: {
     src: "/images/landing/outletmu-device-showcase.png",
     width: 1122,
@@ -174,6 +181,67 @@ const businessSolutionCards: Array<{
     title: "Siap berkembang",
     copy: "Mulai dari satu outlet, lalu naik ke POS kasir restoran dan multi-outlet saat kebutuhan bertambah.",
     icon: ShieldCheck,
+  },
+];
+
+const operationalHighlights: Array<{ title: string; copy: string; icon: LucideIcon }> = [
+  {
+    title: "Kasir dan QR order",
+    copy: "Order dari kasir dan scan QR masuk ke satu antrean.",
+    icon: QrCode,
+  },
+  {
+    title: "Stok dan kitchen",
+    copy: "Kitchen, stok menu, dan status pesanan lebih mudah dipantau.",
+    icon: ChefHat,
+  },
+  {
+    title: "Laporan owner",
+    copy: "Owner melihat omzet, transaksi, dan produk laris tanpa spreadsheet.",
+    icon: LineChart,
+  },
+];
+
+const coreFeatureCards: Array<{ title: string; copy: string; icon: LucideIcon }> = [
+  {
+    title: "POS Kasir",
+    copy: "Transaksi cepat untuk dine-in, takeaway, dan pembayaran outlet.",
+    icon: WalletCards,
+  },
+  {
+    title: "QR Menu",
+    copy: "Pelanggan scan meja, pilih menu, lalu order dari browser HP.",
+    icon: QrCode,
+  },
+  {
+    title: "Order Center",
+    copy: "Pesanan QR dan kasir masuk ke antrean yang sama.",
+    icon: ClipboardList,
+  },
+  {
+    title: "Kitchen Display",
+    copy: "Tim dapur melihat order baru, proses, dan siap diambil.",
+    icon: ChefHat,
+  },
+  {
+    title: "Inventory",
+    copy: "Pantau stok dasar agar menu habis lebih cepat diketahui.",
+    icon: Package,
+  },
+  {
+    title: "Reports",
+    copy: "Omzet, transaksi, dan produk terlaris tampil rapi untuk owner.",
+    icon: BarChart3,
+  },
+  {
+    title: "Website Outlet",
+    copy: "Menu digital dan halaman outlet siap dipakai pelanggan.",
+    icon: Globe2,
+  },
+  {
+    title: "Absensi",
+    copy: "Absensi staff tersedia saat outlet mulai butuh kontrol tim.",
+    icon: UserCheck,
   },
 ];
 
@@ -1075,23 +1143,17 @@ function Navbar() {
 
 function HeroCardDeck() {
   return (
-    <motion.div
-      data-reveal
-      className={landingStyles.heroImageShowcase}
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.42, ease: "easeOut" }}
-    >
+    <div className={landingStyles.heroCafeShowcase}>
       <Image
-        src={landingImages.deviceShowcase.src}
-        alt={landingImages.deviceShowcase.alt}
-        width={landingImages.deviceShowcase.width}
-        height={landingImages.deviceShowcase.height}
-        className={landingStyles.heroShowcaseImage}
+        src={landingImages.heroCafeDashboard.src}
+        alt={landingImages.heroCafeDashboard.alt}
+        width={landingImages.heroCafeDashboard.width}
+        height={landingImages.heroCafeDashboard.height}
+        className={landingStyles.heroCafeImage}
         priority
-        sizes="(max-width: 768px) 92vw, (max-width: 1280px) 46vw, 560px"
+        sizes="(max-width: 768px) 92vw, (max-width: 1280px) 50vw, 650px"
       />
-    </motion.div>
+    </div>
   );
 }
 
@@ -1126,6 +1188,87 @@ function HeroSection() {
         <HeroCardDeck />
       </div>
     </section>
+  );
+}
+
+function OperationalDashboardSection() {
+  return (
+    <PageSection className={landingStyles.operationalSection}>
+      <div data-reveal className={landingStyles.operationalGrid}>
+        <div className={landingStyles.operationalCopy}>
+          <Badge>Dashboard operasional</Badge>
+          <h2>Pantau kasir, QR order, stok, dan laporan dari satu dashboard.</h2>
+          <p>
+            Outletmu membuat alur outlet terlihat nyata: kasir menerima order, kitchen memproses,
+            stok ikut terbaca, dan owner bisa melihat ringkasan harian dari layar yang sama.
+          </p>
+          <div className={landingStyles.operationalBenefits}>
+            {operationalHighlights.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.title}>
+                  <span>
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <small>{item.copy}</small>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className={landingStyles.operationalVisualPanel} aria-label="Preview dashboard Outletmu">
+          <div className={landingStyles.operationalMockup}>
+            <div className={landingStyles.operationalMockupTop}>
+              <div>
+                <span>Outletmu</span>
+                <strong>Dashboard hari ini</strong>
+              </div>
+              <small>Kopi Senja</small>
+            </div>
+            <div className={landingStyles.operationalMetricGrid}>
+              {[
+                ["Omzet", "Rp7.260.000"],
+                ["Order masuk", "28"],
+                ["Stok menipis", "6"],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
+            <div className={landingStyles.operationalChartCard}>
+              <div>
+                <span>Revenue trend</span>
+                <strong>+12% dari kemarin</strong>
+              </div>
+              <div className={landingStyles.operationalChartLine} />
+            </div>
+            <div className={landingStyles.operationalBottomGrid}>
+              <div className={landingStyles.operationalTicketList}>
+                <span>Order terbaru</span>
+                {["Meja 03 - Kopi Susu", "Meja 07 - Nasi Goreng", "Takeaway - Croissant"].map((order) => (
+                  <p key={order}>
+                    <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                    {order}
+                  </p>
+                ))}
+              </div>
+              <div className={landingStyles.operationalQrCard}>
+                <QrCode className="h-16 w-16" aria-hidden="true" />
+                <strong>QR Menu</strong>
+                <span>Meja 03</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </PageSection>
   );
 }
 
@@ -1178,6 +1321,38 @@ function BusinessSolutionSection() {
             );
           })}
         </div>
+      </div>
+    </PageSection>
+  );
+}
+
+function CoreFeaturesSection() {
+  return (
+    <PageSection className={landingStyles.coreFeatureSection}>
+      <SectionTitle
+        badge="Fitur utama"
+        title="Fitur pentingnya lengkap, tampilnya tetap ringan."
+        subtitle="Kartu fitur dibuat ringkas agar calon pengguna cepat memahami apa saja yang tersedia di Outletmu."
+      />
+      <div data-reveal className={landingStyles.coreFeatureGrid}>
+        {coreFeatureCards.map((feature) => {
+          const Icon = feature.icon;
+
+          return (
+            <motion.article
+              key={feature.title}
+              className={landingStyles.coreFeatureCard}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 190, damping: 20 }}
+            >
+              <span>
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3>{feature.title}</h3>
+              <p>{feature.copy}</p>
+            </motion.article>
+          );
+        })}
       </div>
     </PageSection>
   );
@@ -2241,11 +2416,10 @@ function FinalCTASection() {
           <div className="text-center lg:text-left">
             <Badge tone="dark">Konsultasi via WhatsApp</Badge>
             <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-white">
-              Mulai rapikan order dan kasir outlet Anda
+              Siap rapikan kasir dan QR order outlet Anda?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg lg:mx-0">
-              Outletmu bantu setup dari awal, cocok untuk bisnis yang ingin punya sistem kasir dan QR order tanpa
-              ribet teknis.
+              Mulai dari POS kasir, QR menu, stok, sampai laporan harian dalam satu alur yang dibantu setup.
             </p>
           </div>
           <div className={landingStyles.finalMessage}>
@@ -2324,7 +2498,9 @@ export function OutletmuLanding() {
     <main ref={rootRef} className={landingStyles.page}>
       <Navbar />
       <HeroSection />
+      <OperationalDashboardSection />
       <BusinessSolutionSection />
+      <CoreFeaturesSection />
       <StaffFeatureSection />
       <CustomerFeatureSection />
       <FlowSection />
