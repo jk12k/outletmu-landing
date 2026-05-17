@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, type PanInfo } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -39,7 +39,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import landingStyles from "@/styles/landing.module.scss";
-import heroStyles from "@/styles/heroDeck.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 
@@ -124,38 +123,22 @@ const brandLogoAssets: Record<
   },
 };
 
-const heroSlides = [
-  {
-    eyebrow: "OUTLETMU",
-    title: "Dashboard outlet ringkas",
-    copy: "Order aktif, omzet hari ini, QR order, POS kasir, dan laporan dibuat mudah dibaca.",
-    items: ["Order aktif", "Omzet hari ini", "QR Order", "POS Kasir", "Laporan"],
-    stats: [
-      { label: "Order aktif", value: "7" },
-      { label: "Omzet hari ini", value: "Rp1.250.000" },
-    ],
+const landingImages = {
+  deviceShowcase: {
+    src: "/images/landing/outletmu-device-showcase.png",
+    width: 1122,
+    height: 1402,
+    alt: "Outletmu dashboard dan perangkat POS",
   },
-  {
-    eyebrow: "ORDER FLOW",
-    title: "Order dan kitchen",
-    copy: "Pesanan meja masuk ke dashboard, kitchen memproses, lalu kasir menyelesaikan pembayaran.",
-    items: ["Order QR meja", "Dashboard order", "Kitchen display", "Status pesanan", "Pembayaran"],
-    stats: [
-      { label: "Meja aktif", value: "12" },
-      { label: "Order baru", value: "5" },
-    ],
+  cafeDashboard: {
+    src: "/images/landing/outletmu-cafe-dashboard-hero.png",
+    alt: "Outletmu dashboard operasional cafe",
   },
-  {
-    eyebrow: "OWNER VIEW",
-    title: "Pantauan owner",
-    copy: "Owner bisa membaca omzet, produk terlaris, stok menipis, dan laporan tanpa rekap manual.",
-    items: ["Omzet harian", "Produk terlaris", "Stok menipis", "Laporan", "WhatsApp query"],
-    stats: [
-      { label: "Produk terlaris", value: "Kopi Susu" },
-      { label: "Stok menipis", value: "3 item" },
-    ],
+  cafeTabletQr: {
+    src: "/images/landing/outletmu-cafe-tablet-qr-hero.png",
+    alt: "Outletmu QR menu dan dashboard cafe",
   },
-];
+} as const;
 
 const businessSolutionCards: Array<{
   title: string;
@@ -1091,118 +1074,24 @@ function Navbar() {
 }
 
 function HeroCardDeck() {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const slide = heroSlides[activeSlide];
-
-  const goToSlide = (index: number) => {
-    setActiveSlide((index + heroSlides.length) % heroSlides.length);
-  };
-
-  const moveSlide = (direction: 1 | -1) => {
-    setActiveSlide((current) => (current + direction + heroSlides.length) % heroSlides.length);
-  };
-
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false);
-
-    if (info.offset.x < -64 || info.velocity.x < -420) {
-      moveSlide(1);
-    }
-
-    if (info.offset.x > 64 || info.velocity.x > 420) {
-      moveSlide(-1);
-    }
-  };
-
-  const card = (mobile = false) => (
-    <motion.div
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.16}
-      onDragStart={() => setIsDragging(true)}
-      onDragEnd={handleDragEnd}
-      whileTap={{ scale: 0.992 }}
-      className={cn(heroStyles.mainCard, mobile && heroStyles.mobileMainCard, isDragging && heroStyles.dragging)}
-      aria-roledescription="carousel"
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={slide.title}
-          initial={{ opacity: 0, x: mobile ? 24 : 42 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: mobile ? -22 : -38 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          <div className={heroStyles.innerPanel}>
-            <div className="min-w-0">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/52">{slide.eyebrow}</p>
-              <h3 className="mt-3 text-[clamp(1.6rem,4vw,2.25rem)] font-semibold leading-tight text-white">
-                {slide.title}
-              </h3>
-              <span className={heroStyles.slideCopy}>{slide.copy}</span>
-            </div>
-            <div className={heroStyles.featureStack}>
-              {slide.items.map((feature) => (
-                <div key={feature} className={heroStyles.featureRow}>
-                  <span className="flex min-w-0 items-center gap-3 text-sm font-semibold text-white">
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[#103F31]">
-                      <Check className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <span className="truncate">{feature}</span>
-                  </span>
-                  <span className="shrink-0 text-xs font-semibold text-white/48">Aktif</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={heroStyles.stats}>
-            {slide.stats.map((stat) => (
-              <div key={stat.label}>
-                <p>{stat.label}</p>
-                <strong>{stat.value}</strong>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
-  );
-
-  const controls = (mobile = false) => (
-    <div className={cn(heroStyles.controls, mobile && heroStyles.mobileControls)} aria-label="Navigasi preview Outletmu">
-        <button type="button" aria-label="Slide sebelumnya" onClick={() => moveSlide(-1)}>
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        </button>
-        {heroSlides.map((item, index) => (
-          <button
-            key={item.title}
-            type="button"
-            aria-label={`Lihat ${item.title}`}
-            aria-current={activeSlide === index}
-            onClick={() => goToSlide(index)}
-            className={cn(heroStyles.dot, activeSlide === index && heroStyles.dotActive)}
-          />
-        ))}
-        <button type="button" aria-label="Slide berikutnya" onClick={() => moveSlide(1)}>
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
-      </div>
-  );
-
   return (
-    <div data-reveal className={heroStyles.deckWrap}>
-      <div className={heroStyles.desktopDeckVisual}>
-        <div className={heroStyles.mainFloatLayer} data-float="hero-main">
-          {card()}
-        </div>
-        {controls()}
-      </div>
-      <div className={heroStyles.mobileDeckVisual}>
-        {card(true)}
-        {controls(true)}
-      </div>
-    </div>
+    <motion.div
+      data-reveal
+      className={landingStyles.heroImageShowcase}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.42, ease: "easeOut" }}
+    >
+      <Image
+        src={landingImages.deviceShowcase.src}
+        alt={landingImages.deviceShowcase.alt}
+        width={landingImages.deviceShowcase.width}
+        height={landingImages.deviceShowcase.height}
+        className={landingStyles.heroShowcaseImage}
+        priority
+        sizes="(max-width: 768px) 92vw, (max-width: 1280px) 46vw, 560px"
+      />
+    </motion.div>
   );
 }
 
@@ -1302,6 +1191,15 @@ function StaffFeatureSection() {
         title="Lebih mudah untuk kasir, kitchen, dan owner"
         subtitle="Operasional harian dibuat jelas dari pesanan masuk, proses kitchen, pembayaran, sampai laporan penjualan."
       />
+      <div data-reveal className={landingStyles.dashboardVisualFrame}>
+        <Image
+          src={landingImages.cafeDashboard.src}
+          alt={landingImages.cafeDashboard.alt}
+          fill
+          className={landingStyles.sectionVisualImage}
+          sizes="(max-width: 768px) 92vw, (max-width: 1280px) 88vw, 1120px"
+        />
+      </div>
       <div data-reveal className={landingStyles.roleFeatureGrid}>
         {staffFeatureCards.map((feature, index) => {
           const Icon = feature.icon;
@@ -1347,6 +1245,15 @@ function CustomerFeatureSection() {
           <strong>Meja B4</strong>
           <p>Menu digital cafe terbuka dari browser HP, pesanan membawa informasi meja, dan order masuk ke dashboard.</p>
         </div>
+      </div>
+      <div data-reveal className={landingStyles.customerVisualFrame}>
+        <Image
+          src={landingImages.cafeTabletQr.src}
+          alt={landingImages.cafeTabletQr.alt}
+          fill
+          className={landingStyles.sectionVisualImage}
+          sizes="(max-width: 768px) 92vw, (max-width: 1280px) 88vw, 1120px"
+        />
       </div>
       <div data-reveal className={landingStyles.customerFeatureGrid}>
         {customerFeatureCards.map((feature) => {
