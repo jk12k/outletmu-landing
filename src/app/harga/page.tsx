@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Check, MessageCircle, ShieldCheck } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   breadcrumbSchema,
@@ -12,7 +13,7 @@ import {
 } from "@/components/seo/schema";
 import { seoPages, siteUrl, whatsappLink } from "@/components/seo/seo-pages";
 import { GlobalNavbar } from "@/components/global-navbar";
-import { ScrollReveal } from "@/components/effects/scroll-reveal";
+import { cn } from "@/lib/utils";
 import styles from "@/styles/seoLanding.module.scss";
 
 const title = "Harga Aplikasi Kasir Cafe dan QR Order | Outletmu";
@@ -40,38 +41,61 @@ export const metadata: Metadata = {
   },
 };
 
-const plans = [
+const pricingPlans = [
   {
-    name: "Starter QR",
+    name: "Starter",
     price: "Rp249.000",
-    suffix: "/bulan",
-    label: "Paket awal",
-    description: "Untuk outlet yang ingin mulai pakai QR order meja, POS kasir, dan operasional dasar.",
-    features: ["Dashboard", "POS kasir", "QR order meja", "Menu digital", "Kitchen", "Inventory", "Report"],
+    suffix: "/ bulan",
+    description: "Untuk outlet kecil yang mulai merapikan kasir dan menu digital.",
+    button: "Mulai Starter",
+    features: ["POS Kasir", "QR Menu", "Order Center", "Produk & kategori", "Laporan dasar", "1 outlet"],
   },
   {
     name: "POS Basic",
     price: "Rp499.000",
-    suffix: "/bulan",
-    label: "Rekomendasi",
-    description: "Untuk cafe/resto yang butuh kasir lebih rapi, absensi staff, login member, dan saldo member.",
-    features: ["Semua fitur Starter", "Absensi staff", "Login member", "Saldo member", "Riwayat transaksi"],
+    suffix: "/ bulan",
+    badge: "Paling Direkomendasikan",
+    highlighted: true,
+    description: "Paket inti untuk kasir, QR order, kitchen, inventory, dan laporan outlet.",
+    button: "Pilih POS Basic",
+    features: [
+      "Semua fitur Starter",
+      "Kitchen Display",
+      "Inventory & stok menipis",
+      "QR Table / QR Meja",
+      "Laporan omzet, transaksi, dan produk terlaris",
+      "Support setup awal",
+    ],
   },
   {
-    name: "Business",
+    name: "Pro Automation",
     price: "Rp799.000",
-    suffix: "/bulan",
-    label: "Automation",
-    description: "Untuk outlet yang butuh laporan WhatsApp, notifikasi stok, dan support prioritas.",
-    features: ["Semua fitur POS Basic", "WhatsApp automation", "Tanya laporan via WA", "Notifikasi stok", "Priority support"],
+    suffix: "/ bulan",
+    description: "Untuk outlet yang ingin operasional lebih otomatis dan terpantau.",
+    button: "Pilih Pro Automation",
+    features: [
+      "Semua fitur POS Basic",
+      "Multi outlet ringan",
+      "Role staff",
+      "Audit log",
+      "Absensi staff",
+      "Automasi laporan dan workflow operasional",
+    ],
   },
   {
     name: "Enterprise",
     price: "Konsultasi",
     suffix: "",
-    label: "Custom",
-    description: "Untuk bisnis dengan kebutuhan integrasi, multi-outlet advanced, dan workflow khusus.",
-    features: ["Semua fitur Business", "Setup custom", "Multi-outlet advanced", "Integrasi khusus", "Dedicated support"],
+    description: "Untuk kebutuhan khusus, outlet ramai, atau penyesuaian alur bisnis.",
+    button: "Konsultasi",
+    features: [
+      "Custom workflow",
+      "Setup multi outlet",
+      "Onboarding khusus",
+      "Prioritas support",
+      "Integrasi sesuai kebutuhan",
+      "Penyesuaian performa traffic tinggi",
+    ],
   },
 ];
 
@@ -79,7 +103,7 @@ const faqs = [
   {
     question: "Berapa harga aplikasi kasir cafe Outletmu?",
     answer:
-      "Paket Outletmu mulai dari Rp249.000 per bulan untuk Starter QR. Paket lain tersedia untuk kebutuhan POS Basic, automation WhatsApp, dan custom workflow.",
+      "Paket Outletmu mulai dari Rp249.000 per bulan untuk Starter. Paket lain tersedia untuk POS Basic, Pro Automation, dan Enterprise sesuai kebutuhan outlet.",
   },
   {
     question: "Apakah harga sudah termasuk setup?",
@@ -89,26 +113,13 @@ const faqs = [
   {
     question: "Paket mana yang cocok untuk cafe kecil?",
     answer:
-      "Cafe kecil biasanya bisa mulai dari Starter QR atau POS Basic. Starter cocok untuk QR order dan POS dasar, sedangkan POS Basic cocok jika butuh absensi staff, login member, dan saldo member.",
+      "Cafe kecil biasanya bisa mulai dari Starter. Jika butuh kitchen display, inventory, QR meja, dan laporan lebih lengkap, POS Basic menjadi paket yang paling direkomendasikan.",
   },
   {
-    question: "Apakah ada biaya tambahan?",
+    question: "Apakah bisa konsultasi sebelum memilih paket?",
     answer:
-      "Add-ons seperti domain brand sendiri, desain QR, training tambahan, atau kebutuhan custom dibahas terpisah sesuai kebutuhan outlet.",
+      "Bisa. Tim Outletmu bisa bantu memetakan kebutuhan POS, QR menu, kitchen, inventory, laporan, dan workflow sebelum outlet memilih paket.",
   },
-];
-
-const addOns = [
-  { name: "Default link Outletmu", value: "Free" },
-  { name: "Domain .com", value: "+Rp209.900/tahun" },
-  { name: "Domain .id", value: "+Rp252.900/tahun" },
-  { name: "Desain QR", value: "Rp25.000" },
-  { name: "Training onsite awal", value: "Free 1x" },
-  { name: "Training online tambahan", value: "Rp50.000/sesi" },
-  { name: "Training onsite tambahan", value: "Rp100.000/sesi" },
-  { name: "Branding ringan", value: "Mulai Rp50.000" },
-  { name: "Workflow custom", value: "Mulai Rp250.000" },
-  { name: "Template WhatsApp custom", value: "Mulai Rp75.000" },
 ];
 
 const guideLinks = [
@@ -133,7 +144,7 @@ const productSchema = productOfferSchema({
   id: `${siteUrl}/harga#product`,
   name: "Outletmu",
   description,
-  offers: plans
+  offers: pricingPlans
     .filter((plan) => plan.price.startsWith("Rp"))
     .map((plan) => ({
       name: plan.name,
@@ -144,7 +155,7 @@ const productSchema = productOfferSchema({
 
 export default function HargaPage() {
   return (
-    <main className={styles.page}>
+    <main className={cn(styles.page, styles.pricingPage)}>
       <JsonLd
         data={graphSchema([
           organizationSchema,
@@ -161,14 +172,13 @@ export default function HargaPage() {
 
       <GlobalNavbar />
 
-      <ScrollReveal>
-      <section className={styles.hero}>
+      <section className={cn(styles.hero, styles.pricingHero)}>
         <div className={styles.heroCopy} data-reveal>
-          <p className={styles.eyebrow}>Harga aplikasi kasir cafe</p>
-          <h1>Paket harga Outletmu untuk POS kasir dan QR order</h1>
+          <p className={styles.eyebrow}>Harga Outletmu</p>
+          <h1>Paket POS dan QR menu untuk outlet F&B</h1>
           <p className={styles.lead}>
-            Pilih paket bulanan sesuai tahap outlet: mulai dari QR order meja dan POS kasir,
-            lalu naik ke member, laporan WhatsApp, stok, kitchen display, dan kebutuhan custom.
+            Pilih paket bulanan sesuai tahap operasional: mulai dari kasir dan QR menu,
+            lalu naik ke kitchen, inventory, laporan, staff, dan workflow yang lebih otomatis.
           </p>
           <div className={styles.heroActions}>
             <a href={whatsappLink} className={styles.primaryCta}>
@@ -180,58 +190,101 @@ export default function HargaPage() {
           </div>
         </div>
 
-        <aside className={styles.intentPanel} aria-label="Ringkasan harga Outletmu" data-reveal>
-          <span>Mulai dari</span>
+        <aside className={styles.pricingHeroPanel} aria-label="Ringkasan paket Outletmu" data-reveal>
+          <div className={styles.pricingHeroIcon}>
+            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <span>Direkomendasikan untuk mulai rapi</span>
+          <h2>POS Basic</h2>
           <p>
-            Rp249.000/bulan untuk outlet yang ingin memakai QR order meja, menu digital,
-            POS kasir, dan laporan dengan setup dibantu.
+            Kasir, QR meja, kitchen display, inventory, dan laporan outlet dalam satu setup yang dibantu.
           </p>
-          <div className={styles.intentTags}>
-            <span>Setup dibantu</span>
-            <span>Hosting termasuk</span>
-            <span>Support WhatsApp</span>
+          <div className={styles.pricingHeroStats}>
+            <div>
+              <strong>4 paket</strong>
+              <small>untuk tahap outlet berbeda</small>
+            </div>
+            <div>
+              <strong>Rp249.000</strong>
+              <small>mulai per bulan</small>
+            </div>
           </div>
         </aside>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.sectionHeader} data-reveal>
-          <span>Paket bulanan</span>
-          <h2>Harga untuk kebutuhan outlet yang berbeda</h2>
+      <section className={cn(styles.section, styles.pricingTableSection)}>
+        <div className={styles.pricingHeader} data-reveal>
+          <div>
+            <span>Paket bulanan</span>
+            <h2>Harga untuk kebutuhan outlet yang berbeda</h2>
+          </div>
+          <p>
+            Semua paket dibuat untuk operasional UMKM F&B yang butuh kasir, QR menu,
+            order center, stok, kitchen, dan laporan tanpa setup teknis yang rumit.
+          </p>
         </div>
-        <div className={styles.priceGrid}>
-          {plans.map((plan) => (
-            <article key={plan.name} className={styles.priceCard} data-reveal>
-              <span>{plan.label}</span>
-              <h3>{plan.name}</h3>
-              <p>{plan.description}</p>
-              <div className={styles.priceValue}>
-                <strong>{plan.price}</strong>
-                <small>{plan.suffix}</small>
+
+        <div className={styles.pricingGrid21}>
+          {pricingPlans.map((plan) => (
+            <article
+              key={plan.name}
+              className={cn(styles.pricingPlanCard, plan.highlighted && styles.pricingPlanCardFeatured)}
+              data-reveal
+            >
+              <div className={styles.pricingPlanTop}>
+                <h3>{plan.name}</h3>
+                {plan.badge ? <span>{plan.badge}</span> : null}
               </div>
-              <ul>
+              <p>{plan.description}</p>
+              <div className={styles.pricingAmount}>
+                <strong>{plan.price}</strong>
+                {plan.suffix ? <small>{plan.suffix}</small> : null}
+              </div>
+              <a
+                href={whatsappLink}
+                className={cn(styles.pricingButton, plan.highlighted ? styles.primaryCta : styles.secondaryCta)}
+              >
+                {plan.button}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <ul className={styles.pricingFeatureList}>
                 {plan.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
+                  <li key={feature}>
+                    <Check className="h-4 w-4" aria-hidden="true" />
+                    <span>{feature}</span>
+                  </li>
                 ))}
               </ul>
-              <a href={whatsappLink} className={styles.secondaryCta}>
-                Tanya Paket
-              </a>
             </article>
           ))}
         </div>
+
+        <div className={styles.pricingFooterBanner} data-reveal>
+          <div>
+            <span>Outletmu</span>
+            <h2>Butuh paket yang pas untuk operasional outletmu?</h2>
+            <p>
+              Tim Outletmu bisa bantu rekomendasikan setup POS, QR menu, kitchen, inventory,
+              dan laporan sesuai kebutuhan bisnis.
+            </p>
+          </div>
+          <a href={whatsappLink} className={styles.primaryCta}>
+            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            Konsultasi via WhatsApp
+          </a>
+        </div>
       </section>
 
-      <section className={styles.workflowSection}>
+      <section className={styles.section}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>Add-ons</span>
-          <h2>Tambahan hanya dipakai kalau outlet memang butuh</h2>
+          <span>FAQ</span>
+          <h2>Pertanyaan sebelum memilih paket</h2>
         </div>
-        <div className={styles.featureGrid}>
-          {addOns.map((item) => (
-            <article key={item.name} className={styles.featureCard} data-reveal>
-              <h3>{item.name}</h3>
-              <p>{item.value}</p>
+        <div className={styles.pricingFaqGrid}>
+          {faqs.map((faq) => (
+            <article key={faq.question} className={styles.pricingFaqCard} data-reveal>
+              <h2>{faq.question}</h2>
+              <p>{faq.answer}</p>
             </article>
           ))}
         </div>
@@ -251,34 +304,6 @@ export default function HargaPage() {
           ))}
         </div>
       </section>
-
-      <section className={styles.section}>
-        <div className={styles.storyGrid}>
-          {faqs.map((faq) => (
-            <article key={faq.question} className={styles.storyBlock} data-reveal>
-              <h2>{faq.question}</h2>
-              <p>{faq.answer}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className={styles.ctaBand} data-reveal>
-          <div>
-            <span>Outletmu</span>
-            <h2>Belum yakin paket mana yang paling masuk akal?</h2>
-            <p>
-              Ceritakan jenis outlet, jumlah meja, fitur yang dibutuhkan, dan alur operasional
-              sekarang. Tim Outletmu akan bantu pilih paket tanpa memaksakan fitur yang belum perlu.
-            </p>
-          </div>
-          <a href={whatsappLink} className={styles.primaryCta}>
-            Chat WhatsApp Outletmu
-          </a>
-        </div>
-      </section>
-      </ScrollReveal>
     </main>
   );
 }

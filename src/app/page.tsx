@@ -24,7 +24,7 @@ const homepageFaqs = [
   {
     question: "Apakah bisa pakai QR per meja?",
     answer:
-      "Bisa. Starter QR sudah termasuk Dashboard, POS kasir, Orders, Kitchen, Transaksi, Produk, Inventory, Report, QR meja, Staff, Data pelanggan, dan Riwayat transaksi. Jika butuh absensi staff, login member, dan saldo member, naik ke POS Basic.",
+      "Bisa. Starter sudah termasuk POS Kasir, QR Menu, Order Center, produk dan kategori, laporan dasar, serta 1 outlet. Jika butuh kitchen display, inventory, QR meja, laporan lebih lengkap, dan support setup awal, naik ke POS Basic.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -33,7 +33,7 @@ const homepageFaqs = [
   {
     question: "Apakah bisa custom fitur?",
     answer:
-      "Bisa. Kebutuhan automation cocok di Business. Jika butuh setup custom, multi-outlet advanced, integrasi khusus, atau workflow khusus, lanjut ke Enterprise.",
+      "Bisa. Kebutuhan automation cocok di Pro Automation. Jika butuh custom workflow, setup multi outlet, integrasi, atau penyesuaian performa traffic tinggi, lanjut ke Enterprise.",
   },
   {
     question: "Apakah bisa integrasi QRIS?",

@@ -39,13 +39,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DEMO_QR_MENU_URL } from "@/lib/demo-links";
 import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 
 const whatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20tentang%20POS%20kasir%20dan%20QR%20order";
-const customerMenuDemoLink = "https://kasir.outletmu.store/scan/K7F9A2P9";
 
 const navItems = [
   { label: "Solusi", href: "#solutions" },
@@ -474,25 +475,19 @@ const whatsappCommands = [
 
 const pricingPlans = [
   {
-    name: "Starter QR",
+    name: "Starter",
     price: "Rp249.000",
     suffix: "/bulan",
     label: "Paket awal",
     cta: "Mulai Starter",
-    audience: "Untuk outlet yang ingin mulai pakai QR order meja, kasir, dan operasional dasar dalam satu alur.",
+    audience: "Untuk outlet kecil yang mulai merapikan kasir dan menu digital.",
     features: [
-      "Dashboard",
-      "POS kasir",
-      "Orders",
-      "Kitchen",
-      "Transaksi",
-      "Produk",
-      "Inventory",
-      "Report",
-      "QR order meja",
-      "Staff",
-      "Data pelanggan",
-      "Riwayat transaksi",
+      "POS Kasir",
+      "QR Menu",
+      "Order Center",
+      "Produk & kategori",
+      "Laporan dasar",
+      "1 outlet",
     ],
   },
   {
@@ -500,31 +495,32 @@ const pricingPlans = [
     price: "Rp499.000",
     suffix: "/bulan",
     label: "Rekomendasi",
-    cta: "Konsultasi POS Basic",
-    audience: "Untuk cafe/resto yang butuh operasional kasir lebih rapi, absensi staff, login member, dan saldo member.",
+    cta: "Pilih POS Basic",
+    audience: "Paket inti untuk kasir, QR order, kitchen, inventory, dan laporan outlet.",
     featured: true,
     features: [
       "Semua fitur Starter",
-      "Absensi staff",
-      "Login member",
-      "Saldo member",
+      "Kitchen Display",
+      "Inventory & stok menipis",
+      "QR Table / QR Meja",
+      "Laporan omzet, transaksi, dan produk terlaris",
+      "Support setup awal",
     ],
   },
   {
-    name: "Business",
+    name: "Pro Automation",
     price: "Rp799.000",
     suffix: "/bulan",
     label: "Automation",
-    cta: "Konsultasi Business",
-    audience: "Untuk outlet yang butuh automation WhatsApp, laporan cepat via WA, dan support prioritas.",
+    cta: "Pilih Pro Automation",
+    audience: "Untuk outlet yang ingin operasional lebih otomatis dan terpantau.",
     features: [
       "Semua fitur POS Basic",
-      "WhatsApp automation",
-      "Tanya laporan via WA",
-      "Absen lewat WA",
-      "Notifikasi stok",
-      "Report otomatis",
-      "Priority support",
+      "Multi outlet ringan",
+      "Role staff",
+      "Audit log",
+      "Absensi staff",
+      "Automasi laporan dan workflow operasional",
     ],
   },
   {
@@ -533,20 +529,19 @@ const pricingPlans = [
     suffix: "",
     label: "Custom",
     cta: "Hubungi Outletmu",
-    audience: "Untuk bisnis dengan kebutuhan integrasi, kontrol, dan pendampingan khusus.",
+    audience: "Untuk kebutuhan khusus, outlet ramai, atau penyesuaian alur bisnis.",
     features: [
-      "Semua fitur Business",
-      "Setup custom",
-      "Multi-outlet advanced",
-      "Integrasi khusus",
       "Custom workflow",
-      "Dedicated support",
+      "Setup multi outlet",
       "Onboarding khusus",
+      "Prioritas support",
+      "Integrasi sesuai kebutuhan",
+      "Penyesuaian performa traffic tinggi",
     ],
   },
 ];
 
-const comparisonPlans = ["Starter QR", "POS Basic", "Business", "Enterprise"] as const;
+const comparisonPlans = ["Starter", "POS Basic", "Pro Automation", "Enterprise"] as const;
 
 type ComparisonPlanKey = (typeof comparisonPlans)[number];
 
@@ -555,191 +550,191 @@ const packageComparisonRows: Array<
 > = [
   {
     feature: "Dashboard",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "POS kasir",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Orders",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Kitchen",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Transaksi",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Produk",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Inventory",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Report",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "QR meja",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Staff",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Absensi staff",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Login member",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Data pelanggan",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Saldo member",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Riwayat transaksi",
-    "Starter QR": "Ya",
+    Starter: "Ya",
     "POS Basic": "Ya",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "WhatsApp automation",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Tanya laporan via WA",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Absen lewat WA",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Notifikasi stok",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Report otomatis",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Ya",
   },
   {
     feature: "Priority support",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "Ya",
+    "Pro Automation": "Ya",
     Enterprise: "Dedicated",
   },
   {
     feature: "Setup custom",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
   {
     feature: "Multi-outlet advanced",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
   {
     feature: "Integrasi khusus",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
   {
     feature: "Custom workflow",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
   {
     feature: "Dedicated support",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
   {
     feature: "Onboarding khusus",
-    "Starter QR": "-",
+    Starter: "-",
     "POS Basic": "-",
-    Business: "-",
+    "Pro Automation": "-",
     Enterprise: "Ya",
   },
 ];
@@ -757,7 +752,7 @@ const addOnGroups: Array<{
     description:
       "Alamat menu dan QR yang siap dipakai pelanggan, dengan opsi domain brand sendiri.",
     items: [
-      { name: "Default link Outletmu", value: "Free" },
+      { name: "Default link Outletmu", value: "Termasuk" },
       { name: "Domain .com", value: "+Rp209.900/tahun" },
       { name: "Domain .id", value: "+Rp252.900/tahun" },
       { name: "Desain QR", value: "Rp25.000" },
@@ -768,7 +763,7 @@ const addOnGroups: Array<{
     icon: GraduationCap,
     description: "Pendampingan awal agar tim outlet bisa langsung memakai sistem dengan rapi.",
     items: [
-      { name: "Training onsite awal", value: "Free 1x" },
+      { name: "Training onsite awal", value: "Termasuk 1x" },
       { name: "Training online tambahan", value: "Rp50.000/sesi" },
       { name: "Training onsite tambahan", value: "Rp100.000/sesi" },
     ],
@@ -778,8 +773,8 @@ const addOnGroups: Array<{
     icon: QrCode,
     description: "Bantuan operasional ringan untuk mempercepat outlet mulai berjalan.",
     items: [
-      { name: "Input menu awal", value: "Free" },
-      { name: "Input menu tambahan", value: "Free" },
+      { name: "Input menu awal", value: "Termasuk" },
+      { name: "Input menu tambahan", value: "Termasuk" },
       { name: "WhatsApp chatbot custom", value: "Sesuai kebutuhan" },
     ],
   },
@@ -787,8 +782,8 @@ const addOnGroups: Array<{
 
 const addOnNotes = [
   "Harga domain berlaku per tahun dan dapat berubah mengikuti provider domain.",
-  "Default link Outletmu tersedia Free untuk outlet utama.",
-  "Training onsite awal: Free 1x.",
+  "Default link Outletmu tersedia termasuk untuk outlet utama.",
+  "Training onsite awal: termasuk 1x.",
   "Desain QR diberikan dalam format siap cetak.",
   "Add-ons bersifat opsional. Tim Outletmu akan bantu pilih yang benar-benar dibutuhkan outlet.",
 ];
@@ -816,7 +811,7 @@ const faqs = [
   {
     question: "Apakah bisa pakai QR per meja?",
     answer:
-      "Bisa. Starter QR sudah termasuk Dashboard, POS kasir, Orders, Kitchen, Transaksi, Produk, Inventory, Report, QR meja, Staff, Data pelanggan, dan Riwayat transaksi. Jika butuh absensi staff, login member, dan saldo member, naik ke POS Basic.",
+      "Bisa. Starter sudah termasuk POS Kasir, QR Menu, Order Center, produk dan kategori, laporan dasar, serta 1 outlet. Jika butuh kitchen display, inventory, QR meja, laporan lebih lengkap, dan support setup awal, naik ke POS Basic.",
   },
   {
     question: "Apakah sudah termasuk hosting?",
@@ -825,7 +820,7 @@ const faqs = [
   {
     question: "Apakah bisa custom fitur?",
     answer:
-      "Bisa. Kebutuhan automation cocok di Business. Jika butuh setup custom, multi-outlet advanced, integrasi khusus, atau workflow khusus, lanjut ke Enterprise.",
+      "Bisa. Kebutuhan automation cocok di Pro Automation. Jika butuh custom workflow, setup multi outlet, integrasi, atau penyesuaian performa traffic tinggi, lanjut ke Enterprise.",
   },
   {
     question: "Apakah bisa integrasi QRIS?",
@@ -841,7 +836,7 @@ const faqs = [
 
 type PricingPlan = (typeof pricingPlans)[number];
 
-function applyThemeMode(_: ThemeMode) {
+function applyThemeMode() {
   document.documentElement.classList.remove("dark");
   document.documentElement.dataset.theme = "light";
 }
@@ -851,15 +846,15 @@ function useThemeMode() {
 
   useEffect(() => {
     setTheme("light");
-    applyThemeMode("light");
+    applyThemeMode();
     try {
       window.localStorage.setItem(themeStorageKey, "light");
-    } catch (_) {}
+    } catch {}
   }, []);
 
   const toggleTheme = () => {
     // Dark mode dimatikan permanen, force light.
-    applyThemeMode("light");
+    applyThemeMode();
     setTheme("light");
   };
 
@@ -1260,8 +1255,7 @@ function OperationalDashboardSection() {
                 ))}
               </div>
               <div className={landingStyles.operationalQrCard}>
-                <QrCode className="h-16 w-16" aria-hidden="true" />
-                <strong>QR Menu</strong>
+                <DemoQrMenuCode compact label="Scan menu meja" showLink={false} />
                 <span>Meja 03</span>
               </div>
             </div>
@@ -1413,12 +1407,13 @@ function CustomerFeatureSection() {
           subtitle="Pengalaman order dibuat ringan dari HP pelanggan, sehingga staff tidak perlu selalu membawa menu fisik atau mencatat order dari awal."
         />
         <div data-reveal className={landingStyles.customerMiniPanel}>
-          <div>
+          <div className={landingStyles.customerMiniPanelBadge}>
             <QrCode className="h-5 w-5" aria-hidden="true" />
             <span>QR order meja</span>
           </div>
           <strong>Meja B4</strong>
           <p>Menu digital cafe terbuka dari browser HP, pesanan membawa informasi meja, dan order masuk ke dashboard.</p>
+          <DemoQrMenuCode compact className={landingStyles.customerMiniPanelQr} />
         </div>
       </div>
       <div data-reveal className={landingStyles.customerVisualFrame}>
@@ -2243,7 +2238,7 @@ function PackageComparisonSection() {
         </div>
         <div className={landingStyles.comparisonNote}>
           <Check className="h-4 w-4" aria-hidden="true" />
-          <span>Starter QR cocok untuk mulai digital dengan kasir, order, kitchen, transaksi, report, QR meja, staff, data pelanggan, dan riwayat transaksi. POS Basic tetap rekomendasi untuk outlet yang butuh absensi staff, login member, dan saldo member.</span>
+          <span>Starter cocok untuk mulai merapikan POS kasir, QR Menu, Order Center, produk, kategori, dan laporan dasar. POS Basic tetap rekomendasi untuk outlet yang butuh kitchen display, inventory, QR meja, laporan lebih lengkap, dan support setup awal.</span>
         </div>
       </div>
     </PageSection>
@@ -2454,7 +2449,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
           <a
-            href={customerMenuDemoLink}
+            href={DEMO_QR_MENU_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#14213D]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[#14213D] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#2F8A68]/30 focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/25 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60 sm:w-auto"
@@ -2476,7 +2471,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
       <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/50 dark:border-white/10 dark:text-[#F8F3EA]/52 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
-          href={customerMenuDemoLink}
+          href={DEMO_QR_MENU_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#2F8A68] transition hover:text-[#28795b] dark:text-[#B9F1DA] dark:hover:text-white"
@@ -2490,7 +2485,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
 
 export function OutletmuLanding() {
   const rootRef = useRef<HTMLElement | null>(null);
-  const { theme, toggleTheme } = useThemeMode();
+  const { theme } = useThemeMode();
 
   useLandingGsap(rootRef);
 

@@ -1117,19 +1117,6 @@
   padding: clamp(1.15rem, 2.3vw, 1.45rem);
   box-shadow: 0 24px 65px rgba(20, 33, 61, 0.075);
 
-  div {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    min-height: 2.5rem;
-    border-radius: 999px;
-    background: #103f31;
-    padding: 0 0.85rem;
-    color: #ffffff;
-    font-size: 0.84rem;
-    font-weight: 850;
-  }
-
   strong {
     display: block;
     margin-top: 1rem;
@@ -1145,6 +1132,23 @@
     font-size: 0.92rem;
     line-height: 1.65;
   }
+}
+
+.customerMiniPanelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.5rem;
+  border-radius: 999px;
+  background: #103f31;
+  padding: 0 0.85rem;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.customerMiniPanelQr {
+  margin-top: 1rem;
 }
 
 .customerFeatureGrid {
@@ -3907,7 +3911,7 @@
     color: rgba(248, 243, 234, 0.58);
   }
 
-  .customerMiniPanel div {
+  .customerMiniPanelBadge {
     background: #2f8a68;
     color: #ffffff;
 

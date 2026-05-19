@@ -13,6 +13,7 @@ import {
 import { seoPages, type SeoPageContent, whatsappLink } from "./seo-pages";
 import { JsonLd } from "./json-ld";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -166,12 +167,18 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
                   </span>
                   <strong>{visual.title}</strong>
                 </div>
-                <div className={styles.storyVisualMetric}>{visual.metric}</div>
-                <div className={styles.storyVisualRows}>
-                  {visual.rows.map((row) => (
-                    <p key={row}>{row}</p>
-                  ))}
-                </div>
+                {visual.variant === "qr" ? (
+                  <DemoQrMenuCode compact className={styles.storyQrCode} />
+                ) : (
+                  <>
+                    <div className={styles.storyVisualMetric}>{visual.metric}</div>
+                    <div className={styles.storyVisualRows}>
+                      {visual.rows.map((row) => (
+                        <p key={row}>{row}</p>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </article>
             );
