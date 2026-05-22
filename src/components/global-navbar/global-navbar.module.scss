@@ -123,7 +123,7 @@
   padding: 0.7rem 1rem;
   font-size: 0.9rem;
   font-weight: 800;
-  color: rgba(20, 33, 61, 0.78);
+  color: #14213d;
   background: transparent;
   border: 0;
   border-radius: 999px;
@@ -211,7 +211,7 @@
 
 .dropdownItem small {
   font-size: 12px;
-  color: rgba(27, 42, 78, 0.7);
+  color: rgba(27, 42, 78, 0.84);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -571,12 +571,12 @@
 
 .mobileLeaf small {
   font-size: 12px;
-  color: rgba(27, 42, 78, 0.7);
+  color: rgba(27, 42, 78, 0.84);
   line-height: 1.4;
 }
 
 .shell[data-theme="dark"] .mobileLeaf small {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .mobileActions {

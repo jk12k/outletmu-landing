@@ -212,7 +212,7 @@ export default function HargaPage() {
         </aside>
       </section>
 
-      <section className={cn(styles.section, styles.pricingTableSection)}>
+      <section id="harga" className={cn(styles.section, styles.pricingTableSection)}>
         <div className={styles.pricingHeader} data-reveal>
           <div>
             <span>Paket bulanan</span>

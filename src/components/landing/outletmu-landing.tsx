@@ -1017,7 +1017,7 @@ function SectionTitle({
           className={cn(
             "mx-auto mt-5 max-w-2xl text-base leading-8 md:text-lg",
             align === "left" && "lg:mx-0",
-            tone === "dark" ? "text-white/68" : "text-[#14213D]/65 dark:text-[#F8F3EA]/68",
+            tone === "dark" ? "text-white/82" : "text-[#14213D]/88 dark:text-[#F8F3EA]/82",
           )}
         >
           {subtitle}
@@ -1163,7 +1163,7 @@ function HeroSection() {
           <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-[#14213D] dark:text-[#F8F3EA]")}>
             Aplikasi kasir cafe dan QR order untuk outlet F&B yang ingin lebih rapi
           </h1>
-          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-[#14213D]/68 dark:text-[#F8F3EA]/70 md:text-lg xl:mx-0")}>
+          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-[#14213D]/88 dark:text-[#F8F3EA]/82 md:text-lg xl:mx-0")}>
             Outletmu membantu cafe, restoran, dan UMKM F&B mengelola kasir, QR order meja, menu digital,
             stok, kitchen, dan laporan dalam satu sistem bulanan yang dibantu setup.
           </p>
@@ -1172,11 +1172,11 @@ function HeroSection() {
               Konsultasi via WhatsApp
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
-            <ButtonLink href="/harga" variant="secondary">
+            <ButtonLink href="#harga" variant="secondary">
               Lihat Harga
             </ButtonLink>
           </div>
-          <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/58 dark:text-[#F8F3EA]/58 xl:mx-0")}>
+          <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/78 xl:mx-0")}>
             Cocok untuk cafe, restoran, coffee shop, UMKM F&B, dan minimarket kecil.
           </p>
         </div>
@@ -2038,7 +2038,7 @@ function PricingDeckSection() {
   };
 
   return (
-    <PageSection id="pricing" className="bg-white dark:bg-[#08111F]">
+    <PageSection id="harga" className="bg-white dark:bg-[#08111F]">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
@@ -2367,7 +2367,7 @@ function FAQSection() {
                     transition={{ duration: 0.22 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/65 dark:text-[#F8F3EA]/68">{faq.answer}</div>
+                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/82">{faq.answer}</div>
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -2413,7 +2413,7 @@ function FinalCTASection() {
             <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-white">
               Siap rapikan kasir dan QR order outlet Anda?
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 md:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/82 md:text-lg lg:mx-0">
               Mulai dari POS kasir, QR menu, stok, sampai laporan harian dalam satu alur yang dibantu setup.
             </p>
           </div>
@@ -2439,7 +2439,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
         <div className="flex min-w-0 flex-col items-start gap-4">
           <BrandLogo variant="full" theme={theme} size="md" />
-          <p className="max-w-xl text-sm font-medium leading-7 text-[#14213D]/60 dark:text-[#F8F3EA]/64">
+          <p className="max-w-xl text-sm font-medium leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/82">
             POS kasir, QR order, menu digital, stok, dan laporan untuk outlet yang ingin operasional lebih rapi.
           </p>
         </div>
@@ -2459,7 +2459,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
         </div>
       </div>
       <nav
-        className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-x-5 gap-y-3 border-t border-[#14213D]/6 pt-6 text-sm font-semibold text-[#14213D]/60 dark:border-white/10 dark:text-[#F8F3EA]/60"
+        className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-x-5 gap-y-3 border-t border-[#14213D]/6 pt-6 text-sm font-semibold text-[#14213D] dark:border-white/10 dark:text-[#F8F3EA]/86"
         aria-label="Halaman utama Outletmu"
       >
         {footerSeoLinks.map((item) => (
@@ -2468,7 +2468,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </Link>
         ))}
       </nav>
-      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/50 dark:border-white/10 dark:text-[#F8F3EA]/52 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/82 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
           href={DEMO_QR_MENU_URL}
