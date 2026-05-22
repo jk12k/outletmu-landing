@@ -282,7 +282,7 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.loginLink {
+.freeTrialLink {
   display: inline-flex;
   align-items: center;
   padding: 0.6rem 1rem;
@@ -297,12 +297,12 @@
   line-height: 1;
 }
 
-.loginLink:hover {
+.freeTrialLink:hover {
   background: rgba(15, 31, 61, 0.05);
   border-color: rgba(15, 31, 61, 0.32);
 }
 
-.shell[data-theme="dark"] .loginLink {
+.shell[data-theme="dark"] .freeTrialLink {
   color: #e8efff;
   border-color: rgba(255, 255, 255, 0.2);
 }
@@ -591,7 +591,7 @@
   border-top-color: rgba(255, 255, 255, 0.08);
 }
 
-.mobileLogin {
+.mobileFreeTrial {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -605,7 +605,7 @@
   min-height: 46px;
 }
 
-.shell[data-theme="dark"] .mobileLogin {
+.shell[data-theme="dark"] .mobileFreeTrial {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.24);
 }

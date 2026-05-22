@@ -17,7 +17,6 @@ export const globalWhatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20konsultasi%20sistem%20kasir%20untuk%20outlet%20saya";
 
 export const globalLeadFormLink = "/#coba-gratis";
-export const globalLoginLink = globalLeadFormLink;
 
 export const globalNavItems: NavTopItem[] = [
   {

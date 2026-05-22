@@ -99,7 +99,7 @@ export function GlobalNavbar({ theme = "light", sticky = true }: GlobalNavbarPro
           </nav>
 
           <div className={styles.actions}>
-            <Link href={globalLeadFormLink} className={styles.loginLink}>
+            <Link href={globalLeadFormLink} className={styles.freeTrialLink}>
               Coba Gratis
             </Link>
             <Link
@@ -189,7 +189,7 @@ export function GlobalNavbar({ theme = "light", sticky = true }: GlobalNavbarPro
             <div className={styles.mobileActions}>
               <Link
                 href={globalLeadFormLink}
-                className={styles.mobileLogin}
+                className={styles.mobileFreeTrial}
                 onClick={() => setOpenMobile(false)}
               >
                 Coba Gratis
