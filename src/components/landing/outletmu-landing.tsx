@@ -43,9 +43,10 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
+import { landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappBaseUrl = "https://wa.me/6281291960227";
-const leadFormAnchor = "#coba-gratis";
+const leadFormAnchor = landingSectionLinks.freeTrial;
 
 type LeadFormValues = {
   fullName: string;
