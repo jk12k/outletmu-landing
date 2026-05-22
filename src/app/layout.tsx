@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
+const googleAdsId = "AW-18169772232";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://outletmu.store"),
   title: {
@@ -56,7 +58,7 @@ export default function RootLayout({
       <body>
         <Script
           id="google-ads-tag"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18169772232"
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
           strategy="afterInteractive"
         />
         <Script id="google-ads-config" strategy="afterInteractive">
@@ -64,7 +66,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-18169772232');
+            gtag('config', '${googleAdsId}');
           `}
         </Script>
         {children}
