@@ -2529,7 +2529,7 @@ function FreeTrialLeadFormSection() {
               </div>
             ))}
           </div>
-          <small>Akses trial atau demo akan dibantu setelah data outlet diverifikasi oleh tim Outletmu.</small>
+          <small>Akses coba gratis atau demo akan dibantu setelah data outlet diverifikasi oleh tim Outletmu.</small>
         </div>
 
         <form className={landingStyles.leadFormCard} onSubmit={handleSubmit} noValidate>
@@ -2632,7 +2632,7 @@ function FreeTrialLeadFormSection() {
                 label="Catatan kebutuhan"
                 value={values.needsNote}
                 onChange={(value) => updateField("needsNote", value)}
-                placeholder="Ceritakan alur kasir, QR table, stok, atau laporan yang kamu butuhkan."
+                placeholder="Ceritakan kebutuhan outlet, alur kasir, QR table, stok, atau laporan yang ingin kamu rapikan."
               />
             </LeadFieldGroup>
           </div>
@@ -2644,7 +2644,7 @@ function FreeTrialLeadFormSection() {
               Kirim Permintaan
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
             </button>
-            <p>Tim Outletmu akan menghubungi kamu lewat WhatsApp untuk proses demo atau trial.</p>
+            <p>Tim Outletmu akan menghubungi kamu lewat WhatsApp untuk proses demo atau coba gratis.</p>
           </div>
         </form>
       </div>
