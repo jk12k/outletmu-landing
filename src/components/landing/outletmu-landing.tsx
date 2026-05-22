@@ -1088,7 +1088,7 @@ function SectionTitle({
       <h2
         className={cn(
           "mt-5 text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold leading-[1.1]",
-          tone === "dark" ? "text-white" : "text-[#14213D] dark:text-[#F8F3EA]",
+          tone === "dark" ? "text-white" : "text-slate-950 dark:text-[#F8F3EA]",
         )}
       >
         {title}
@@ -1098,7 +1098,7 @@ function SectionTitle({
           className={cn(
             "mx-auto mt-5 max-w-2xl text-base leading-8 md:text-lg",
             align === "left" && "lg:mx-0",
-            tone === "dark" ? "text-white/82" : "text-[#14213D]/88 dark:text-[#F8F3EA]/82",
+            tone === "dark" ? "text-white/82" : "text-slate-900 dark:text-[#F8F3EA]/82",
           )}
         >
           {subtitle}
@@ -1241,10 +1241,10 @@ function HeroSection() {
       <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)]")}>
         <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-2xl text-center xl:mx-0 xl:text-left")}>
           <Badge>Gratis setup untuk 100 outlet pertama</Badge>
-          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-[#14213D] dark:text-[#F8F3EA]")}>
+          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-slate-950 dark:text-[#F8F3EA]")}>
             Aplikasi kasir cafe dan QR order untuk outlet F&B yang ingin lebih rapi
           </h1>
-          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-[#14213D]/88 dark:text-[#F8F3EA]/82 md:text-lg xl:mx-0")}>
+          <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-slate-900 dark:text-[#F8F3EA]/82 md:text-lg xl:mx-0")}>
             Outletmu membantu cafe, restoran, dan UMKM F&B mengelola kasir, QR order meja, menu digital,
             stok, kitchen, dan laporan dalam satu sistem bulanan yang dibantu setup.
           </p>
@@ -1257,7 +1257,7 @@ function HeroSection() {
               Lihat Harga
             </ButtonLink>
           </div>
-          <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/78 xl:mx-0")}>
+          <p className={cn(landingStyles.heroFootnote, "mx-auto mt-7 max-w-xl text-sm font-medium leading-7 text-slate-800 dark:text-[#F8F3EA]/78 xl:mx-0")}>
             Cocok untuk cafe, restoran, coffee shop, UMKM F&B, dan minimarket kecil.
           </p>
         </div>
@@ -2448,7 +2448,7 @@ function FAQSection() {
                     transition={{ duration: 0.22 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 text-sm leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/82">{faq.answer}</div>
+                    <div className="px-6 pb-6 text-sm leading-7 text-slate-900 dark:text-[#F8F3EA]/82">{faq.answer}</div>
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -2783,7 +2783,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
         <div className="flex min-w-0 flex-col items-start gap-4">
           <BrandLogo variant="full" theme={theme} size="md" />
-          <p className="max-w-xl text-sm font-medium leading-7 text-[#14213D]/82 dark:text-[#F8F3EA]/82">
+          <p className="max-w-xl text-sm font-medium leading-7 text-slate-900 dark:text-[#F8F3EA]/82">
             POS kasir, QR order, menu digital, stok, dan laporan untuk outlet yang ingin operasional lebih rapi.
           </p>
         </div>
@@ -2810,7 +2810,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </Link>
         ))}
       </nav>
-      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/82 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-slate-900 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
           href={leadFormAnchor}
