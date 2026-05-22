@@ -43,7 +43,7 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
-import { landingSectionLinks } from "@/components/landing/landing-anchors";
+import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappBaseUrl = "https://wa.me/6281291960227";
 const leadFormAnchor = landingSectionLinks.freeTrial;
@@ -1253,7 +1253,7 @@ function HeroSection() {
               Coba Gratis
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
-            <ButtonLink href="#harga" variant="secondary">
+            <ButtonLink href={landingSectionLinks.pricing} variant="secondary">
               Lihat Harga
             </ButtonLink>
           </div>
@@ -2119,7 +2119,7 @@ function PricingDeckSection() {
   };
 
   return (
-    <PageSection id="harga" className="bg-white dark:bg-[#08111F]">
+    <PageSection id={landingSectionIds.pricing} className="bg-white dark:bg-[#08111F]">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
         badge="Harga bulanan"
