@@ -2854,6 +2854,26 @@
 
 .leadFormGrid {
   display: grid;
+  gap: 1.1rem;
+}
+
+.leadFieldGroup {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  legend {
+    margin-bottom: 0.7rem;
+    color: #103f31;
+    font-size: 0.86rem;
+    font-weight: 950;
+    line-height: 1.25;
+  }
+}
+
+.leadFieldGroupGrid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem;
 }
@@ -3264,6 +3284,10 @@
   }
 
   .leadFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .leadFieldGroupGrid {
     grid-template-columns: 1fr;
   }
 

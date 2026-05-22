@@ -2527,93 +2527,107 @@ function FreeTrialLeadFormSection() {
 
         <form className={landingStyles.leadFormCard} onSubmit={handleSubmit} noValidate>
           <div className={landingStyles.leadFormGrid}>
-            <LeadTextField
-              id="lead-full-name"
-              label="Nama lengkap"
-              value={values.fullName}
-              onChange={(value) => updateField("fullName", value)}
-              placeholder="Nama kamu"
-              required
-            />
-            <LeadTextField
-              id="lead-whatsapp"
-              label="Nomor WhatsApp"
-              type="tel"
-              value={values.whatsapp}
-              onChange={(value) => updateField("whatsapp", value)}
-              placeholder="08xxxxxxxxxx"
-              required
-            />
-            <LeadTextField
-              id="lead-outlet-name"
-              label="Nama outlet"
-              value={values.outletName}
-              onChange={(value) => updateField("outletName", value)}
-              placeholder="Kopi Senja"
-              required
-            />
-            <LeadSelectField
-              id="lead-business-type"
-              label="Jenis usaha"
-              value={values.businessType}
-              options={businessTypeOptions}
-              onChange={(value) => updateField("businessType", value)}
-              required
-            />
-            <LeadTextField
-              id="lead-city"
-              label="Kota"
-              value={values.city}
-              onChange={(value) => updateField("city", value)}
-              placeholder="Jakarta"
-              required
-            />
-            <LeadSelectField
-              id="lead-outlet-count"
-              label="Jumlah outlet"
-              value={values.outletCount}
-              options={outletCountOptions}
-              onChange={(value) => updateField("outletCount", value)}
-              required
-            />
-            <LeadSelectField
-              id="lead-package-interest"
-              label="Paket yang ingin dicoba"
-              value={values.packageInterest}
-              options={packageInterestOptions}
-              onChange={(value) => updateField("packageInterest", value)}
-              required
-            />
-            <LeadSelectField
-              id="lead-start-timeline"
-              label="Kapan ingin mulai pakai Outletmu"
-              value={values.startTimeline}
-              options={startTimelineOptions}
-              onChange={(value) => updateField("startTimeline", value)}
-              required
-            />
-            <LeadTextField
-              id="lead-email"
-              label="Email"
-              type="email"
-              value={values.email}
-              onChange={(value) => updateField("email", value)}
-              placeholder="nama@email.com"
-            />
-            <LeadSelectField
-              id="lead-demo-schedule"
-              label="Jadwal demo yang diinginkan"
-              value={values.demoSchedule}
-              options={demoScheduleOptions}
-              onChange={(value) => updateField("demoSchedule", value)}
-            />
-            <LeadTextareaField
-              id="lead-needs-note"
-              label="Catatan kebutuhan"
-              value={values.needsNote}
-              onChange={(value) => updateField("needsNote", value)}
-              placeholder="Ceritakan alur kasir, QR table, stok, atau laporan yang kamu butuhkan."
-            />
+            <LeadFieldGroup title="Kontak utama">
+              <LeadTextField
+                id="lead-full-name"
+                label="Nama lengkap"
+                value={values.fullName}
+                onChange={(value) => updateField("fullName", value)}
+                placeholder="Nama kamu"
+                autoComplete="name"
+                required
+              />
+              <LeadTextField
+                id="lead-whatsapp"
+                label="Nomor WhatsApp"
+                type="tel"
+                value={values.whatsapp}
+                onChange={(value) => updateField("whatsapp", value)}
+                placeholder="08xxxxxxxxxx"
+                autoComplete="tel"
+                inputMode="tel"
+                required
+              />
+              <LeadTextField
+                id="lead-email"
+                label="Email"
+                type="email"
+                value={values.email}
+                onChange={(value) => updateField("email", value)}
+                placeholder="nama@email.com"
+                autoComplete="email"
+              />
+            </LeadFieldGroup>
+
+            <LeadFieldGroup title="Profil outlet">
+              <LeadTextField
+                id="lead-outlet-name"
+                label="Nama outlet"
+                value={values.outletName}
+                onChange={(value) => updateField("outletName", value)}
+                placeholder="Kopi Senja"
+                autoComplete="organization"
+                required
+              />
+              <LeadSelectField
+                id="lead-business-type"
+                label="Jenis usaha"
+                value={values.businessType}
+                options={businessTypeOptions}
+                onChange={(value) => updateField("businessType", value)}
+                required
+              />
+              <LeadTextField
+                id="lead-city"
+                label="Kota"
+                value={values.city}
+                onChange={(value) => updateField("city", value)}
+                placeholder="Jakarta"
+                autoComplete="address-level2"
+                required
+              />
+              <LeadSelectField
+                id="lead-outlet-count"
+                label="Jumlah outlet"
+                value={values.outletCount}
+                options={outletCountOptions}
+                onChange={(value) => updateField("outletCount", value)}
+                required
+              />
+            </LeadFieldGroup>
+
+            <LeadFieldGroup title="Rencana coba dan demo">
+              <LeadSelectField
+                id="lead-package-interest"
+                label="Paket yang ingin dicoba"
+                value={values.packageInterest}
+                options={packageInterestOptions}
+                onChange={(value) => updateField("packageInterest", value)}
+                required
+              />
+              <LeadSelectField
+                id="lead-start-timeline"
+                label="Kapan ingin mulai pakai Outletmu"
+                value={values.startTimeline}
+                options={startTimelineOptions}
+                onChange={(value) => updateField("startTimeline", value)}
+                required
+              />
+              <LeadSelectField
+                id="lead-demo-schedule"
+                label="Jadwal demo yang diinginkan"
+                value={values.demoSchedule}
+                options={demoScheduleOptions}
+                onChange={(value) => updateField("demoSchedule", value)}
+              />
+              <LeadTextareaField
+                id="lead-needs-note"
+                label="Catatan kebutuhan"
+                value={values.needsNote}
+                onChange={(value) => updateField("needsNote", value)}
+                placeholder="Ceritakan alur kasir, QR table, stok, atau laporan yang kamu butuhkan."
+              />
+            </LeadFieldGroup>
           </div>
 
           {error ? <p className={landingStyles.leadFormError}>{error}</p> : null}
@@ -2631,6 +2645,15 @@ function FreeTrialLeadFormSection() {
   );
 }
 
+function LeadFieldGroup({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <fieldset className={landingStyles.leadFieldGroup}>
+      <legend>{title}</legend>
+      <div className={landingStyles.leadFieldGroupGrid}>{children}</div>
+    </fieldset>
+  );
+}
+
 function LeadTextField({
   id,
   label,
@@ -2638,6 +2661,8 @@ function LeadTextField({
   onChange,
   placeholder,
   type = "text",
+  autoComplete,
+  inputMode,
   required = false,
 }: {
   id: string;
@@ -2646,6 +2671,8 @@ function LeadTextField({
   onChange: (value: string) => void;
   placeholder?: string;
   type?: "text" | "tel" | "email";
+  autoComplete?: string;
+  inputMode?: "text" | "tel" | "email" | "numeric" | "decimal" | "search" | "url";
   required?: boolean;
 }) {
   return (
@@ -2660,6 +2687,8 @@ function LeadTextField({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
         required={required}
       />
     </div>
