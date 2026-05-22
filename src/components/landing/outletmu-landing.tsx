@@ -45,7 +45,8 @@ import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
-const whatsappBaseUrl = "https://wa.me/6281291960227";
+const whatsappLeadNumber = "6281291960227";
+const whatsappBaseUrl = `https://wa.me/${whatsappLeadNumber}`;
 const leadFormAnchor = landingSectionLinks.freeTrial;
 const freeTrialLeadHeadingId = "coba-gratis-title";
 
@@ -129,6 +130,30 @@ const requiredLeadFields: Array<{ key: keyof LeadFormValues; label: string }> = 
   { key: "packageInterest", label: "Paket yang ingin dicoba" },
   { key: "startTimeline", label: "Kapan ingin mulai pakai Outletmu" },
 ];
+
+function buildLeadWhatsappMessage(values: LeadFormValues) {
+  return [
+    "Halo Outletmu, saya ingin coba gratis / demo.",
+    "",
+    `Nama: ${values.fullName.trim()}`,
+    `Nomor WhatsApp: ${values.whatsapp.trim()}`,
+    `Nama outlet: ${values.outletName.trim()}`,
+    `Jenis usaha: ${values.businessType}`,
+    `Kota: ${values.city.trim()}`,
+    `Jumlah outlet: ${values.outletCount}`,
+    `Paket yang ingin dicoba: ${values.packageInterest}`,
+    `Kapan ingin mulai: ${values.startTimeline}`,
+    `Email: ${values.email.trim() || "-"}`,
+    `Jadwal demo: ${values.demoSchedule || "-"}`,
+    `Catatan kebutuhan: ${values.needsNote.trim() || "-"}`,
+    "",
+    "Tolong bantu rekomendasikan setup yang cocok untuk outlet saya.",
+  ].join("\n");
+}
+
+function buildLeadWhatsappUrl(values: LeadFormValues) {
+  return `${whatsappBaseUrl}?text=${encodeURIComponent(buildLeadWhatsappMessage(values))}`;
+}
 
 const navItems = [
   { label: "Solusi", href: "#solutions" },
@@ -2481,25 +2506,7 @@ function FreeTrialLeadFormSection() {
       return;
     }
 
-    const message = [
-      "Halo Outletmu, saya ingin coba gratis / demo.",
-      "",
-      `Nama: ${values.fullName.trim()}`,
-      `Nomor WhatsApp: ${values.whatsapp.trim()}`,
-      `Nama outlet: ${values.outletName.trim()}`,
-      `Jenis usaha: ${values.businessType}`,
-      `Kota: ${values.city.trim()}`,
-      `Jumlah outlet: ${values.outletCount}`,
-      `Paket yang ingin dicoba: ${values.packageInterest}`,
-      `Kapan ingin mulai: ${values.startTimeline}`,
-      `Email: ${values.email.trim() || "-"}`,
-      `Jadwal demo: ${values.demoSchedule || "-"}`,
-      `Catatan kebutuhan: ${values.needsNote.trim() || "-"}`,
-      "",
-      "Tolong bantu rekomendasikan setup yang cocok untuk outlet saya.",
-    ].join("\n");
-
-    window.open(`${whatsappBaseUrl}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(buildLeadWhatsappUrl(values), "_blank", "noopener,noreferrer");
   };
 
   return (
