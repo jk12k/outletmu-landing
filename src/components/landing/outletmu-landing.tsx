@@ -47,6 +47,7 @@ import { landingSectionIds, landingSectionLinks } from "@/components/landing/lan
 
 const whatsappBaseUrl = "https://wa.me/6281291960227";
 const leadFormAnchor = landingSectionLinks.freeTrial;
+const freeTrialLeadHeadingId = "coba-gratis-title";
 
 type LeadFormValues = {
   fullName: string;
@@ -1112,13 +1113,15 @@ function PageSection({
   children,
   className,
   id,
+  ariaLabelledby,
 }: {
   children: React.ReactNode;
   className?: string;
   id?: string;
+  ariaLabelledby?: string;
 }) {
   return (
-    <section id={id} className={cn(landingStyles.section, className)}>
+    <section id={id} aria-labelledby={ariaLabelledby} className={cn(landingStyles.section, className)}>
       <div className={landingStyles.container}>{children}</div>
     </section>
   );
@@ -2460,7 +2463,7 @@ function FAQSection() {
   );
 }
 
-function LeadFormSection() {
+function FreeTrialLeadFormSection() {
   const [values, setValues] = useState<LeadFormValues>(leadFormInitialValues);
   const [error, setError] = useState("");
 
@@ -2500,11 +2503,11 @@ function LeadFormSection() {
   };
 
   return (
-    <PageSection id="coba-gratis" className={landingStyles.leadFormSection}>
+    <PageSection id={landingSectionIds.freeTrial} ariaLabelledby={freeTrialLeadHeadingId} className={landingStyles.leadFormSection}>
       <div data-reveal className={landingStyles.leadFormShell}>
         <div className={landingStyles.leadFormIntro}>
           <Badge>Coba gratis</Badge>
-          <h2>Coba Gratis Outletmu</h2>
+          <h2 id={freeTrialLeadHeadingId}>Coba Gratis Outletmu</h2>
           <p>
             Isi data outlet kamu. Tim Outletmu akan bantu rekomendasikan paket dan alur setup yang paling cocok
             sebelum kamu masuk ke dashboard.
@@ -2848,7 +2851,7 @@ export function OutletmuLanding() {
       <AddOnsSection />
       <WhyOutletmuSection />
       <FAQSection />
-      <LeadFormSection />
+      <FreeTrialLeadFormSection />
       <FinalCTASection />
       <Footer theme={theme} />
       <a href={leadFormAnchor} className={landingStyles.mobileStickyCta} aria-label="Coba Gratis Outletmu">
