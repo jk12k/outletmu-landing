@@ -10,9 +10,10 @@ import {
   Store,
   type LucideIcon,
 } from "lucide-react";
-import { seoPages, type SeoPageContent, whatsappLink } from "./seo-pages";
+import { seoPages, type SeoPageContent } from "./seo-pages";
 import { JsonLd } from "./json-ld";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { globalLeadFormLink } from "@/components/global-navbar/nav-config";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 import {
   breadcrumbSchema,
@@ -97,9 +98,9 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
           <p className={styles.lead}>{page.lead}</p>
 
           <div className={styles.heroActions}>
-            <a href={whatsappLink} className={styles.primaryCta}>
-              {page.primaryCta}
-            </a>
+            <Link href={globalLeadFormLink} className={styles.primaryCta}>
+              Coba Gratis
+            </Link>
             <Link href="/harga" className={styles.secondaryCta}>
               Cek Paket Bulanan
             </Link>
@@ -228,9 +229,9 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
               kitchen, dan laporan. Tim Outletmu akan bantu arahkan paket yang paling masuk akal.
             </p>
           </div>
-          <a href={whatsappLink} className={styles.primaryCta}>
-            Chat WhatsApp Outletmu
-          </a>
+          <Link href={globalLeadFormLink} className={styles.primaryCta}>
+            Coba Gratis
+          </Link>
         </div>
       </section>
 

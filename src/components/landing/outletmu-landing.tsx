@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -39,14 +39,94 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DEMO_QR_MENU_URL } from "@/lib/demo-links";
 import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 
-const whatsappLink =
-  "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20tanya%20tentang%20POS%20kasir%20dan%20QR%20order";
+const whatsappBaseUrl = "https://wa.me/6281291960227";
+const leadFormAnchor = "#coba-gratis";
+
+type LeadFormValues = {
+  fullName: string;
+  whatsapp: string;
+  outletName: string;
+  businessType: string;
+  city: string;
+  outletCount: string;
+  packageInterest: string;
+  startTimeline: string;
+  needsNote: string;
+  email: string;
+  demoSchedule: string;
+};
+
+const leadFormInitialValues: LeadFormValues = {
+  fullName: "",
+  whatsapp: "",
+  outletName: "",
+  businessType: "",
+  city: "",
+  outletCount: "",
+  packageInterest: "",
+  startTimeline: "",
+  needsNote: "",
+  email: "",
+  demoSchedule: "",
+};
+
+const businessTypeOptions = [
+  "Cafe",
+  "Restoran",
+  "Coffee Shop",
+  "Retail",
+  "Franchise / Multi outlet",
+  "Lainnya",
+] as const;
+
+const outletCountOptions = ["1 outlet", "2–3 outlet", "4–10 outlet", "Lebih dari 10 outlet"] as const;
+
+const packageInterestOptions = [
+  "Starter",
+  "POS Basic",
+  "Pro Automation",
+  "Enterprise / Konsultasi",
+  "Belum yakin, minta rekomendasi",
+] as const;
+
+const startTimelineOptions = [
+  "Secepatnya",
+  "Minggu ini",
+  "Bulan ini",
+  "1–3 bulan ke depan",
+  "Masih survei dulu",
+] as const;
+
+const demoScheduleOptions = [
+  "Belum ada jadwal khusus",
+  "Pagi hari",
+  "Siang hari",
+  "Sore hari",
+  "Malam hari",
+] as const;
+
+const leadFormBenefits = [
+  "Dibantu pilih paket",
+  "Bisa konsultasi alur POS dan QR Table",
+  "Cocok untuk cafe, restoran, coffee shop, retail, dan UMKM F&B",
+  "Tidak perlu langsung mengganti sistem lama",
+] as const;
+
+const requiredLeadFields: Array<{ key: keyof LeadFormValues; label: string }> = [
+  { key: "fullName", label: "Nama lengkap" },
+  { key: "whatsapp", label: "Nomor WhatsApp" },
+  { key: "outletName", label: "Nama outlet" },
+  { key: "businessType", label: "Jenis usaha" },
+  { key: "city", label: "Kota" },
+  { key: "outletCount", label: "Jumlah outlet" },
+  { key: "packageInterest", label: "Paket yang ingin dicoba" },
+  { key: "startTimeline", label: "Kapan ingin mulai pakai Outletmu" },
+];
 
 const navItems = [
   { label: "Solusi", href: "#solutions" },
@@ -1168,8 +1248,8 @@ function HeroSection() {
             stok, kitchen, dan laporan dalam satu sistem bulanan yang dibantu setup.
           </p>
           <div className={cn(landingStyles.heroActions, "mx-auto mt-9 grid max-w-md gap-3 sm:flex sm:max-w-none sm:justify-center xl:justify-start")}>
-            <ButtonLink href={whatsappLink}>
-              Konsultasi via WhatsApp
+            <ButtonLink href={leadFormAnchor}>
+              Coba Gratis
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
             <ButtonLink href="#harga" variant="secondary">
@@ -1886,7 +1966,7 @@ function PricingPlanCard({
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </button>
       ) : null}
-      <ButtonLink href={whatsappLink} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
+      <ButtonLink href={leadFormAnchor} variant={isDark ? "light" : "primary"} className={pricingStyles.planCta}>
         {plan.cta}
       </ButtonLink>
     </article>
@@ -2379,6 +2459,269 @@ function FAQSection() {
   );
 }
 
+function LeadFormSection() {
+  const [values, setValues] = useState<LeadFormValues>(leadFormInitialValues);
+  const [error, setError] = useState("");
+
+  const updateField = (field: keyof LeadFormValues, value: string) => {
+    setValues((current) => ({ ...current, [field]: value }));
+    if (error) setError("");
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const missingFields = requiredLeadFields.filter(({ key }) => !values[key].trim());
+    if (missingFields.length > 0) {
+      setError(`Mohon lengkapi: ${missingFields.map((field) => field.label).join(", ")}.`);
+      return;
+    }
+
+    const message = [
+      "Halo Outletmu, saya ingin coba gratis / demo.",
+      "",
+      `Nama: ${values.fullName.trim()}`,
+      `Nomor WhatsApp: ${values.whatsapp.trim()}`,
+      `Nama outlet: ${values.outletName.trim()}`,
+      `Jenis usaha: ${values.businessType}`,
+      `Kota: ${values.city.trim()}`,
+      `Jumlah outlet: ${values.outletCount}`,
+      `Paket yang ingin dicoba: ${values.packageInterest}`,
+      `Kapan ingin mulai: ${values.startTimeline}`,
+      `Email: ${values.email.trim() || "-"}`,
+      `Jadwal demo: ${values.demoSchedule || "-"}`,
+      `Catatan kebutuhan: ${values.needsNote.trim() || "-"}`,
+      "",
+      "Tolong bantu rekomendasikan setup yang cocok untuk outlet saya.",
+    ].join("\n");
+
+    window.open(`${whatsappBaseUrl}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <PageSection id="coba-gratis" className={landingStyles.leadFormSection}>
+      <div data-reveal className={landingStyles.leadFormShell}>
+        <div className={landingStyles.leadFormIntro}>
+          <Badge>Coba gratis</Badge>
+          <h2>Coba Gratis Outletmu</h2>
+          <p>
+            Isi data outlet kamu. Tim Outletmu akan bantu rekomendasikan paket dan alur setup yang paling cocok
+            sebelum kamu masuk ke dashboard.
+          </p>
+          <div className={landingStyles.leadBenefitGrid}>
+            {leadFormBenefits.map((benefit) => (
+              <div key={benefit}>
+                <span>
+                  <Check className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <strong>{benefit}</strong>
+              </div>
+            ))}
+          </div>
+          <small>Akses trial atau demo akan dibantu setelah data outlet diverifikasi oleh tim Outletmu.</small>
+        </div>
+
+        <form className={landingStyles.leadFormCard} onSubmit={handleSubmit} noValidate>
+          <div className={landingStyles.leadFormGrid}>
+            <LeadTextField
+              id="lead-full-name"
+              label="Nama lengkap"
+              value={values.fullName}
+              onChange={(value) => updateField("fullName", value)}
+              placeholder="Nama kamu"
+              required
+            />
+            <LeadTextField
+              id="lead-whatsapp"
+              label="Nomor WhatsApp"
+              type="tel"
+              value={values.whatsapp}
+              onChange={(value) => updateField("whatsapp", value)}
+              placeholder="08xxxxxxxxxx"
+              required
+            />
+            <LeadTextField
+              id="lead-outlet-name"
+              label="Nama outlet"
+              value={values.outletName}
+              onChange={(value) => updateField("outletName", value)}
+              placeholder="Kopi Senja"
+              required
+            />
+            <LeadSelectField
+              id="lead-business-type"
+              label="Jenis usaha"
+              value={values.businessType}
+              options={businessTypeOptions}
+              onChange={(value) => updateField("businessType", value)}
+              required
+            />
+            <LeadTextField
+              id="lead-city"
+              label="Kota"
+              value={values.city}
+              onChange={(value) => updateField("city", value)}
+              placeholder="Jakarta"
+              required
+            />
+            <LeadSelectField
+              id="lead-outlet-count"
+              label="Jumlah outlet"
+              value={values.outletCount}
+              options={outletCountOptions}
+              onChange={(value) => updateField("outletCount", value)}
+              required
+            />
+            <LeadSelectField
+              id="lead-package-interest"
+              label="Paket yang ingin dicoba"
+              value={values.packageInterest}
+              options={packageInterestOptions}
+              onChange={(value) => updateField("packageInterest", value)}
+              required
+            />
+            <LeadSelectField
+              id="lead-start-timeline"
+              label="Kapan ingin mulai pakai Outletmu"
+              value={values.startTimeline}
+              options={startTimelineOptions}
+              onChange={(value) => updateField("startTimeline", value)}
+              required
+            />
+            <LeadTextField
+              id="lead-email"
+              label="Email"
+              type="email"
+              value={values.email}
+              onChange={(value) => updateField("email", value)}
+              placeholder="nama@email.com"
+            />
+            <LeadSelectField
+              id="lead-demo-schedule"
+              label="Jadwal demo yang diinginkan"
+              value={values.demoSchedule}
+              options={demoScheduleOptions}
+              onChange={(value) => updateField("demoSchedule", value)}
+            />
+            <LeadTextareaField
+              id="lead-needs-note"
+              label="Catatan kebutuhan"
+              value={values.needsNote}
+              onChange={(value) => updateField("needsNote", value)}
+              placeholder="Ceritakan alur kasir, QR table, stok, atau laporan yang kamu butuhkan."
+            />
+          </div>
+
+          {error ? <p className={landingStyles.leadFormError}>{error}</p> : null}
+
+          <div className={landingStyles.leadFormActions}>
+            <button type="submit">
+              Kirim Permintaan
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <p>Tim Outletmu akan menghubungi kamu lewat WhatsApp untuk proses demo atau trial.</p>
+          </div>
+        </form>
+      </div>
+    </PageSection>
+  );
+}
+
+function LeadTextField({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  required = false,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  type?: "text" | "tel" | "email";
+  required?: boolean;
+}) {
+  return (
+    <div className={landingStyles.leadField}>
+      <label htmlFor={id}>
+        {label}
+        {required ? <span>*</span> : null}
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        required={required}
+      />
+    </div>
+  );
+}
+
+function LeadSelectField({
+  id,
+  label,
+  value,
+  options,
+  onChange,
+  required = false,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  options: readonly string[];
+  onChange: (value: string) => void;
+  required?: boolean;
+}) {
+  return (
+    <div className={landingStyles.leadField}>
+      <label htmlFor={id}>
+        {label}
+        {required ? <span>*</span> : null}
+      </label>
+      <select id={id} value={value} onChange={(event) => onChange(event.target.value)} required={required}>
+        <option value="">Pilih salah satu</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function LeadTextareaField({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <div className={cn(landingStyles.leadField, landingStyles.leadFieldFull)}>
+      <label htmlFor={id}>{label}</label>
+      <textarea
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        rows={4}
+      />
+    </div>
+  );
+}
+
 function OperationsCTASection() {
   return (
     <PageSection className={landingStyles.midCtaSection}>
@@ -2392,8 +2735,8 @@ function OperationsCTASection() {
           </p>
         </div>
         <div className={landingStyles.midCtaActions}>
-          <ButtonLink href={whatsappLink} variant="light">
-            Konsultasi via WhatsApp
+          <ButtonLink href={leadFormAnchor} variant="light">
+            Coba Gratis
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
         </div>
@@ -2409,20 +2752,20 @@ function FinalCTASection() {
         <div className={landingStyles.finalWord}>FLOW</div>
         <div className="relative grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div className="text-center lg:text-left">
-            <Badge tone="dark">Konsultasi via WhatsApp</Badge>
+            <Badge tone="dark">Coba gratis</Badge>
             <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-white">
               Siap rapikan kasir dan QR order outlet Anda?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/82 md:text-lg lg:mx-0">
-              Mulai dari POS kasir, QR menu, stok, sampai laporan harian dalam satu alur yang dibantu setup.
+              Isi data outlet dulu agar tim Outletmu bisa bantu arahkan demo, paket, dan alur setup yang paling pas.
             </p>
           </div>
           <div className={landingStyles.finalMessage}>
             <div>
-              <p>Pesan otomatis</p>
-              <span>Halo Outletmu, saya mau tanya tentang POS kasir dan QR order</span>
-              <ButtonLink href={whatsappLink} className="mt-5 w-full">
-                Konsultasi via WhatsApp
+              <p>Form lead</p>
+              <span>Ceritakan outlet, jumlah cabang, paket incaran, dan waktu mulai yang kamu butuhkan.</span>
+              <ButtonLink href={leadFormAnchor} className="mt-5 w-full">
+                Coba Gratis
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </ButtonLink>
             </div>
@@ -2444,17 +2787,15 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-          <ButtonLink href={whatsappLink} className="w-full sm:w-auto">
-            Konsultasi via WhatsApp
+          <ButtonLink href={leadFormAnchor} className="w-full sm:w-auto">
+            Coba Gratis
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
           <a
-            href={DEMO_QR_MENU_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={leadFormAnchor}
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#14213D]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[#14213D] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#2F8A68]/30 focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/25 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60 sm:w-auto"
           >
-            Lihat Demo Menu Pelanggan
+            Demo
           </a>
         </div>
       </div>
@@ -2471,12 +2812,10 @@ function Footer({ theme }: { theme: ThemeMode }) {
       <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-[#14213D]/82 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
-          href={DEMO_QR_MENU_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={leadFormAnchor}
           className="text-[#2F8A68] transition hover:text-[#28795b] dark:text-[#B9F1DA] dark:hover:text-white"
         >
-          Demo Menu Pelanggan
+          Demo
         </a>
       </div>
     </footer>
@@ -2508,11 +2847,12 @@ export function OutletmuLanding() {
       <AddOnsSection />
       <WhyOutletmuSection />
       <FAQSection />
+      <LeadFormSection />
       <FinalCTASection />
       <Footer theme={theme} />
-      <a href={whatsappLink} className={landingStyles.mobileStickyCta} aria-label="Konsultasi via WhatsApp Outletmu">
+      <a href={leadFormAnchor} className={landingStyles.mobileStickyCta} aria-label="Coba Gratis Outletmu">
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        Konsultasi via WhatsApp
+        Coba Gratis
       </a>
     </main>
   );

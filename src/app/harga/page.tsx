@@ -11,8 +11,9 @@ import {
   softwareApplicationSchema,
   websiteSchema,
 } from "@/components/seo/schema";
-import { seoPages, siteUrl, whatsappLink } from "@/components/seo/seo-pages";
+import { seoPages, siteUrl } from "@/components/seo/seo-pages";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { globalLeadFormLink } from "@/components/global-navbar/nav-config";
 import { cn } from "@/lib/utils";
 import styles from "@/styles/seoLanding.module.scss";
 
@@ -181,9 +182,9 @@ export default function HargaPage() {
             lalu naik ke kitchen, inventory, laporan, staff, dan workflow yang lebih otomatis.
           </p>
           <div className={styles.heroActions}>
-            <a href={whatsappLink} className={styles.primaryCta}>
-              Konsultasi Paket
-            </a>
+            <Link href={globalLeadFormLink} className={styles.primaryCta}>
+              Coba Gratis
+            </Link>
             <Link href="/software-kasir-fnb" className={styles.secondaryCta}>
               Lihat Solusi F&B
             </Link>
@@ -240,13 +241,13 @@ export default function HargaPage() {
                 <strong>{plan.price}</strong>
                 {plan.suffix ? <small>{plan.suffix}</small> : null}
               </div>
-              <a
-                href={whatsappLink}
+              <Link
+                href={globalLeadFormLink}
                 className={cn(styles.pricingButton, plan.highlighted ? styles.primaryCta : styles.secondaryCta)}
               >
                 {plan.button}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
+              </Link>
               <ul className={styles.pricingFeatureList}>
                 {plan.features.map((feature) => (
                   <li key={feature}>
@@ -268,10 +269,10 @@ export default function HargaPage() {
               dan laporan sesuai kebutuhan bisnis.
             </p>
           </div>
-          <a href={whatsappLink} className={styles.primaryCta}>
+          <Link href={globalLeadFormLink} className={styles.primaryCta}>
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            Konsultasi via WhatsApp
-          </a>
+            Coba Gratis
+          </Link>
         </div>
       </section>
 

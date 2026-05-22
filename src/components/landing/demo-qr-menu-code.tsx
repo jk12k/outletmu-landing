@@ -39,15 +39,12 @@ export function DemoQrMenuCode({
       <strong className="text-sm font-black leading-tight text-[#14213D]">{label}</strong>
       {showLink ? (
         <Link
-          href={DEMO_QR_MENU_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/#coba-gratis"
           className="text-xs font-extrabold text-[#2F8A68] underline-offset-4 transition hover:text-[#103F31] hover:underline"
         >
-          Lihat demo menu
+          Demo
         </Link>
       ) : null}
     </div>
   );
 }
-

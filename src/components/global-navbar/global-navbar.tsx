@@ -5,9 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, MessageCircle, X } from "lucide-react";
 import {
-  globalLoginLink,
+  globalLeadFormLink,
   globalNavItems,
-  globalWhatsappLink,
   type NavTopItem,
 } from "./nav-config";
 import styles from "./global-navbar.module.scss";
@@ -100,29 +99,25 @@ export function GlobalNavbar({ theme = "light", sticky = true }: GlobalNavbarPro
           </nav>
 
           <div className={styles.actions}>
-            <Link href={globalLoginLink} className={styles.loginLink}>
-              Login
+            <Link href={globalLeadFormLink} className={styles.loginLink}>
+              Coba Gratis
             </Link>
-            <a
-              href={globalWhatsappLink}
+            <Link
+              href={globalLeadFormLink}
               className={styles.cta}
-              target="_blank"
-              rel="noreferrer noopener"
             >
-              Konsultasi via WhatsApp
+              Demo
               <MessageCircle className={styles.ctaIcon} aria-hidden="true" />
-            </a>
+            </Link>
           </div>
 
-          <a
-            href={globalWhatsappLink}
-            aria-label="Konsultasi via WhatsApp"
+          <Link
+            href={globalLeadFormLink}
+            aria-label="Demo Outletmu"
             className={styles.mobileCtaIcon}
-            target="_blank"
-            rel="noreferrer noopener"
           >
             <MessageCircle aria-hidden="true" />
-          </a>
+          </Link>
           <button
             type="button"
             className={styles.mobileToggle}
@@ -193,22 +188,20 @@ export function GlobalNavbar({ theme = "light", sticky = true }: GlobalNavbarPro
             </nav>
             <div className={styles.mobileActions}>
               <Link
-                href={globalLoginLink}
+                href={globalLeadFormLink}
                 className={styles.mobileLogin}
                 onClick={() => setOpenMobile(false)}
               >
-                Login ke aplikasi kasir
+                Coba Gratis
               </Link>
-              <a
-                href={globalWhatsappLink}
+              <Link
+                href={globalLeadFormLink}
                 className={styles.mobileCta}
-                target="_blank"
-                rel="noreferrer noopener"
                 onClick={() => setOpenMobile(false)}
               >
-                Konsultasi via WhatsApp
+                Demo
                 <MessageCircle aria-hidden="true" />
-              </a>
+              </Link>
             </div>
           </div>
         ) : null}

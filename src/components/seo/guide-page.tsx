@@ -9,8 +9,8 @@ import {
   organizationSchema,
   websiteSchema,
 } from "./schema";
-import { whatsappLink } from "./seo-pages";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { globalLeadFormLink } from "@/components/global-navbar/nav-config";
 import { ScrollReveal } from "@/components/effects/scroll-reveal";
 import styles from "@/styles/seoLanding.module.scss";
 
@@ -51,9 +51,9 @@ export function GuidePage({ page }: GuidePageProps) {
             <p className={styles.lead}>{page.intro[0]}</p>
 
             <div className={styles.heroActions}>
-              <a href={whatsappLink} className={styles.primaryCta}>
-                {page.cta.label}
-              </a>
+              <Link href={globalLeadFormLink} className={styles.primaryCta}>
+                Coba Gratis
+              </Link>
               <Link href="/harga" className={styles.secondaryCta}>
                 Cek Paket Outletmu
               </Link>
@@ -108,9 +108,9 @@ export function GuidePage({ page }: GuidePageProps) {
               <span>Outletmu</span>
               <h2>{page.cta.title}</h2>
               <p>{page.cta.body}</p>
-              <a href={whatsappLink} className={styles.primaryCta}>
-                {page.cta.label}
-              </a>
+              <Link href={globalLeadFormLink} className={styles.primaryCta}>
+                Coba Gratis
+              </Link>
             </section>
 
             <section className={styles.guideFaq}>
