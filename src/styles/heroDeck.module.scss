@@ -1,3 +1,5 @@
+@use "./outletmu-theme" as om;
+
 .deckWrap {
   position: relative;
   width: min(100%, 34rem);
@@ -39,7 +41,7 @@
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 999px;
-  background: rgba(47, 138, 104, 0.14);
+  background: rgba(16, 35, 63, 0.14);
   filter: blur(42px);
 }
 
@@ -61,7 +63,7 @@
   span {
     position: relative;
     z-index: 1;
-    color: rgba(20, 33, 61, 0.84);
+    color: var(--om-slate-700);
     font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0.12em;
@@ -71,7 +73,7 @@
   strong {
     position: relative;
     z-index: 1;
-    color: #14213d;
+    color: var(--om-ink-950);
     font-size: clamp(1.2rem, 3vw, 1.65rem);
     line-height: 1.1;
   }
@@ -88,7 +90,7 @@
 .backRight {
   right: 1%;
   transform: rotate(8deg);
-  background: rgba(16, 63, 49, 0.88);
+  background: rgba(15, 23, 40, 0.88);
 
   span,
   strong {
@@ -127,10 +129,10 @@
 .innerPanel {
   border-radius: clamp(1.2rem, 2.4vw, 1.45rem);
   background:
-    radial-gradient(circle at 88% 12%, rgba(47, 138, 104, 0.14), transparent 32%),
-    #103f31;
+    radial-gradient(circle at 88% 12%, rgba(16, 35, 63, 0.14), transparent 32%),
+    var(--om-primary);
   padding: clamp(1.15rem, 2.5vw, 1.45rem);
-  box-shadow: 0 20px 52px rgba(16, 63, 49, 0.18);
+  box-shadow: 0 20px 52px rgba(15, 23, 40, 0.18);
 }
 
 .featureStack {
@@ -169,12 +171,12 @@
   div {
     min-width: 0;
     border-radius: 1.15rem;
-    background: #f8f3ea;
+    background: var(--om-sand-50);
     padding: 1rem;
   }
 
   p {
-    color: rgba(20, 33, 61, 0.84);
+    color: var(--om-slate-700);
     font-size: 0.9rem;
     font-weight: 800;
   }
@@ -182,7 +184,7 @@
   strong {
     display: block;
     margin-top: 0.45rem;
-    color: #14213d;
+    color: var(--om-ink-950);
     font-size: clamp(1.35rem, 3vw, 1.65rem);
     line-height: 1;
   }
@@ -211,7 +213,7 @@
     border: 0;
     border-radius: 999px;
     background: #ffffff;
-    color: #14213d;
+    color: var(--om-ink-950);
     cursor: pointer;
     transition:
       width 0.2s ease,
@@ -225,7 +227,7 @@
   }
 
   button:last-child {
-    background: #103f31;
+    background: var(--om-primary);
     color: #ffffff;
   }
 }
@@ -238,7 +240,7 @@
 
 .dotActive {
   width: 2rem !important;
-  background: #2f8a68 !important;
+  background: var(--om-primary) !important;
 }
 
 @media (max-width: 1023px) {
@@ -453,7 +455,7 @@
   }
 
   .glow {
-    background: rgba(47, 138, 104, 0.2);
+    background: rgba(16, 35, 63, 0.20);
   }
 
   .backCard {
@@ -474,7 +476,7 @@
   }
 
   .backRight {
-    background: rgba(16, 63, 49, 0.78);
+    background: rgba(15, 23, 40, 0.78);
   }
 
   .mainCard,
@@ -486,8 +488,8 @@
 
   .innerPanel {
     background:
-      radial-gradient(circle at 88% 12%, rgba(47, 138, 104, 0.34), transparent 32%),
-      #103f31;
+      radial-gradient(circle at 88% 12%, rgba(16, 35, 63, 0.34), transparent 32%),
+      var(--om-primary);
     box-shadow: 0 28px 65px rgba(0, 0, 0, 0.24);
   }
 
@@ -501,11 +503,11 @@
 
     button {
       background: rgba(248, 243, 234, 0.94);
-      color: #103f31;
+      color: var(--om-primary);
     }
 
     button:last-child {
-      background: #2f8a68;
+      background: var(--om-primary);
       color: #ffffff;
     }
   }
@@ -515,6 +517,6 @@
   }
 
   .dotActive {
-    background: #2f8a68 !important;
+    background: var(--om-primary) !important;
   }
 }

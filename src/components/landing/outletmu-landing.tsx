@@ -43,6 +43,7 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
+import { ContainerScrollShowcase } from "@/components/landing/container-scroll-showcase";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappLeadNumber = "6281291960227";
@@ -1081,7 +1082,7 @@ function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?:
       className={cn(
         "inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
         tone === "light"
-          ? "border border-[#2F8A68]/14 bg-white/86 text-[#2F8A68] dark:border-white/10 dark:bg-white/8 dark:text-[#B9F1DA]"
+          ? "border border-[var(--om-primary)]/14 bg-white/86 text-[var(--om-primary)] dark:border-white/10 dark:bg-white/8 dark:text-[#E4E7EC]"
           : "border border-white/14 bg-white/10 text-white",
       )}
     >
@@ -1167,12 +1168,12 @@ function ButtonLink({
     <a
       href={href}
       className={cn(
-        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold transition duration-200 focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/25",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold transition duration-200 focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20",
         variant === "primary" &&
-          "bg-[#2F8A68] text-white shadow-[0_22px_55px_rgba(47,138,104,0.28)] hover:-translate-y-0.5 hover:bg-[#28795b]",
+          "bg-[var(--om-primary)] text-white shadow-[0_22px_55px_rgba(15,23,40,0.22)] hover:-translate-y-0.5 hover:bg-[var(--om-primary-hover)]",
         variant === "secondary" &&
-          "border border-[#14213D]/10 bg-white text-[#14213D] shadow-sm hover:-translate-y-0.5 hover:border-[#2F8A68]/30 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60",
-        variant === "light" && "bg-white text-[#103F31] shadow-[0_22px_55px_rgba(16,63,49,0.2)] hover:-translate-y-0.5",
+          "border border-[var(--om-ink-950)]/10 bg-white text-[var(--om-ink-950)] shadow-sm hover:-translate-y-0.5 hover:border-[var(--om-primary)]/30 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-primary)]/60",
+        variant === "light" && "bg-white text-[var(--om-primary)] shadow-[0_22px_55px_rgba(15,23,40,0.20)] hover:-translate-y-0.5",
         className,
       )}
     >
@@ -1507,7 +1508,7 @@ function StaffFeatureSection() {
 
 function CustomerFeatureSection() {
   return (
-    <PageSection id="customer" className="bg-[#F8F3EA] dark:bg-[#07140F]">
+    <PageSection id="customer" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div className={landingStyles.customerHeaderGrid}>
         <SectionTitle
           align="left"
@@ -1560,7 +1561,7 @@ function CustomerFeatureSection() {
 
 function FlowSection() {
   return (
-    <PageSection id="flow" className="bg-[#F8F3EA] dark:bg-[#07140F]">
+    <PageSection id="flow" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <SectionTitle
         badge="Alur kerja"
         title="Dari QR order meja sampai laporan, alurnya dibuat mudah diikuti"
@@ -1643,7 +1644,7 @@ function ProductPreviewSection() {
   const preview = previews[activePreview];
 
   return (
-    <PageSection id="preview" className="bg-[#F8F3EA] dark:bg-[#07140F]">
+    <PageSection id="preview" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div data-preview-section>
         <SectionTitle
         badge="Preview sistem"
@@ -2360,7 +2361,7 @@ function PackageComparisonSection() {
 
 function AddOnsSection() {
   return (
-    <PageSection id="addons" className="bg-[#F8F3EA] dark:bg-[#07140F]">
+    <PageSection id="addons" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div className={landingStyles.addOnsHeader}>
         <SectionTitle
           badge="Tambahan opsional"
@@ -2438,10 +2439,10 @@ function WhyOutletmuSection() {
               whileHover={{ y: -6 }}
               className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)] dark:border-white/10 dark:bg-white/8 dark:shadow-[0_24px_70px_rgba(0,0,0,0.22)]"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#2F8A68] text-white">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[var(--om-primary)] text-white">
                 <Check className="h-5 w-5" aria-hidden="true" />
               </span>
-              <p className="font-semibold leading-7 text-[#14213D] dark:text-[#F8F3EA]">{point}</p>
+              <p className="font-semibold leading-7 text-[var(--om-ink-950)] dark:text-[#F8F3EA]">{point}</p>
             </motion.div>
           ))}
         </div>
@@ -2461,11 +2462,11 @@ function FAQSection() {
           const isOpen = openIndex === index;
 
           return (
-            <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-[#14213D]/8 bg-[#F8F3EA]/62 dark:border-white/10 dark:bg-white/7">
+            <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-[var(--om-ink-950)]/8 bg-[#F8F3EA]/62 dark:border-white/10 dark:bg-white/7">
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[#14213D] focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/20 dark:text-[#F8F3EA]"
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[var(--om-ink-950)] focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20 dark:text-[#F8F3EA]"
                 aria-expanded={isOpen}
               >
                 {faq.question}
@@ -2822,7 +2823,7 @@ function FinalCTASection() {
 
 function Footer({ theme }: { theme: ThemeMode }) {
   return (
-    <footer className="border-t border-[#14213D]/6 bg-white px-5 py-10 dark:border-white/10 dark:bg-[#07140F] md:px-8">
+    <footer className="border-t border-[var(--om-ink-950)]/6 bg-white px-5 py-10 dark:border-white/10 dark:bg-[#080F1F] md:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
         <div className="flex min-w-0 flex-col items-start gap-4">
           <BrandLogo variant="full" theme={theme} size="md" />
@@ -2837,27 +2838,27 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </ButtonLink>
           <a
             href={leadFormAnchor}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#14213D]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[#14213D] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#2F8A68]/30 focus:outline-none focus:ring-4 focus:ring-[#2F8A68]/25 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[#2F8A68]/60 sm:w-auto"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[var(--om-ink-950)]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[var(--om-ink-950)] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[var(--om-primary)]/30 focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-primary)]/60 sm:w-auto"
           >
             Demo
           </a>
         </div>
       </div>
       <nav
-        className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-x-5 gap-y-3 border-t border-[#14213D]/6 pt-6 text-sm font-semibold text-[#14213D] dark:border-white/10 dark:text-[#F8F3EA]/86"
+        className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-x-5 gap-y-3 border-t border-[var(--om-ink-950)]/6 pt-6 text-sm font-semibold text-[var(--om-ink-950)] dark:border-white/10 dark:text-[#F8F3EA]/86"
         aria-label="Halaman utama Outletmu"
       >
         {footerSeoLinks.map((item) => (
-          <Link key={item.href} href={item.href} className="transition hover:text-[#2F8A68] dark:hover:text-white">
+          <Link key={item.href} href={item.href} className="transition hover:text-[var(--om-primary)] dark:hover:text-white">
             {item.label}
           </Link>
         ))}
       </nav>
-      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[#14213D]/6 pt-6 text-sm font-medium text-slate-900 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[var(--om-ink-950)]/6 pt-6 text-sm font-medium text-slate-900 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
           href={leadFormAnchor}
-          className="text-[#2F8A68] transition hover:text-[#28795b] dark:text-[#B9F1DA] dark:hover:text-white"
+          className="text-[var(--om-primary)] transition hover:text-[var(--om-primary-hover)] dark:text-[#E4E7EC] dark:hover:text-white"
         >
           Demo
         </a>
@@ -2877,6 +2878,7 @@ export function OutletmuLanding() {
       <Navbar />
       <HeroSection />
       <OperationalDashboardSection />
+      <ContainerScrollShowcase />
       <BusinessSolutionSection />
       <CoreFeaturesSection />
       <StaffFeatureSection />
