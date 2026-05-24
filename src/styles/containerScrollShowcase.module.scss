@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(28px, 4vw, 44px);
+  gap: clamp(24px, 3.4vw, 38px);
   width: min(1120px, 100%);
   margin: 0 auto;
   border: 1px solid rgba(208, 213, 221, 0.9);
@@ -148,97 +148,6 @@
   line-height: 1.75;
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.8rem;
-}
-
-.primaryCta,
-.secondaryCta {
-  display: inline-flex;
-  min-height: 2.85rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 0.78rem 1.18rem;
-  font-size: 0.94rem;
-  font-weight: 850;
-  text-decoration: none;
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease,
-    background 0.18s ease,
-    color 0.18s ease,
-    box-shadow 0.18s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 3px solid rgba(22, 165, 111, 0.25);
-    outline-offset: 3px;
-  }
-}
-
-.primaryCta {
-  border: 1px solid #16a56f;
-  background: #16a56f;
-  color: #ffffff;
-  box-shadow: 0 18px 38px rgba(22, 165, 111, 0.22);
-
-  &:hover {
-    border-color: #0e7a55;
-    background: #0e7a55;
-    box-shadow: 0 20px 44px rgba(14, 122, 85, 0.24);
-  }
-}
-
-.secondaryCta {
-  border: 1px solid #d0d5dd;
-  background: #ffffff;
-  color: #10233f;
-  box-shadow: 0 10px 24px rgba(16, 35, 63, 0.05);
-
-  &:hover {
-    border-color: rgba(22, 165, 111, 0.34);
-    color: #0e7a55;
-  }
-}
-
-.proofChips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.45rem;
-}
-
-.proofChips span {
-  display: inline-flex;
-  min-height: 2.45rem;
-  align-items: center;
-  gap: 0.45rem;
-  border: 1px solid rgba(208, 213, 221, 0.82);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  padding: 0.58rem 0.82rem;
-  color: #10233f;
-  font-size: 0.84rem;
-  font-weight: 760;
-}
-
-.proofChips i {
-  width: 0.42rem;
-  height: 0.42rem;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: #16a56f;
-}
-
 @keyframes cursorBlink {
   0%,
   45% {
@@ -286,27 +195,12 @@
     min-width: 8ch;
   }
 
-  .actions {
-    display: grid;
-    width: 100%;
-  }
-
-  .proofChips {
-    justify-content: center;
-  }
-
-  .primaryCta,
-  .secondaryCta {
-    width: 100%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cursor,
   .typedWord,
-  .showcaseCard,
-  .primaryCta,
-  .secondaryCta {
+  .showcaseCard {
     animation: none;
     transition: none;
     transform: none;

@@ -6,7 +6,6 @@ import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "fr
 import styles from "@/styles/containerScrollShowcase.module.scss";
 
 const typedWords = ["rapi", "cepat", "mudah", "pintar", "otomatis"] as const;
-const proofChips = ["POS Kasir", "QR Menu", "Laporan WhatsApp"] as const;
 const typingSpeed = 58;
 const completedPause = 1150;
 const fadeOutDuration = 220;
@@ -145,24 +144,6 @@ export function ContainerScrollShowcase() {
               Pantau POS kasir, QR menu, kitchen, stok, transaksi, dan laporan dari satu tempat yang mudah dipakai
               owner maupun staff.
             </p>
-
-            <div className={styles.actions}>
-              <a href="#coba-gratis" className={styles.primaryCta}>
-                Coba Gratis
-              </a>
-              <a href="#harga" className={styles.secondaryCta}>
-                Lihat Harga
-              </a>
-            </div>
-
-            <div className={styles.proofChips} aria-label="Modul utama Outletmu">
-              {proofChips.map((chip) => (
-                <span key={chip}>
-                  <i aria-hidden="true" />
-                  {chip}
-                </span>
-              ))}
-            </div>
           </div>
 
           <div className={styles.imageBlock}>
