@@ -23,8 +23,7 @@
   left: 6%;
   width: min(36vw, 24rem);
   aspect-ratio: 1;
-  background: rgba(22, 165, 111, 0.13);
-  filter: blur(62px);
+  background: radial-gradient(circle, rgba(22, 165, 111, 0.12), transparent 68%);
 }
 
 .ambientTwo {
@@ -32,8 +31,7 @@
   bottom: 15%;
   width: min(42vw, 28rem);
   aspect-ratio: 1;
-  background: rgba(16, 35, 63, 0.08);
-  filter: blur(76px);
+  background: radial-gradient(circle, rgba(16, 35, 63, 0.08), transparent 68%);
 }
 
 .stickyWrap {
@@ -204,6 +202,7 @@
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
   border: 1px solid rgba(228, 231, 236, 0.96);
   border-radius: clamp(1rem, 2vw, 1.6rem);
   background: var(--om-surface-50);

@@ -8,10 +8,10 @@ import styles from "@/styles/containerScrollShowcase.module.scss";
 const showcaseBadges = ["POS Kasir", "QR Menu", "Kitchen Display", "Stok", "Laporan"] as const;
 
 const dashboardImage = {
-  src: "/images/landing/outletmu-dashboard-showcase-clean.png",
-  width: 1536,
-  height: 1024,
-  alt: "Dashboard Outletmu untuk memantau POS kasir, QR menu, stok, dan laporan outlet",
+  src: "/images/landing/outletmu-dashboard-showcase-crisp.png",
+  width: 3072,
+  height: 1920,
+  alt: "Dashboard Outletmu untuk memantau POS, QR menu, stok, kitchen, dan laporan",
 };
 
 function useIsMobile() {
@@ -122,7 +122,9 @@ export function ContainerScrollShowcase() {
               alt={dashboardImage.alt}
               width={dashboardImage.width}
               height={dashboardImage.height}
-              sizes="(max-width: 768px) 92vw, (max-width: 1200px) 88vw, 1080px"
+              quality={100}
+              priority
+              sizes="(max-width: 768px) 94vw, 1120px"
               className={styles.dashboardImage}
             />
           </motion.div>
