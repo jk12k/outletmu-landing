@@ -55,13 +55,13 @@ export function ContainerScrollShowcase() {
     mass: 0.35,
   });
 
-  const desktopY = useTransform(smoothProgress, [0.08, 0.58], [64, 0]);
-  const mobileY = useTransform(smoothProgress, [0.08, 0.58], [24, 0]);
-  const desktopScale = useTransform(smoothProgress, [0.08, 0.58], [0.96, 1]);
-  const mobileScale = useTransform(smoothProgress, [0.08, 0.58], [0.985, 1]);
-  const desktopOpacity = useTransform(smoothProgress, [0.04, 0.42], [0.78, 1]);
-  const mobileOpacity = useTransform(smoothProgress, [0.04, 0.42], [0.9, 1]);
-  const desktopRotateX = useTransform(smoothProgress, [0.08, 0.58], [6, 0]);
+  const desktopY = useTransform(smoothProgress, [0.08, 0.58], [56, 0]);
+  const mobileY = useTransform(smoothProgress, [0.08, 0.58], [18, 0]);
+  const desktopScale = useTransform(smoothProgress, [0.08, 0.58], [0.97, 1]);
+  const mobileScale = useTransform(smoothProgress, [0.08, 0.58], [0.99, 1]);
+  const desktopOpacity = useTransform(smoothProgress, [0.04, 0.42], [0.82, 1]);
+  const mobileOpacity = useTransform(smoothProgress, [0.04, 0.42], [0.92, 1]);
+  const desktopRotateX = useTransform(smoothProgress, [0.08, 0.58], [5, 0]);
   const mobileRotateX = useTransform(smoothProgress, [0.08, 0.58], [0, 0]);
 
   const cardY = isMobile ? mobileY : desktopY;
@@ -126,7 +126,7 @@ export function ContainerScrollShowcase() {
             transformOrigin: "center center",
           }}
         >
-          <div className={styles.copyColumn}>
+          <div className={styles.copyBlock}>
             <span className={styles.eyebrow}>Satu sistem untuk operasional outlet</span>
 
             <h2 id="dashboard-showcase-title" className={styles.title}>
@@ -165,7 +165,7 @@ export function ContainerScrollShowcase() {
             </div>
           </div>
 
-          <div className={styles.imageColumn}>
+          <div className={styles.imageBlock}>
             <div className={styles.imageFrame}>
               <Image
                 src={dashboardImage.src}
