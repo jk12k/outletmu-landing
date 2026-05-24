@@ -43,7 +43,6 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
-import { ContainerScrollShowcase } from "@/components/landing/container-scroll-showcase";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappLeadNumber = "6281291960227";
@@ -1082,8 +1081,8 @@ function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?:
       className={cn(
         "inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
         tone === "light"
-          ? "border border-[var(--om-primary)]/14 bg-white/86 text-[var(--om-primary)] dark:border-white/10 dark:bg-white/8 dark:text-[#E4E7EC]"
-          : "border border-white/14 bg-white/10 text-white",
+          ? "border border-[var(--om-brand-green)]/18 bg-[var(--om-brand-green-soft)] text-[var(--om-brand-green-hover)] dark:border-white/10 dark:bg-white/8 dark:text-[#E4E7EC]"
+          : "border border-[var(--om-brand-green)]/24 bg-white/92 text-[var(--om-brand-green-hover)]",
       )}
     >
       {children}
@@ -1168,12 +1167,12 @@ function ButtonLink({
     <a
       href={href}
       className={cn(
-        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold transition duration-200 focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold transition duration-200 focus:outline-none focus:ring-4 focus:ring-[var(--om-brand-green)]/20",
         variant === "primary" &&
-          "bg-[var(--om-primary)] text-white shadow-[0_22px_55px_rgba(15,23,40,0.22)] hover:-translate-y-0.5 hover:bg-[var(--om-primary-hover)]",
+          "bg-[var(--om-brand-green)] text-white shadow-[0_22px_55px_rgba(22,165,111,0.22)] hover:-translate-y-0.5 hover:bg-[var(--om-brand-green-hover)]",
         variant === "secondary" &&
-          "border border-[var(--om-ink-950)]/10 bg-white text-[var(--om-ink-950)] shadow-sm hover:-translate-y-0.5 hover:border-[var(--om-primary)]/30 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-primary)]/60",
-        variant === "light" && "bg-white text-[var(--om-primary)] shadow-[0_22px_55px_rgba(15,23,40,0.20)] hover:-translate-y-0.5",
+          "border border-[var(--om-border)] bg-white text-[var(--om-ink-950)] shadow-sm hover:-translate-y-0.5 hover:border-[var(--om-brand-green)]/40 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-brand-green)]/60",
+        variant === "light" && "bg-white text-[var(--om-brand-green-hover)] shadow-[0_22px_55px_rgba(22,165,111,0.18)] hover:-translate-y-0.5",
         className,
       )}
     >
@@ -2439,7 +2438,7 @@ function WhyOutletmuSection() {
               whileHover={{ y: -6 }}
               className="flex min-h-28 items-start gap-4 rounded-[1.7rem] border border-white/80 bg-white/72 p-6 shadow-[0_22px_60px_rgba(20,33,61,0.08)] dark:border-white/10 dark:bg-white/8 dark:shadow-[0_24px_70px_rgba(0,0,0,0.22)]"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[var(--om-primary)] text-white">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[var(--om-brand-green)] text-white">
                 <Check className="h-5 w-5" aria-hidden="true" />
               </span>
               <p className="font-semibold leading-7 text-[var(--om-ink-950)] dark:text-[#F8F3EA]">{point}</p>
@@ -2466,7 +2465,7 @@ function FAQSection() {
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[var(--om-ink-950)] focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20 dark:text-[#F8F3EA]"
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[var(--om-ink-950)] focus:outline-none focus:ring-4 focus:ring-[var(--om-brand-green)]/20 dark:text-[#F8F3EA]"
                 aria-expanded={isOpen}
               >
                 {faq.question}
@@ -2772,7 +2771,7 @@ function OperationsCTASection() {
     <PageSection className={landingStyles.midCtaSection}>
       <div data-reveal className={landingStyles.midCtaPanel}>
         <div className={landingStyles.midCtaCopy}>
-          <Badge tone="dark">Gratis setup untuk 100 outlet pertama</Badge>
+          <Badge>Gratis setup untuk 100 outlet pertama</Badge>
           <h2>Mulai rapikan order dan kasir outlet Anda</h2>
           <p>
             Outletmu bantu setup dari awal, cocok untuk bisnis yang ingin punya sistem kasir dan QR order tanpa
@@ -2780,7 +2779,7 @@ function OperationsCTASection() {
           </p>
         </div>
         <div className={landingStyles.midCtaActions}>
-          <ButtonLink href={leadFormAnchor} variant="light">
+          <ButtonLink href={leadFormAnchor}>
             Coba Gratis
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </ButtonLink>
@@ -2797,11 +2796,11 @@ function FinalCTASection() {
         <div className={landingStyles.finalWord}>FLOW</div>
         <div className="relative grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div className="text-center lg:text-left">
-            <Badge tone="dark">Coba gratis</Badge>
-            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-white">
+            <Badge>Coba gratis</Badge>
+            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-[var(--om-ink-950)]">
               Siap rapikan kasir dan QR order outlet Anda?
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/82 md:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--om-slate-700)] md:text-lg lg:mx-0">
               Isi data outlet dulu agar tim Outletmu bisa bantu arahkan demo, paket, dan alur setup yang paling pas.
             </p>
           </div>
@@ -2838,7 +2837,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
           </ButtonLink>
           <a
             href={leadFormAnchor}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[var(--om-ink-950)]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[var(--om-ink-950)] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[var(--om-primary)]/30 focus:outline-none focus:ring-4 focus:ring-[var(--om-primary)]/20 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-primary)]/60 sm:w-auto"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[var(--om-ink-950)]/10 bg-white px-6 py-3 text-center text-sm font-semibold text-[var(--om-ink-950)] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[var(--om-brand-green)]/40 focus:outline-none focus:ring-4 focus:ring-[var(--om-brand-green)]/20 dark:border-white/14 dark:bg-white/8 dark:text-[#F8F3EA] dark:hover:border-[var(--om-brand-green)]/60 sm:w-auto"
           >
             Demo
           </a>
@@ -2849,7 +2848,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
         aria-label="Halaman utama Outletmu"
       >
         {footerSeoLinks.map((item) => (
-          <Link key={item.href} href={item.href} className="transition hover:text-[var(--om-primary)] dark:hover:text-white">
+          <Link key={item.href} href={item.href} className="transition hover:text-[var(--om-brand-green-hover)] dark:hover:text-white">
             {item.label}
           </Link>
         ))}
@@ -2858,7 +2857,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
         <p>© 2026 Outletmu. All rights reserved.</p>
         <a
           href={leadFormAnchor}
-          className="text-[var(--om-primary)] transition hover:text-[var(--om-primary-hover)] dark:text-[#E4E7EC] dark:hover:text-white"
+          className="text-[var(--om-brand-green-hover)] transition hover:text-[var(--om-brand-green)] dark:text-[#E4E7EC] dark:hover:text-white"
         >
           Demo
         </a>
@@ -2878,7 +2877,6 @@ export function OutletmuLanding() {
       <Navbar />
       <HeroSection />
       <OperationalDashboardSection />
-      <ContainerScrollShowcase />
       <BusinessSolutionSection />
       <CoreFeaturesSection />
       <StaffFeatureSection />

@@ -227,7 +227,7 @@
   }
 
   button:last-child {
-    background: var(--om-primary);
+    background: var(--om-brand-green);
     color: #ffffff;
   }
 }
@@ -240,7 +240,7 @@
 
 .dotActive {
   width: 2rem !important;
-  background: var(--om-primary) !important;
+  background: var(--om-brand-green) !important;
 }
 
 @media (max-width: 1023px) {
@@ -489,7 +489,7 @@
   .innerPanel {
     background:
       radial-gradient(circle at 88% 12%, rgba(16, 35, 63, 0.34), transparent 32%),
-      var(--om-primary);
+      var(--om-brand-green);
     box-shadow: 0 28px 65px rgba(0, 0, 0, 0.24);
   }
 
@@ -507,7 +507,7 @@
     }
 
     button:last-child {
-      background: var(--om-primary);
+      background: var(--om-brand-green);
       color: #ffffff;
     }
   }
@@ -517,6 +517,6 @@
   }
 
   .dotActive {
-    background: var(--om-primary) !important;
+    background: var(--om-brand-green) !important;
   }
 }

@@ -38,7 +38,7 @@
   height: 2.1rem;
   place-items: center;
   border-radius: 0.72rem;
-  background: var(--om-primary);
+  background: var(--om-brand-green);
   color: #ffffff;
   font-weight: 900;
 }
@@ -60,9 +60,9 @@
     font-weight: 800;
 
     &:last-child {
-      background: var(--om-primary);
+      background: var(--om-brand-green);
       color: #ffffff;
-      box-shadow: 0 14px 32px rgba(16, 35, 63, 0.22);
+      box-shadow: 0 14px 32px rgba(22, 165, 111, 0.22);
     }
   }
 }
@@ -155,9 +155,9 @@
 }
 
 .primaryCta {
-  background: var(--om-ink-950);
+  background: var(--om-brand-green);
   color: #ffffff;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 18px 42px rgba(22, 165, 111, 0.22);
 }
 
 .secondaryCta {
@@ -324,7 +324,7 @@
     height: 0.38rem;
     margin-right: 0.45rem;
     border-radius: 999px;
-    background: var(--om-primary);
+    background: var(--om-brand-green);
     vertical-align: 0.08rem;
   }
 
@@ -415,7 +415,7 @@
   place-items: center;
   margin-bottom: 1rem;
   border-radius: 1rem;
-  background: var(--om-primary);
+  background: var(--om-brand-green);
   color: #ffffff;
   box-shadow: 0 16px 36px rgba(15, 23, 40, 0.22);
 }
@@ -559,7 +559,7 @@
   > span {
     width: fit-content;
     border-radius: 999px;
-    background: var(--om-primary);
+    background: var(--om-brand-green);
     padding: 0.38rem 0.62rem;
     color: #ffffff;
     font-size: 0.68rem;
@@ -628,11 +628,11 @@
   gap: clamp(1rem, 3vw, 1.5rem);
   align-items: center;
   margin-top: clamp(1rem, 3vw, 1.35rem);
-  border: 1px solid rgba(16, 35, 63, 0.22);
+  border: 1px solid rgba(22, 165, 111, 0.24);
   border-radius: 1.55rem;
   background:
     radial-gradient(circle at 84% 10%, rgba(255, 255, 255, 0.2), transparent 30%),
-    linear-gradient(135deg, var(--om-primary), var(--om-primary));
+    linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
   padding: clamp(1.25rem, 4vw, 1.85rem);
   color: #ffffff;
   box-shadow: 0 28px 75px rgba(15, 23, 40, 0.18);
@@ -837,7 +837,7 @@
     align-items: center;
     gap: 0.45rem;
     border-radius: 999px;
-    background: var(--om-primary);
+    background: var(--om-brand-green);
     padding: 0.45rem 0.72rem;
     color: #ffffff;
     font-size: 0.74rem;
@@ -930,7 +930,7 @@
   gap: 1.5rem;
   align-items: center;
   border-radius: 1.45rem;
-  background: var(--om-primary);
+  background: linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
   padding: clamp(1.25rem, 4vw, 2rem);
   color: #ffffff;
 
@@ -1060,7 +1060,7 @@
     width: 0.38rem;
     height: 0.38rem;
     border-radius: 999px;
-    background: var(--om-primary);
+    background: var(--om-brand-green);
   }
 }
 
@@ -1102,7 +1102,7 @@
 }
 
 .guideCta {
-  background: var(--om-primary);
+  background: linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
   color: #ffffff;
 
   span {

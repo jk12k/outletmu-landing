@@ -40,7 +40,7 @@ export function DemoQrMenuCode({
       {showLink ? (
         <Link
           href="/#coba-gratis"
-          className="text-xs font-extrabold text-[var(--om-primary)] underline-offset-4 transition hover:text-[var(--om-primary)] hover:underline"
+          className="text-xs font-extrabold text-[var(--om-brand-green-hover)] underline-offset-4 transition hover:text-[var(--om-brand-green)] hover:underline"
         >
           Demo
         </Link>
