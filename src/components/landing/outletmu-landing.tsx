@@ -42,6 +42,7 @@ import { cn } from "@/lib/utils";
 import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
+import { ContainerScrollShowcase } from "@/components/landing/container-scroll-showcase";
 import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
@@ -2877,6 +2878,7 @@ export function OutletmuLanding() {
       <Navbar />
       <HeroSection />
       <OperationalDashboardSection />
+      <ContainerScrollShowcase />
       <BusinessSolutionSection />
       <CoreFeaturesSection />
       <StaffFeatureSection />
