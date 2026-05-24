@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import styles from "@/styles/containerScrollShowcase.module.scss";
 
@@ -10,6 +11,12 @@ const typingSpeed = 58;
 const completedPause = 1150;
 const fadeOutDuration = 220;
 const nextWordDelay = 120;
+const dashboardImage = {
+  src: "/images/landing/outletmu-dashboard-showcase-crisp.png",
+  width: 3072,
+  height: 1920,
+  alt: "Dashboard Outletmu untuk memantau POS kasir, QR menu, stok, kitchen, transaksi, dan laporan",
+};
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -56,11 +63,23 @@ export function ContainerScrollShowcase() {
   const mobileOpacity = useTransform(smoothProgress, [0.04, 0.42], [0.9, 1]);
   const desktopRotateX = useTransform(smoothProgress, [0.08, 0.58], [8, 0]);
   const mobileRotateX = useTransform(smoothProgress, [0.08, 0.58], [0, 0]);
+  const desktopImageY = useTransform(smoothProgress, [0.12, 0.7], [96, 0]);
+  const mobileImageY = useTransform(smoothProgress, [0.12, 0.7], [36, 0]);
+  const desktopImageScale = useTransform(smoothProgress, [0.12, 0.7], [0.94, 1]);
+  const mobileImageScale = useTransform(smoothProgress, [0.12, 0.7], [0.985, 1]);
+  const desktopImageOpacity = useTransform(smoothProgress, [0.08, 0.5], [0.7, 1]);
+  const mobileImageOpacity = useTransform(smoothProgress, [0.08, 0.5], [0.88, 1]);
+  const desktopImageRotateX = useTransform(smoothProgress, [0.12, 0.7], [10, 0]);
+  const mobileImageRotateX = useTransform(smoothProgress, [0.12, 0.7], [0, 0]);
 
   const panelY = isMobile ? mobileY : desktopY;
   const panelScale = isMobile ? mobileScale : desktopScale;
   const panelOpacity = isMobile ? mobileOpacity : desktopOpacity;
   const panelRotateX = isMobile ? mobileRotateX : desktopRotateX;
+  const imageY = isMobile ? mobileImageY : desktopImageY;
+  const imageScale = isMobile ? mobileImageScale : desktopImageScale;
+  const imageOpacity = isMobile ? mobileImageOpacity : desktopImageOpacity;
+  const imageRotateX = isMobile ? mobileImageRotateX : desktopImageRotateX;
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -155,6 +174,28 @@ export function ContainerScrollShowcase() {
               </span>
             ))}
           </div>
+        </motion.div>
+
+        <motion.div
+          className={styles.showcaseImageCard}
+          style={{
+            y: prefersReducedMotion ? 0 : imageY,
+            scale: prefersReducedMotion ? 1 : imageScale,
+            opacity: prefersReducedMotion ? 1 : imageOpacity,
+            rotateX: prefersReducedMotion ? 0 : imageRotateX,
+            transformOrigin: "center center",
+          }}
+        >
+          <Image
+            src={dashboardImage.src}
+            alt={dashboardImage.alt}
+            width={dashboardImage.width}
+            height={dashboardImage.height}
+            quality={100}
+            priority
+            sizes="(max-width: 768px) 94vw, 1120px"
+            className={styles.showcaseImage}
+          />
         </motion.div>
       </div>
     </section>

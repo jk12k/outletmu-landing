@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  min-height: 112vh;
+  min-height: 138vh;
   overflow: clip;
   scroll-margin-top: 96px;
   background:
@@ -15,7 +15,8 @@
   top: clamp(88px, 11vh, 128px);
   display: grid;
   align-content: center;
-  width: min(100%, 880px);
+  justify-items: center;
+  width: min(100%, 1120px);
   min-height: calc(100vh - clamp(104px, 14vh, 152px));
   margin-inline: auto;
   perspective: 1000px;
@@ -37,6 +38,28 @@
   backface-visibility: hidden;
   transform-style: preserve-3d;
   will-change: transform, opacity;
+}
+
+.showcaseImageCard {
+  width: min(1120px, 100%);
+  margin-top: clamp(32px, 5vw, 56px);
+  border: 1px solid rgba(208, 213, 221, 0.9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: clamp(8px, 1.2vw, 14px);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.showcaseImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: contain;
 }
 
 .eyebrow {
@@ -222,7 +245,7 @@
 
 @media (max-width: 767px) {
   .section {
-    min-height: 90vh;
+    min-height: auto;
     padding: 80px 20px;
   }
 
@@ -234,6 +257,16 @@
 
   .typewriterPanel {
     border-radius: 22px;
+  }
+
+  .showcaseImageCard {
+    margin-top: 28px;
+    border-radius: 22px;
+    padding: 8px;
+  }
+
+  .showcaseImage {
+    border-radius: 16px;
   }
 
   .title {
@@ -263,6 +296,7 @@
   .cursor,
   .typedWord,
   .typewriterPanel,
+  .showcaseImageCard,
   .primaryCta,
   .secondaryCta {
     animation: none;
