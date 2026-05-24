@@ -12,9 +12,9 @@ const completedPause = 1150;
 const fadeOutDuration = 220;
 const nextWordDelay = 120;
 const dashboardImage = {
-  src: "/images/landing/outletmu-dashboard-showcase-crisp.png",
-  width: 3072,
-  height: 1920,
+  src: "/images/landing/outletmu-dashboard-showcase-final.png",
+  width: 1672,
+  height: 941,
   alt: "Dashboard Outletmu untuk memantau POS kasir, QR menu, stok, kitchen, transaksi, dan laporan",
 };
 
