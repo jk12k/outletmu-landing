@@ -1,8 +1,8 @@
 .section {
   position: relative;
-  min-height: 148vh;
+  min-height: 120vh;
   overflow: clip;
-  padding: clamp(6rem, 8vw, 7.25rem) clamp(1rem, 4vw, 2rem) clamp(4.5rem, 7vw, 6.5rem);
+  padding: clamp(5.5rem, 7vw, 6.5rem) clamp(1rem, 4vw, 2rem) clamp(4rem, 6vw, 5.5rem);
   background:
     radial-gradient(circle at 18% 8%, rgba(22, 165, 111, 0.11), transparent 25rem),
     radial-gradient(circle at 84% 18%, rgba(139, 107, 62, 0.10), transparent 27rem),
@@ -36,11 +36,11 @@
 
 .stickyWrap {
   position: sticky;
-  top: 110px;
+  top: clamp(88px, 10vh, 120px);
   display: grid;
   align-content: center;
   width: min(100%, 74rem);
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - clamp(96px, 12vh, 132px));
   min-width: 0;
   margin-inline: auto;
   gap: clamp(1.5rem, 3vw, 2.35rem);
@@ -195,6 +195,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.94);
   transform-origin: center top;
   transform-style: preserve-3d;
+  backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
@@ -210,18 +211,17 @@
 
 @media (max-width: 1023px) {
   .section {
-    min-height: 132vh;
+    min-height: 112vh;
   }
 
   .stickyWrap {
-    top: 96px;
-    min-height: calc(100vh - 106px);
+    min-height: calc(100vh - clamp(92px, 11vh, 120px));
   }
 }
 
 @media (max-width: 767px) {
   .section {
-    min-height: 112vh;
+    min-height: 100vh;
     padding: 4.75rem 1rem 3.5rem;
   }
 

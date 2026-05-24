@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import styles from "@/styles/containerScrollShowcase.module.scss";
 
 const showcaseBadges = ["POS Kasir", "QR Menu", "Kitchen Display", "Stok", "Laporan"] as const;
@@ -39,7 +39,12 @@ export function ContainerScrollShowcase() {
   const [typedIndex, setTypedIndex] = useState(0);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start 90%", "end 35%"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.35,
   });
 
   useEffect(() => {
@@ -57,15 +62,15 @@ export function ContainerScrollShowcase() {
     };
   }, [shouldReduceMotion]);
 
-  const desktopRotateX = useTransform(scrollYProgress, [0, 0.65], [24, 0]);
-  const mobileRotateX = useTransform(scrollYProgress, [0, 0.62], [8, 0]);
-  const desktopScale = useTransform(scrollYProgress, [0, 0.65], [0.84, 1]);
-  const mobileScale = useTransform(scrollYProgress, [0, 0.62], [0.95, 1]);
-  const desktopY = useTransform(scrollYProgress, [0, 0.65], [140, 0]);
-  const mobileY = useTransform(scrollYProgress, [0, 0.62], [36, 0]);
-  const frameOpacity = useTransform(scrollYProgress, [0, 0.25], [0.82, 1]);
-  const titleY = useTransform(scrollYProgress, [0, 0.42, 0.78], [44, 0, -14]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.24], [0.86, 1]);
+  const desktopRotateX = useTransform(smoothProgress, [0.1, 0.65], [12, 0]);
+  const mobileRotateX = useTransform(smoothProgress, [0.1, 0.65], [4, 0]);
+  const desktopScale = useTransform(smoothProgress, [0.1, 0.65], [0.94, 1]);
+  const mobileScale = useTransform(smoothProgress, [0.1, 0.65], [0.98, 1]);
+  const desktopY = useTransform(smoothProgress, [0.1, 0.65], [56, 0]);
+  const mobileY = useTransform(smoothProgress, [0.1, 0.65], [20, 0]);
+  const frameOpacity = useTransform(smoothProgress, [0.05, 0.35], [0.92, 1]);
+  const titleY = useTransform(smoothProgress, [0.08, 0.48, 0.82], [24, 0, -8]);
+  const titleOpacity = useTransform(smoothProgress, [0.05, 0.28], [0.92, 1]);
 
   const frameMotionStyle = shouldReduceMotion
     ? { opacity: 1, rotateX: 0, scale: 1, y: 0 }
