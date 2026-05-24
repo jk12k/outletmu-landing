@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { BookOpenCheck, CheckCircle2 } from "lucide-react";
 import { JsonLd } from "./json-ld";
 import { guidePublishedDate, type GuidePageContent } from "./guide-pages";
 import {
@@ -46,7 +48,7 @@ export function GuidePage({ page }: GuidePageProps) {
       <article>
         <header className={styles.hero}>
           <div className={styles.heroCopy} data-reveal>
-            <p className={styles.eyebrow}>{page.eyebrow}</p>
+            <p className={styles.eyebrow}><BookOpenCheck aria-hidden="true" /> {page.eyebrow}</p>
             <h1>{page.h1}</h1>
             <p className={styles.lead}>{page.intro[0]}</p>
 
@@ -61,11 +63,16 @@ export function GuidePage({ page }: GuidePageProps) {
           </div>
 
           <aside className={styles.intentPanel} aria-label="Ringkasan panduan" data-reveal>
-            <span>Inti panduan</span>
+            <div className={styles.intentPanelHeader}>
+              <span className={styles.intentLogo}>
+                <Image src="/branding/outletmu-icon-light.png" alt="Outletmu" width={925} height={925} />
+              </span>
+              <span>Inti panduan</span>
+            </div>
             <p>{page.intent}</p>
             <div className={styles.intentTags}>
               {page.takeaways.slice(0, 3).map((item) => (
-                <span key={item}>{item}</span>
+                <span key={item}><CheckCircle2 aria-hidden="true" /> {item}</span>
               ))}
             </div>
           </aside>

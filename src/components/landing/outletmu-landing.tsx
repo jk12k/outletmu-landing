@@ -1850,7 +1850,7 @@ function WhatsAppBotSection() {
         <div className={landingStyles.chatFrame}>
           <div className={landingStyles.chatHeader}>
             <div className={landingStyles.botAvatar}>
-              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              <BrandLogo variant="icon" theme="light" size="sm" />
             </div>
             <div>
               <strong>Outletmu Bot</strong>
@@ -1872,7 +1872,9 @@ function WhatsAppBotSection() {
                   )}
                 >
                   {message.role === "bot" ? (
-                    <span className={landingStyles.chatAvatar}>O</span>
+                    <span className={landingStyles.chatAvatar}>
+                      <BrandLogo variant="icon" theme="light" size="sm" />
+                    </span>
                   ) : null}
                   <div
                     className={cn(
@@ -1897,7 +1899,9 @@ function WhatsAppBotSection() {
                   exit={{ opacity: 0, y: -6 }}
                   className={landingStyles.typingRow}
                 >
-                  <span className={landingStyles.chatAvatar}>O</span>
+                  <span className={landingStyles.chatAvatar}>
+                    <BrandLogo variant="icon" theme="light" size="sm" />
+                  </span>
                   <div className={landingStyles.typingBubble} aria-label="Outletmu Bot sedang mengetik">
                     <i />
                     <i />

@@ -315,10 +315,10 @@
   font-size: 0.88rem;
   font-weight: 800;
   color: #ffffff;
-  background: linear-gradient(135deg, #2f9b78, #1ab494);
+  background: linear-gradient(135deg, #0f172a, #111827);
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 12px 26px rgba(26, 180, 148, 0.32);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.24);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   line-height: 1;
   white-space: nowrap;
@@ -326,7 +326,7 @@
 
 .cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 32px rgba(26, 180, 148, 0.4);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.32);
 }
 
 .ctaIcon {
@@ -372,11 +372,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: linear-gradient(135deg, #2f9b78, #1ab494);
+  background: linear-gradient(135deg, #0f172a, #111827);
   color: #ffffff;
   text-decoration: none;
   flex-shrink: 0;
-  box-shadow: 0 10px 22px rgba(26, 180, 148, 0.32);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.24);
   margin-left: auto;
 }
 
@@ -619,10 +619,10 @@
   font-size: 14px;
   font-weight: 800;
   border-radius: 999px;
-  background: linear-gradient(135deg, #2f9b78, #1ab494);
+  background: linear-gradient(135deg, #0f172a, #111827);
   color: #ffffff;
   text-decoration: none;
-  box-shadow: 0 14px 28px rgba(26, 180, 148, 0.34);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.26);
   min-height: 46px;
 }
 
