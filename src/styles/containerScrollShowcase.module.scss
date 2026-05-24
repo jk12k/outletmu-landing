@@ -1,15 +1,27 @@
 .section {
   position: relative;
+  min-height: 112vh;
   overflow: clip;
   scroll-margin-top: 96px;
   background:
     radial-gradient(circle at 20% 0%, rgba(22, 165, 111, 0.09), transparent 24rem),
     radial-gradient(circle at 82% 18%, rgba(139, 107, 62, 0.08), transparent 26rem),
     linear-gradient(180deg, #ffffff 0%, var(--om-sand-50) 62%, #ffffff 100%);
-  padding: 120px 24px;
+  padding: 96px 24px;
 }
 
-.panel {
+.stickyWrap {
+  position: sticky;
+  top: clamp(88px, 11vh, 128px);
+  display: grid;
+  align-content: center;
+  width: min(100%, 880px);
+  min-height: calc(100vh - clamp(104px, 14vh, 152px));
+  margin-inline: auto;
+  perspective: 1000px;
+}
+
+.typewriterPanel {
   display: grid;
   justify-items: center;
   width: min(100%, 880px);
@@ -22,6 +34,9 @@
   box-shadow:
     0 22px 70px rgba(16, 35, 63, 0.07),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
 }
 
 .eyebrow {
@@ -61,25 +76,36 @@
 .typedWrap {
   display: inline-flex;
   align-items: baseline;
-  justify-content: center;
-  min-width: min(100%, 7.8em);
+  justify-content: flex-start;
+  min-width: 8.5ch;
   color: #16a56f;
   white-space: nowrap;
 }
 
-.typedText {
+.typedWord {
+  display: inline-block;
   color: #16a56f;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    filter 220ms ease;
+}
+
+.typedWordFading {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translateY(8px);
 }
 
 .cursor {
   display: inline-block;
   width: 0.08em;
-  height: 0.82em;
+  height: 0.9em;
   margin-left: 0.08em;
   border-radius: 999px;
   background: #16a56f;
-  animation: cursorBlink 1s ease-in-out infinite;
-  transform: translateY(0.09em);
+  animation: cursorBlink 1s steps(2, start) infinite;
+  transform: translateY(0.1em);
 }
 
 .subtitle {
@@ -196,10 +222,17 @@
 
 @media (max-width: 767px) {
   .section {
+    min-height: 90vh;
     padding: 80px 20px;
   }
 
-  .panel {
+  .stickyWrap {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+
+  .typewriterPanel {
     border-radius: 22px;
   }
 
@@ -210,8 +243,9 @@
 
   .typedWrap {
     display: flex;
+    justify-content: center;
     margin-top: 0.08em;
-    min-width: 0;
+    min-width: 8ch;
   }
 
   .actions {
@@ -227,9 +261,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cursor,
+  .typedWord,
+  .typewriterPanel,
   .primaryCta,
   .secondaryCta {
     animation: none;
     transition: none;
+    transform: none;
   }
 }
