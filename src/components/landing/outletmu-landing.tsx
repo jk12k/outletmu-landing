@@ -3,7 +3,7 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -254,6 +254,12 @@ const landingImages = {
     src: "/images/landing/outletmu-cafe-tablet-qr-hero.png",
     alt: "Outletmu QR menu dan dashboard cafe",
   },
+  customerMenuShowcase: {
+    src: "/images/landing/mobile-customer-menu-showcase.png",
+    width: 941,
+    height: 1672,
+    alt: "Mockup menu pelanggan Outletmu untuk scan QR, pilih menu, dan melihat keranjang",
+  },
 } as const;
 
 const businessSolutionCards: Array<{
@@ -450,6 +456,8 @@ const customerFeatureCards: Array<{
     icon: Smartphone,
   },
 ];
+
+const customerMenuPoints = ["Tanpa download aplikasi", "Pesanan masuk ke dashboard", "Cocok untuk dine-in dan takeaway"];
 
 const manualProblems: Array<{ title: string; copy: string; icon: LucideIcon }> = [
   {
@@ -1507,33 +1515,113 @@ function StaffFeatureSection() {
 }
 
 function CustomerFeatureSection() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 85%", "end 25%"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 75,
+    damping: 22,
+    mass: 0.35,
+  });
+  const copyY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : [40, 0]);
+  const copyOpacity = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [1, 1] : [0.75, 1]);
+  const imageY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : isDesktop ? [80, 0] : [28, 0]);
+  const imageScale = useTransform(
+    smoothProgress,
+    [0, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.94, 1] : [0.98, 1],
+  );
+  const imageOpacity = useTransform(
+    smoothProgress,
+    [0, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.72, 1] : [0.9, 1],
+  );
+  const imageRotateX = useTransform(smoothProgress, [0, 1], shouldReduceMotion || !isDesktop ? [0, 0] : [5, 0]);
+  const imageFilter = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? ["blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)"]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const updateIsDesktop = () => setIsDesktop(mediaQuery.matches);
+
+    updateIsDesktop();
+    mediaQuery.addEventListener("change", updateIsDesktop);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateIsDesktop);
+    };
+  }, []);
+
   return (
     <PageSection id="customer" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
-      <div className={landingStyles.customerHeaderGrid}>
-        <SectionTitle
-          align="left"
-          badge="Untuk pembeli"
-          title="Pembeli bisa scan QR, pilih menu, dan kirim pesanan lebih cepat"
-          subtitle="Pengalaman order dibuat ringan dari HP pelanggan, sehingga staff tidak perlu selalu membawa menu fisik atau mencatat order dari awal."
-        />
-        <div data-reveal className={landingStyles.customerMiniPanel}>
-          <div className={landingStyles.customerMiniPanelBadge}>
-            <QrCode className="h-5 w-5" aria-hidden="true" />
-            <span>QR order meja</span>
+      <div ref={sectionRef} className={landingStyles.customerMenuShowcase}>
+        <motion.div className={landingStyles.customerMenuCopy} style={{ y: copyY, opacity: copyOpacity }}>
+          <Badge>Menu Pesan Pelanggan</Badge>
+          <h2>Pelanggan scan QR, menu langsung muncul</h2>
+          <p>
+            Pembeli cukup buka QR meja dari browser HP, pilih menu, tambah catatan, lalu pesanan masuk ke dashboard
+            kasir dan kitchen.
+          </p>
+          <div className={landingStyles.customerMenuPoints}>
+            {customerMenuPoints.map((point) => (
+              <span key={point}>
+                <Check className="h-4 w-4" aria-hidden="true" />
+                {point}
+              </span>
+            ))}
           </div>
-          <strong>Meja B4</strong>
-          <p>Menu digital cafe terbuka dari browser HP, pesanan membawa informasi meja, dan order masuk ke dashboard.</p>
-          <DemoQrMenuCode compact className={landingStyles.customerMiniPanelQr} />
-        </div>
-      </div>
-      <div data-reveal className={landingStyles.customerVisualFrame}>
-        <Image
-          src={landingImages.cafeTabletQr.src}
-          alt={landingImages.cafeTabletQr.alt}
-          fill
-          className={landingStyles.sectionVisualImage}
-          sizes="(max-width: 768px) 92vw, (max-width: 1280px) 88vw, 1120px"
-        />
+        </motion.div>
+        <motion.div
+          className={landingStyles.customerMenuMedia}
+          style={{
+            y: imageY,
+            scale: imageScale,
+            opacity: imageOpacity,
+            rotateX: imageRotateX,
+            filter: imageFilter,
+          }}
+        >
+          <div className={landingStyles.customerMenuGlow} aria-hidden="true" />
+          <motion.span
+            className={cn(landingStyles.customerMenuBadge, landingStyles.customerMenuBadgeOne)}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ delay: 0.14, duration: 0.45, ease: "easeOut" }}
+          >
+            Scan QR
+          </motion.span>
+          <motion.span
+            className={cn(landingStyles.customerMenuBadge, landingStyles.customerMenuBadgeTwo)}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ delay: 0.24, duration: 0.45, ease: "easeOut" }}
+          >
+            Pilih menu
+          </motion.span>
+          <motion.span
+            className={cn(landingStyles.customerMenuBadge, landingStyles.customerMenuBadgeThree)}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ delay: 0.34, duration: 0.45, ease: "easeOut" }}
+          >
+            Kirim pesanan
+          </motion.span>
+          <Image
+            src={landingImages.customerMenuShowcase.src}
+            alt={landingImages.customerMenuShowcase.alt}
+            width={landingImages.customerMenuShowcase.width}
+            height={landingImages.customerMenuShowcase.height}
+            quality={100}
+            className={landingStyles.customerMenuImage}
+            sizes="(max-width: 768px) 92vw, (max-width: 1280px) 42vw, 470px"
+          />
+        </motion.div>
       </div>
       <div data-reveal className={landingStyles.customerFeatureGrid}>
         {customerFeatureCards.map((feature) => {
