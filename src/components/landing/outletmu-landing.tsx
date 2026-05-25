@@ -182,7 +182,6 @@ const footerSeoLinks = [
 type ThemeMode = "light" | "dark";
 type BrandLogoVariant = "full" | "wordmark" | "icon";
 type BrandLogoSize = "sm" | "md" | "lg";
-type BrandLogoTone = "default" | "green";
 
 const themeStorageKey = "outletmu-theme";
 
@@ -1187,12 +1186,10 @@ function BrandLogo({
   variant,
   theme,
   size,
-  tone = "default",
 }: {
   variant: BrandLogoVariant;
   theme: ThemeMode;
   size: BrandLogoSize;
-  tone?: BrandLogoTone;
 }) {
   const logo = brandLogoAssets[variant][theme];
   const sizeClass = {
@@ -1212,7 +1209,7 @@ function BrandLogo({
       alt={logo.alt}
       width={logo.width}
       height={logo.height}
-      className={cn(landingStyles.brandLogo, sizeClass, variantClass, tone === "green" && landingStyles.brandLogoGreen)}
+      className={cn(landingStyles.brandLogo, sizeClass, variantClass)}
       priority={variant !== "icon"}
       sizes={
         size === "lg"
@@ -1854,7 +1851,7 @@ function WhatsAppBotSection() {
         <div className={landingStyles.chatFrame}>
           <div className={landingStyles.chatHeader}>
             <div className={landingStyles.botAvatar}>
-              <BrandLogo variant="icon" theme="light" size="sm" tone="green" />
+              <BrandLogo variant="icon" theme="light" size="sm" />
             </div>
             <div>
               <strong>Outletmu Bot</strong>
@@ -1877,7 +1874,7 @@ function WhatsAppBotSection() {
                 >
                   {message.role === "bot" ? (
                     <span className={landingStyles.chatAvatar}>
-                      <BrandLogo variant="icon" theme="light" size="sm" tone="green" />
+                      <BrandLogo variant="icon" theme="light" size="sm" />
                     </span>
                   ) : null}
                   <div
@@ -1904,7 +1901,7 @@ function WhatsAppBotSection() {
                   className={landingStyles.typingRow}
                 >
                   <span className={landingStyles.chatAvatar}>
-                    <BrandLogo variant="icon" theme="light" size="sm" tone="green" />
+                    <BrandLogo variant="icon" theme="light" size="sm" />
                   </span>
                   <div className={landingStyles.typingBubble} aria-label="Outletmu Bot sedang mengetik">
                     <i />

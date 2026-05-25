@@ -37,10 +37,6 @@
   aspect-ratio: 1;
 }
 
-.brandLogoGreen {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(55%) saturate(710%) hue-rotate(106deg) brightness(93%) contrast(88%);
-}
-
 .brandLogoSm {
   width: min(9rem, 42vw);
   height: auto;
@@ -441,7 +437,7 @@
 
 .operationalSection {
   background:
-    radial-gradient(circle at 86% 14%, rgba(16, 35, 63, 0.10), transparent 28rem),
+    radial-gradient(circle at 86% 14%, rgba(22, 165, 111, 0.11), transparent 28rem),
     var(--om-sand-50);
 }
 
@@ -529,7 +525,7 @@
   border: 1px solid rgba(20, 33, 61, 0.075);
   border-radius: clamp(1.65rem, 3vw, 2.35rem);
   background:
-    radial-gradient(circle at 15% 10%, rgba(16, 35, 63, 0.12), transparent 32%),
+    radial-gradient(circle at 15% 10%, rgba(22, 165, 111, 0.12), transparent 32%),
     rgba(255, 255, 255, 0.72);
   padding: clamp(0.8rem, 2.2vw, 1.35rem);
   box-shadow:
@@ -784,8 +780,8 @@
     height: 3rem;
     place-items: center;
     border-radius: 1rem;
-    background: var(--om-sand-50);
-    color: var(--om-primary);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
   }
 
   p {
@@ -852,7 +848,7 @@
   border: 1px solid rgba(20, 33, 61, 0.07);
   border-radius: clamp(1.75rem, 4vw, 2.4rem);
   background:
-    radial-gradient(circle at 82% 8%, rgba(16, 35, 63, 0.14), transparent 34%),
+    radial-gradient(circle at 82% 8%, rgba(22, 165, 111, 0.14), transparent 34%),
     var(--om-sand-50);
   padding: clamp(1.4rem, 3vw, 2.1rem);
   box-shadow: 0 32px 90px rgba(20, 33, 61, 0.09);
@@ -881,9 +877,9 @@
   height: 3.3rem;
   place-items: center;
   border-radius: 1.12rem;
-  background: var(--om-brand-green);
-  color: #ffffff;
-  box-shadow: 0 18px 42px rgba(15, 23, 40, 0.18);
+  background: var(--om-brand-green-soft);
+  color: var(--om-brand-green-hover);
+  box-shadow: 0 18px 42px rgba(22, 165, 111, 0.16);
 }
 
 .solutionIntroStats {
@@ -937,8 +933,8 @@
     height: 2.85rem;
     place-items: center;
     border-radius: 1rem;
-    background: rgba(16, 35, 63, 0.11);
-    color: var(--om-primary);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
   }
 
   h3 {
@@ -960,7 +956,7 @@
 
 .coreFeatureSection {
   background:
-    radial-gradient(circle at 12% 8%, rgba(16, 35, 63, 0.08), transparent 26rem),
+    radial-gradient(circle at 12% 8%, rgba(22, 165, 111, 0.09), transparent 26rem),
     var(--om-sand-50);
 }
 
@@ -984,8 +980,8 @@
     box-shadow 0.2s ease;
 
   &:hover {
-    border-color: rgba(16, 35, 63, 0.22);
-    box-shadow: 0 22px 56px rgba(20, 33, 61, 0.078);
+    border-color: rgba(22, 165, 111, 0.24);
+    box-shadow: 0 22px 56px rgba(22, 165, 111, 0.09);
   }
 
   span {
@@ -994,8 +990,8 @@
     height: 2.85rem;
     place-items: center;
     border-radius: 0.95rem;
-    background: var(--om-surface-100);
-    color: var(--om-primary);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
   }
 
   h3 {
@@ -1017,7 +1013,7 @@
 
 .staffSection {
   background:
-    radial-gradient(circle at 82% 10%, rgba(16, 35, 63, 0.08), transparent 28rem),
+    radial-gradient(circle at 82% 10%, rgba(22, 165, 111, 0.09), transparent 28rem),
     var(--om-sand-50);
   color: var(--om-ink-950);
 }
@@ -1056,7 +1052,7 @@
 
 .roleFeatureCardWide {
   background:
-    radial-gradient(circle at 88% 12%, rgba(16, 35, 63, 0.12), transparent 32%),
+    radial-gradient(circle at 88% 12%, rgba(22, 165, 111, 0.13), transparent 32%),
     #eef8f2;
 }
 
@@ -1072,12 +1068,12 @@
     height: 3rem;
     place-items: center;
     border-radius: 1rem;
-    background: rgba(16, 35, 63, 0.12);
-    color: var(--om-primary);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
   }
 
   small {
-    color: rgba(20, 33, 61, 0.24);
+    color: rgba(14, 122, 85, 0.34);
     font-size: 1.35rem;
     font-weight: 900;
     line-height: 1;
@@ -1117,7 +1113,7 @@
 }
 
 .customerMiniPanel {
-  border: 1px solid rgba(16, 35, 63, 0.15);
+  border: 1px solid rgba(22, 165, 111, 0.18);
   border-radius: clamp(1.45rem, 3vw, 1.85rem);
   background: rgba(255, 255, 255, 0.78);
   padding: clamp(1.15rem, 2.3vw, 1.45rem);
@@ -1168,7 +1164,7 @@
   border: 1px solid rgba(20, 33, 61, 0.065);
   border-radius: clamp(1.35rem, 3vw, 1.7rem);
   background:
-    radial-gradient(circle at 88% 0%, rgba(16, 35, 63, 0.09), transparent 32%),
+    radial-gradient(circle at 88% 0%, rgba(22, 165, 111, 0.10), transparent 32%),
     rgba(255, 255, 255, 0.78);
   padding: clamp(1.05rem, 2.3vw, 1.4rem);
   box-shadow: 0 22px 60px rgba(20, 33, 61, 0.065);
@@ -1179,9 +1175,9 @@
     height: 2.85rem;
     place-items: center;
     border-radius: 1rem;
-    background: #ffffff;
-    color: var(--om-primary);
-    box-shadow: 0 12px 28px rgba(20, 33, 61, 0.07);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
+    box-shadow: 0 12px 28px rgba(22, 165, 111, 0.10);
   }
 
   h3 {
@@ -1220,8 +1216,8 @@
     height: 2.85rem;
     place-items: center;
     border-radius: 1rem;
-    background: rgba(175, 75, 60, 0.1);
-    color: #af4b3c;
+    background: rgba(221, 238, 230, 0.9);
+    color: var(--om-brand-green-hover);
   }
 
   h3 {
@@ -1247,10 +1243,10 @@
   gap: clamp(1rem, 3vw, 1.8rem);
   margin-top: clamp(1.2rem, 3vw, 1.8rem);
   overflow: hidden;
-  border: 1px solid rgba(16, 35, 63, 0.18);
+  border: 1px solid rgba(22, 165, 111, 0.20);
   border-radius: clamp(1.55rem, 3vw, 2rem);
   background:
-    radial-gradient(circle at 90% 0%, rgba(16, 35, 63, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(22, 165, 111, 0.15), transparent 34%),
     var(--om-sand-50);
   padding: clamp(1.2rem, 3vw, 1.7rem);
   box-shadow: 0 28px 75px rgba(20, 33, 61, 0.075);
@@ -2489,11 +2485,11 @@
 
   button {
     min-height: 2.9rem;
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    border: 1px solid rgba(22, 165, 111, 0.14);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.92);
     padding: 0.75rem 1rem;
-    color: rgba(15, 23, 42, 0.78);
+    color: var(--om-slate-700);
     font-size: 0.9rem;
     font-weight: 800;
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
@@ -2507,8 +2503,8 @@
 
     &:hover {
       transform: translateY(-2px);
-      border-color: rgba(15, 23, 42, 0.22);
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+      border-color: rgba(22, 165, 111, 0.28);
+      box-shadow: 0 16px 36px rgba(22, 165, 111, 0.10);
     }
   }
 }
@@ -2521,10 +2517,10 @@
 }
 
 .quickCommandActive {
-  border-color: rgba(15, 23, 42, 0.9) !important;
-  background: var(--om-ink-950) !important;
+  border-color: rgba(14, 122, 85, 0.9) !important;
+  background: var(--om-brand-green) !important;
   color: #ffffff !important;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.2) !important;
+  box-shadow: 0 18px 42px rgba(22, 165, 111, 0.22) !important;
 }
 
 .chatFrame {
@@ -2593,7 +2589,7 @@
   min-height: clamp(27rem, 44vw, 33rem);
   padding: clamp(1.1rem, 3vw, 1.55rem);
   background:
-    radial-gradient(circle at 18% 8%, rgba(37, 99, 235, 0.1), transparent 28%),
+    radial-gradient(circle at 18% 8%, rgba(22, 165, 111, 0.10), transparent 28%),
     linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(248, 243, 234, 0.72));
 }
 
