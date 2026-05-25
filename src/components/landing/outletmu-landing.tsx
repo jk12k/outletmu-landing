@@ -1529,19 +1529,18 @@ function CustomerFeatureSection() {
   });
   const copyY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : [40, 0]);
   const copyOpacity = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [1, 1] : [0.75, 1]);
-  const imageY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : isDesktop ? [80, 0] : [28, 0]);
+  const imageY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : isDesktop ? [64, 0] : [24, 0]);
   const imageScale = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? [1, 1] : isDesktop ? [0.94, 1] : [0.98, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.92, 1] : [0.98, 1],
   );
   const imageOpacity = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? [1, 1] : isDesktop ? [0.72, 1] : [0.9, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.9, 1] : [0.94, 1],
   );
-  const imageRotateX = useTransform(smoothProgress, [0, 1], shouldReduceMotion || !isDesktop ? [0, 0] : [5, 0]);
-  const imageFilter = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? ["blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)"]);
+  const imageRotateX = useTransform(smoothProgress, [0, 1], shouldReduceMotion || !isDesktop ? [0, 0] : [6, 0]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -1581,7 +1580,6 @@ function CustomerFeatureSection() {
             scale: imageScale,
             opacity: imageOpacity,
             rotateX: imageRotateX,
-            filter: imageFilter,
           }}
         >
           <div className={landingStyles.customerMenuGlow} aria-hidden="true" />
