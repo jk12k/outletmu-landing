@@ -183,7 +183,7 @@
   position: relative;
   overflow: hidden;
   scroll-margin-top: 8rem;
-  padding: clamp(3.6rem, 6vw, 5.8rem) clamp(1.25rem, 4vw, 2rem);
+  padding: clamp(3.2rem, 5.4vw, 5.1rem) clamp(1.25rem, 4vw, 2rem);
 }
 
 .navbar {
@@ -232,11 +232,11 @@
   display: none;
   align-items: center;
   gap: 1.55rem;
-  border: 1px solid rgba(20, 33, 61, 0.05);
+  border: 1px solid rgba(22, 165, 111, 0.10);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.68);
   padding: 0.72rem 1.45rem;
-  box-shadow: 0 12px 28px rgba(20, 33, 61, 0.05);
+  box-shadow: 0 12px 28px rgba(22, 165, 111, 0.06);
 
   a {
     color: var(--om-slate-700);
@@ -249,7 +249,7 @@
       transform 0.2s ease;
 
     &:hover {
-      color: var(--om-primary);
+      color: var(--om-brand-green-hover);
       transform: translateY(-1px);
     }
   }
@@ -283,7 +283,7 @@
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(20, 33, 61, 0.08);
+    border: 1px solid rgba(22, 165, 111, 0.12);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.66);
     padding: 0 0.9rem;
@@ -293,7 +293,7 @@
     line-height: 1;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 10px 26px rgba(20, 33, 61, 0.045);
+    box-shadow: 0 10px 26px rgba(22, 165, 111, 0.06);
   }
 }
 
@@ -309,16 +309,16 @@
   .navbarInner {
     width: min(100%, 72rem);
     min-height: 0;
-    border: 1px solid rgba(20, 33, 61, 0.08);
+    border: 1px solid rgba(22, 165, 111, 0.12);
     border-radius: 1.45rem;
     background: rgba(255, 255, 255, 0.82);
     padding: 0.52rem 0.58rem;
-    box-shadow: 0 24px 70px rgba(20, 33, 61, 0.12);
+    box-shadow: 0 24px 70px rgba(22, 165, 111, 0.11);
     backdrop-filter: blur(22px);
   }
 
   .desktopNav {
-    border-color: rgba(20, 33, 61, 0.06);
+    border-color: rgba(22, 165, 111, 0.10);
     background: rgba(247, 250, 244, 0.74);
     box-shadow: none;
   }
@@ -1020,19 +1020,20 @@
 
 .roleFeatureGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: clamp(0.95rem, 2vw, 1.25rem);
-  margin-top: clamp(2.4rem, 5vw, 4rem);
+  margin-top: clamp(2rem, 4.2vw, 3rem);
 }
 
 .roleFeatureCard {
+  grid-column: span 2;
   overflow: hidden;
-  min-height: 14rem;
-  border: 1px solid rgba(20, 33, 61, 0.07);
+  min-height: 12.6rem;
+  border: 1px solid rgba(22, 165, 111, 0.13);
   border-radius: clamp(1.25rem, 3vw, 1.65rem);
   background: rgba(255, 255, 255, 0.82);
   padding: clamp(1.15rem, 2.5vw, 1.55rem);
-  box-shadow: 0 20px 55px rgba(20, 33, 61, 0.065);
+  box-shadow: 0 20px 55px rgba(22, 165, 111, 0.075);
 
   h3 {
     margin-top: 1.15rem;
@@ -1048,6 +1049,10 @@
     font-size: 0.94rem;
     line-height: 1.62;
   }
+}
+
+.roleFeatureCard:nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .roleFeatureCardWide {
@@ -1086,18 +1091,18 @@
   width: 100%;
   max-width: 72rem;
   aspect-ratio: 1672 / 941;
-  margin: clamp(2rem, 4vw, 3.2rem) auto 0;
+  margin: clamp(1.6rem, 3.2vw, 2.45rem) auto 0;
   overflow: hidden;
   border: 1px solid rgba(20, 33, 61, 0.07);
   border-radius: clamp(1.65rem, 3.5vw, 2.35rem);
   background: var(--om-sand-50);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.7),
-    0 34px 95px rgba(20, 33, 61, 0.11);
+    0 34px 95px rgba(22, 165, 111, 0.085);
 }
 
 .customerVisualFrame {
-  margin-top: clamp(1.55rem, 3vw, 2.45rem);
+  margin-top: clamp(1.1rem, 2.4vw, 1.9rem);
 }
 
 .sectionVisualImage {
@@ -1109,7 +1114,7 @@
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.42fr);
   align-items: end;
-  gap: clamp(1.2rem, 4vw, 3rem);
+  gap: clamp(1rem, 3vw, 2.2rem);
 }
 
 .customerMiniPanel {
@@ -1117,7 +1122,7 @@
   border-radius: clamp(1.45rem, 3vw, 1.85rem);
   background: rgba(255, 255, 255, 0.78);
   padding: clamp(1.15rem, 2.3vw, 1.45rem);
-  box-shadow: 0 24px 65px rgba(20, 33, 61, 0.075);
+  box-shadow: 0 24px 65px rgba(22, 165, 111, 0.075);
 
   strong {
     display: block;
@@ -1157,17 +1162,17 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.9rem, 2vw, 1.15rem);
-  margin-top: clamp(2.2rem, 4.5vw, 3.4rem);
+  margin-top: clamp(1.6rem, 3.4vw, 2.55rem);
 }
 
 .customerFeatureCard {
-  border: 1px solid rgba(20, 33, 61, 0.065);
+  border: 1px solid rgba(22, 165, 111, 0.13);
   border-radius: clamp(1.35rem, 3vw, 1.7rem);
   background:
     radial-gradient(circle at 88% 0%, rgba(22, 165, 111, 0.10), transparent 32%),
     rgba(255, 255, 255, 0.78);
   padding: clamp(1.05rem, 2.3vw, 1.4rem);
-  box-shadow: 0 22px 60px rgba(20, 33, 61, 0.065);
+  box-shadow: 0 22px 60px rgba(22, 165, 111, 0.075);
 
   span {
     display: grid;
@@ -2497,7 +2502,7 @@
     color: var(--om-slate-700);
     font-size: 0.9rem;
     font-weight: 800;
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 12px 28px rgba(22, 165, 111, 0.07);
     cursor: pointer;
     transition:
       background 0.2s ease,
@@ -2534,11 +2539,11 @@
   width: min(100%, 34rem);
   margin-inline: auto;
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(22, 165, 111, 0.14);
   border-radius: clamp(2rem, 4vw, 2.75rem);
   background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 34px 90px rgba(15, 23, 42, 0.12),
+    0 34px 90px rgba(22, 165, 111, 0.12),
     inset 0 0 0 0.5rem rgba(248, 250, 252, 0.78);
 }
 
@@ -2641,7 +2646,7 @@
   border-bottom-right-radius: 0.35rem;
   background: linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
   color: #ffffff;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 18px 42px rgba(22, 165, 111, 0.20);
 }
 
 .botBubble {
@@ -2664,7 +2669,7 @@
     width: 0.42rem;
     height: 0.42rem;
     border-radius: 999px;
-    background: rgba(20, 33, 61, 0.35);
+    background: rgba(22, 165, 111, 0.55);
     animation: typingPulse 1s infinite ease-in-out;
   }
 
@@ -2784,7 +2789,7 @@
 
 .leadFormSection {
   background:
-    radial-gradient(circle at 18% 12%, rgba(16, 35, 63, 0.11), transparent 28rem),
+    radial-gradient(circle at 18% 12%, rgba(22, 165, 111, 0.11), transparent 28rem),
     var(--om-sand-50);
 }
 
@@ -2819,11 +2824,11 @@
   > small {
     display: block;
     margin-top: 1.1rem;
-    border: 1px solid rgba(16, 35, 63, 0.18);
+    border: 1px solid rgba(22, 165, 111, 0.18);
     border-radius: 1.25rem;
     background: rgba(255, 255, 255, 0.76);
     padding: 0.9rem 1rem;
-    color: rgba(20, 33, 61, 0.86);
+    color: var(--om-slate-700);
     font-size: 0.9rem;
     font-weight: 780;
     line-height: 1.55;
@@ -2840,11 +2845,11 @@
     min-width: 0;
     align-items: center;
     gap: 0.75rem;
-    border: 1px solid rgba(20, 33, 61, 0.07);
+    border: 1px solid rgba(22, 165, 111, 0.13);
     border-radius: 1.1rem;
     background: rgba(255, 255, 255, 0.82);
     padding: 0.82rem 0.92rem;
-    box-shadow: 0 12px 32px rgba(20, 33, 61, 0.045);
+    box-shadow: 0 12px 32px rgba(22, 165, 111, 0.07);
   }
 
   span {
@@ -2854,8 +2859,8 @@
     flex: 0 0 auto;
     place-items: center;
     border-radius: 0.75rem;
-    background: var(--om-surface-100);
-    color: var(--om-primary);
+    background: var(--om-brand-green-soft);
+    color: var(--om-brand-green-hover);
   }
 
   strong {
@@ -2869,13 +2874,13 @@
 
 .leadFormCard {
   min-width: 0;
-  border: 1px solid rgba(20, 33, 61, 0.08);
+  border: 1px solid rgba(22, 165, 111, 0.14);
   border-radius: clamp(1.45rem, 3vw, 2rem);
   background: rgba(255, 255, 255, 0.94);
   padding: clamp(1rem, 3vw, 1.55rem);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.7),
-    0 28px 80px rgba(20, 33, 61, 0.09);
+    0 28px 80px rgba(22, 165, 111, 0.09);
 }
 
 .leadFormGrid {
@@ -2942,9 +2947,9 @@
       background 0.18s ease;
 
     &:focus {
-      border-color: rgba(16, 35, 63, 0.56);
+      border-color: rgba(22, 165, 111, 0.56);
       background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(16, 35, 63, 0.13);
+      box-shadow: 0 0 0 4px rgba(22, 165, 111, 0.16);
     }
 
     &::placeholder {
@@ -3121,6 +3126,11 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .roleFeatureCard,
+  .roleFeatureCard:nth-child(n + 4) {
+    grid-column: auto;
+  }
+
   .customerMiniPanel {
     width: min(100%, 30rem);
     margin-inline: auto;
@@ -3208,7 +3218,7 @@
 
   .section {
     padding-inline: 1rem;
-    padding-block: 3.5rem;
+    padding-block: 3rem;
     scroll-margin-top: 10.5rem;
   }
 
@@ -3305,7 +3315,7 @@
   .dashboardVisualFrame,
   .customerVisualFrame {
     aspect-ratio: 4 / 3;
-    margin-top: 1.45rem;
+    margin-top: 1.1rem;
     border-radius: 1.45rem;
   }
 
@@ -3395,7 +3405,7 @@
   .roleFeatureGrid,
   .customerFeatureGrid,
   .problemGrid {
-    margin-top: 2rem;
+    margin-top: 1.65rem;
   }
 
   .solutionCardGrid,
