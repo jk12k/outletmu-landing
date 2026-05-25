@@ -1331,23 +1331,26 @@
 
 .comparisonSection {
   background:
-    radial-gradient(circle at 82% 10%, rgba(16, 35, 63, 0.08), transparent 28rem),
+    radial-gradient(circle at 82% 10%, rgba(22, 165, 111, 0.10), transparent 28rem),
     #ffffff;
 }
 
 .comparisonShell {
   margin-top: clamp(2rem, 4.5vw, 3rem);
   overflow: hidden;
-  border: 1px solid rgba(20, 33, 61, 0.075);
+  border: 1px solid rgba(22, 165, 111, 0.16);
   border-radius: clamp(1.45rem, 3vw, 1.9rem);
   background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 28px 80px rgba(20, 33, 61, 0.08);
+  box-shadow: 0 28px 80px rgba(22, 165, 111, 0.09);
 }
 
 .comparisonScroller {
   max-width: 100%;
   overflow-x: auto;
+  padding-bottom: 0.2rem;
   -webkit-overflow-scrolling: touch;
+  scrollbar-color: rgba(22, 165, 111, 0.34) rgba(234, 247, 240, 0.9);
+  scrollbar-width: thin;
 }
 
 .comparisonTable {
@@ -1409,7 +1412,7 @@
 }
 
 .comparisonRecommended {
-  background: var(--om-surface-100) !important;
+  background: var(--om-brand-green-soft) !important;
 
   span {
     display: block;
@@ -1429,7 +1432,7 @@
 }
 
 .comparisonRecommendedCell {
-  background: rgba(232, 243, 239, 0.42);
+  background: rgba(234, 247, 240, 0.62);
 }
 
 .comparisonCheck,
@@ -1446,12 +1449,14 @@
 
 .comparisonCheck {
   gap: 0.35rem;
-  background: var(--om-surface-100);
-  color: var(--om-primary);
+  border: 1px solid rgba(22, 165, 111, 0.18);
+  background: #ffffff;
+  color: var(--om-brand-green-hover);
+  box-shadow: 0 8px 20px rgba(22, 165, 111, 0.08);
 }
 
 .comparisonValue {
-  background: rgba(20, 33, 61, 0.045);
+  background: var(--om-brand-green-soft);
   color: var(--om-slate-700);
 }
 
@@ -1463,8 +1468,8 @@
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
-  border-top: 1px solid rgba(20, 33, 61, 0.06);
-  background: var(--om-sand-50);
+  border-top: 1px solid rgba(22, 165, 111, 0.14);
+  background: var(--om-brand-green-soft);
   padding: 1rem 1.15rem;
   color: var(--om-slate-700);
   font-size: 0.9rem;
@@ -1490,7 +1495,7 @@
   p {
     max-width: 48rem;
     margin: 1.2rem auto 0;
-    border: 1px solid rgba(16, 35, 63, 0.14);
+    border: 1px solid rgba(22, 165, 111, 0.18);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.72);
     padding: 0.85rem 1.25rem;
@@ -1500,7 +1505,7 @@
     line-height: 1.65;
     overflow-wrap: anywhere;
     text-align: center;
-    box-shadow: 0 16px 42px rgba(20, 33, 61, 0.055);
+    box-shadow: 0 16px 42px rgba(22, 165, 111, 0.08);
   }
 }
 
@@ -1521,13 +1526,13 @@
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid rgba(20, 33, 61, 0.07);
+  border: 1px solid rgba(22, 165, 111, 0.14);
   border-radius: clamp(1.55rem, 3vw, 2rem);
   background:
-    radial-gradient(circle at 88% 0%, rgba(16, 35, 63, 0.10), transparent 32%),
+    radial-gradient(circle at 88% 0%, rgba(22, 165, 111, 0.12), transparent 32%),
     rgba(255, 255, 255, 0.78);
   padding: clamp(1.25rem, 2.4vw, 1.8rem);
-  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.075);
+  box-shadow: 0 24px 70px rgba(22, 165, 111, 0.085);
 }
 
 .addOnCardHeader {
@@ -1545,7 +1550,7 @@
     border-radius: 1.05rem;
     background: var(--om-brand-green);
     color: #ffffff;
-    box-shadow: 0 14px 32px rgba(15, 23, 40, 0.16);
+    box-shadow: 0 14px 32px rgba(22, 165, 111, 0.18);
   }
 
   h3 {
@@ -1606,7 +1611,7 @@
 .addOnCard small {
   display: block;
   margin-top: 1rem;
-  border-left: 3px solid rgba(16, 35, 63, 0.42);
+  border-left: 3px solid rgba(22, 165, 111, 0.42);
   padding-left: 0.85rem;
   color: var(--om-slate-700);
   font-size: 0.82rem;
@@ -1618,11 +1623,11 @@
 .addOnsNoteBox {
   max-width: 58rem;
   margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
-  border: 1px solid rgba(16, 35, 63, 0.16);
+  border: 1px solid rgba(22, 165, 111, 0.18);
   border-radius: clamp(1.35rem, 3vw, 1.8rem);
-  background: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.82);
   padding: clamp(1.15rem, 2.5vw, 1.55rem);
-  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.07);
+  box-shadow: 0 24px 70px rgba(22, 165, 111, 0.085);
 
   > div {
     display: flex;
@@ -1637,8 +1642,8 @@
       height: 2.55rem;
       place-items: center;
       border-radius: 0.9rem;
-      background: rgba(16, 35, 63, 0.12);
-      color: var(--om-primary);
+      background: var(--om-brand-green-soft);
+      color: var(--om-brand-green-hover);
     }
   }
 
@@ -3492,7 +3497,7 @@
   }
 
   .comparisonTable {
-    min-width: 58rem;
+    min-width: 46rem;
 
     th,
     td {
@@ -3511,6 +3516,8 @@
   }
 
   .comparisonNote {
+    align-items: flex-start;
+    border-radius: 0 0 1.25rem 1.25rem;
     padding: 0.85rem 0.95rem;
     font-size: 0.82rem;
   }
@@ -3788,7 +3795,8 @@
   }
 
   .addOnsNoteBox {
-    display: none;
+    display: block;
+    padding: 1rem;
 
     li {
       font-size: 0.84rem;
@@ -3991,6 +3999,8 @@
   }
 
   .addOnsNoteBox {
+    display: block;
+
     li {
       padding-left: 0.95rem;
       font-size: 0.8rem;

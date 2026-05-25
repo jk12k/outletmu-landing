@@ -3,7 +3,7 @@
 .page {
   min-height: 100dvh;
   background:
-    radial-gradient(circle at 12% 6%, rgba(37, 99, 235, 0.08), transparent 28rem),
+    radial-gradient(circle at 12% 6%, rgba(22, 165, 111, 0.08), transparent 28rem),
     linear-gradient(180deg, #fbfaf7 0%, #ffffff 46%, rgba(248, 243, 234, 0.68) 100%),
     #fbfaf7;
   color: var(--om-ink-950);
@@ -92,7 +92,7 @@
     color: var(--om-ink-950);
     font-size: clamp(2.65rem, 6vw, 5.2rem);
     font-weight: 900;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
     line-height: 0.96;
   }
 }
@@ -113,16 +113,16 @@
   align-items: center;
   gap: 0.5rem;
   width: fit-content;
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(22, 165, 111, 0.14);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.82);
   padding: 0.55rem 0.8rem;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 30px rgba(22, 165, 111, 0.08);
 
   svg {
     width: 1rem;
     height: 1rem;
-    color: var(--om-ink-950);
+    color: var(--om-brand-green-hover);
   }
 }
 
@@ -167,11 +167,11 @@
 }
 
 .intentPanel {
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(22, 165, 111, 0.14);
   border-radius: clamp(1.5rem, 3vw, 2rem);
   background: rgba(255, 255, 255, 0.94);
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 30px 80px rgba(22, 165, 111, 0.09);
 
   p {
     margin: 0.8rem 0 0;
@@ -372,13 +372,13 @@
   min-width: 0;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(16, 35, 63, 0.18);
+  border: 1px solid rgba(22, 165, 111, 0.18);
   border-radius: 1.6rem;
   background:
-    radial-gradient(circle at 92% 8%, rgba(16, 35, 63, 0.12), transparent 34%),
+    radial-gradient(circle at 92% 8%, rgba(22, 165, 111, 0.12), transparent 34%),
     #ffffff;
   padding: clamp(1.15rem, 3vw, 1.55rem);
-  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.075);
+  box-shadow: 0 24px 70px rgba(22, 165, 111, 0.085);
 
   > span {
     width: fit-content;
@@ -417,7 +417,7 @@
   border-radius: 1rem;
   background: var(--om-brand-green);
   color: #ffffff;
-  box-shadow: 0 16px 36px rgba(15, 23, 40, 0.22);
+  box-shadow: 0 16px 36px rgba(22, 165, 111, 0.22);
 }
 
 .pricingHeroStats {
@@ -520,8 +520,8 @@
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(16, 35, 63, 0.28);
-    box-shadow: 0 24px 68px rgba(20, 33, 61, 0.08);
+    border-color: rgba(22, 165, 111, 0.28);
+    box-shadow: 0 24px 68px rgba(22, 165, 111, 0.10);
   }
 
   > p {
@@ -534,11 +534,11 @@
 }
 
 .pricingPlanCardFeatured {
-  border-color: rgba(16, 35, 63, 0.56);
+  border-color: rgba(22, 165, 111, 0.44);
   background:
-    radial-gradient(circle at 92% 0%, rgba(16, 35, 63, 0.16), transparent 36%),
+    radial-gradient(circle at 92% 0%, rgba(22, 165, 111, 0.18), transparent 36%),
     linear-gradient(180deg, #ffffff, var(--om-sand-50));
-  box-shadow: 0 26px 80px rgba(16, 35, 63, 0.16);
+  box-shadow: 0 26px 80px rgba(22, 165, 111, 0.16);
 }
 
 .pricingPlanTop {
@@ -618,7 +618,7 @@
   svg {
     margin-top: 0.1rem;
     flex: 0 0 auto;
-    color: var(--om-primary);
+    color: var(--om-brand-green-hover);
   }
 }
 
@@ -635,7 +635,7 @@
     linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
   padding: clamp(1.25rem, 4vw, 1.85rem);
   color: #ffffff;
-  box-shadow: 0 28px 75px rgba(15, 23, 40, 0.18);
+  box-shadow: 0 28px 75px rgba(22, 165, 111, 0.22);
 
   span {
     color: rgba(255, 255, 255, 0.86);
@@ -1274,6 +1274,39 @@
 }
 
 @media (max-width: 640px) {
+  .hero,
+  .section,
+  .workflowSection,
+  .relatedSection {
+    padding-inline: 1rem;
+  }
+
+  .hero {
+    padding-top: 2.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .heroCopy h1,
+  .pricingHeader h2 {
+    font-size: clamp(2rem, 10vw, 2.55rem);
+    line-height: 1.08;
+  }
+
+  .lead,
+  .pricingHeader p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .heroActions {
+    width: 100%;
+
+    a {
+      width: 100%;
+      min-height: 3.15rem;
+    }
+  }
+
   .pricingGrid21,
   .pricingFaqGrid {
     grid-template-columns: 1fr;
