@@ -1116,14 +1116,14 @@
   grid-template-columns: minmax(0, 0.92fr) minmax(18rem, 0.78fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 4.8rem);
-  min-height: clamp(38rem, 72vh, 49rem);
-  overflow: hidden;
+  min-height: clamp(44rem, 78vh, 54rem);
+  overflow: visible;
   border: 1px solid rgba(22, 165, 111, 0.15);
   border-radius: clamp(1.8rem, 4vw, 2.6rem);
   background:
     radial-gradient(circle at 78% 16%, rgba(22, 165, 111, 0.16), transparent 20rem),
     linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 251, 248, 0.92));
-  padding: clamp(1.55rem, 4vw, 3.25rem);
+  padding: clamp(1.75rem, 4vw, 3.4rem);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.74),
     0 34px 90px rgba(22, 165, 111, 0.10);
@@ -1178,31 +1178,37 @@
 .customerMenuMedia {
   position: relative;
   z-index: 3;
-  display: grid;
+  display: flex;
+  width: 100%;
+  min-height: clamp(42rem, 70vh, 50rem);
   min-width: 0;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  padding: 2rem 1.5rem 2.5rem;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
 .customerMenuGlow {
   position: absolute;
-  inset: 8% 2% 3%;
+  z-index: 1;
+  width: 72%;
+  height: 72%;
   border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(22, 165, 111, 0.24), transparent 58%),
-    radial-gradient(circle at 50% 72%, rgba(14, 122, 85, 0.13), transparent 52%);
-  filter: blur(22px);
+  background: rgba(22, 165, 111, 0.16);
+  filter: blur(70px);
 }
 
 .customerMenuImage {
   position: relative;
   z-index: 2;
-  width: min(100%, 31rem);
+  width: min(100%, 29rem);
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 32px 56px rgba(16, 35, 63, 0.14));
+  transform-origin: center center;
+  filter: none;
 }
 
 .customerMenuBadge {
@@ -3267,6 +3273,7 @@
     grid-template-columns: 1fr;
     gap: 1.75rem;
     min-height: auto;
+    overflow: hidden;
     text-align: center;
   }
 
@@ -3501,10 +3508,12 @@
 
   .customerMenuMedia {
     width: 100%;
+    min-height: auto;
+    padding: 0.75rem 0 0.5rem;
   }
 
   .customerMenuImage {
-    width: min(92vw, 23rem);
+    width: min(92vw, 26.25rem);
   }
 
   .customerMenuBadge {
@@ -4130,7 +4139,7 @@
   }
 
   .customerMenuImage {
-    width: min(91vw, 20.8rem);
+    width: min(91vw, 24rem);
   }
 
   .brandLogoMd {

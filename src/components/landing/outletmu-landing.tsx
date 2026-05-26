@@ -1529,18 +1529,18 @@ function CustomerFeatureSection() {
   });
   const copyY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : [40, 0]);
   const copyOpacity = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [1, 1] : [0.75, 1]);
-  const imageY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : isDesktop ? [64, 0] : [24, 0]);
+  const imageY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, 0] : isDesktop ? [48, 0] : [18, 0]);
   const imageScale = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? [1, 1] : isDesktop ? [0.92, 1] : [0.98, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.96, 1] : [0.98, 1],
   );
   const imageOpacity = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? [1, 1] : isDesktop ? [0.9, 1] : [0.94, 1],
+    shouldReduceMotion ? [1, 1] : isDesktop ? [0.88, 1] : [0.94, 1],
   );
-  const imageRotateX = useTransform(smoothProgress, [0, 1], shouldReduceMotion || !isDesktop ? [0, 0] : [6, 0]);
+  const imageRotateX = useTransform(smoothProgress, [0, 1], shouldReduceMotion || !isDesktop ? [0, 0] : [3, 0]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -1617,7 +1617,7 @@ function CustomerFeatureSection() {
             height={landingImages.customerMenuShowcase.height}
             quality={100}
             className={landingStyles.customerMenuImage}
-            sizes="(max-width: 768px) 92vw, (max-width: 1280px) 42vw, 470px"
+            sizes="(max-width: 768px) 92vw, (max-width: 1200px) 42vw, 520px"
           />
         </motion.div>
       </div>
