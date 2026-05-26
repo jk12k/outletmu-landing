@@ -3392,9 +3392,9 @@
 
   .section {
     padding-inline: 1rem;
-    padding-block: 3rem;
+    padding-block: 3.35rem;
     overflow-x: clip;
-    scroll-margin-top: 10.5rem;
+    scroll-margin-top: 6.25rem;
   }
 
   .brandLogoMd {
@@ -3414,8 +3414,11 @@
   }
 
   .heroSection {
-    padding-top: 2rem;
-    padding-bottom: 2.4rem;
+    padding-top: 0.35rem;
+    padding-bottom: 3.25rem;
+    background:
+      radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.92), transparent 20rem),
+      linear-gradient(180deg, #fbfbf6 0%, #f6fbf4 100%);
   }
 
   .heroLogoWrap {
@@ -3423,42 +3426,55 @@
   }
 
   .heroLayout {
-    gap: 1.65rem;
+    gap: 1.45rem;
   }
 
   .heroCopy {
-    max-width: 31rem;
+    max-width: 27rem;
 
     > span {
-      max-width: min(100%, 19.5rem);
-      white-space: normal;
-      line-height: 1.35;
+      display: none;
     }
   }
 
   .heroTitle {
     width: 100%;
-    max-width: min(100%, 22.5rem);
+    max-width: min(100%, 23rem);
     margin-inline: auto;
-    margin-top: 1rem;
-    font-size: clamp(2.05rem, 8.2vw, 2.4rem) !important;
-    line-height: 1.08 !important;
+    margin-top: 0 !important;
+    font-size: clamp(1.9rem, 8vw, 2.38rem) !important;
+    line-height: 1.04 !important;
     overflow-wrap: break-word;
   }
 
   .heroSubtitle {
-    margin-top: 0.9rem;
-    max-width: min(100%, 25rem);
-    font-size: 0.95rem !important;
-    line-height: 1.58 !important;
+    display: none;
   }
 
   .heroActions {
-    width: min(100%, 24rem);
-    margin-top: 1.1rem !important;
+    width: min(100%, 25rem);
+    margin-top: 1rem !important;
+    gap: 0.72rem !important;
 
     a {
       width: 100%;
+      min-height: 3.55rem;
+      border-radius: 999px;
+      font-size: 0.98rem;
+      font-weight: 900;
+      box-shadow: 0 16px 34px rgba(20, 33, 61, 0.11);
+    }
+
+    a:first-child {
+      background: linear-gradient(135deg, var(--om-brand-green), var(--om-brand-green-hover));
+      box-shadow: 0 18px 36px rgba(22, 165, 111, 0.28);
+    }
+
+    a:nth-child(2) {
+      border-color: rgba(20, 33, 61, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--om-ink-950);
+      box-shadow: 0 14px 30px rgba(20, 33, 61, 0.12);
     }
   }
 
@@ -3477,14 +3493,16 @@
   }
 
   .heroCafeShowcase {
-    width: min(100%, 40rem);
+    width: min(100%, 23.8rem);
+    aspect-ratio: 16 / 10.8;
+    margin-top: 0.18rem;
     max-height: none;
-    overflow: visible;
-    border-color: transparent;
+    overflow: hidden;
+    border-color: rgba(20, 33, 61, 0.06);
     border-radius: 1.35rem;
     background: transparent;
     padding: 0;
-    box-shadow: 0 22px 56px rgba(20, 33, 61, 0.08);
+    box-shadow: 0 18px 42px rgba(20, 33, 61, 0.12);
   }
 
   .heroShowcaseImage {
@@ -3493,7 +3511,8 @@
 
   .heroCafeImage {
     border-radius: 1.35rem;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 
   .dashboardVisualFrame,
@@ -3510,6 +3529,61 @@
 
   .sectionVisualImage {
     object-fit: contain;
+  }
+
+  .operationalSection {
+    padding-top: 4.35rem;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(22, 165, 111, 0.13), transparent 19rem),
+      linear-gradient(180deg, #f7fbf1 0%, #f3fbf6 100%);
+  }
+
+  .operationalGrid {
+    gap: 1.55rem;
+  }
+
+  .operationalCopy {
+    max-width: 25.5rem;
+    margin-inline: auto;
+
+    > span {
+      min-height: 2.5rem;
+      padding: 0.55rem 1rem;
+      background: rgba(234, 247, 240, 0.96);
+      box-shadow: 0 10px 26px rgba(22, 165, 111, 0.11);
+    }
+
+    h2 {
+      max-width: 23rem;
+      margin-top: 1.35rem;
+      margin-inline: auto;
+      font-size: clamp(2.35rem, 11.5vw, 3.35rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    > p {
+      max-width: 22.5rem;
+      margin-top: 1rem;
+      font-size: 0.96rem;
+      line-height: 1.68;
+    }
+  }
+
+  .operationalBenefits {
+    margin-top: 1.35rem;
+  }
+
+  .operationalVisualPanel {
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, 0.54);
+    padding: 0.72rem;
+    box-shadow: 0 18px 48px rgba(20, 33, 61, 0.09);
+  }
+
+  .operationalMockup {
+    border-radius: 1.05rem;
+    padding: 0.82rem;
   }
 
   .customerMenuShowcase {
