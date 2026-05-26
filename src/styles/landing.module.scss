@@ -3383,7 +3383,7 @@
 
 @media (max-width: 768px) {
   .page {
-    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom));
+    padding-bottom: 0;
   }
 
   .navbar {
@@ -3392,7 +3392,7 @@
 
   .section {
     padding-inline: 1rem;
-    padding-block: 3.5rem;
+    padding-block: 3rem;
     overflow-x: clip;
     scroll-margin-top: 10.5rem;
   }
@@ -3414,8 +3414,8 @@
   }
 
   .heroSection {
-    padding-top: 2.35rem;
-    padding-bottom: 2.85rem;
+    padding-top: 2rem;
+    padding-bottom: 2.4rem;
   }
 
   .heroLogoWrap {
@@ -3498,14 +3498,14 @@
 
   .dashboardVisualFrame,
   .customerVisualFrame {
-    width: min(100%, 43rem);
+    width: calc(100% + 2rem);
     aspect-ratio: 1672 / 941;
-    margin-top: 1.1rem;
+    margin: 1.25rem -1rem 0;
     border-color: transparent;
     background: transparent;
     overflow: visible;
-    border-radius: 1.45rem;
-    box-shadow: 0 18px 46px rgba(22, 165, 111, 0.08);
+    border-radius: 1.25rem;
+    box-shadow: 0 16px 36px rgba(22, 165, 111, 0.075);
   }
 
   .sectionVisualImage {
@@ -3614,24 +3614,7 @@
   }
 
   .mobileStickyCta {
-    position: fixed;
-    right: max(1rem, env(safe-area-inset-right));
-    bottom: max(0.9rem, env(safe-area-inset-bottom));
-    left: max(1rem, env(safe-area-inset-left));
-    z-index: 80;
-    display: inline-flex;
-    min-height: 3.35rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    border: 1px solid rgba(248, 243, 234, 0.32);
-    border-radius: 999px;
-    background: var(--om-brand-green);
-    color: #ffffff;
-    font-size: 0.94rem;
-    font-weight: 900;
-    box-shadow: 0 18px 48px rgba(22, 165, 111, 0.28);
-    backdrop-filter: blur(14px);
+    display: none;
   }
 
   .builderShell,
@@ -3647,7 +3630,7 @@
   .roleFeatureGrid,
   .customerFeatureGrid,
   .problemGrid {
-    margin-top: 1.65rem;
+    margin-top: 1.35rem;
   }
 
   .solutionCardGrid,
@@ -3734,7 +3717,41 @@
   }
 
   .roleFeatureCard {
+    position: relative;
     min-height: auto;
+    padding: 0.92rem 0.95rem 0.95rem 4rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 12px 30px rgba(22, 165, 111, 0.055);
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    p {
+      margin-top: 0.32rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  .roleFeatureTopline {
+    position: absolute;
+    top: 0.9rem;
+    left: 0.9rem;
+    display: block;
+
+    span {
+      width: 2.45rem;
+      height: 2.45rem;
+      border-radius: 0.85rem;
+    }
+
+    small {
+      display: none;
+    }
   }
 
   .customerHeaderGrid {
@@ -4186,11 +4203,12 @@
   .dashboardVisualFrame,
   .customerVisualFrame {
     aspect-ratio: 1672 / 941;
+    border-radius: 1.05rem;
   }
 
   .customerMenuShowcase {
     margin-inline: -0.1rem;
-    padding: 1rem;
+    padding: 0.75rem 0 0;
   }
 
   .customerMenuImage {
