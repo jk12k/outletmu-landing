@@ -1185,6 +1185,7 @@
   align-items: center;
   justify-content: center;
   isolation: isolate;
+  overflow: visible;
   padding: 2rem 1.5rem 2.5rem;
   transform-style: preserve-3d;
   will-change: transform, opacity;
@@ -3273,7 +3274,7 @@
     grid-template-columns: 1fr;
     gap: 1.75rem;
     min-height: auto;
-    overflow: hidden;
+    overflow: visible;
     text-align: center;
   }
 
@@ -3509,6 +3510,7 @@
   .customerMenuMedia {
     width: 100%;
     min-height: auto;
+    overflow: visible;
     padding: 0.75rem 0 0.5rem;
   }
 

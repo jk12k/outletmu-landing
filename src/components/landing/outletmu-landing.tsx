@@ -255,9 +255,9 @@ const landingImages = {
     alt: "Outletmu QR menu dan dashboard cafe",
   },
   customerMenuShowcase: {
-    src: "/images/landing/cafe-app-demo-on-smartphone-screen.png",
-    width: 1024,
-    height: 1536,
+    src: "/images/landing/customer-menu-phone-mockup.png",
+    width: 1086,
+    height: 1448,
     alt: "Tampilan menu pelanggan Outletmu di layar smartphone",
   },
 } as const;
