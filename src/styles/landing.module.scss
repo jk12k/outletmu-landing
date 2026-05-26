@@ -3780,6 +3780,74 @@
     }
   }
 
+  .staffSection {
+    padding-top: 3.15rem;
+    padding-bottom: 3.45rem;
+
+    .container > div:first-child {
+      max-width: 24rem;
+    }
+
+    .container > div:first-child h2 {
+      margin-top: 1rem;
+      font-size: clamp(2rem, 8vw, 2.72rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .container > div:first-child p {
+      max-width: 22.5rem;
+      margin-top: 0.85rem;
+      font-size: 0.96rem;
+      line-height: 1.62;
+    }
+
+    .dashboardVisualFrame {
+      width: 100%;
+      max-width: 27rem;
+      aspect-ratio: 16 / 10;
+      margin: 1.15rem auto 0.55rem;
+      overflow: hidden;
+      border-color: transparent;
+      border-radius: 1.35rem;
+      background: transparent;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.10);
+    }
+
+    .sectionVisualImage {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .roleFeatureGrid {
+      width: 100%;
+      max-width: 27rem;
+      margin: 0.55rem auto 0;
+    }
+
+    .roleFeatureCard {
+      gap: 0 0.78rem;
+      padding: 0.82rem 0;
+
+      h3 {
+        font-size: 1.03rem;
+        line-height: 1.24;
+      }
+
+      p {
+        margin-top: 0.24rem;
+        font-size: 0.9rem;
+        line-height: 1.48;
+      }
+    }
+
+    .roleFeatureTopline span {
+      width: 2.42rem;
+      height: 2.42rem;
+      border-radius: 0.88rem;
+    }
+  }
+
   .customerHeaderGrid {
     gap: 1rem;
   }
