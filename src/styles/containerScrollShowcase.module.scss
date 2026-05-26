@@ -163,7 +163,7 @@
 @media (max-width: 767px) {
   .section {
     min-height: auto;
-    padding: 80px 20px;
+    padding: 64px 16px;
   }
 
   .stickyWrap {
@@ -173,14 +173,26 @@
   }
 
   .showcaseCard {
-    gap: 24px;
+    gap: 20px;
     border-radius: 28px;
-    padding: 24px;
+    padding: 18px;
+    overflow: visible;
+  }
+
+  .imageBlock {
+    width: min(100%, 42rem);
   }
 
   .imageFrame {
     border-radius: 22px;
     padding: 8px;
+    overflow: visible;
+  }
+
+  .showcaseImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .title {

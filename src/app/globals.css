@@ -55,14 +55,14 @@
 
 html {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   font-family:
@@ -92,7 +92,15 @@ select {
 
 main {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  main {
+    overflow-x: hidden;
+  }
 }
 
 a {
@@ -105,6 +113,7 @@ a {
 }
 
 img,
+picture,
 svg,
 video,
 canvas {

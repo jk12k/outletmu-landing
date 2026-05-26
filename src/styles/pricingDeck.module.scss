@@ -398,7 +398,8 @@
   display: none;
   max-width: 100%;
   margin-top: 2.75rem;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .mobileDeck {
@@ -510,7 +511,7 @@
   }
 
   .mobileCard .planCard {
-    width: min(calc(100vw - 1.5rem), 22.5rem);
+    width: min(calc(100vw - 2rem), 22.5rem);
   }
 
   .planCard {
@@ -554,7 +555,7 @@
   }
 
   .mobileCard .planCard {
-    width: min(calc(100vw - 1.5rem), 22.5rem);
+    width: min(calc(100vw - 2rem), 22.5rem);
   }
 }
 
