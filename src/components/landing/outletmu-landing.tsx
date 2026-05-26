@@ -132,6 +132,20 @@ const requiredLeadFields: Array<{ key: keyof LeadFormValues; label: string }> = 
   { key: "startTimeline", label: "Kapan ingin mulai pakai Outletmu" },
 ];
 
+const leadFieldMaxLength: Partial<Record<keyof LeadFormValues, number>> = {
+  fullName: 80,
+  whatsapp: 30,
+  email: 120,
+  outletName: 120,
+  city: 80,
+  needsNote: 500,
+};
+
+function sanitizeLeadValue(value: string, maxLength?: number) {
+  const normalized = value.replace(/[\u0000-\u001F\u007F]/g, "").replace(/\s{2,}/g, " ");
+  return typeof maxLength === "number" ? normalized.slice(0, maxLength) : normalized;
+}
+
 function buildLeadWhatsappMessage(values: LeadFormValues) {
   return [
     "Halo Outletmu, saya ingin coba gratis / demo.",
@@ -2581,23 +2595,36 @@ function FAQSection() {
 
 function FreeTrialLeadFormSection() {
   const [values, setValues] = useState<LeadFormValues>(leadFormInitialValues);
+  const [companyWebsite, setCompanyWebsite] = useState("");
   const [error, setError] = useState("");
 
   const updateField = (field: keyof LeadFormValues, value: string) => {
-    setValues((current) => ({ ...current, [field]: value }));
+    setValues((current) => ({ ...current, [field]: sanitizeLeadValue(value, leadFieldMaxLength[field]) }));
     if (error) setError("");
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const missingFields = requiredLeadFields.filter(({ key }) => !values[key].trim());
+    if (companyWebsite.trim()) {
+      setError("Permintaan belum bisa diproses. Silakan coba lagi.");
+      return;
+    }
+
+    const sanitizedValues = Object.fromEntries(
+      Object.entries(values).map(([key, value]) => [
+        key,
+        sanitizeLeadValue(value, leadFieldMaxLength[key as keyof LeadFormValues]).trim(),
+      ]),
+    ) as LeadFormValues;
+
+    const missingFields = requiredLeadFields.filter(({ key }) => !sanitizedValues[key].trim());
     if (missingFields.length > 0) {
       setError(`Mohon lengkapi: ${missingFields.map((field) => field.label).join(", ")}.`);
       return;
     }
 
-    window.open(buildLeadWhatsappUrl(values), "_blank", "noopener,noreferrer");
+    window.open(buildLeadWhatsappUrl(sanitizedValues), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -2624,6 +2651,18 @@ function FreeTrialLeadFormSection() {
         </div>
 
         <form className={landingStyles.leadFormCard} onSubmit={handleSubmit} noValidate>
+          <div className={landingStyles.leadFormHoneypot} aria-hidden="true">
+            <label htmlFor="lead-company-website">Website perusahaan</label>
+            <input
+              id="lead-company-website"
+              name="companyWebsite"
+              type="text"
+              value={companyWebsite}
+              onChange={(event) => setCompanyWebsite(sanitizeLeadValue(event.target.value, 120))}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
           <div className={landingStyles.leadFormGrid}>
             <LeadFieldGroup title="Kontak utama">
               <LeadTextField
@@ -2633,6 +2672,7 @@ function FreeTrialLeadFormSection() {
                 onChange={(value) => updateField("fullName", value)}
                 placeholder="Nama kamu"
                 autoComplete="name"
+                maxLength={leadFieldMaxLength.fullName}
                 required
               />
               <LeadTextField
@@ -2644,6 +2684,7 @@ function FreeTrialLeadFormSection() {
                 placeholder="08xxxxxxxxxx"
                 autoComplete="tel"
                 inputMode="tel"
+                maxLength={leadFieldMaxLength.whatsapp}
                 required
               />
               <LeadTextField
@@ -2654,6 +2695,7 @@ function FreeTrialLeadFormSection() {
                 onChange={(value) => updateField("email", value)}
                 placeholder="nama@email.com"
                 autoComplete="email"
+                maxLength={leadFieldMaxLength.email}
               />
             </LeadFieldGroup>
 
@@ -2665,6 +2707,7 @@ function FreeTrialLeadFormSection() {
                 onChange={(value) => updateField("outletName", value)}
                 placeholder="Kopi Senja"
                 autoComplete="organization"
+                maxLength={leadFieldMaxLength.outletName}
                 required
               />
               <LeadSelectField
@@ -2682,6 +2725,7 @@ function FreeTrialLeadFormSection() {
                 onChange={(value) => updateField("city", value)}
                 placeholder="Jakarta"
                 autoComplete="address-level2"
+                maxLength={leadFieldMaxLength.city}
                 required
               />
               <LeadSelectField
@@ -2724,6 +2768,7 @@ function FreeTrialLeadFormSection() {
                 value={values.needsNote}
                 onChange={(value) => updateField("needsNote", value)}
                 placeholder="Ceritakan kebutuhan outlet, alur kasir, QR table, stok, atau laporan yang ingin kamu rapikan."
+                maxLength={leadFieldMaxLength.needsNote}
               />
             </LeadFieldGroup>
           </div>
@@ -2761,6 +2806,7 @@ function LeadTextField({
   type = "text",
   autoComplete,
   inputMode,
+  maxLength,
   required = false,
 }: {
   id: string;
@@ -2771,6 +2817,7 @@ function LeadTextField({
   type?: "text" | "tel" | "email";
   autoComplete?: string;
   inputMode?: "text" | "tel" | "email" | "numeric" | "decimal" | "search" | "url";
+  maxLength?: number;
   required?: boolean;
 }) {
   return (
@@ -2787,6 +2834,7 @@ function LeadTextField({
         placeholder={placeholder}
         autoComplete={autoComplete}
         inputMode={inputMode}
+        maxLength={maxLength}
         required={required}
       />
     </div>
@@ -2832,12 +2880,14 @@ function LeadTextareaField({
   value,
   onChange,
   placeholder,
+  maxLength,
 }: {
   id: string;
   label: string;
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  maxLength?: number;
 }) {
   return (
     <div className={cn(landingStyles.leadField, landingStyles.leadFieldFull)}>
@@ -2847,6 +2897,7 @@ function LeadTextareaField({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
+        maxLength={maxLength}
         rows={4}
       />
     </div>
@@ -2941,7 +2992,7 @@ function Footer({ theme }: { theme: ThemeMode }) {
         ))}
       </nav>
       <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 border-t border-[var(--om-ink-950)]/6 pt-6 text-sm font-medium text-slate-900 dark:border-white/10 dark:text-[#F8F3EA]/82 sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Outletmu. All rights reserved.</p>
+        <p>© 2026 Outletmu. Semua hak cipta dilindungi.</p>
         <a
           href={leadFormAnchor}
           className="text-[var(--om-brand-green-hover)] transition hover:text-[var(--om-brand-green)] dark:text-[#E4E7EC] dark:hover:text-white"

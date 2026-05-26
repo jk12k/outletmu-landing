@@ -6,6 +6,10 @@ const googleAdsId = "AW-18169772232";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://outletmu.store"),
+  applicationName: "Outletmu",
+  authors: [{ name: "Outletmu" }],
+  creator: "Outletmu",
+  publisher: "Outletmu",
   title: {
     default: "Aplikasi Kasir Cafe & QR Order Meja | Outletmu",
     template: "%s",
@@ -45,6 +49,9 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
     apple: "/branding/outletmu-favicon.png",
+  },
+  other: {
+    copyright: "Outletmu. Semua hak cipta dilindungi.",
   },
 };
 
