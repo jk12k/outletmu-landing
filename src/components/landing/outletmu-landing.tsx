@@ -255,9 +255,9 @@ const landingImages = {
     alt: "Outletmu QR menu dan dashboard cafe",
   },
   customerMenuShowcase: {
-    src: "/images/landing/customer-menu-phone-mockup.png",
-    width: 1086,
-    height: 1448,
+    src: "/images/landing/customer-menu-phone-mockup-transparent.png",
+    width: 632,
+    height: 1314,
     alt: "Tampilan menu pelanggan Outletmu di layar smartphone",
   },
 } as const;
@@ -1617,7 +1617,7 @@ function CustomerFeatureSection() {
             height={landingImages.customerMenuShowcase.height}
             quality={100}
             className={landingStyles.customerMenuImage}
-            sizes="(max-width: 768px) 92vw, (max-width: 1200px) 42vw, 520px"
+            sizes="(max-width: 768px) 90vw, 460px"
           />
         </motion.div>
       </div>
