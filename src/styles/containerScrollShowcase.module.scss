@@ -174,9 +174,12 @@
 
   .showcaseCard {
     gap: 20px;
-    border-radius: 28px;
-    padding: 18px;
+    border-color: transparent;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
     overflow: visible;
+    box-shadow: none;
   }
 
   .imageBlock {
@@ -184,14 +187,18 @@
   }
 
   .imageFrame {
-    border-radius: 22px;
-    padding: 8px;
+    border-color: transparent;
+    border-radius: 1.35rem;
+    background: transparent;
+    padding: 0;
     overflow: visible;
+    box-shadow: 0 22px 56px rgba(15, 23, 42, 0.08);
   }
 
   .showcaseImage {
     width: 100%;
     height: auto;
+    border-radius: 1.35rem;
     object-fit: contain;
   }
 
