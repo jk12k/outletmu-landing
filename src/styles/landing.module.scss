@@ -3817,10 +3817,12 @@
       width: 100%;
       max-width: 27rem;
       aspect-ratio: 16 / 10;
-      margin: 1.15rem auto 0.55rem;
+      max-height: 230px;
+      min-height: 0;
+      margin: 22px auto 18px;
       overflow: hidden;
       border-color: transparent;
-      border-radius: 1.35rem;
+      border-radius: 22px;
       background: transparent;
       box-shadow: 0 14px 34px rgba(15, 23, 42, 0.10);
     }
@@ -3833,29 +3835,61 @@
     .roleFeatureGrid {
       width: 100%;
       max-width: 27rem;
-      margin: 0.55rem auto 0;
+      gap: 0;
+      margin: 12px auto 0;
+      padding: 0;
+      background: transparent;
     }
 
-    .roleFeatureCard {
-      gap: 0 0.78rem;
-      padding: 0.82rem 0;
+    .roleFeatureCard,
+    .roleFeatureCardWide {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      align-items: start;
+      gap: 14px;
+      min-height: 0;
+      padding: 14px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(16, 35, 63, 0.10);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+
+      &:last-child {
+        border-bottom: 0;
+      }
 
       h3 {
+        margin: 0 0 4px;
         font-size: 1.03rem;
-        line-height: 1.24;
+        line-height: 1.25;
       }
 
       p {
-        margin-top: 0.24rem;
-        font-size: 0.9rem;
-        line-height: 1.48;
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.55;
       }
     }
 
+    .roleFeatureTopline {
+      display: contents;
+    }
+
     .roleFeatureTopline span {
-      width: 2.42rem;
-      height: 2.42rem;
-      border-radius: 0.88rem;
+      display: inline-flex;
+      grid-row: span 2;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #EAF7F0;
+      color: #0E7A55;
+    }
+
+    .roleFeatureTopline small {
+      display: none;
     }
   }
 
