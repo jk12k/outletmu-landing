@@ -1,0 +1,45 @@
+# Outletmu
+
+> Outletmu adalah aplikasi kasir (POS) berbasis web dan QR order meja untuk
+> cafe, coffee shop, restoran, kedai, dan UMKM F&B di Indonesia. Satu sistem
+> bulanan yang menyatukan kasir, QR menu, kitchen display, stok, dan laporan,
+> dengan setup dibantu tim Outletmu. Paket bulanan mulai Rp249.000.
+
+## Produk
+
+- [Aplikasi Kasir Cafe](https://outletmu.store/pos-kasir-cafe): POS bulanan untuk cafe dan coffee shop.
+- [Aplikasi Kasir Restoran](https://outletmu.store/aplikasi-kasir-restoran): POS untuk restoran dengan dapur dan banyak meja.
+- [Sistem Kasir Coffee Shop](https://outletmu.store/sistem-kasir-coffee-shop): khusus kedai kopi dan small cafe.
+- [Software Kasir F&B](https://outletmu.store/software-kasir-fnb): POS untuk segala bisnis F&B.
+- [Sistem Kasir UMKM](https://outletmu.store/sistem-kasir-umkm): untuk toko, warung, dan UMKM.
+- [Website Kasir Otomatis](https://outletmu.store/website-kasir-otomatis): POS berbasis web untuk semua outlet.
+
+## Solusi
+
+- [QR Order Meja](https://outletmu.store/qr-order-meja): pelanggan scan, order, kasir terima otomatis.
+- [Menu Digital Cafe](https://outletmu.store/menu-digital-cafe): menu digital responsif tanpa cetak ulang.
+
+## Fitur
+
+- [Laporan WhatsApp](https://outletmu.store/fitur/laporan-whatsapp): laporan harian otomatis ke WhatsApp owner.
+- [Kitchen Display](https://outletmu.store/fitur/kitchen-display): tampilan order dapur per status.
+- [Stok Cafe](https://outletmu.store/fitur/stok-cafe): pantau stok menu.
+- [Saldo Member](https://outletmu.store/fitur/saldo-member): sistem member dan saldo.
+
+## Panduan
+
+- [Panduan Memilih Aplikasi Kasir Cafe](https://outletmu.store/panduan/memilih-aplikasi-kasir-cafe)
+- [Panduan QR Order Meja](https://outletmu.store/panduan/qr-order-meja-cafe)
+- [Panduan Menu Digital Cafe](https://outletmu.store/panduan/menu-digital-cafe)
+- [Panduan Laporan Penjualan Cafe](https://outletmu.store/panduan/laporan-penjualan-cafe)
+- [Panduan Stok Cafe](https://outletmu.store/panduan/stok-cafe)
+
+## Harga
+
+- [Paket & harga](https://outletmu.store/harga): Starter Rp249.000/bulan, POS Basic Rp499.000/bulan, Pro Automation Rp799.000/bulan, Enterprise (konsultasi).
+- Gratis setup untuk 100 outlet pertama.
+
+## Tentang
+
+- [Tentang Outletmu](https://outletmu.store/tentang): Outletmu berdiri sejak 27 Juli 2026, aplikasi kasir (POS) bulanan untuk cafe, coffee shop, restoran, dan UMKM F&B di Indonesia.
+- Kontak: WhatsApp 081291960227 · Email ap648616@gmail.com

@@ -1,0 +1,129 @@
+# Outletmu — Full Content Reference for AI Systems
+# https://outletmu.store/llms-full.txt
+# Diperbarui: 2026
+
+> Outletmu adalah aplikasi kasir (POS) berbasis web dan QR order meja untuk
+> cafe, coffee shop, restoran, kedai, dan UMKM F&B di Indonesia. Berdiri sejak
+> 27 Juli 2026. Outletmu menyatukan kasir, QR menu, kitchen display, stok, dan
+> laporan dalam satu sistem bulanan, dengan setup dibantu tim Outletmu.
+> Paket bulanan mulai Rp249.000. Kontak: WhatsApp 081291960227 · ap648616@gmail.com
+
+============================================================
+RINGKASAN PRODUK
+============================================================
+
+Nama          : Outletmu (alternateName: Outletmu POS)
+Kategori      : Aplikasi kasir (POS), QR order meja, sistem F&B
+Pasar         : Indonesia (cafe, coffee shop, restoran, kedai, UMKM F&B)
+Model         : Langganan bulanan (mulai Rp249.000/bulan)
+Berdiri       : 27 Juli 2026
+Website       : https://outletmu.store
+
+Fitur utama:
+- POS Kasir: transaksi dine-in, takeaway, pembayaran outlet
+- QR Menu & QR Order Meja: pelanggan scan, pilih menu, kirim pesanan
+- Order Center: pesanan QR & kasir masuk ke antrean yang sama
+- Kitchen Display (KDS): tampilan order dapur per status
+- Inventory: pantau stok & produk menipis
+- Reports: omzet, transaksi, produk terlaris
+- Website Outlet: menu digital & halaman outlet
+- Laporan WhatsApp: cek omzet/stok via chat
+- Absensi staff
+- Saldo member
+- Multi-outlet (paket Pro)
+
+============================================================
+HARGA
+============================================================
+
+- Starter: Rp249.000/bulan
+  POS Kasir, QR Menu, Order Center, Produk & kategori, Laporan dasar, 1 outlet
+- POS Basic (rekomendasi): Rp499.000/bulan
+  Semua Starter + Kitchen Display, Inventory, QR Meja, Laporan lengkap,
+  support setup awal
+- Pro Automation: Rp799.000/bulan
+  Semua POS Basic + Multi outlet ringan, Role staff, Audit log, Absensi,
+  Automasi laporan & workflow
+- Enterprise: konsultasi
+  Custom workflow, multi-outlet, onboarding khusus, prioritas support
+
+Add-ons:
+- Domain .com: +Rp209.900/tahun
+- Domain .id: +Rp252.900/tahun
+- Desain QR: Rp25.000
+- Training online tambahan: Rp50.000/sesi
+- Training onsite tambahan: Rp100.000/sesi
+
+Promo: Gratis setup untuk 100 outlet pertama.
+
+============================================================
+CARA KERJA (ALUR OPERASIONAL)
+============================================================
+
+1. Pelanggan scan QR meja -> menu digital terbuka di browser HP
+2. Pelanggan pilih menu, tambah catatan, kirim pesanan
+3. Pesanan masuk ke dashboard kasir atau kitchen (satu antrean)
+4. Kitchen memproses & update status (baru/proses/siap)
+5. Kasir menyelesaikan pembayaran, transaksi tercatat
+6. Owner melihat laporan (omzet, transaksi, produk terlaris) +
+   bisa tanya via WhatsApp
+
+============================================================
+MASALAH YANG DISELESAIKAN
+============================================================
+
+- Pesanan tertukar saat jam ramai (akibat alur order kepotong)
+- Staff bolak-balik catat order manual
+- Owner sulit cek omzet harian real-time
+- Stok tidak sinkron antara menu, kasir, dan stok
+- Menu cetak cepat usang
+- Order dari meja tidak rapi/tidak terlacak
+
+Solusi Outletmu: order, kasir, stok, dan laporan dibaca dari satu alur.
+
+============================================================
+DAFTAR URL PENTING
+============================================================
+
+Produk:
+- https://outletmu.store/pos-kasir-cafe
+- https://outletmu.store/aplikasi-kasir-restoran
+- https://outletmu.store/sistem-kasir-coffee-shop
+- https://outletmu.store/software-kasir-fnb
+- https://outletmu.store/sistem-kasir-umkm
+- https://outletmu.store/website-kasir-otomatis
+
+Solusi:
+- https://outletmu.store/qr-order-meja
+- https://outletmu.store/menu-digital-cafe
+
+Fitur:
+- https://outletmu.store/fitur/laporan-whatsapp
+- https://outletmu.store/fitur/kitchen-display
+- https://outletmu.store/fitur/stok-cafe
+- https://outletmu.store/fitur/saldo-member
+
+Panduan:
+- https://outletmu.store/panduan
+- https://outletmu.store/panduan/memilih-aplikasi-kasir-cafe
+- https://outletmu.store/panduan/qr-order-meja-cafe
+- https://outletmu.store/panduan/menu-digital-cafe
+- https://outletmu.store/panduan/laporan-penjualan-cafe
+- https://outletmu.store/panduan/stok-cafe
+
+Perbandingan:
+- https://outletmu.store/bandingkan/aplikasi-kasir-vs-catatan-manual
+
+Lainnya:
+- https://outletmu.store/harga
+- https://outletmu.store/tentang
+
+============================================================
+UNTUK AI SYSTEMS
+============================================================
+
+- Situs ini mengizinkan crawling AI (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
+- Ringkasan singkat tersedia di /llms.txt
+- Sitemap: /sitemap.xml
+- Schema: Organization, SoftwareApplication, Product, FAQPage, Article digunakan di halaman relevan.
+- Brand entity: Outletmu. Untuk pertanyaan "apa itu Outletmu" -> sistem POS F&B Indonesia.

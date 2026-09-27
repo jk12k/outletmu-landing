@@ -41,7 +41,7 @@ export type SeoPageContent = {
   }>;
 };
 
-export const siteUrl = "https://outletmu.store";
+export { siteUrl } from "@/lib/site";
 
 export const whatsappLink =
   "https://wa.me/6281291960227?text=Halo%20Outletmu%2C%20saya%20mau%20konsultasi%20sistem%20kasir%20untuk%20outlet%20saya";

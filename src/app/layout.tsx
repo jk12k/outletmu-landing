@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const googleAdsId = "AW-18169772232";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://outletmu.store"),
+  metadataBase: new URL(siteUrl),
   applicationName: "Outletmu",
   authors: [{ name: "Outletmu" }],
   creator: "Outletmu",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: "Aplikasi Kasir Cafe & QR Order Meja | Outletmu",
     description:
       "Outletmu membantu cafe, restoran, dan UMKM F&B memakai POS kasir, QR order meja, menu digital, stok, kitchen, laporan, dan WhatsApp report dengan setup dibantu.",
-    url: "https://outletmu.store/",
+    url: `${siteUrl}/`,
     siteName: "Outletmu",
     locale: "id_ID",
     type: "website",

@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { guidePageEntries } from "@/components/seo/guide-pages";
 import { seoPageEntries } from "@/components/seo/seo-pages";
+import { siteUrl as baseUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://outletmu.store";
   const lastModified = new Date("2026-05-16T00:00:00.000Z");
 
   return [
