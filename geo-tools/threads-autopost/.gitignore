@@ -1,0 +1,8 @@
+# Kredensial & runtime state — JANGAN commit
+config.json
+config-multi.json
+threads-token.json
+posted-log.json
+daily-quota.json
+pending-posts/
+node_modules/

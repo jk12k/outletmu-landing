@@ -1,0 +1,153 @@
+{
+  "accounts": {
+    "threads": "@outletmu"
+  },
+  "posts": [
+    {
+      "id": "threads-001",
+      "platform": "threads",
+      "type": "survey",
+      "day": 1,
+      "slot": "pagi",
+      "text": "lagi bikin riset kecil buat owner cafe di Indonesia ☕\n\ntarget: 50 outlet\nisinya: 6 pertanyaan, 3 menit, anonim\nhasilnya: laporan benchmark omzet harian per kota — gratis buat yang ikut\n\nkalau kamu punya cafe/kedai, boleh bantu isi? 👇\nhttps://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform\n\nrepost biar sampe ke owner lain juga ya 🙏",
+      "hashtags": ["owner cafe", "bisnis F&B", "UMKM"],
+      "link": "https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform"
+    },
+    {
+      "id": "threads-002",
+      "platform": "threads",
+      "type": "engagement",
+      "day": 1,
+      "slot": "sore",
+      "text": "\"omzet cafe yang normal itu berapa?\"\n\npertanyaan ini paling sering ditanya owner baru, dan sayangnya jarang ada yang tau pasti — karena datanya jarang dipublikasikan.\n\nmakanya kami di Outletmu lagi ngumpulin data ini. biar owner punya patokan nyata, bukan tebakan.",
+      "hashtags": ["cafe", "bisnis F&B"],
+      "link": ""
+    },
+    {
+      "id": "threads-003",
+      "platform": "threads",
+      "type": "tips",
+      "day": 2,
+      "slot": "pagi",
+      "text": "tips buat owner cafe yang lagi rame:\n\npesanan tertukar itu biasanya bukan salah staff.\npenyebabnya: order dari kasir dan order dari QR masuk ke \"tempat\" yang beda.\n\nsolusinya simpel: semua order masuk ke satu antrean.\nkalau satu tempat, hampir nggak ada yang ketuker.\n\napa yang biasanya paling ribet di outlet kamu?",
+      "hashtags": ["cafe", "kasir cafe", "POS"],
+      "link": ""
+    },
+    {
+      "id": "threads-004",
+      "platform": "threads",
+      "type": "survey",
+      "day": 3,
+      "slot": "siang",
+      "text": "buat owner cafe/kedai di sini — bantu isi riset kami yuk 🙏\n\ncuma 6 pertanyaan, 3 menit, anonim.\nyang ikut dapet laporan benchmark omzet cafe Indonesia gratis.\n\n👉 https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform",
+      "hashtags": ["owner cafe", "UMKM F&B"],
+      "link": "https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform"
+    },
+    {
+      "id": "threads-005",
+      "platform": "threads",
+      "type": "tips",
+      "day": 4,
+      "slot": "pagi",
+      "text": "3 masalah operasional cafe yang akarnya sama:\n\n1. pesanan tertukar pas ramai\n2. owner baru tau omzet setelah tutup toko\n3. stok habis baru ketahuan pas pelanggan mau pesan\n\nakar-nya bukan staff, tapi alur yang kepotong.\nrapiin alurnya, sisanya ikut rapi.",
+      "hashtags": ["cafe", "manajemen cafe", "F&B"],
+      "link": ""
+    },
+    {
+      "id": "threads-006",
+      "platform": "threads",
+      "type": "engagement",
+      "day": 5,
+      "slot": "sore",
+      "text": "owner cafe: menu cetak kamu terakhir di-revisi kapan?\n\nkalau jawabannya \"udah lama\" — kemungkinan ada harga yang salah, atau menu yang udah nggak dijual masih terpajang.\n\nmenu digital bisa diubah tanpa cetak ulang. hemat & akurat.",
+      "hashtags": ["cafe", "menu digital"],
+      "link": ""
+    },
+    {
+      "id": "threads-007",
+      "platform": "threads",
+      "type": "teaser",
+      "day": 14,
+      "slot": "pagi",
+      "text": "hasil riset kami keluar. ☕\n\nkami survei [N] cafe di [N] kota di Indonesia.\n\n3 temuan paling menarik:\n• rata-rata omzet harian: Rp [X]\n• outlet pakai sistem digital: [X]% lebih tinggi\n• jam paling ramai: [JAM]\n\nlaporan lengkapnya gratis, bebas dipakai 👇\n[LINK RISET]",
+      "hashtags": ["riset cafe", "data F&B", "owner cafe"],
+      "link": "[LINK RISET]"
+    },
+    {
+      "id": "threads-008",
+      "platform": "threads",
+      "type": "tips",
+      "day": 16,
+      "slot": "pagi",
+      "text": "QR order meja bukan cuma tren — ini pengurang beban kerja.\n\nyang berubah pas pelanggan scan sendiri:\n• order langsung masuk, nggak dicatat ulang\n• konteks meja jelas, nggak ada salah meja\n• staff fokus melayani, bukan nulis\n\nbedanya paling kerasa saat jam ramai.",
+      "hashtags": ["QR order", "cafe", "POS"],
+      "link": ""
+    },
+    {
+      "id": "promo-form-01",
+      "platform": "threads",
+      "type": "survey",
+      "day": 1,
+      "slot": "promo",
+      "text": "owner cafe, aku butuh bantuan 3 menit kamu 🙏\n\nlagi ngumpulin data buat riset \"Omzet Harian Cafe Indonesia 2026\".\n\n6 pertanyaan. anonim. gratis.\nbuat kamu: dapat laporan benchmark omzet per kota setelah selesai.\n\nisi di sini 👇\nhttps://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform\n\nbantu repost ya biar sampe ke owner lain 🙌",
+      "hashtags": ["owner cafe", "cafe indonesia", "UMKM", "bisnis F&B"],
+      "link": "https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform"
+    },
+    {
+      "id": "promo-form-02",
+      "platform": "threads",
+      "type": "survey",
+      "day": 2,
+      "slot": "promo",
+      "text": "pertanyaan yang nggak pernah ada jawabannya:\n\n\"omzet cafe normal itu berapa?\"\n\nmakanya aku (tim Outletmu) bikin riset ini. biar owner punya patokan nyata, bukan tebakan.\n\ntapi butuh data dari kamu dulu 👇\nhttps://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform\n\n6 pertanyaan, 3 menit, anonim. yang ikut dapat hasil laporannya. 📊",
+      "hashtags": ["cafe", "owner cafe", "bisnis F&B"],
+      "link": "https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform"
+    },
+    {
+      "id": "promo-form-03",
+      "platform": "threads",
+      "type": "survey",
+      "day": 3,
+      "slot": "promo",
+      "text": "buat kamu yang punya cafe / kedai / restoran kecil:\n\nbantu isi riset omzet cafe Indonesia yuk, cuma 3 menit.\n\nsemua jawaban anonim.\nyang ikut, dapat laporan benchmark-nya gratis setelah jadi.\n\n👉 https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform\n\nshare ke teman sesama owner juga ya 🤝",
+      "hashtags": ["owner cafe", "UMKM F&B", "cafe"],
+      "link": "https://docs.google.com/forms/d/1j4mjdKeuemHXQMC3tUTjRrzwGvypt-jURylFKs79viw/viewform"
+    },
+    {
+      "id": "promo-vs-moka",
+      "platform": "threads",
+      "type": "comparison",
+      "day": 4,
+      "slot": "promo",
+      "text": "sering ditanya: \"Outletmu sama Moka bedanya apa?\"\n\njawaban singkatnya:\n• Moka = POS F&B yang mapan, fitur luas untuk enterprise\n• Outletmu = POS bulanan + QR order, setup dibantu dari awal\n\nbedanya paling kerasa di: setup, harga (mulai Rp249rb), dan laporan WhatsApp.\n\nperbandingan lengkapnya di sini 👇\nhttps://outletmu.store/bandingkan/outletmu-vs-moka",
+      "hashtags": ["aplikasikasir", "kasircafe", "POS", "cafeindonesia"],
+      "link": "https://outletmu.store/bandingkan/outletmu-vs-moka"
+    },
+    {
+      "id": "promo-vs-pawoon",
+      "platform": "threads",
+      "type": "comparison",
+      "day": 5,
+      "slot": "promo",
+      "text": "Outletmu vs Pawoon — mana yang cocok buat cafe kamu?\n\nPawoon: kasir simpel, transaksi cepat.\nOutletmu: QR order meja yang nyambung ke kasir & kitchen + setup dibantu + laporan WhatsApp.\n\nbuat yang butuh alur order rapi, ini perbandingannya 👇\nhttps://outletmu.store/bandingkan/outletmu-vs-pawoon",
+      "hashtags": ["kasircafe", "POS", "cafe", "bisnisF&B"],
+      "link": "https://outletmu.store/bandingkan/outletmu-vs-pawoon"
+    }
+  ],
+  "threads_series": [
+    {
+      "id": "thread-series-001",
+      "platform": "threads",
+      "type": "thread",
+      "day": 7,
+      "title": "Kasir cafe masih pake kertas?",
+      "parts": [
+        "kasir cafe masih pake kertas + oret-oretan? ini yang pelan-pelan ngabisin waktu kamu. thread singkat 🧵",
+        "1. pesanan tertukar saat ramai\nbukan karena staff ceroboh. tapi karena order dari beberapa sumber masuk ke tempat yang beda-beda.\nsatu antrean = masalah hilang.",
+        "2. owner baru tau omzet setelah tutup\nrekap manual = data baru kelihatan besoknya.\npadahal keputusan cepat butuh data cepat.",
+        "3. stok habis baru ketahuan pas pelanggan mau pesan\nmenu, kasir, dan stok harus baca dari alur yang sama.",
+        "intinya: 3 masalah di atas akarnya sama — alur yang kepotong.\nrapiin alurnya, sisanya ikut rapi.\n\nkalau mau lihat contohnya, kami bantu di Outletmu 👇\n[LINK]"
+      ]
+    }
+  ]
+}

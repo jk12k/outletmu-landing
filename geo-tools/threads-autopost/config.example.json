@@ -1,0 +1,31 @@
+{
+  "brand": "Outletmu",
+  "engine": "clipboard",
+  "threads": {
+    "username": "",
+    "password": "",
+    "deviceID": "android-outletmu0000000001",
+    "userId": ""
+  },
+  "safety": {
+    "maxPostsPerDay": 1,
+    "minDelayBetweenPostsMs": 900000,
+    "maxDelayBetweenPostsMs": 3600000,
+    "jitterMs": 120000,
+    "retryAttempts": 2,
+    "retryDelayMs": 300000
+  },
+  "schedule": {
+    "postHour": 9,
+    "postMinute": 0
+  },
+  "fallback": {
+    "enabled": true,
+    "mode": "clipboard",
+    "outputDir": "./pending-posts"
+  },
+  "logging": {
+    "file": "./posted-log.json",
+    "verbose": true
+  }
+}

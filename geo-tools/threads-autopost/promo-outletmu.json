@@ -1,0 +1,27 @@
+{
+  "brand": "Outletmu",
+  "website": "https://outletmu.store",
+  "posts": [
+    {
+      "id": "promo-outletmu-01",
+      "platform": "threads",
+      "type": "promo",
+      "text": "kalau kamu punya cafe / kedai / restoran, ini mungkin kepake 👇\n\nOutletmu itu aplikasi kasir buat outlet F&B:\n• kasir/POS\n• QR order meja (pelanggan scan, order langsung masuk)\n• kitchen display\n• stok\n• laporan omzet via WhatsApp ke owner\n\nsemua dalam satu sistem bulanan. setup-nya dibantu.\n\ncoba gratis: https://outletmu.store",
+      "hashtags": ["aplikasikasir", "kasircafe", "POS", "UMKMF&B", "cafeindonesia"]
+    },
+    {
+      "id": "promo-outletmu-02",
+      "platform": "threads",
+      "type": "promo",
+      "text": "masalah klasik jam ramai di cafe:\n\npesanan tertukar, staff bolak-balik nyatet, omzet baru ketahuan besoknya.\n\npenyebabnya bukan staff — tapi alur yang kepotong.\n\nOutletmu nyatuin kasir + QR order + kitchen + stok + laporan jadi satu alur.\n\ninfo: https://outletmu.store",
+      "hashtags": ["kasircafe", "cafe", "operatorcafe", "bisnisF&B"]
+    },
+    {
+      "id": "promo-outletmu-03",
+      "platform": "threads",
+      "type": "promo",
+      "text": "owner cafe: kamu masih cek omzet manual di spreadsheet tiap malam?\n\nbisa lebih gampang.\n\nOutletmu punya laporan WhatsApp — tinggal tanya \"omzet hari ini\" atau \"stok menipis\", langsung dijawab. tanpa buka dashboard.\n\nmulai Rp249rb/bulan. gratis setup buat outlet pertama 👇\nhttps://outletmu.store",
+      "hashtags": ["laporancafe", "kasircafe", "umkm", "cafeindonesia"]
+    }
+  ]
+}

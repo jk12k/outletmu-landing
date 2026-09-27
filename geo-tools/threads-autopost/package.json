@@ -1,0 +1,14 @@
+{
+  "name": "outletmu-threads-autopost",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GEO engine: auto-post Threads untuk Outletmu (engine-agnostic, fallback clipboard)",
+  "scripts": {
+    "dry": "node engine.js dry 1",
+    "status": "node engine.js status",
+    "reset": "node engine.js reset"
+  },
+  "optionalDependencies": {
+    "threads-api": "^0.0.1"
+  }
+}

@@ -1,0 +1,29 @@
+# Salin menjadi config-multi.json lalu isi akun. JANGAN commit file aslinya.
+{
+  "brand": "Outletmu",
+  "engine": "unofficial",
+  "accounts": [
+    {
+      "label": "Akun 1",
+      "username": "ISI_USERNAME_1",
+      "password": "ISI_PASSWORD_1",
+      "deviceID": "android-outletmu0000000001"
+    },
+    {
+      "label": "Akun 2",
+      "username": "ISI_USERNAME_2",
+      "password": "ISI_PASSWORD_2",
+      "deviceID": "android-outletmu0000000002"
+    }
+  ],
+  "safety": {
+    "maxPostsPerDayPerAccount": 1,
+    "delayBetweenAccountsMs": 120000,
+    "retryAttempts": 2,
+    "retryDelayMs": 300000
+  },
+  "fallback": {
+    "enabled": true,
+    "outputDir": "./pending-posts"
+  }
+}
