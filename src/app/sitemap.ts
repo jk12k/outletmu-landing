@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { guidePageEntries } from "@/components/seo/guide-pages";
+import { indexPageEntries } from "@/components/seo/index-pages";
 import { seoPageEntries } from "@/components/seo/seo-pages";
 import { siteUrl as baseUrl } from "@/lib/site";
 
@@ -14,11 +15,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${baseUrl}/tentang`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/harga`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.92,
     },
+    ...indexPageEntries.map((page) => ({
+      url: `${baseUrl}${page.path}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...seoPageEntries.map((page) => ({
       url: `${baseUrl}${page.path}`,
       lastModified,
