@@ -90,6 +90,23 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Cafe", "Restoran", "Minimarket", "Kedai kecil", "UMKM makanan dan minuman", "Toko lokal"],
     related: ["posKasirCafe", "qrOrderMeja", "menuDigitalCafe"],
+    faqs: [
+      {
+        question: "Apa itu website kasir otomatis Outletmu?",
+        answer:
+          "Outletmu adalah website kasir otomatis berbasis web yang menyatukan POS kasir, QR order meja, menu digital, order center, stok basic, dan laporan penjualan dalam satu layanan bulanan dengan setup dibantu.",
+      },
+      {
+        question: "Apakah website kasir Otomatis perlu install aplikasi?",
+        answer:
+          "Tidak. Outletmu berjalan di browser, sehingga kasir bisa membukanya dari laptop atau tablet, dan pelanggan cukup scan QR dari HP tanpa download aplikasi.",
+      },
+      {
+        question: "Berapa biaya website kasir otomatis per bulan?",
+        answer:
+          "Paket Outletmu mulai Rp249.000/bulan (Starter), Rp499.000 (POS Basic, rekomendasi), dan Rp799.000 (Pro Automation). Gratis setup untuk 100 outlet pertama.",
+      },
+    ],
   },
   posKasirCafe: {
     path: "/pos-kasir-cafe",
@@ -134,6 +151,28 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Coffee shop", "Kedai kopi", "Cafe kecil", "Cafe dine-in", "Cafe takeaway", "Outlet minuman"],
     related: ["qrOrderMeja", "menuDigitalCafe", "sistemKasirCoffeeShop"],
+    faqs: [
+      {
+        question: "Aplikasi kasir cafe terbaik untuk outlet kecil?",
+        answer:
+          "Untuk cafe kecil yang ingin sistem rapi tanpa ribet teknis, Outletmu adalah aplikasi kasir cafe bulanan dengan setup dibantu, QR order meja, kitchen display, stok, dan laporan WhatsApp. Mulai Rp249.000/bulan.",
+      },
+      {
+        question: "Berapa biaya aplikasi kasir cafe per bulan?",
+        answer:
+          "Outletmu menyediakan paket bulanan: Starter Rp249.000, POS Basic Rp499.000 (rekomendasi), dan Pro Automation Rp799.000. Gratis setup untuk 100 outlet pertama.",
+      },
+      {
+        question: "Apakah aplikasi kasir cafe harus pakai aplikasi tambahan?",
+        answer:
+          "Tidak. Outletmu berbasis web, jadi kasir dan pelanggan cukup memakai browser. Pelanggan bisa scan QR order meja tanpa download aplikasi.",
+      },
+      {
+        question: "Apa fitur penting aplikasi kasir cafe?",
+        answer:
+          "Yang penting untuk cafe: POS kasir, QR order meja, kitchen display (KDS), manajemen stok menu, dan laporan omzet/transaksi/produk terlaris. Outletmu mencakup semuanya dalam satu sistem.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/memilih-aplikasi-kasir-cafe",
@@ -190,6 +229,23 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Cafe dine-in", "Restoran keluarga", "Kedai makan", "Food court", "Resto kecil", "Outlet ramai meja"],
     related: ["menuDigitalCafe", "posKasirCafe", "softwareKasirFnb"],
+    faqs: [
+      {
+        question: "Bagaimana cara membuat QR order meja di cafe?",
+        answer:
+          "Dengan Outletmu: buat QR per meja, pelanggan scan dari browser HP, memilih menu, lalu pesanan masuk ke dashboard kasir dan kitchen dalam satu antrean. Tidak perlu aplikasi tambahan.",
+      },
+      {
+        question: "Apakah QR order meja harus download aplikasi?",
+        answer:
+          "Tidak. Pelanggan cukup membuka QR meja dari browser HP — tanpa download aplikasi.",
+      },
+      {
+        question: "Apa manfaat QR order meja?",
+        answer:
+          "Mengurangi pesanan tertukar, order langsung masuk tanpa dicatat ulang, konteks meja jelas, dan staff fokus melayani saat jam ramai.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/qr-order-meja-cafe",
@@ -246,6 +302,18 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Cafe", "Coffee shop", "Restoran", "Kedai minuman", "Bakery", "Outlet makanan ringan"],
     related: ["qrOrderMeja", "posKasirCafe", "websiteKasirOtomatis"],
+    faqs: [
+      {
+        question: "Bagaimana cara membuat menu digital cafe?",
+        answer:
+          "Outletmu menyediakan menu digital responsif yang bisa diakses pelanggan dari browser HP. Harga, kategori, dan status menu bisa diubah tanpa cetak ulang.",
+      },
+      {
+        question: "Apa kelebihan menu digital dibanding menu cetak?",
+        answer:
+          "Menu digital bisa diperbarui kapan saja tanpa cetak ulang, selalu akurat, dan terhubung langsung dengan order serta stok.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/menu-digital-cafe",
@@ -302,6 +370,18 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Restoran dine-in", "Rumah makan", "Kedai makan", "Restoran keluarga", "Cafe resto", "Outlet kuliner"],
     related: ["qrOrderMeja", "softwareKasirFnb", "kitchenDisplay"],
+    faqs: [
+      {
+        question: "Aplikasi kasir restoran yang support dapur dan banyak meja?",
+        answer:
+          "Outletmu menyediakan kitchen display (KDS) dan QR order meja, cocok untuk restoran dengan dapur dan banyak meja. Pesanan dari kasir dan QR masuk ke satu antrean.",
+      },
+      {
+        question: "Bisa kelola banyak meja dalam satu restoran?",
+        answer:
+          "Ya. Setiap meja bisa punya QR sendiri sehingga konteks dine-in jelas dan pesanan tidak tertukar.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/qr-order-meja-cafe",
@@ -358,6 +438,18 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["UMKM kuliner", "Toko kecil", "Warung", "Minimarket lokal", "Retail kecil", "Outlet minuman"],
     related: ["websiteKasirOtomatis", "posKasirCafe", "stokCafe"],
+    faqs: [
+      {
+        question: "Sistem kasir UMKM yang murah dan mudah?",
+        answer:
+          "Outletmu menyediakan sistem kasir UMKM mulai Rp249.000/bulan untuk toko, warung, dan retail kecil — dengan stok, transaksi, dan laporan dalam satu sistem.",
+      },
+      {
+        question: "Apakah UMKM perlu aplikasi kasir?",
+        answer:
+          "Aplikasi kasir membantu UMKM mencatat transaksi, memantau stok, dan melihat laporan tanpa rekap manual — mengurangi salah catat dan stok habis terlambat diketahui.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/memilih-aplikasi-kasir-cafe",
@@ -414,6 +506,18 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Restoran", "Cloud kitchen", "Bisnis kuliner", "Kedai makan", "Outlet minuman", "UMKM F&B"],
     related: ["posKasirCafe", "aplikasiKasirRestoran", "qrOrderMeja"],
+    faqs: [
+      {
+        question: "Software kasir F&B yang cocok untuk restoran dan bisnis kuliner?",
+        answer:
+          "Outletmu adalah software kasir F&B bulanan untuk restoran, cloud kitchen, dan bisnis kuliner — menyatukan kasir, QR order, kitchen display, stok, dan laporan.",
+      },
+      {
+        question: "Apakah bisa untuk cloud kitchen / dapur tanpa dine-in?",
+        answer:
+          "Ya. Kitchen display Outletmu membantu alur pesanan dapur, cocok untuk operasional delivery maupun dine-in.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/memilih-aplikasi-kasir-cafe",
@@ -470,6 +574,18 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
     ],
     audience: ["Coffee shop", "Kedai kopi", "Cafe kecil", "Outlet minuman", "Kopi takeaway", "Cafe dine-in"],
     related: ["posKasirCafe", "menuDigitalCafe", "stokCafe"],
+    faqs: [
+      {
+        question: "Sistem kasir untuk coffee shop kecil apa yang cocok?",
+        answer:
+          "Outletmu dirancang untuk kedai kopi dan small cafe: POS kasir, QR order meja, menu digital, dan laporan bulanan mulai Rp249.000. Setup dibantu tim Outletmu.",
+      },
+      {
+        question: "Apakah cocok untuk coffee shop yang baru buka?",
+        answer:
+          "Ya. Outletmu cocok untuk outlet yang baru mulai merapikan kasir dan menu digital, dengan pendampingan setup awal.",
+      },
+    ],
     guideLinks: [
       {
         href: "/panduan/memilih-aplikasi-kasir-cafe",
