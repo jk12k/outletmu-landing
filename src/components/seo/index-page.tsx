@@ -58,7 +58,6 @@ export function IndexPage({ page }: IndexPageProps) {
       <ScrollReveal>
         <section className={styles.hero}>
           <div className={styles.heroCopy} data-reveal>
-            <p className={styles.eyebrow}>{page.eyebrow}</p>
             <h1>{page.h1}</h1>
             <p className={styles.lead}>{page.intro}</p>
             <div className={styles.heroActions}>

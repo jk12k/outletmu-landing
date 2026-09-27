@@ -88,41 +88,12 @@
 .heroCopy {
   h1 {
     max-width: 15ch;
-    margin: 0.9rem 0 0;
+    margin: 0;
     color: var(--om-ink-950);
     font-size: clamp(2.65rem, 6vw, 5.2rem);
     font-weight: 900;
     letter-spacing: 0;
     line-height: 0.96;
-  }
-}
-
-.eyebrow,
-.sectionHeader span,
-.ctaBand span,
-.intentPanel span {
-  color: var(--om-slate-600);
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: fit-content;
-  border: 1px solid rgba(22, 165, 111, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  padding: 0.55rem 0.8rem;
-  box-shadow: 0 12px 30px rgba(22, 165, 111, 0.08);
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: var(--om-brand-green-hover);
   }
 }
 

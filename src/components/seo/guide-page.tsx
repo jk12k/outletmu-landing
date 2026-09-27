@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpenCheck, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { JsonLd } from "./json-ld";
 import { guidePublishedDate, type GuidePageContent } from "./guide-pages";
 import {
@@ -48,7 +48,6 @@ export function GuidePage({ page }: GuidePageProps) {
       <article>
         <header className={styles.hero}>
           <div className={styles.heroCopy} data-reveal>
-            <p className={styles.eyebrow}><BookOpenCheck aria-hidden="true" /> {page.eyebrow}</p>
             <h1>{page.h1}</h1>
             <p className={styles.lead}>{page.intro[0]}</p>
 
@@ -67,7 +66,6 @@ export function GuidePage({ page }: GuidePageProps) {
               <span className={styles.intentLogo}>
                 <Image src="/branding/outletmu-icon-light.png" alt="Outletmu" width={925} height={925} />
               </span>
-              <span>Inti panduan</span>
             </div>
             <p>{page.intent}</p>
             <div className={styles.intentTags}>
@@ -112,7 +110,6 @@ export function GuidePage({ page }: GuidePageProps) {
             </section>
 
             <section className={styles.guideCta} data-reveal>
-              <span>Outletmu</span>
               <h2>{page.cta.title}</h2>
               <p>{page.cta.body}</p>
               <Link href={globalLeadFormLink} className={styles.primaryCta}>
@@ -122,7 +119,6 @@ export function GuidePage({ page }: GuidePageProps) {
 
             <section className={styles.guideFaq}>
               <div className={styles.sectionHeader} data-reveal>
-                <span>FAQ</span>
                 <h2>Pertanyaan yang sering muncul</h2>
               </div>
               <div className={styles.guideFaqList}>
@@ -137,7 +133,6 @@ export function GuidePage({ page }: GuidePageProps) {
           </div>
 
           <aside className={styles.guideSidebar} aria-label="Link internal panduan" data-reveal>
-            <span>Baca juga</span>
             <div className={styles.guideLinks}>
               {page.internalLinks.map((link) => (
                 <Link key={link.href} href={link.href}>

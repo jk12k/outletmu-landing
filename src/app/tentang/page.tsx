@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   breadcrumbSchema,
@@ -95,9 +95,6 @@ export default function TentangPage() {
       <ScrollReveal>
         <section className={styles.hero}>
           <div className={styles.heroCopy} data-reveal>
-            <p className={styles.eyebrow}>
-              <Building2 className="h-4 w-4" aria-hidden="true" /> Tentang
-            </p>
             <h1>Tentang Outletmu</h1>
             <p className={styles.lead}>
               Outletmu adalah aplikasi kasir (POS) berbasis web untuk bisnis F&B di Indonesia — cafe,
@@ -116,7 +113,6 @@ export default function TentangPage() {
           </div>
 
           <aside className={styles.intentPanel} aria-label="Ringkasan Outletmu" data-reveal>
-            <span>Dalam angka</span>
             <p>
               Berdiri sejak 27 Juli 2026, fokus pada cafe, coffee shop, restoran, dan UMKM F&B di
               Indonesia. Model langganan bulanan mulai Rp249.000 dengan setup dibantu.
@@ -126,7 +122,6 @@ export default function TentangPage() {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Profil</span>
             <h2>Siapa kami dan misi kami</h2>
           </div>
           <div className={styles.storyGrid}>
@@ -154,7 +149,6 @@ export default function TentangPage() {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Pembeda</span>
             <h2>Yang membuat Outletmu berbeda</h2>
           </div>
           <div className={styles.storyGrid}>
@@ -172,7 +166,6 @@ export default function TentangPage() {
         <section className={styles.section}>
           <div className={styles.ctaBand} data-reveal>
             <div>
-              <span>Kontak</span>
               <h2>Diskusikan kebutuhan outlet kamu</h2>
               <p>
                 WhatsApp 081291960227 · Email ap648616@gmail.com. Tim Outletmu siap membantu

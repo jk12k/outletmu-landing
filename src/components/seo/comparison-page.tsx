@@ -51,7 +51,6 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
       <ScrollReveal>
         <section className={styles.hero}>
           <div className={styles.heroCopy} data-reveal>
-            <p className={styles.eyebrow}>Perbandingan</p>
             <h1>{page.h1}</h1>
             <p className={styles.lead}>{page.lead}</p>
             <div className={styles.heroActions}>
@@ -65,14 +64,12 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
           </div>
 
           <aside className={styles.intentPanel} aria-label={`Ringkasan ${page.competitor}`} data-reveal>
-            <span>Ringkasan singkat</span>
             <p>{page.summary}</p>
           </aside>
         </section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Tabel perbandingan</span>
             <h2>Outletmu vs {page.competitor}</h2>
           </div>
           <div className={styles.comparisonTableWrap} data-reveal>
@@ -99,7 +96,6 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Cocok untuk siapa</span>
             <h2>Pilih yang sesuai kebutuhan outlet kamu</h2>
           </div>
           <div className={styles.comparisonChooseGrid}>
@@ -132,7 +128,6 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>FAQ</span>
             <h2>Pertanyaan yang sering muncul</h2>
           </div>
           <div className={styles.storyGrid}>
@@ -150,7 +145,6 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
         <section className={styles.section}>
           <div className={styles.ctaBand} data-reveal>
             <div>
-              <span>Outletmu</span>
               <h2>Diskusikan kebutuhan outlet kamu</h2>
               <p>
                 Ceritakan jenis outlet, jumlah meja, kebutuhan QR order, dan laporan. Tim Outletmu
@@ -165,7 +159,6 @@ export function ComparisonPage({ page }: ComparisonPageProps) {
 
         <section className={styles.relatedSection}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Perbandingan lain</span>
             <h2>Bandingkan dengan aplikasi kasir lain</h2>
           </div>
           <div className={styles.relatedLinks}>

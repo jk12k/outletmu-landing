@@ -1098,29 +1098,12 @@ function useLandingGsap(rootRef: React.RefObject<HTMLElement | null>) {
   }, [rootRef]);
 }
 
-function Badge({ children, tone = "light" }: { children: React.ReactNode; tone?: "light" | "dark" }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold shadow-sm",
-        tone === "light"
-          ? "border border-[var(--om-brand-green)]/18 bg-[var(--om-brand-green-soft)] text-[var(--om-brand-green-hover)] dark:border-white/10 dark:bg-white/8 dark:text-[#E4E7EC]"
-          : "border border-[var(--om-brand-green)]/24 bg-white/92 text-[var(--om-brand-green-hover)]",
-      )}
-    >
-      {children}
-    </span>
-  );
-}
-
 function SectionTitle({
-  badge,
   title,
   subtitle,
   align = "center",
   tone = "light",
 }: {
-  badge: string;
   title: string;
   subtitle?: string;
   align?: "center" | "left";
@@ -1133,10 +1116,9 @@ function SectionTitle({
         align === "center" ? "text-center" : "text-center lg:text-left",
       )}
     >
-      <Badge tone={tone}>{badge}</Badge>
       <h2
         className={cn(
-          "mt-5 text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold leading-[1.1]",
+          "text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold leading-[1.1]",
           tone === "dark" ? "text-white" : "text-slate-950 dark:text-[#F8F3EA]",
         )}
       >
@@ -1291,8 +1273,7 @@ function HeroSection() {
       <div className={landingStyles.ambientTwo} data-float="ambient" />
       <div className={cn(landingStyles.container, landingStyles.heroLayout, "grid min-w-0 items-center gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)]")}>
         <div data-reveal className={cn(landingStyles.heroCopy, "mx-auto min-w-0 max-w-2xl text-center xl:mx-0 xl:text-left")}>
-          <Badge>Gratis setup untuk 100 outlet pertama</Badge>
-          <h1 className={cn(landingStyles.heroTitle, "mt-6 text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-slate-950 dark:text-[#F8F3EA]")}>
+          <h1 className={cn(landingStyles.heroTitle, "text-[clamp(2.35rem,4.7vw,3.75rem)] font-extrabold leading-[1.08] text-slate-950 dark:text-[#F8F3EA]")}>
             Aplikasi kasir cafe dan QR order untuk outlet F&B yang ingin lebih rapi
           </h1>
           <p className={cn(landingStyles.heroSubtitle, "mx-auto mt-6 max-w-xl text-base font-medium leading-8 text-slate-900 dark:text-[#F8F3EA]/82 md:text-lg xl:mx-0")}>
@@ -1323,7 +1304,6 @@ function OperationalDashboardSection() {
     <PageSection className={landingStyles.operationalSection}>
       <div data-reveal className={landingStyles.operationalGrid}>
         <div className={landingStyles.operationalCopy}>
-          <Badge>Dashboard operasional</Badge>
           <h2>Pantau kasir, QR order, stok, dan laporan dari satu dashboard.</h2>
           <p>
             Outletmu membuat alur outlet terlihat nyata: kasir menerima order, kitchen memproses,
@@ -1402,7 +1382,6 @@ function BusinessSolutionSection() {
   return (
     <PageSection id="solutions" className="bg-white dark:bg-[#08111F]">
       <SectionTitle
-        badge="Solusi bisnis Outletmu"
         title="Solusi kasir dan order digital untuk bisnis yang ingin terlihat lebih rapi"
         subtitle="Outletmu membantu cafe, restoran, coffee shop, minimarket kecil, dan UMKM F&B menjalankan order, kasir, menu, stok, dan laporan dari alur yang lebih tertata."
       />
@@ -1456,7 +1435,6 @@ function CoreFeaturesSection() {
   return (
     <PageSection className={landingStyles.coreFeatureSection}>
       <SectionTitle
-        badge="Fitur utama"
         title="Fitur pentingnya lengkap, tampilnya tetap ringan."
         subtitle="Kartu fitur dibuat ringkas agar calon pengguna cepat memahami apa saja yang tersedia di Outletmu."
       />
@@ -1488,7 +1466,6 @@ function StaffFeatureSection() {
   return (
     <PageSection id="staff" className={landingStyles.staffSection}>
       <SectionTitle
-        badge="Untuk kasir & staff"
         title="Lebih mudah untuk kasir, kitchen, dan owner"
         subtitle="Operasional harian dibuat jelas dari pesanan masuk, proses kitchen, pembayaran, sampai laporan penjualan."
       />
@@ -1572,7 +1549,6 @@ function CustomerFeatureSection() {
     <PageSection id="customer" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div ref={sectionRef} className={landingStyles.customerMenuShowcase}>
         <motion.div className={landingStyles.customerMenuCopy} style={{ y: copyY, opacity: copyOpacity }}>
-          <Badge>Menu Pesan Pelanggan</Badge>
           <h2>Pelanggan scan QR, menu langsung muncul</h2>
           <p>
             Pembeli cukup buka QR meja dari browser HP, pilih menu, tambah catatan, lalu pesanan masuk ke dashboard
@@ -1663,7 +1639,6 @@ function FlowSection() {
   return (
     <PageSection id="flow" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <SectionTitle
-        badge="Alur kerja"
         title="Dari QR order meja sampai laporan, alurnya dibuat mudah diikuti"
         subtitle="Pembeli, kasir, kitchen, dan owner punya peran yang jelas sehingga order tidak berhenti di catatan manual."
       />
@@ -1697,7 +1672,6 @@ function ProblemSolutionSection() {
   return (
     <PageSection className="bg-white dark:bg-[#08111F]">
       <SectionTitle
-        badge="Masalah yang diselesaikan"
         title="Masalah kecil di operasional bisa jadi besar kalau masih manual"
         subtitle="Outletmu membantu merapikan titik-titik yang sering membuat cafe, restoran, dan UMKM F&B kehilangan waktu saat jam ramai."
       />
@@ -1723,7 +1697,6 @@ function ProblemSolutionSection() {
       </div>
       <div data-reveal className={landingStyles.solutionStrip}>
         <div>
-          <Badge>Solusi Outletmu</Badge>
           <h3>Order, kasir, stok, dan laporan dibaca dari alur yang sama.</h3>
         </div>
         <ul>
@@ -1747,7 +1720,6 @@ function ProductPreviewSection() {
     <PageSection id="preview" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div data-preview-section>
         <SectionTitle
-        badge="Preview sistem"
           title="Dibuat simpel untuk kasir, owner, dan pelanggan."
           subtitle="Preview tampilan agar calon pembeli bisa membayangkan alur POS, QR order, stok, dan laporan sebelum konsultasi."
         />
@@ -1940,7 +1912,6 @@ function WhatsAppBotSection() {
     <PageSection id="whatsapp" className="bg-white dark:bg-[#08111F]">
       <div data-reveal className={landingStyles.whatsappGrid}>
         <div className={landingStyles.whatsappCopy}>
-          <Badge>WhatsApp owner</Badge>
           <h2>Tanya omzet dan stok langsung dari WhatsApp.</h2>
           <p>
             Outletmu membantu owner memantau bisnis lewat percakapan yang sederhana.
@@ -2255,7 +2226,6 @@ function PricingDeckSection() {
     <PageSection id={landingSectionIds.pricing} className="bg-white dark:bg-[#08111F]">
       <div className={pricingStyles.backgroundWord}>PAKET</div>
       <SectionTitle
-        badge="Harga bulanan"
         title="Pilih paket sesuai kebutuhan bisnismu."
         subtitle="Paket bulanan untuk outlet yang ingin POS, QR order, stok, laporan, dan operasional harian lebih rapi."
       />
@@ -2406,7 +2376,6 @@ function PackageComparisonSection() {
   return (
     <PageSection className={landingStyles.comparisonSection}>
       <SectionTitle
-        badge="Perbandingan paket"
         title="Bandingkan paket Outletmu"
         subtitle="Pilih paket sesuai tahap operasional outlet Anda. Mulai dari QR order dan kasir, lalu naik ke member, automation, sampai kebutuhan custom."
       />
@@ -2464,7 +2433,6 @@ function AddOnsSection() {
     <PageSection id="addons" className="bg-[#F8F3EA] dark:bg-[#080F1F]">
       <div className={landingStyles.addOnsHeader}>
         <SectionTitle
-          badge="Tambahan opsional"
           title={"Tambahan Opsional /\nAdd-ons"}
           subtitle="Paket bulanan Outletmu sudah mencakup sistem utama. Add-ons hanya dipakai jika outlet membutuhkan domain, desain QR, training tambahan, atau bantuan khusus."
         />
@@ -2528,7 +2496,6 @@ function WhyOutletmuSection() {
       <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
         <SectionTitle
           align="left"
-          badge="Kenapa Outletmu"
           title="Bukan sekadar aplikasi kasir murah. Outletmu dikelola seperti sistem operasional."
           subtitle="Outletmu adalah sistem POS bulanan yang setup-nya dibantu, alurnya bisa disesuaikan, dan siap berkembang ketika outlet bertambah."
         />
@@ -2556,7 +2523,7 @@ function FAQSection() {
 
   return (
     <PageSection id="faq" className="bg-white dark:bg-[#08111F]">
-      <SectionTitle badge="FAQ" title="Pertanyaan yang sering muncul." />
+      <SectionTitle title="Pertanyaan yang sering muncul." />
       <div data-reveal className="mx-auto mt-12 grid max-w-4xl gap-3">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
@@ -2631,7 +2598,6 @@ function FreeTrialLeadFormSection() {
     <PageSection id={landingSectionIds.freeTrial} ariaLabelledby={freeTrialLeadHeadingId} className={landingStyles.leadFormSection}>
       <div data-reveal className={landingStyles.leadFormShell}>
         <div className={landingStyles.leadFormIntro}>
-          <Badge>Coba gratis</Badge>
           <h2 id={freeTrialLeadHeadingId}>Coba Gratis Outletmu</h2>
           <p>
             Isi data outlet kamu. Tim Outletmu akan bantu rekomendasikan paket dan alur setup yang paling cocok
@@ -2909,7 +2875,6 @@ function OperationsCTASection() {
     <PageSection className={landingStyles.midCtaSection}>
       <div data-reveal className={landingStyles.midCtaPanel}>
         <div className={landingStyles.midCtaCopy}>
-          <Badge>Gratis setup untuk 100 outlet pertama</Badge>
           <h2>Mulai rapikan order dan kasir outlet Anda</h2>
           <p>
             Outletmu bantu setup dari awal, cocok untuk bisnis yang ingin punya sistem kasir dan QR order tanpa
@@ -2934,8 +2899,7 @@ function FinalCTASection() {
         <div className={landingStyles.finalWord}>FLOW</div>
         <div className="relative grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div className="text-center lg:text-left">
-            <Badge>Coba gratis</Badge>
-            <h2 className="mt-6 text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-[var(--om-ink-950)]">
+            <h2 className="text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-tight text-[var(--om-ink-950)]">
               Siap rapikan kasir dan QR order outlet Anda?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--om-slate-700)] md:text-lg lg:mx-0">

@@ -126,8 +126,6 @@ export function ContainerScrollShowcase() {
           }}
         >
           <div className={styles.copyBlock}>
-            <span className={styles.eyebrow}>Satu sistem untuk operasional outlet</span>
-
             <h2 id="dashboard-showcase-title" className={styles.title}>
               Kelola outlet jadi lebih{" "}
               <span className={styles.typedWrap} aria-live="polite">

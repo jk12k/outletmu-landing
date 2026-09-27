@@ -93,7 +93,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy} data-reveal>
-          <p className={styles.eyebrow}>{page.eyebrow}</p>
           <h1>{page.h1}</h1>
           <p className={styles.lead}>{page.lead}</p>
 
@@ -108,7 +107,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
         </div>
 
         <aside className={styles.intentPanel} aria-label="Ringkasan kebutuhan outlet" data-reveal>
-          <span>Untuk siapa</span>
           <p>{page.intent}</p>
           <div className={styles.intentTags}>
             {page.audience.slice(0, 4).map((item) => (
@@ -120,7 +118,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>Fitur utama</span>
           <h2>Yang dibantu Outletmu untuk operasional outlet</h2>
         </div>
         <div className={styles.featureGrid}>
@@ -189,7 +186,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       <section className={styles.workflowSection}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>Alur kerja</span>
           <h2>Dari menu sampai laporan penjualan</h2>
         </div>
         <ol className={styles.workflowList}>
@@ -205,7 +201,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       {page.faqs?.length ? (
         <section className={styles.section}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>FAQ</span>
             <h2>Pertanyaan yang sering muncul</h2>
           </div>
           <div className={styles.storyGrid}>
@@ -222,7 +217,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       <section className={styles.section}>
         <div className={styles.ctaBand} data-reveal>
           <div>
-            <span>Outletmu</span>
             <h2>Diskusikan kebutuhan sistem kasir outlet kamu</h2>
             <p>
               Ceritakan jenis outlet, jumlah meja, kebutuhan QR order, menu digital, POS, stok,
@@ -238,7 +232,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
       {page.guideLinks?.length ? (
         <section className={styles.relatedSection}>
           <div className={styles.sectionHeader} data-reveal>
-            <span>Panduan terkait</span>
             <h2>Baca juga sebelum memilih sistem</h2>
           </div>
           <div className={styles.relatedLinks}>
@@ -254,7 +247,6 @@ export function SeoLandingPage({ page }: SeoLandingPageProps) {
 
       <section className={styles.relatedSection}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>Halaman terkait</span>
           <h2>Topik Outletmu lainnya</h2>
         </div>
         <div className={styles.relatedLinks}>

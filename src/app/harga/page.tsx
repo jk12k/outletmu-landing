@@ -175,7 +175,6 @@ export default function HargaPage() {
 
       <section className={cn(styles.hero, styles.pricingHero)}>
         <div className={styles.heroCopy} data-reveal>
-          <p className={styles.eyebrow}>Harga Outletmu</p>
           <h1>Paket POS dan QR menu untuk outlet F&B</h1>
           <p className={styles.lead}>
             Pilih paket bulanan sesuai tahap operasional: mulai dari kasir dan QR menu,
@@ -195,7 +194,6 @@ export default function HargaPage() {
           <div className={styles.pricingHeroIcon}>
             <ShieldCheck className="h-5 w-5" aria-hidden="true" />
           </div>
-          <span>Direkomendasikan untuk mulai rapi</span>
           <h2>POS Basic</h2>
           <p>
             Kasir, QR meja, kitchen display, inventory, dan laporan outlet dalam satu setup yang dibantu.
@@ -216,7 +214,6 @@ export default function HargaPage() {
       <section id="harga" className={cn(styles.section, styles.pricingTableSection)}>
         <div className={styles.pricingHeader} data-reveal>
           <div>
-            <span>Paket bulanan</span>
             <h2>Harga untuk kebutuhan outlet yang berbeda</h2>
           </div>
           <p>
@@ -262,7 +259,6 @@ export default function HargaPage() {
 
         <div className={styles.pricingFooterBanner} data-reveal>
           <div>
-            <span>Outletmu</span>
             <h2>Butuh paket yang pas untuk operasional outletmu?</h2>
             <p>
               Tim Outletmu bisa bantu rekomendasikan setup POS, QR menu, kitchen, inventory,
@@ -278,7 +274,6 @@ export default function HargaPage() {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>FAQ</span>
           <h2>Pertanyaan sebelum memilih paket</h2>
         </div>
         <div className={styles.pricingFaqGrid}>
@@ -293,7 +288,6 @@ export default function HargaPage() {
 
       <section className={styles.relatedSection}>
         <div className={styles.sectionHeader} data-reveal>
-          <span>Panduan terkait</span>
           <h2>Baca dulu sebelum memilih paket</h2>
         </div>
         <div className={styles.relatedLinks}>
