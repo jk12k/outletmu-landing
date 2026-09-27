@@ -19,6 +19,20 @@ export type ComparisonPageContent = {
   faqs: Array<{ question: string; answer: string }>;
 };
 
+// Reusable di beberapa halaman (isi identik): daftar pilih-Outletmu untuk
+// kompetitor yang bukan pemimpin pasar F&B, dan FAQ QR order yang sama.
+const chooseOutletmuFnb = [
+  "Kamu fokus pada operasional F&B (cafe/resto/kedai)",
+  "Butuh QR order meja + kitchen display + laporan WhatsApp",
+  "Ingin setup dibantu, bukan mandiri",
+];
+
+const qrOrderFaq = {
+  question: "Apakah Outletmu punya QR order meja?",
+  answer:
+    "Ya. Pelanggan scan QR, memilih menu dari HP, dan pesanan masuk ke dashboard kasir serta kitchen dalam satu antrean.",
+};
+
 export const comparisonPages: ComparisonPageContent[] = [
   {
     slug: "outletmu-vs-moka",
@@ -63,11 +77,7 @@ export const comparisonPages: ComparisonPageContent[] = [
         answer:
           "Outletmu memulai dari Rp249.000/bulan. Harga Moka bervariasi per paket dan kebutuhan. Bandingkan fitur per paket sebelum memutuskan.",
       },
-      {
-        question: "Apakah Outletmu punya QR order meja?",
-        answer:
-          "Ya. Pelanggan scan QR, memilih menu dari HP, dan pesanan masuk ke dashboard kasir serta kitchen dalam satu antrean.",
-      },
+      qrOrderFaq,
       {
         question: "Outletmu atau Moka untuk cafe kecil?",
         answer:
@@ -142,11 +152,7 @@ export const comparisonPages: ComparisonPageContent[] = [
       { aspect: "Harga mulai", outletmu: "Rp249.000/bulan", competitor: "Bervariasi per paket" },
       { aspect: "Setup", outletmu: "Dibantu dari awal", competitor: "Umumnya self-service" },
     ],
-    chooseOutletmu: [
-      "Kamu fokus pada operasional F&B (cafe/resto/kedai)",
-      "Butuh QR order meja + kitchen display + laporan WhatsApp",
-      "Ingin setup dibantu, bukan mandiri",
-    ],
+    chooseOutletmu: chooseOutletmuFnb,
     chooseCompetitor: [
       "Kamu butuh all-in-one lintas jenis usaha, modul karyawan/CRM",
       "Tidak masalah dengan setup mandiri",
@@ -164,11 +170,7 @@ export const comparisonPages: ComparisonPageContent[] = [
         answer:
           "Jika kamu ingin sistem yang khusus dirancang untuk alur cafe (QR order meja, kitchen display, laporan WhatsApp) dengan setup dibantu, Outletmu cocok. Majoo unggul untuk all-in-one lintas jenis usaha, modul karyawan/CRM.",
       },
-      {
-        question: "Apakah Outletmu punya QR order meja?",
-        answer:
-          "Ya. Pelanggan scan QR, memilih menu dari HP, dan pesanan masuk ke dashboard kasir serta kitchen dalam satu antrean.",
-      },
+      qrOrderFaq,
     ],
   },
   {
@@ -189,11 +191,7 @@ export const comparisonPages: ComparisonPageContent[] = [
       { aspect: "Harga mulai", outletmu: "Rp249.000/bulan", competitor: "Bervariasi per paket" },
       { aspect: "Setup", outletmu: "Dibantu dari awal", competitor: "Umumnya self-service" },
     ],
-    chooseOutletmu: [
-      "Kamu fokus pada operasional F&B (cafe/resto/kedai)",
-      "Butuh QR order meja + kitchen display + laporan WhatsApp",
-      "Ingin setup dibantu, bukan mandiri",
-    ],
+    chooseOutletmu: chooseOutletmuFnb,
     chooseCompetitor: [
       "Kamu butuh penjualan online & multi-channel (marketplace, toko online)",
       "Tidak masalah dengan setup mandiri",
@@ -211,11 +209,7 @@ export const comparisonPages: ComparisonPageContent[] = [
         answer:
           "Jika kamu ingin sistem yang khusus dirancang untuk alur cafe (QR order meja, kitchen display, laporan WhatsApp) dengan setup dibantu, Outletmu cocok. Olsera unggul untuk penjualan online & multi-channel (marketplace, toko online).",
       },
-      {
-        question: "Apakah Outletmu punya QR order meja?",
-        answer:
-          "Ya. Pelanggan scan QR, memilih menu dari HP, dan pesanan masuk ke dashboard kasir serta kitchen dalam satu antrean.",
-      },
+      qrOrderFaq,
     ],
   },
   {
@@ -236,11 +230,7 @@ export const comparisonPages: ComparisonPageContent[] = [
       { aspect: "Harga mulai", outletmu: "Rp249.000/bulan", competitor: "Relatif rendah" },
       { aspect: "Setup", outletmu: "Dibantu dari awal", competitor: "Umumnya self-service" },
     ],
-    chooseOutletmu: [
-      "Kamu fokus pada operasional F&B (cafe/resto/kedai)",
-      "Butuh QR order meja + kitchen display + laporan WhatsApp",
-      "Ingin setup dibantu, bukan mandiri",
-    ],
+    chooseOutletmu: chooseOutletmuFnb,
     chooseCompetitor: [
       "Kamu butuh usaha kecil yang baru mulai dengan budget minim",
       "Tidak masalah dengan setup mandiri",
@@ -258,11 +248,7 @@ export const comparisonPages: ComparisonPageContent[] = [
         answer:
           "Jika kamu ingin sistem yang khusus dirancang untuk alur cafe (QR order meja, kitchen display, laporan WhatsApp) dengan setup dibantu, Outletmu cocok. Qasir unggul untuk usaha kecil yang baru mulai dengan budget minim.",
       },
-      {
-        question: "Apakah Outletmu punya QR order meja?",
-        answer:
-          "Ya. Pelanggan scan QR, memilih menu dari HP, dan pesanan masuk ke dashboard kasir serta kitchen dalam satu antrean.",
-      },
+      qrOrderFaq,
     ],
   },
 ];

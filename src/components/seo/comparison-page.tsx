@@ -10,7 +10,6 @@ import {
   organizationSchema,
   websiteSchema,
 } from "./schema";
-import { siteUrl } from "@/lib/site";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { globalLeadFormLink } from "@/components/global-navbar/nav-config";
 import { ScrollReveal } from "@/components/effects/scroll-reveal";
