@@ -28,7 +28,6 @@ import {
   QrCode,
   ReceiptText,
   ScanLine,
-  Search,
   ShieldCheck,
   ShoppingCart,
   Smartphone,
@@ -43,7 +42,6 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { ContainerScrollShowcase } from "@/components/landing/container-scroll-showcase";
-import { DemoQrMenuCode } from "@/components/landing/demo-qr-menu-code";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappLeadNumber = "6281291960227";
@@ -515,42 +513,36 @@ const outletmuSolutions = [
 const previews = [
   {
     title: "Menu Pembeli",
-    eyebrow: "QR menu",
     metric: "38 item aktif",
     rows: ["Kopi Susu Gula Aren", "Croissant Butter", "Nasi Ayam Sambal"],
     copy: "Menu mobile-first yang terasa ringan untuk pelanggan.",
   },
   {
     title: "Dashboard Kasir",
-    eyebrow: "Order masuk",
     metric: "7 order aktif",
     rows: ["Meja A3 - Baru", "Meja B1 - Diproses", "Takeaway - Siap"],
     copy: "Kasir fokus pada order, status, dan transaksi harian.",
   },
   {
     title: "Laporan Owner",
-    eyebrow: "Laporan",
     metric: "Rp1.250.000 hari ini",
     rows: ["38 transaksi selesai", "Produk terlaris: Kopi Susu", "Omzet naik 12%"],
     copy: "Ringkasan bisnis untuk owner tanpa buka spreadsheet.",
   },
   {
     title: "Stok",
-    eyebrow: "Inventori",
     metric: "5 stok menipis",
     rows: ["Susu UHT: 8 tersisa", "Cup 16oz: perlu restock", "Unduh laporan"],
     copy: "Stok dan restock dibuat lebih rapi dari dashboard.",
   },
   {
     title: "WhatsApp",
-    eyebrow: "Automasi",
     metric: "Balas dalam detik",
     rows: ["Omzet hari ini?", "Stok Kopi Susu?", "Produk terlaris?"],
     copy: "Owner bisa tanya data bisnis dari WhatsApp.",
   },
   {
     title: "E-Struk Digital",
-    eyebrow: "Struk transaksi",
     metric: "TRX-20260427-0018",
     rows: ["Kopi Susu Gula Aren x2", "Croissant Butter x1", "Total Rp78.000"],
     copy: "Setiap transaksi punya struk digital yang bisa dibuka ulang dan dicetak dari browser.",
@@ -1331,44 +1323,43 @@ function OperationalDashboardSection() {
         <div className={landingStyles.operationalVisualPanel} aria-label="Preview dashboard Outletmu">
           <div className={landingStyles.operationalMockup}>
             <div className={landingStyles.operationalMockupTop}>
-              <div>
-                <span>Outletmu</span>
-                <strong>Dashboard hari ini</strong>
-              </div>
-              <small>Kopi Senja</small>
+              <strong>Dashboard Outletmu</strong>
+              <small>Hari ini</small>
             </div>
-            <div className={landingStyles.operationalMetricGrid}>
+            <div className={landingStyles.operationalStatGrid}>
               {[
-                ["Omzet", "Rp7.260.000"],
-                ["Order masuk", "28"],
-                ["Stok menipis", "6"],
-              ].map(([label, value]) => (
+                ["Omzet hari ini", "Rp7.260.000", "Dari transaksi sukses"],
+                ["Order masuk", "28", "Menunggu atau diproses"],
+                ["Transaksi selesai", "24", "Transaksi sukses terbaru"],
+                ["Stok menipis", "6", "Butuh restock"],
+              ].map(([label, value, helper]) => (
                 <div key={label}>
                   <span>{label}</span>
                   <strong>{value}</strong>
+                  <small>{helper}</small>
                 </div>
               ))}
             </div>
-            <div className={landingStyles.operationalChartCard}>
-              <div>
-                <span>Revenue trend</span>
-                <strong>+12% dari kemarin</strong>
+            <div className={landingStyles.operationalOrderCard}>
+              <div className={landingStyles.operationalOrderHead}>
+                <strong>Order terbaru</strong>
+                <span>Sinkron dari QR order &amp; POS</span>
               </div>
-              <div className={landingStyles.operationalChartLine} />
-            </div>
-            <div className={landingStyles.operationalBottomGrid}>
-              <div className={landingStyles.operationalTicketList}>
-                <span>Order terbaru</span>
-                {["Meja 03 - Kopi Susu", "Meja 07 - Nasi Goreng", "Takeaway - Croissant"].map((order) => (
-                  <p key={order}>
-                    <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                    {order}
-                  </p>
+              <div className={landingStyles.operationalOrderList}>
+                {[
+                  ["#ORD-0184", "Meja 03 · 2 item", "Diproses", "Rp44.000"],
+                  ["#ORD-0183", "Takeaway · 1 item", "Selesai", "Rp24.000"],
+                  ["#ORD-0182", "Meja 07 · 3 item", "Menunggu", "Rp78.000"],
+                ].map(([code, meta, status, total]) => (
+                  <div key={code}>
+                    <span>
+                      <strong>{code}</strong>
+                      <small>{meta}</small>
+                    </span>
+                    <em>{status}</em>
+                    <b>{total}</b>
+                  </div>
                 ))}
-              </div>
-              <div className={landingStyles.operationalQrCard}>
-                <DemoQrMenuCode compact label="Scan menu meja" showLink={false} />
-                <span>Meja 03</span>
               </div>
             </div>
           </div>
@@ -1724,11 +1715,13 @@ function ProductPreviewSection() {
           subtitle="Preview tampilan agar calon pembeli bisa membayangkan alur POS, QR order, stok, dan laporan sebelum konsultasi."
         />
         <div data-reveal data-parallax="preview" className={landingStyles.previewShell}>
-          <div className={landingStyles.previewTabs}>
+          <div className={landingStyles.previewTabs} role="tablist">
             {previews.map((item, index) => (
               <button
                 key={item.title}
                 type="button"
+                role="tab"
+                aria-selected={activePreview === index}
                 onClick={() => setActivePreview(index)}
                 className={cn(activePreview === index && landingStyles.previewTabActive)}
               >
@@ -1736,106 +1729,63 @@ function ProductPreviewSection() {
               </button>
             ))}
           </div>
-          <div className={landingStyles.previewGrid}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={preview.title}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.24 }}
-                className={landingStyles.previewFocus}
-              >
-                <p>{preview.eyebrow}</p>
-                <h3>{preview.title}</h3>
-                <span>{preview.copy}</span>
-                <div>
-                  <small>Highlight</small>
-                  <strong>{preview.metric}</strong>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${preview.title}-mockup`}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.24 }}
-                className={landingStyles.previewMockup}
-              >
-                {preview.kind === "receipt" ? (
-                    <div className={landingStyles.receiptMockup}>
-                      <div className={landingStyles.receiptToolbar}>
-                      <BrandLogo variant="wordmark" theme="dark" size="sm" />
-                      <small>Siap cetak browser</small>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${preview.title}-mockup`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.24 }}
+              className={landingStyles.previewMockup}
+            >
+              {preview.kind === "receipt" ? (
+                <div className={landingStyles.receiptMockup}>
+                  <div className={landingStyles.receiptPaper}>
+                    <div className={landingStyles.receiptStore}>
+                      <strong>Kedai Kopi Senja</strong>
+                      <span>27 Apr 2026, 10:24 · TRX-20260427-0018</span>
                     </div>
-                    <div className={landingStyles.receiptPaper}>
-                      <div className={landingStyles.receiptHeader}>
-                        <span>Nomor transaksi</span>
-                        <strong>TRX-20260427-0018</strong>
-                      </div>
-                      <div className={landingStyles.receiptStore}>
-                        <strong>Kedai Kopi Senja</strong>
-                        <span>Tanggal transaksi: 27 Apr 2026, 10:24</span>
-                      </div>
-                      <div className={landingStyles.receiptItems}>
-                        {[
-                          ["Kopi Susu Gula Aren", "2 x Rp22.000", "Rp44.000"],
-                          ["Croissant Butter", "1 x Rp24.000", "Rp24.000"],
-                          ["Es Teh Manis", "1 x Rp10.000", "Rp10.000"],
-                        ].map(([name, qty, total]) => (
-                          <div key={name}>
-                            <span>
-                              <strong>{name}</strong>
-                              <small>{qty}</small>
-                            </span>
-                            <em>{total}</em>
-                          </div>
-                        ))}
-                      </div>
-                      <div className={landingStyles.receiptTotal}>
-                        <span>Total pembayaran</span>
-                        <strong>Rp78.000</strong>
-                      </div>
-                      <button type="button" className={landingStyles.receiptPrintButton}>
-                        <Printer className="h-4 w-4" aria-hidden="true" />
-                        Cetak Struk
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className={landingStyles.mockupHeader}>
-                      <div>
-                        <p>Outletmu</p>
-                        <h4>{preview.title}</h4>
-                      </div>
-                      <div>
-                        <Search className="h-4 w-4" aria-hidden="true" />
-                        <span>Cari data</span>
-                      </div>
-                    </div>
-                    <div className={landingStyles.mockupRows}>
-                      {preview.rows.map((row, index) => (
-                        <div key={row}>
-                          <span>{index + 1}</span>
-                          <strong>{row}</strong>
-                          <em>Aktif</em>
+                    <div className={landingStyles.receiptItems}>
+                      {[
+                        ["Kopi Susu Gula Aren", "2 x Rp22.000", "Rp44.000"],
+                        ["Croissant Butter", "1 x Rp24.000", "Rp24.000"],
+                        ["Es Teh Manis", "1 x Rp10.000", "Rp10.000"],
+                      ].map(([name, qty, total]) => (
+                        <div key={name}>
+                          <span>
+                            <strong>{name}</strong>
+                            <small>{qty}</small>
+                          </span>
+                          <em>{total}</em>
                         </div>
                       ))}
                     </div>
-                    <div className={landingStyles.mockupCta}>
-                      <strong>Flow siap diproses</strong>
-                      <span>
-                        Lihat detail <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </span>
+                    <div className={landingStyles.receiptTotal}>
+                      <span>Total</span>
+                      <strong>Rp78.000</strong>
                     </div>
-                  </>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                    <button type="button" className={landingStyles.receiptPrintButton}>
+                      <Printer className="h-4 w-4" aria-hidden="true" />
+                      Cetak struk
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className={landingStyles.previewPanel}>
+                  <div className={landingStyles.previewPanelHead}>
+                    <h3>{preview.title}</h3>
+                    <strong>{preview.metric}</strong>
+                  </div>
+                  <p className={landingStyles.previewPanelCopy}>{preview.copy}</p>
+                  <ul className={landingStyles.previewPanelRows}>
+                    {preview.rows.map((row) => (
+                      <li key={row}>{row}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </PageSection>

@@ -548,64 +548,47 @@
 
 .operationalMockupTop {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   border-radius: 1.2rem;
   background: #ffffff;
-  padding: 1rem;
-
-  span,
-  strong,
-  small {
-    display: block;
-  }
-
-  span {
-    color: var(--om-brand-green);
-    font-size: 0.78rem;
-    font-weight: 900;
-  }
+  padding: 1rem 1.1rem;
 
   strong {
-    margin-top: 0.25rem;
     color: var(--om-ink-950);
-    font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     font-weight: 900;
     line-height: 1.15;
   }
 
   small {
     flex: 0 0 auto;
-    border: 1px solid rgba(22, 165, 111, 0.14);
-    border-radius: 999px;
-    background: var(--om-brand-green-soft);
-    padding: 0.52rem 0.78rem;
-    color: var(--om-brand-green-hover);
-    font-size: 0.78rem;
-    font-weight: 900;
+    color: var(--om-slate-700);
+    font-size: 0.8rem;
+    font-weight: 800;
   }
 }
 
-.operationalMetricGrid {
+.operationalStatGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
   margin-top: 0.85rem;
 
   div {
     min-width: 0;
     border: 1px solid rgba(20, 33, 61, 0.055);
-    border-radius: 1rem;
+    border-radius: 1.1rem;
     background: #ffffff;
-    padding: 0.85rem;
+    padding: 0.9rem 1rem;
   }
 
   span {
     display: block;
     color: var(--om-slate-700);
-    font-size: 0.73rem;
-    font-weight: 900;
+    font-size: 0.76rem;
+    font-weight: 800;
     line-height: 1.25;
   }
 
@@ -613,129 +596,106 @@
     display: block;
     margin-top: 0.35rem;
     color: var(--om-ink-950);
-    font-size: clamp(1rem, 2vw, 1.28rem);
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
     font-weight: 900;
     line-height: 1.1;
   }
+
+  small {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--om-slate-500, var(--om-slate-700));
+    font-size: 0.72rem;
+    font-weight: 650;
+    line-height: 1.3;
+    opacity: 0.8;
+  }
 }
 
-.operationalChartCard {
-  overflow: hidden;
+.operationalOrderCard {
   margin-top: 0.85rem;
   border: 1px solid rgba(20, 33, 61, 0.055);
   border-radius: 1.2rem;
   background: #ffffff;
-  padding: 1rem;
+  padding: 1rem 1.1rem;
+}
 
-  > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.8rem;
-  }
-
-  span {
-    color: var(--om-slate-700);
-    font-size: 0.82rem;
-    font-weight: 900;
-  }
+.operationalOrderHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.07);
 
   strong {
-    color: var(--om-brand-green-hover);
-    font-size: 0.82rem;
-    font-weight: 900;
-  }
-}
-
-.operationalChartLine {
-  position: relative;
-  height: clamp(5.5rem, 14vw, 8rem);
-  margin-top: 0.8rem;
-  border-radius: 1rem;
-  background:
-    linear-gradient(180deg, rgba(22, 165, 111, 0.12), rgba(22, 165, 111, 0.02)),
-    repeating-linear-gradient(180deg, transparent 0 1.55rem, rgba(20, 33, 61, 0.055) 1.6rem 1.65rem);
-
-  &::before {
-    position: absolute;
-    inset: 18% 5% 20%;
-    border-bottom: 0.18rem solid var(--om-brand-green);
-    border-left: 0.18rem solid transparent;
-    border-radius: 40% 55% 30% 45%;
-    clip-path: polygon(0 74%, 15% 58%, 28% 63%, 43% 38%, 58% 48%, 72% 25%, 86% 36%, 100% 18%, 100% 100%, 0 100%);
-    background: linear-gradient(180deg, rgba(22, 165, 111, 0.24), rgba(22, 165, 111, 0.04));
-    content: "";
-  }
-}
-
-.operationalBottomGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.42fr);
-  gap: 0.85rem;
-  margin-top: 0.85rem;
-}
-
-.operationalTicketList,
-.operationalQrCard {
-  min-width: 0;
-  border: 1px solid rgba(20, 33, 61, 0.055);
-  border-radius: 1.2rem;
-  background: #ffffff;
-  padding: 1rem;
-}
-
-.operationalTicketList {
-  display: grid;
-  gap: 0.58rem;
-
-  > span {
-    color: var(--om-slate-700);
-    font-size: 0.82rem;
-    font-weight: 900;
-  }
-
-  p {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0;
-    color: var(--om-slate-700);
-    font-size: 0.84rem;
-    font-weight: 800;
-    line-height: 1.35;
-
-    svg {
-      flex: 0 0 auto;
-      color: var(--om-primary);
-    }
-  }
-}
-
-.operationalQrCard {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  color: var(--om-primary);
-
-  svg {
-    color: var(--om-primary);
-  }
-
-  strong {
-    margin-top: 0.45rem;
     color: var(--om-ink-950);
-    font-size: 0.94rem;
+    font-size: 0.95rem;
     font-weight: 900;
   }
 
   span {
-    margin-top: 0.2rem;
     color: var(--om-slate-700);
-    font-size: 0.78rem;
-    font-weight: 850;
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.8;
   }
 }
+
+.operationalOrderList {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+
+  > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.7rem;
+    border: 1px solid rgba(20, 33, 61, 0.06);
+    border-radius: 1rem;
+    background: var(--om-sand-50);
+    padding: 0.7rem 0.85rem;
+  }
+
+  > div > span {
+    display: grid;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+
+  strong {
+    color: var(--om-ink-950);
+    font-size: 0.86rem;
+    font-weight: 900;
+  }
+
+  small {
+    color: var(--om-slate-700);
+    font-size: 0.75rem;
+    font-weight: 650;
+    opacity: 0.85;
+  }
+
+  em {
+    border-radius: 999px;
+    background: var(--om-brand-green-soft);
+    padding: 0.28rem 0.62rem;
+    color: var(--om-brand-green-hover);
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  b {
+    color: var(--om-ink-950);
+    font-size: 0.86rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+}
+
 
 .builderShell {
   position: relative;
@@ -1952,212 +1912,94 @@
   box-shadow: 0 14px 32px rgba(22, 165, 111, 0.22);
 }
 
-.previewGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(1.1rem, 2vw, 1.5rem);
+.previewPanel {
+  min-width: 0;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  border-radius: clamp(1.3rem, 2.4vw, 1.7rem);
+  border: 1px solid rgba(20, 33, 61, 0.07);
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 40, 0.08);
 }
 
-.previewFocus {
-  min-width: 0;
-  min-height: 25rem;
-  padding: clamp(1.6rem, 3vw, 2rem);
-  border-radius: clamp(1.55rem, 3vw, 2rem);
-  border: 1px solid rgba(22, 165, 111, 0.18);
-  background:
-    radial-gradient(circle at 82% 12%, rgba(22, 165, 111, 0.14), transparent 36%),
-    #ffffff;
-  color: var(--om-ink-950);
-  box-shadow: 0 24px 70px rgba(15, 23, 40, 0.10);
-
-  > p {
-    color: var(--om-brand-green-hover);
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
+.previewPanelHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.07);
 
   h3 {
-    margin-top: 0.75rem;
-    font-size: clamp(2rem, 4vw, 3.1rem);
+    margin: 0;
+    color: var(--om-ink-950);
+    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  strong {
+    flex: 0 0 auto;
+    color: var(--om-brand-green-hover);
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight: 900;
+  }
+}
+
+.previewPanelCopy {
+  margin: 1.1rem 0 0;
+  color: var(--om-slate-700);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.previewPanelRows {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    border: 1px solid rgba(20, 33, 61, 0.06);
+    border-radius: 0.9rem;
+    background: var(--om-sand-50);
+    padding: 0.85rem 1rem;
+    color: var(--om-ink-950);
+    font-size: 0.92rem;
     font-weight: 800;
-    line-height: 1.08;
-  }
 
-  > span {
-    display: block;
-    margin-top: 1.2rem;
-    color: var(--om-slate-700);
-    line-height: 1.85;
-  }
-
-  div {
-    margin-top: 2.5rem;
-    padding: 1.25rem;
-    border-radius: 1.5rem;
-    background: var(--om-brand-green-soft);
-  }
-
-  small,
-  strong {
-    display: block;
-  }
-
-  small {
-    color: var(--om-slate-700);
-  }
-
-  strong {
-    margin-top: 0.5rem;
-    font-size: clamp(2rem, 4vw, 3rem);
+    &::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: var(--om-brand-green);
+    }
   }
 }
 
 .previewMockup {
   min-width: 0;
   overflow: hidden;
-  padding: clamp(1.1rem, 2vw, 1.7rem);
   border-radius: clamp(1.55rem, 3vw, 2rem);
   background:
     radial-gradient(circle at 82% 12%, rgba(16, 35, 63, 0.12), transparent 34%),
     var(--om-sand-50);
 }
 
-.mockupHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: clamp(1.25rem, 2.5vw, 1.6rem);
-  border-radius: 1.55rem;
-  background: #ffffff;
 
-  p {
-    color: var(--om-brand-green);
-    font-size: 0.9rem;
-    font-weight: 800;
-  }
 
-  h4 {
-    margin-top: 0.25rem;
-    color: var(--om-ink-950);
-    font-size: clamp(1.35rem, 2.5vw, 1.8rem);
-    font-weight: 800;
-  }
-
-  div:last-child {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    gap: 0.6rem;
-    min-height: 3rem;
-    border: 1px solid rgba(20, 33, 61, 0.08);
-    border-radius: 999px;
-    background: var(--om-brand-green-soft);
-    padding: 0 1.15rem;
-    color: var(--om-brand-green-hover);
-    font-size: 0.85rem;
-    font-weight: 800;
-  }
-}
-
-.mockupRows {
-  display: grid;
-  gap: 0.8rem;
-  margin-top: 1rem;
-
-  div {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.8rem;
-    min-height: 4.2rem;
-    padding: 0.85rem 1rem;
-    border: 1px solid rgba(20, 33, 61, 0.06);
-    border-radius: 1.35rem;
-    background: rgba(255, 255, 255, 0.68);
-  }
-
-  span {
-    display: grid;
-    width: 2.6rem;
-    height: 2.6rem;
-    place-items: center;
-    border-radius: 1rem;
-    background: #ffffff;
-    color: var(--om-primary);
-    font-weight: 800;
-  }
-
-  strong {
-    overflow-wrap: anywhere;
-    color: var(--om-ink-950);
-    font-size: 0.92rem;
-  }
-
-  em {
-    border-radius: 999px;
-    background: #ffffff;
-    padding: 0.3rem 0.75rem;
-    color: var(--om-primary);
-    font-size: 0.8rem;
-    font-style: normal;
-    font-weight: 800;
-  }
-}
-
-.mockupCta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1rem;
-  border-radius: 1.35rem;
-  background: var(--om-brand-green);
-  padding: 1.1rem 1.25rem;
-  color: #ffffff;
-
-  span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: rgba(255, 255, 255, 0.86);
-    font-size: 0.9rem;
-  }
-}
 
 .receiptMockup {
   display: grid;
   gap: 1rem;
 }
 
-.receiptToolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.9rem;
-  border-radius: 1.35rem;
-  background: var(--om-brand-green);
-  padding: 1rem 1.1rem;
-  color: #ffffff;
-
-  span {
-    display: inline-flex;
-    min-width: 0;
-    align-items: center;
-    gap: 0.55rem;
-    font-weight: 900;
-  }
-
-  small {
-    flex: 0 0 auto;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    padding: 0.45rem 0.75rem;
-    color: rgba(255, 255, 255, 0.86);
-    font-size: 0.78rem;
-    font-weight: 800;
-  }
-}
 
 .receiptPaper {
   width: min(100%, 28rem);
@@ -2171,7 +2013,6 @@
     inset 0 -0.45rem 0 rgba(248, 243, 234, 0.9);
 }
 
-.receiptHeader,
 .receiptStore,
 .receiptTotal {
   border-radius: 1.1rem;
@@ -2179,22 +2020,6 @@
   padding: 0.9rem 1rem;
 }
 
-.receiptHeader {
-  span {
-    display: block;
-    color: var(--om-slate-700);
-    font-size: 0.78rem;
-    font-weight: 900;
-    text-transform: uppercase;
-  }
-
-  strong {
-    display: block;
-    margin-top: 0.35rem;
-    color: var(--om-ink-950);
-    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-  }
-}
 
 .receiptStore {
   margin-top: 0.75rem;
@@ -3342,10 +3167,6 @@
     justify-items: center;
   }
 
-  .previewGrid {
-    grid-template-columns: 1fr;
-  }
-
   .featureGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3706,18 +3527,14 @@
     text-align: left;
   }
 
-  .operationalMetricGrid {
+  .operationalStatGrid {
     grid-template-columns: 1fr;
   }
 
-  .operationalChartCard > div:first-child,
   .operationalMockupTop {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .operationalBottomGrid {
-    grid-template-columns: 1fr;
+    gap: 0.3rem;
   }
 
   .coreFeatureCard {
@@ -4288,28 +4105,8 @@
     }
   }
 
-  .previewFocus {
-    min-height: auto;
-    border-radius: 1.35rem;
-    padding: 1.25rem;
-
-    h3 {
-      font-size: 1.7rem;
-    }
-
-    div {
-      margin-top: 1.5rem;
-      padding: 1rem;
-    }
-
-    strong {
-      font-size: 1.7rem;
-    }
-  }
-
   .previewMockup {
     border-radius: 1.35rem;
-    padding: 0.85rem;
   }
 
   .previewTabs {
@@ -4320,31 +4117,6 @@
       padding: 0.65rem 0.95rem;
       font-size: 0.84rem;
     }
-  }
-
-  .mockupHeader,
-  .mockupCta {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .mockupHeader div:last-child {
-    justify-content: flex-start;
-  }
-
-  .mockupRows div {
-    grid-template-columns: auto minmax(0, 1fr);
-    min-height: 3.7rem;
-    padding: 0.75rem;
-  }
-
-  .mockupRows em {
-    display: none;
-  }
-
-  .receiptToolbar {
-    align-items: flex-start;
-    flex-direction: column;
   }
 
   .receiptPaper {
@@ -4937,15 +4709,7 @@
     box-shadow: 0 14px 32px rgba(16, 35, 63, 0.20);
   }
 
-  .previewFocus {
-    background:
-      radial-gradient(circle at 78% 12%, rgba(16, 35, 63, 0.24), transparent 34%),
-      var(--om-primary);
-    box-shadow: 0 28px 75px rgba(0, 0, 0, 0.26);
-  }
-
-  .previewMockup,
-  .productFlowShowcase {
+  .previewMockup {
     background:
       radial-gradient(circle at 82% 12%, rgba(16, 35, 63, 0.20), transparent 34%),
       rgba(255, 255, 255, 0.06);
@@ -4955,8 +4719,27 @@
       0 42px 110px rgba(0, 0, 0, 0.24);
   }
 
-  .mockupHeader,
-  .mockupRows div,
+  .previewPanel {
+    border-color: rgba(248, 243, 234, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.2);
+
+    h3,
+    strong {
+      color: var(--om-sand-50);
+    }
+
+    .previewPanelCopy {
+      color: rgba(248, 243, 234, 0.7);
+    }
+
+    .previewPanelRows li {
+      border-color: rgba(248, 243, 234, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--om-sand-50);
+    }
+  }
+
   .receiptPaper,
   .flowDevice,
   .floatingCard {
@@ -4965,36 +4748,6 @@
     box-shadow: 0 26px 70px rgba(0, 0, 0, 0.2);
   }
 
-  .mockupHeader {
-    p {
-      color: #E4E7EC;
-    }
-
-    h4 {
-      color: var(--om-sand-50);
-    }
-
-    div:last-child {
-      border-color: rgba(248, 243, 234, 0.1);
-      background: rgba(255, 255, 255, 0.08);
-      color: rgba(248, 243, 234, 0.58);
-    }
-  }
-
-  .mockupRows {
-    span,
-    em {
-      background: rgba(255, 255, 255, 0.08);
-      color: #E4E7EC;
-    }
-
-    strong {
-      color: var(--om-sand-50);
-    }
-  }
-
-  .mockupCta,
-  .receiptToolbar,
   .flowNarrativeFooter,
   .flowDeviceHeader,
   .chatHeader,
