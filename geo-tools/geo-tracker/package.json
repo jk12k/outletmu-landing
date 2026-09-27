@@ -1,0 +1,12 @@
+{
+  "name": "outletmu-geo-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GEO tracking: 16 prompt AI + on-site self-audit",
+  "scripts": {
+    "list": "node tracker.js list",
+    "report": "node tracker.js report",
+    "dashboard": "node tracker.js dashboard",
+    "audit": "node audit.js"
+  }
+}
