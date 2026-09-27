@@ -52,8 +52,30 @@ Perplexity). Artefak:
 
 Verifikasi cepat: `node geo-tools/geo-tracker/audit.js https://outletmu.store`
 
-## Deploy
+## Deploy (PENTING — arsitektur sebenarnya)
 
-Situs di-serve dari `/home/Jaki/Kasirflow-Page1` via systemd
-`outletmu-landing.service` (Cloudflare Tunnel). Lihat catatan server sebelum
-mengubah service.
+`outletmu.store` di-host di **Vercel**, bukan Cloudflare Tunnel.
+
+- **Vercel project:** `outletmu-store` (org `team_80kDkkkxLqz2Orf9hWmOA77I`).
+- **Folder deploy:** `/home/Jaki/Kasirflow-Page1` (ter-link via `.vercel/project.json`).
+- **DNS:** `outletmu.store` proxied melalui Cloudflare → origin Vercel
+  (header `x-vercel-cache`, `x-matched-path` menandakan Vercel).
+
+Alur deploy produksi (butuh `vercel login`; token CLI kadang expired):
+
+```bash
+# 1. Sync kode dari repo ini ke folder deploy
+cp -a src /home/Jaki/Kasirflow-Page1/   # atau sync manual
+cp public/llms*.txt /home/Jaki/Kasirflow-Page1/public/
+cp next.config.ts package.json package-lock.json /home/Jaki/Kasirflow-Page1/
+
+# 2. Build lokal (verifikasi)
+cd /home/Jaki/Kasirflow-Page1 && npm install && npm run build
+
+# 3. Deploy ke produksi
+npx vercel login          # interaktif (approve via browser/email)
+npx vercel --prod --yes
+```
+
+Catatan: `outletmu-landing.service` (Cloudflare Tunnel → localhost:3001) ada,
+tetapi **bukan** yang melayani domain apex — hanya jalur dev/lokal.
