@@ -41,12 +41,12 @@ export const globalNavItems: NavTopItem[] = [
       {
         label: "Software Kasir F&B",
         href: "/software-kasir-fnb",
-        description: "POS untuk segala bisnis F&B bulanan",
+        description: "POS bulanan untuk restoran & bisnis kuliner",
       },
       {
         label: "Sistem Kasir UMKM",
         href: "/sistem-kasir-umkm",
-        description: "Toko, warung, dan UMKM",
+        description: "Toko, warung, retail, dan UMKM",
       },
       {
         label: "Website Kasir Otomatis",

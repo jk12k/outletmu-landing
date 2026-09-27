@@ -317,10 +317,10 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
   },
   sistemKasirUmkm: {
     path: "/sistem-kasir-umkm",
-    title: "Sistem Kasir UMKM Bulanan untuk Cafe, Resto & Toko | Outletmu",
+    title: "Sistem Kasir UMKM Bulanan untuk Toko, Warung & Retail | Outletmu",
     description:
-      "Sistem kasir UMKM Outletmu membantu bisnis kecil mengelola POS, menu digital, QR order, stok, dan laporan penjualan tanpa ribet teknis.",
-    h1: "Sistem Kasir UMKM Bulanan untuk Cafe, Resto dan Toko",
+      "Sistem kasir UMKM bulanan untuk toko, warung, minimarket, dan retail kecil. POS, stok, dan laporan dalam satu sistem. Mulai Rp249.000.",
+    h1: "Sistem Kasir UMKM untuk Toko, Warung, dan Retail",
     eyebrow: "Sistem kasir untuk bisnis kecil",
     lead: "Outletmu membantu UMKM mulai memakai sistem kasir digital dengan POS, menu digital, QR order, stok basic, dan laporan penjualan dalam layanan bulanan yang lebih mudah dijalankan.",
     primaryCta: "Konsultasi Sistem Kasir UMKM",
@@ -356,7 +356,7 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
       "Stok basic dan laporan dipantau",
       "Sistem bisa ditingkatkan saat bisnis berkembang",
     ],
-    audience: ["UMKM kuliner", "Toko kecil", "Minimarket lokal", "Cafe kecil", "Kedai makan", "Outlet minuman"],
+    audience: ["UMKM kuliner", "Toko kecil", "Warung", "Minimarket lokal", "Retail kecil", "Outlet minuman"],
     related: ["websiteKasirOtomatis", "posKasirCafe", "stokCafe"],
     guideLinks: [
       {
@@ -373,12 +373,12 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
   },
   softwareKasirFnb: {
     path: "/software-kasir-fnb",
-    title: "Software Kasir F&B untuk Cafe dan Restoran | Outletmu",
+    title: "Software Kasir F&B Bulanan untuk Restoran & Bisnis Kuliner | Outletmu",
     description:
-      "Software kasir F&B Outletmu membantu cafe, restoran, dan outlet kuliner mengelola POS, QR order meja, menu digital, kitchen display, stok, dan laporan dengan setup dibantu.",
-    h1: "Software Kasir F&B untuk Cafe dan Restoran",
+      "Software kasir F&B bulanan untuk restoran, cloud kitchen, dan bisnis kuliner. POS, QR order, kitchen display, stok, dan laporan dalam satu sistem. Mulai Rp249.000.",
+    h1: "Software Kasir F&B untuk Restoran dan Bisnis Kuliner",
     eyebrow: "Software kasir F&B",
-    lead: "Outletmu membantu bisnis F&B punya sistem operasional yang lebih rapi: POS kasir, QR order meja, menu digital, kitchen display, stok basic, laporan penjualan, dan bantuan setup dalam satu layanan bulanan.",
+    lead: "Outletmu membantu bisnis kuliner punya sistem operasional yang lebih rapi: POS kasir, QR order meja, menu digital, kitchen display, stok basic, laporan penjualan, dan bantuan setup dalam satu layanan bulanan.",
     primaryCta: "Konsultasi Software F&B",
     intent:
       "Untuk owner F&B yang sedang membandingkan sistem kasir cafe, restoran, QR order, dan laporan sebelum memilih paket yang paling cocok.",
@@ -412,7 +412,7 @@ export const seoPages: Record<SeoPageKey, SeoPageContent> = {
       "Transaksi selesai dan stok ikut dipantau",
       "Owner membaca laporan penjualan",
     ],
-    audience: ["Cafe", "Coffee shop", "Restoran", "Kedai makan", "Outlet minuman", "UMKM F&B"],
+    audience: ["Restoran", "Cloud kitchen", "Bisnis kuliner", "Kedai makan", "Outlet minuman", "UMKM F&B"],
     related: ["posKasirCafe", "aplikasiKasirRestoran", "qrOrderMeja"],
     guideLinks: [
       {
