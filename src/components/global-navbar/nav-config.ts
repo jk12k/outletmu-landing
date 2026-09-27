@@ -69,6 +69,11 @@ export const globalNavItems: NavTopItem[] = [
         href: "/menu-digital-cafe",
         description: "Menu digital responsif tanpa cetak ulang",
       },
+      {
+        label: "Semua Solusi",
+        href: "/solusi",
+        description: "Lihat ringkasan solusi kasir & order digital",
+      },
     ],
   },
   {
@@ -84,6 +89,11 @@ export const globalNavItems: NavTopItem[] = [
         label: "Kitchen Display",
         href: "/fitur/kitchen-display",
         description: "Tampilan order dapur per status",
+      },
+      {
+        label: "Semua Fitur",
+        href: "/fitur",
+        description: "Laporan WhatsApp, kitchen, stok, dan saldo member",
       },
     ],
   },
@@ -101,7 +111,34 @@ export const globalNavItems: NavTopItem[] = [
         href: "/panduan/qr-order-meja-cafe",
         description: "Setup QR order untuk dine-in",
       },
+      {
+        label: "Semua Panduan",
+        href: "/panduan",
+        description: "Kumpulan panduan operasional outlet",
+      },
+    ],
+  },
+  {
+    kind: "group",
+    label: "Bandingkan",
+    items: [
+      {
+        label: "Outletmu vs Moka",
+        href: "/bandingkan/outletmu-vs-moka",
+        description: "Perbandingan POS cafe Outletmu vs Moka",
+      },
+      {
+        label: "Outletmu vs Pawoon",
+        href: "/bandingkan/outletmu-vs-pawoon",
+        description: "Fitur, QR order, dan setup Outletmu vs Pawoon",
+      },
+      {
+        label: "Semua Perbandingan",
+        href: "/bandingkan",
+        description: "Bandingkan Outletmu dengan aplikasi kasir lain",
+      },
     ],
   },
   { kind: "link", label: "Harga", href: "/harga" },
+  { kind: "link", label: "Tentang", href: "/tentang" },
 ];
