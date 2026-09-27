@@ -102,6 +102,7 @@ Fitur:
 - https://outletmu.store/fitur/kitchen-display
 - https://outletmu.store/fitur/stok-cafe
 - https://outletmu.store/fitur/saldo-member
+- https://outletmu.store/fitur
 
 Panduan:
 - https://outletmu.store/panduan
@@ -112,9 +113,16 @@ Panduan:
 - https://outletmu.store/panduan/stok-cafe
 
 Perbandingan:
+- https://outletmu.store/bandingkan
+- https://outletmu.store/bandingkan/outletmu-vs-moka
+- https://outletmu.store/bandingkan/outletmu-vs-pawoon
+- https://outletmu.store/bandingkan/outletmu-vs-majoo
+- https://outletmu.store/bandingkan/outletmu-vs-olsera
+- https://outletmu.store/bandingkan/outletmu-vs-qasir
 - https://outletmu.store/bandingkan/aplikasi-kasir-vs-catatan-manual
 
 Lainnya:
+- https://outletmu.store/solusi
 - https://outletmu.store/harga
 - https://outletmu.store/tentang
 

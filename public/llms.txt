@@ -18,6 +18,7 @@
 
 - [QR Order Meja](https://outletmu.store/qr-order-meja): pelanggan scan, order, kasir terima otomatis.
 - [Menu Digital Cafe](https://outletmu.store/menu-digital-cafe): menu digital responsif tanpa cetak ulang.
+- [Semua Solusi](https://outletmu.store/solusi): ringkasan solusi kasir & order digital.
 
 ## Fitur
 
@@ -25,14 +26,25 @@
 - [Kitchen Display](https://outletmu.store/fitur/kitchen-display): tampilan order dapur per status.
 - [Stok Cafe](https://outletmu.store/fitur/stok-cafe): pantau stok menu.
 - [Saldo Member](https://outletmu.store/fitur/saldo-member): sistem member dan saldo.
+- [Semua Fitur](https://outletmu.store/fitur): daftar lengkap fitur Outletmu.
 
 ## Panduan
 
+- [Semua Panduan](https://outletmu.store/panduan): kumpulan panduan operasional outlet.
 - [Panduan Memilih Aplikasi Kasir Cafe](https://outletmu.store/panduan/memilih-aplikasi-kasir-cafe)
 - [Panduan QR Order Meja](https://outletmu.store/panduan/qr-order-meja-cafe)
 - [Panduan Menu Digital Cafe](https://outletmu.store/panduan/menu-digital-cafe)
 - [Panduan Laporan Penjualan Cafe](https://outletmu.store/panduan/laporan-penjualan-cafe)
 - [Panduan Stok Cafe](https://outletmu.store/panduan/stok-cafe)
+
+## Perbandingan
+
+- [Semua Perbandingan](https://outletmu.store/bandingkan): Outletmu vs aplikasi kasir lain.
+- [Outletmu vs Moka](https://outletmu.store/bandingkan/outletmu-vs-moka)
+- [Outletmu vs Pawoon](https://outletmu.store/bandingkan/outletmu-vs-pawoon)
+- [Outletmu vs Majoo](https://outletmu.store/bandingkan/outletmu-vs-majoo)
+- [Outletmu vs Olsera](https://outletmu.store/bandingkan/outletmu-vs-olsera)
+- [Outletmu vs Qasir](https://outletmu.store/bandingkan/outletmu-vs-qasir)
 
 ## Harga
 
