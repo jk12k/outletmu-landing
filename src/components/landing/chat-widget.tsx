@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, Send, X, Sparkles } from "lucide-react";
+import { MessageCircle, Send, X } from "lucide-react";
 import styles from "./chat-widget.module.scss";
 
 type ChatRole = "user" | "assistant";
@@ -78,20 +78,28 @@ export function ChatWidget() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Tutup asisten Outletmu" : "Buka asisten Outletmu"}
       >
-        {open ? <X className="h-6 w-6" aria-hidden="true" /> : <MessageCircle className="h-6 w-6" aria-hidden="true" />}
-        {!open ? <span className={styles.launcherDot} aria-hidden="true" /> : null}
+        {open ? (
+          <X className="h-5 w-5" aria-hidden="true" />
+        ) : (
+          <>
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            <span className={styles.launcherLabel}>Tanya AI</span>
+          </>
+        )}
       </button>
 
       {open ? (
         <div className={styles.panel} role="dialog" aria-label="Asisten AI Outletmu">
           <div className={styles.header}>
             <span className={styles.avatar}>
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/branding/outletmu-icon-light.png" alt="" aria-hidden="true" />
             </span>
-            <div>
+            <div className={styles.headerText}>
               <strong>Asisten Outletmu</strong>
-              <small>AI · jawab seputar Outletmu</small>
+              <small>Jawab seputar Outletmu</small>
             </div>
+            <span className={styles.status} aria-hidden="true" />
             <button type="button" className={styles.close} onClick={() => setOpen(false)} aria-label="Tutup">
               <X className="h-4 w-4" aria-hidden="true" />
             </button>

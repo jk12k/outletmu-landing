@@ -17,9 +17,9 @@ import { globalLeadFormLink } from "@/components/global-navbar/nav-config";
 import { cn } from "@/lib/utils";
 import styles from "@/styles/seoLanding.module.scss";
 
-const title = "Harga Aplikasi Kasir Cafe dan QR Order | Outletmu";
+const title = "Harga Paket Aplikasi Kasir & POS Outletmu | Mulai Rp249.000";
 const description =
-  "Lihat paket harga Outletmu untuk aplikasi kasir cafe, QR order meja, menu digital, stok, kitchen, laporan, WhatsApp report, dan setup dibantu.";
+  "Daftar harga aplikasi kasir dan POS Outletmu: Starter Rp249.000, POS Basic Rp499.000, Pro Automation Rp799.000 per bulan. Setup dibantu, gratis setup 100 outlet pertama.";
 
 export const metadata: Metadata = {
   title,
@@ -123,6 +123,26 @@ const faqs = [
   },
 ];
 
+const priceComparisonRows: Array<{
+  feature: string;
+  starter: string;
+  posBasic: string;
+  pro: string;
+}> = [
+  { feature: "POS Kasir", starter: "✓", posBasic: "✓", pro: "✓" },
+  { feature: "QR Menu & Order Center", starter: "✓", posBasic: "✓", pro: "✓" },
+  { feature: "Laporan dasar", starter: "✓", posBasic: "✓", pro: "✓" },
+  { feature: "Kitchen Display", starter: "—", posBasic: "✓", pro: "✓" },
+  { feature: "Inventory & stok menipis", starter: "—", posBasic: "✓", pro: "✓" },
+  { feature: "QR Meja", starter: "—", posBasic: "✓", pro: "✓" },
+  { feature: "Laporan lengkap", starter: "—", posBasic: "✓", pro: "✓" },
+  { feature: "Multi outlet", starter: "—", posBasic: "—", pro: "✓" },
+  { feature: "Role staff & audit log", starter: "—", posBasic: "—", pro: "✓" },
+  { feature: "Absensi staff", starter: "—", posBasic: "—", pro: "✓" },
+  { feature: "Automasi laporan & workflow", starter: "—", posBasic: "—", pro: "✓" },
+  { feature: "Setup dibantu & support", starter: "✓", posBasic: "✓", pro: "✓" },
+];
+
 const guideLinks = [
   {
     href: "/panduan/memilih-aplikasi-kasir-cafe",
@@ -175,10 +195,10 @@ export default function HargaPage() {
 
       <section className={cn(styles.hero, styles.pricingHero)}>
         <div className={styles.heroCopy} data-reveal>
-          <h1>Paket POS dan QR menu untuk outlet F&B</h1>
+          <h1>Harga paket aplikasi kasir & POS untuk cafe dan UMKM</h1>
           <p className={styles.lead}>
-            Pilih paket bulanan sesuai tahap operasional: mulai dari kasir dan QR menu,
-            lalu naik ke kitchen, inventory, laporan, staff, dan workflow yang lebih otomatis.
+            Empat paket bulanan sesuai tahap outlet: mulai dari kasir dan QR menu,
+            lalu naik ke kitchen, inventory, laporan, staff, dan otomasi.
           </p>
           <div className={styles.heroActions}>
             <Link href={globalLeadFormLink} className={styles.primaryCta}>
@@ -214,11 +234,11 @@ export default function HargaPage() {
       <section id="harga" className={cn(styles.section, styles.pricingTableSection)}>
         <div className={styles.pricingHeader} data-reveal>
           <div>
-            <h2>Harga untuk kebutuhan outlet yang berbeda</h2>
+            <h2>Harga paket sesuai kebutuhan outlet</h2>
           </div>
           <p>
-            Semua paket dibuat untuk operasional UMKM F&B yang butuh kasir, QR menu,
-            order center, stok, kitchen, dan laporan tanpa setup teknis yang rumit.
+            Setiap paket mencakup hosting, maintenance, dan bantuan setup awal.
+            Pilih sesuai skala operasional, bisa ditingkatkan kapan saja.
           </p>
         </div>
 
@@ -256,7 +276,6 @@ export default function HargaPage() {
             </article>
           ))}
         </div>
-
         <div className={styles.pricingFooterBanner} data-reveal>
           <div>
             <h2>Butuh paket yang pas untuk operasional outletmu?</h2>
@@ -269,6 +288,34 @@ export default function HargaPage() {
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
             Coba Gratis
           </Link>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader} data-reveal>
+          <h2>Tabel perbandingan harga & fitur</h2>
+        </div>
+        <div className={styles.comparisonTableWrap} data-reveal>
+          <table className={styles.comparisonTable}>
+            <thead>
+              <tr>
+                <th>Fitur</th>
+                <th>Starter<br />Rp249.000</th>
+                <th>POS Basic<br />Rp499.000</th>
+                <th>Pro Automation<br />Rp799.000</th>
+              </tr>
+            </thead>
+            <tbody>
+              {priceComparisonRows.map((row) => (
+                <tr key={row.feature}>
+                  <th scope="row">{row.feature}</th>
+                  <td>{row.starter}</td>
+                  <td>{row.posBasic}</td>
+                  <td>{row.pro}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
