@@ -18,11 +18,11 @@ const INJECTION_PATTERNS = [
   /reveal (your )?(prompt|instruction|system)/i,
   /(tampilkan|bocorkan|kirim|kasih|beri).{0,20}(prompt|instruksi|system|aturan)/i,
   /you are now|kamu sekarang adalah|act as|berperan sebagai|pretend to be/i,
-  /jailbreak|dan mode|developer mode|admin mode/i,
+  /jailbreak|developer mode|admin mode/i,
   /roleplay|role play|berpura-pura/i,
   /(write|buatkan|tulis).{0,20}(code|kode|script|program|puisi|cerita|essay)/i,
-  /base64|rot13|decode this|terjemahkan ini/i,
-  /\bDAN\b|do anything now/i,
+  /base64|rot13|decode this|terjemahkan ini ke/i,
+  /\bdo anything now\b|mode dan|pura-pura jadi/i,
   /override|bypass|lewati (aturan|filter|guardrail)/i,
   /(balas|jawab).{0,15}(tanpa|abaikan).{0,15}(aturan|filter|batasan)/i,
 ];
@@ -46,6 +46,8 @@ const TOPIC_KEYWORDS = [
   "apa itu outletmu", "outletmu itu", "produk outletmu", "layanan outletmu",
   "cara pakai outletmu", "setup outletmu", "outletmu bisa", "outletmu cocok",
   "testimoni", "kontak outletmu", "whatsapp outletmu", "tim outletmu",
+  "harga", "biaya", "bayar", "paket", "langganan", "promo", "diskon",
+  "fitur", "cara", "mulai", "daftar", "coba", "demo", "konsultasi",
 ];
 
 /** Deteksi upaya prompt injection / jailbreak. */
