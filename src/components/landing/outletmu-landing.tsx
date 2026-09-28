@@ -42,6 +42,7 @@ import landingStyles from "@/styles/landing.module.scss";
 import pricingStyles from "@/styles/pricingDeck.module.scss";
 import { GlobalNavbar } from "@/components/global-navbar";
 import { ContainerScrollShowcase } from "@/components/landing/container-scroll-showcase";
+import { ChatWidget } from "@/components/landing/chat-widget";
 import { landingSectionIds, landingSectionLinks } from "@/components/landing/landing-anchors";
 
 const whatsappLeadNumber = "6281291960227";
@@ -2951,6 +2952,7 @@ export function OutletmuLanding() {
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
         Coba Gratis
       </a>
+      <ChatWidget />
     </main>
   );
 }
