@@ -8,7 +8,7 @@
     "status": "node engine.js status",
     "reset": "node engine.js reset"
   },
-  "optionalDependencies": {
-    "threads-api": "^0.0.1"
+  "dependencies": {
+    "threads-api": "^1.6.3"
   }
 }
